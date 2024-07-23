@@ -36,21 +36,25 @@ export function ChatExample() {
 				onClick={async () => {
 					setChatMessage("");
 					try {
-						const response = await fetch(`http://localhost:3000/chat`, {
-							method: "POST",
-							headers: {
-								"Content-Type": "application/json",
-								"x-api-key": import.meta.env.VITE_X_API_KEY,
+						const response = await fetch(
+							`https://ber-gpt-backend.onrender.com/chat`,
+							{
+								method: "POST",
+								headers: {
+									"Content-Type": "application/json",
+									"x-api-key": import.meta.env.VITE_X_API_KEY,
+									llm: "azure",
+								},
+								body: JSON.stringify({
+									messages: [
+										{
+											role: "user",
+											content: "Wer bist du? Antworte ausführlich.",
+										},
+									],
+								}),
 							},
-							body: JSON.stringify({
-								messages: [
-									{
-										role: "user",
-										content: "Wer bist du? Antworte ausführlich",
-									},
-								],
-							}),
-						});
+						);
 
 						if (!response.body) {
 							throw new Error("Response body is empty");
@@ -64,7 +68,7 @@ export function ChatExample() {
 				Test API Call
 			</button>
 			{chatMessage && (
-				<p className="rounded-md bg-red-100 p-2">{chatMessage}</p>
+				<p className="mt-8 rounded-md bg-red-100 p-2">{chatMessage}</p>
 			)}
 		</div>
 	);
