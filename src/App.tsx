@@ -1,9 +1,9 @@
 import { SendIcon } from "./components/icons/send-icon";
-import { PrimaryButton } from "./components/buttons/primary";
-import { SecondaryButton } from "./components/buttons/secondary";
-import { ChatBoxButton } from "./components/buttons/chat-box";
+import { PrimaryButton } from "./components/buttons/primary-button";
+import { SecondaryButton } from "./components/buttons/secondary-button";
+import { ChatBoxButton } from "./components/buttons/chat-box-button";
 import { ChatIcon } from "./components/icons/chat-icon";
-import { IconButton } from "./components/buttons/icon";
+import { IconButton } from "./components/buttons/icon-button";
 import { SidebarIcon } from "./components/icons/sidebar-icon";
 import { NewChatIcon } from "./components/icons/new-chat-icon";
 
