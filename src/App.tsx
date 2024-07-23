@@ -1,6 +1,8 @@
 import { SendIcon } from "./components/icons/send-icon";
 import { PrimaryButton } from "./components/buttons/primary";
 import { SecondaryButton } from "./components/buttons/secondary";
+import { ChatBoxButton } from "./components/buttons/chat-box";
+import { ChatIcon } from "./components/icons/chat-icon";
 
 export function App() {
 	return (
@@ -16,6 +18,15 @@ export function App() {
 				ariaLabel="Nachricht abschicken"
 			/>
 			<SecondaryButton label="E–Mail Hilfe" ariaLabel="E–Mail Hilfe" />
+			<ChatBoxButton
+				icon={<ChatIcon />}
+				label={
+					<div>
+						Erkläre mir was ich mit <b>BärGPT</b> machen kann.
+					</div>
+				}
+				ariaLabel="Nachricht abschicken"
+			/>
 		</div>
 	);
 }

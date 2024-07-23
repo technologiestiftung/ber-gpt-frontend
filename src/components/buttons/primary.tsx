@@ -1,16 +1,7 @@
 import React from "react";
+import { ButtonProps } from "./button-types";
 
-export interface PrimaryButtonProps {
-	label: string | React.ReactNode;
-	onClick?: () => void;
-	disabled?: boolean;
-	type?: "button" | "submit";
-	ariaLabel?: string;
-	title?: string;
-	isLoading?: boolean;
-}
-
-export const PrimaryButton: React.FC<PrimaryButtonProps> = ({
+export const PrimaryButton: React.FC<ButtonProps> = ({
 	label,
 	onClick,
 	disabled,
@@ -20,7 +11,7 @@ export const PrimaryButton: React.FC<PrimaryButtonProps> = ({
 }) => {
 	return (
 		<button
-			className={`my-2 flex h-[35px] w-fit items-center justify-center rounded bg-dark-blue px-3 text-sm font-semibold text-white outline-mid-grey hover:bg-light-blue hover:text-dark-blue active:bg-white active:font-normal active:text-dark-blue active:outline active:outline-1 disabled:bg-light-grey disabled:font-normal disabled:text-dark-blue disabled:active:outline-none`}
+			className={`my-2 flex min-h-[35px] w-fit items-center justify-center rounded bg-dark-blue px-3 text-sm font-semibold text-white outline-mid-grey hover:bg-light-blue hover:text-dark-blue active:bg-white active:font-normal active:text-dark-blue active:outline active:outline-1 disabled:bg-light-grey disabled:font-normal disabled:text-dark-blue disabled:active:outline-none`}
 			disabled={disabled}
 			onClick={onClick}
 			type={type}
