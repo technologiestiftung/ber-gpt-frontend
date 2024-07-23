@@ -1,10 +1,10 @@
-import { SendIcon } from "./components/buttons/icons/send-icon";
+import { SendIcon } from "./components/icons/send-icon";
 import { PrimaryButton } from "./components/buttons/primary";
 import { SecondaryButton } from "./components/buttons/secondary";
 
 export function App() {
 	return (
-		<div className="font-arial p-4">
+		<div className="p-4 font-arial">
 			<h1 aria-label="button">BärGPT - KI Testumgebung</h1>
 			<PrimaryButton
 				label={

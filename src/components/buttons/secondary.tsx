@@ -6,6 +6,7 @@ export interface PrimaryButtonProps {
 	disabled?: boolean;
 	type?: "button" | "submit";
 	ariaLabel?: string;
+	title?: string;
 	isLoading?: boolean;
 }
 
@@ -15,15 +16,16 @@ export const SecondaryButton: React.FC<PrimaryButtonProps> = ({
 	disabled,
 	type = "button",
 	ariaLabel,
+	title,
 }) => {
 	return (
 		<button
-			className={`hover:bg-light-grey text-dark-blue outline-mid-grey my-2 flex h-[35px] w-fit items-center justify-center rounded bg-white px-3 text-sm font-normal outline outline-1 active:bg-white active:font-semibold`}
+			className={`my-2 flex h-[35px] w-fit items-center justify-center rounded bg-white px-3 text-sm font-normal text-dark-blue outline outline-1 outline-mid-grey hover:bg-light-grey active:bg-white active:font-semibold`}
 			disabled={disabled}
 			onClick={onClick}
 			type={type}
 			aria-label={ariaLabel}
-			title={ariaLabel}
+			title={title}
 		>
 			<span>{label}</span>
 		</button>
