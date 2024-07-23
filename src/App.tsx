@@ -4,6 +4,8 @@ import { SecondaryButton } from "./components/buttons/secondary";
 import { ChatBoxButton } from "./components/buttons/chat-box";
 import { ChatIcon } from "./components/icons/chat-icon";
 import { IconButton } from "./components/buttons/icon";
+import { SidebarIcon } from "./components/icons/sidebar-icon";
+import { NewChatIcon } from "./components/icons/new-chat-icon";
 
 export function App() {
 	return (
@@ -26,12 +28,19 @@ export function App() {
 						Erkläre mir was ich mit <b>BärGPT</b> machen kann.
 					</div>
 				}
-				ariaLabel="Nachricht abschicken"
+				ariaLabel="Erkläre mir was ich mit BärGPT machen kann."
 			/>
 			<IconButton
 				isOutlineVisible={true}
-				icon={<SendIcon />}
-				ariaLabel="Nachricht abschicken"
+				icon={<SidebarIcon />}
+				ariaLabel="Seitenleiste anzeigen"
+				title="Seitenleiste anzeigen"
+			/>
+			<IconButton
+				isOutlineVisible={false}
+				icon={<NewChatIcon />}
+				ariaLabel="Neuen Chat starten"
+				title="Neuen Chat starten"
 			/>
 		</div>
 	);
