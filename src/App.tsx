@@ -3,6 +3,7 @@ import { PrimaryButton } from "./components/buttons/primary";
 import { SecondaryButton } from "./components/buttons/secondary";
 import { ChatBoxButton } from "./components/buttons/chat-box";
 import { ChatIcon } from "./components/icons/chat-icon";
+import { IconButton } from "./components/buttons/icon";
 
 export function App() {
 	return (
@@ -25,6 +26,11 @@ export function App() {
 						Erkläre mir was ich mit <b>BärGPT</b> machen kann.
 					</div>
 				}
+				ariaLabel="Nachricht abschicken"
+			/>
+			<IconButton
+				isOutlineVisible={true}
+				icon={<SendIcon />}
 				ariaLabel="Nachricht abschicken"
 			/>
 		</div>

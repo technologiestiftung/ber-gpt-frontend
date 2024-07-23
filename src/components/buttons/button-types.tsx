@@ -1,7 +1,7 @@
 import React from "react";
 
 export interface ButtonProps {
-	label: string | React.ReactNode;
+	label?: string | React.ReactNode;
 	onClick?: () => void;
 	disabled?: boolean;
 	type?: "button" | "submit";
@@ -9,4 +9,5 @@ export interface ButtonProps {
 	title?: string;
 	isLoading?: boolean;
 	icon?: React.ReactNode;
+	isOutlineVisible?: boolean;
 }

@@ -11,7 +11,7 @@ export const PrimaryButton: React.FC<ButtonProps> = ({
 }) => {
 	return (
 		<button
-			className={`disabled:text-dark-grey my-2 flex min-h-[35px] w-fit items-center justify-center rounded bg-dark-blue px-3 text-sm font-semibold text-white outline-mid-grey hover:bg-light-blue hover:text-dark-blue active:bg-white active:font-normal active:text-dark-blue active:outline active:outline-1 disabled:bg-light-grey disabled:font-normal disabled:active:outline-none`}
+			className={`my-2 flex min-h-[35px] w-fit items-center justify-center rounded bg-dark-blue px-3 text-sm font-semibold text-white outline-mid-grey hover:bg-light-blue hover:text-dark-blue active:bg-white active:font-normal active:text-dark-blue active:outline active:outline-1 disabled:bg-light-grey disabled:font-normal disabled:text-dark-grey disabled:active:outline-none`}
 			disabled={disabled}
 			onClick={onClick}
 			type={type}

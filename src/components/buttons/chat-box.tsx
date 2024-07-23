@@ -19,12 +19,10 @@ export const ChatBoxButton: React.FC<ButtonProps> = ({
 			aria-label={ariaLabel}
 			title={title}
 		>
-			<span>
-				<div className="flex w-[180px] flex-col items-start gap-3 pb-2">
-					<div> {icon} </div>
-					<div className="text-md text-start">{label}</div>
-				</div>
-			</span>
+			<div className="flex w-[180px] flex-col items-start gap-3 pb-2">
+				<div> {icon} </div>
+				<div className="text-md text-start">{label}</div>
+			</div>
 		</button>
 	);
 };
