@@ -65,7 +65,7 @@ export function ChatExample() {
 					}
 				}}
 			>
-				Test API Call
+				Example API Call to /chat
 			</button>
 			{chatMessage && (
 				<p className="mt-8 rounded-md bg-red-100 p-2">{chatMessage}</p>
