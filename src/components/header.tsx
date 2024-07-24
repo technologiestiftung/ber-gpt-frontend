@@ -4,7 +4,7 @@ export const Header: React.FC = () => {
 	return (
 		<header className="flex flex-col">
 			<img
-				className="w-48"
+				className="w-32"
 				src="https://logos.citylab-berlin.org/logo-berlin.svg"
 				alt={"Berlin Logo"}
 			/>
@@ -22,7 +22,7 @@ export const Header: React.FC = () => {
 							"Zusammenfassen",
 						].map((item) => (
 							<li key={item}>
-								<a className="text-dark-blue">{item}</a>
+								<a className="text-dark-grey">{item}</a>
 							</li>
 						))}
 					</ul>
