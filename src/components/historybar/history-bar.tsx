@@ -11,46 +11,43 @@ export const HistoryBar: React.FC = () => {
 
 	const { chatHistory, setChatHistory } = useHistoryStore();
 
-	const chatHistoryData = useMemo(
-		() => [
-			{
-				id: 0,
-				name: "Frage 1",
-				timestamp: "2024-07-24",
-			},
-			{
-				id: 1,
-				name: "Frage 2",
-				timestamp: "2024-07-22",
-			},
-			{
-				id: 2,
-				name: "Frage 3",
-				timestamp: "2024-07-22",
-			},
-			{
-				id: 3,
-				name: "Frage 4",
-				timestamp: "2024-07-07",
-			},
-			{
-				id: 4,
-				name: "Frage 5",
-				timestamp: "2024-06-05",
-			},
-			{
-				id: 5,
-				name: "Frage 6",
-				timestamp: "2024-06-01",
-			},
-		],
-		[],
-	);
+	const chatHistoryData = [
+		{
+			id: 0,
+			name: "Wie hoch ist der Fernsehturm in Berlin?",
+			timestamp: "2024-07-24",
+		},
+		{
+			id: 1,
+			name: "Wo befindet sich das Brandenburger Tor?",
+			timestamp: "2024-07-22",
+		},
+		{
+			id: 2,
+			name: "Welcher Fluss fließt durch Berlin?",
+			timestamp: "2024-07-22",
+		},
+		{
+			id: 3,
+			name: "Was ist das Wahrzeichen von Berlin?",
+			timestamp: "2024-07-07",
+		},
+		{
+			id: 4,
+			name: "In welchem Bezirk liegt der Alexanderplatz?",
+			timestamp: "2024-06-05",
+		},
+		{
+			id: 5,
+			name: "Welches Museum ist auf der Museumsinsel in Berlin?",
+			timestamp: "2024-06-01",
+		},
+	];
 
 	useEffect(() => {
 		setChatHistory(chatHistoryData);
 		localStorage.removeItem("chat-history");
-	}, [chatHistoryData]);
+	}, []);
 
 	const today = new Date();
 	const sevenDaysAgo = useMemo(() => subDays(today, 7), [today]);

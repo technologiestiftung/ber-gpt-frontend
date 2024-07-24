@@ -17,6 +17,7 @@ interface Chat {
 
 export const Chat: React.FC = () => {
 	const { chatHistory, currentChatID } = useHistoryStore();
+
 	const chatID = chatHistory[currentChatID];
 
 	const [messages, setMessages] = React.useState<Message[]>([]);
@@ -48,7 +49,7 @@ export const Chat: React.FC = () => {
 				))}
 			</div>
 
-			{chatID.name}
+			{chatID && chatID.name}
 			<form className="flex gap-2 border p-2" onSubmit={onSubmit}>
 				<input className="w-full" name="message" type="text" />
 				<PrimaryButton
