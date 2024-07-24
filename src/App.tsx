@@ -3,12 +3,12 @@ import { PrimaryButton } from "./components/buttons/primary-button";
 import { SecondaryButton } from "./components/buttons/secondary-button";
 import { ChatBoxButton } from "./components/buttons/chat-box-button";
 import { ChatIcon } from "./components/icons/chat-icon";
-import { Sidebar } from "./components/sidebar/sidebar";
+import { Historybar } from "./components/historybar/history-bar";
 
 export function App() {
 	return (
 		<div className="flex flex-row p-4 font-arial">
-			<Sidebar />
+			<Historybar />
 			<div>
 				<h1 aria-label="button">BärGPT - KI Testumgebung</h1>
 				<PrimaryButton

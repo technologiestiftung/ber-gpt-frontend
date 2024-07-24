@@ -1,65 +1,76 @@
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { IconButton } from "../buttons/icon-button";
 import { SidebarIcon } from "../icons/sidebar-icon";
 import { NewChatIcon } from "../icons/new-chat-icon";
 import { subDays } from "date-fns";
 import { HistoryGroup } from "./history-group";
+import { useHistoryStore } from "./history-store";
 
-export const Sidebar: React.FC = () => {
+export const Historybar: React.FC = () => {
 	const [isOpen, setIsOpen] = useState(false);
 
-	const chatHistory = [
-		{
-			id: 1,
-			name: "Frage 10",
-			timestamp: "2024-07-24",
-		},
-		{
-			id: 2,
-			name: "Frage 9",
-			timestamp: "2024-07-22",
-		},
-		{
-			id: 3,
-			name: "Frage 8",
-			timestamp: "2024-07-22",
-		},
-		{
-			id: 4,
-			name: "Frage 7",
-			timestamp: "2024-07-07",
-		},
-		{
-			id: 5,
-			name: "Frage 6",
-			timestamp: "2024-07-04",
-		},
-		{
-			id: 6,
-			name: "Frage 5",
-			timestamp: "2024-07-04",
-		},
-		{
-			id: 7,
-			name: "Frage 4",
-			timestamp: "2024-07-01",
-		},
-		{
-			id: 8,
-			name: "Frage 3",
-			timestamp: "2024-06-08",
-		},
-		{
-			id: 9,
-			name: "Frage 2",
-			timestamp: "2024-06-05",
-		},
-		{
-			id: 10,
-			name: "Frage 1",
-			timestamp: "2024-06-01",
-		},
-	];
+	const { chatHistory, setChatHistory, currentChatID } = useHistoryStore();
+
+	const chatHistoryData = useMemo(
+		() => [
+			{
+				id: 10,
+				name: "Frage 10",
+				timestamp: "2024-07-24",
+			},
+			{
+				id: 9,
+				name: "Frage 9",
+				timestamp: "2024-07-22",
+			},
+			{
+				id: 8,
+				name: "Frage 8",
+				timestamp: "2024-07-22",
+			},
+			{
+				id: 7,
+				name: "Frage 7",
+				timestamp: "2024-07-07",
+			},
+			{
+				id: 6,
+				name: "Frage 6",
+				timestamp: "2024-07-04",
+			},
+			{
+				id: 5,
+				name: "Frage 5",
+				timestamp: "2024-07-04",
+			},
+			{
+				id: 4,
+				name: "Frage 4",
+				timestamp: "2024-07-01",
+			},
+			{
+				id: 3,
+				name: "Frage 3",
+				timestamp: "2024-06-08",
+			},
+			{
+				id: 2,
+				name: "Frage 2",
+				timestamp: "2024-06-05",
+			},
+			{
+				id: 1,
+				name: "Frage 1",
+				timestamp: "2024-06-01",
+			},
+		],
+		[],
+	);
+
+	useEffect(() => {
+		setChatHistory(chatHistoryData);
+		localStorage.removeItem("chat-history");
+	}, [chatHistoryData]);
 
 	const today = new Date();
 	const sevenDaysAgo = useMemo(() => subDays(today, 7), [today]);
@@ -130,6 +141,7 @@ export const Sidebar: React.FC = () => {
 					<HistoryGroup key={label} label={label} chats={chats} />
 				))}
 			</div>
+			Aktueller Chat: {currentChatID}
 		</aside>
 	);
 };

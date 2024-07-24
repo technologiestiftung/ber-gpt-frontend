@@ -2,6 +2,7 @@ import React from "react";
 import { HistoryEntry } from "./history-entry";
 
 interface Chat {
+	id: number;
 	name: string;
 	timestamp: string;
 }
@@ -18,7 +19,7 @@ export const HistoryGroup: React.FC<HistoryGroupProps> = ({ label, chats }) => {
 				{label}
 			</div>
 			{chats.map((chat) => (
-				<HistoryEntry key={chat.timestamp} name={chat.name} />
+				<HistoryEntry key={chat.id} name={chat.name} id={chat.id} />
 			))}
 		</div>
 	);
