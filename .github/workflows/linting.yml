@@ -21,18 +21,18 @@ jobs:
         run: npm run lint
       - name: prettier
         run: npm run prettier:ci
-  release:
-    needs: [test]
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          persist-credentials: false
-      - uses: actions/setup-node@v4
-        with:
-          node-version-file: ".nvmrc"
-      - run: |
-          npm ci
-          npx semantic-release --ci
-        env:
-          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+#  release:
+#    needs: [test]
+#    runs-on: ubuntu-latest
+#    steps:
+#      - uses: actions/checkout@v4
+#        with:
+#          persist-credentials: false
+#      - uses: actions/setup-node@v4
+#        with:
+#          node-version-file: ".nvmrc"
+#      - run: |
+#          npm ci
+#          npx semantic-release --ci
+#        env:
+#          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
