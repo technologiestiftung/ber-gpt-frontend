@@ -7,11 +7,13 @@ interface HistoryEntryProps {
 }
 
 export const HistoryEntry: React.FC<HistoryEntryProps> = ({ name, id }) => {
-	const { setCurrentChatID } = useHistoryStore();
+	const { currentChatID, setCurrentChatID } = useHistoryStore();
+
+	const isSelected = currentChatID === id;
 
 	return (
 		<button
-			className="h-11 w-full rounded border border-transparent bg-light-grey px-4 text-start hover:border-mid-grey active:border-mid-grey active:bg-white"
+			className={`h-11 w-full rounded border border-transparent bg-light-grey px-4 text-start hover:border-mid-grey active:border-mid-grey ${isSelected ? "border-mid-grey bg-white" : ""}`}
 			onClick={() => setCurrentChatID(id)}
 		>
 			{name}
