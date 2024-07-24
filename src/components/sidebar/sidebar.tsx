@@ -96,15 +96,15 @@ export const Sidebar: React.FC = () => {
 		() => [
 			{ label: "Heute", chats: chatsToday },
 			{ label: "Letzte 7 Tage", chats: chatsLastSevenDays },
-			{ label: "Älter", chats: previousChats },
+			{ label: "Vorherige", chats: previousChats },
 		],
 		[chatsToday, chatsLastSevenDays, previousChats],
 	);
 
 	return (
 		<aside
-			className={`h-full max-w-72 rounded border px-2 pb-6 pt-2 ${
-				isOpen ? "border-light-grey" : "border-transparent"
+			className={`h-full w-fit shrink rounded border px-2 pb-6 pt-2 transition-all duration-200 ease-out ${
+				isOpen ? "w-64 border-light-grey" : "w-24 border-transparent"
 			}`}
 			aria-label="Sidebar"
 		>
@@ -123,7 +123,9 @@ export const Sidebar: React.FC = () => {
 					title="Neuen Chat starten"
 				/>
 			</div>
-			<div className={`w-60 flex-col gap-5 px-2 ${isOpen ? "flex" : "hidden"}`}>
+			<div
+				className={`flex w-60 flex-col gap-5 px-2 opacity-100 transition-all duration-200 ease-out ${isOpen ? "opacity-100" : "opacity-0"}`}
+			>
 				{chatGroups.map(({ label, chats }) => (
 					<HistoryGroup key={label} label={label} chats={chats} />
 				))}
