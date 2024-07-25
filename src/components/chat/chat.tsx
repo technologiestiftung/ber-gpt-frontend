@@ -8,6 +8,7 @@ import { SecondaryButton } from "../buttons/secondary-button";
 import { streamChatResponse } from "./api";
 import { useCurrentChatIdStore } from "../../store/current-chat-id-store";
 import { useIsLoadingStore } from "../../store/is-loading-store";
+import ReactMarkdown from "react-markdown";
 
 export const Chat: React.FC = () => {
 	const { getChat } = useChatHistoryStore();
@@ -26,13 +27,15 @@ export const Chat: React.FC = () => {
 		<div className="flex h-full w-full flex-col justify-between">
 			{messages.length === 0 && <GetStarted />}
 
-			<div className="flex flex-col gap-y-2">
+			<div className="flex flex-col gap-y-4">
 				{messages.map(({ id, content, role }) => (
 					<div
 						key={id}
-						className={`w-96 rounded border p-2 shadow-lg ${role === "user" ? "self-end" : "self-start border-dark-blue"} `}
+						className={`w-96 rounded border-2 p-4 shadow-lg ${role === "user" ? "self-end border-light-grey" : "self-start border-dark-blue"} `}
 					>
-						{content === "" ? "..." : content}
+						<ReactMarkdown className="markdown-container">
+							{content === "" ? "..." : content}
+						</ReactMarkdown>
 					</div>
 				))}
 			</div>
