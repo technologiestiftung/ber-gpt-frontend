@@ -30,7 +30,7 @@ export const Chat: React.FC = () => {
 				{messages.map(({ id, content, role }) => (
 					<div
 						key={id}
-						className={`w-96 border p-2 shadow-lg ${role === "user" ? "self-end" : "self-start"} `}
+						className={`w-96 rounded border p-2 shadow-lg ${role === "user" ? "self-end" : "self-start border-dark-blue"} `}
 					>
 						{content === "" ? "..." : content}
 					</div>
