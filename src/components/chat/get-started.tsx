@@ -10,6 +10,33 @@ type GetStartedProps = {
 	onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
 };
 
+const startingPrompts = [
+	{
+		icon: <ChatIcon />,
+		label: (
+			<div>
+				Erkläre mir was ich mit <b>BärGPT</b> machen kann.
+			</div>
+		),
+		value: "Erkläre mir was ich mit BärGPT machen kann.",
+	},
+	{
+		icon: <PDFIcon />,
+		label: "Hilf mir Texte und PDF´s zusammenzufassen.",
+		value: "Hilf mir Texte und PDF´s zusammenzufassen.",
+	},
+	{
+		icon: <MailIcon />,
+		label: "Formuliere einen E–mail Text für mich.",
+		value: "Formuliere einen E–mail Text für mich.",
+	},
+	{
+		icon: <VermerkIcon />,
+		label: "Generiere mir einen Vermerk.",
+		value: "Generiere mir einen Vermerk.",
+	},
+];
+
 export const GetStarted: React.FC<GetStartedProps> = ({ onSubmit }) => {
 	return (
 		<div className="flex w-full flex-col items-center justify-center">
@@ -20,38 +47,21 @@ export const GetStarted: React.FC<GetStartedProps> = ({ onSubmit }) => {
 				Starte mit <b>BärGPT!</b>
 			</h2>
 			<div className="flex w-full flex-row flex-wrap justify-center gap-x-7">
-				<ChatBoxButton
-					icon={<ChatIcon />}
-					label={
-						<div>
-							Erkläre mir was ich mit <b>BärGPT</b> machen kann.
-						</div>
-					}
-					type={"submit"}
-					value="Erkläre mir was ich mit BärGPT machen kann"
-					onSubmit={onSubmit}
-				/>
-				<ChatBoxButton
-					icon={<PDFIcon />}
-					label="Hilf mir Texte und PDF´s zusammenzufassen."
-					type={"submit"}
-					value="Hilf mir Texte und PDF´s zusammenzufassen."
-					onSubmit={onSubmit}
-				/>
-				<ChatBoxButton
-					icon={<MailIcon />}
-					label="Formuliere einen E–mail Text für mich."
-					type={"submit"}
-					value="Formuliere einen E–mail Text für mich."
-					onSubmit={onSubmit}
-				/>
-				<ChatBoxButton
-					icon={<VermerkIcon />}
-					label="Generiere mir einen Vermerk."
-					type={"submit"}
-					value="Generiere mir einen Vermerk."
-					onSubmit={onSubmit}
-				/>
+				{startingPrompts.map((prompt) => (
+					<form key={prompt.value} onSubmit={onSubmit}>
+						<input
+							className="hidden"
+							name="message"
+							type="text"
+							value={prompt.value}
+						/>
+						<ChatBoxButton
+							icon={prompt.icon}
+							label={prompt.label}
+							type={"submit"}
+						/>
+					</form>
+				))}
 			</div>
 		</div>
 	);
