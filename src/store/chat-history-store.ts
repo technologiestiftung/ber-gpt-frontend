@@ -54,7 +54,7 @@ export const useChatHistoryStore = create(
 					timestamp,
 				};
 
-				set({ chatHistory: [...get().chatHistory, newChat] });
+				set({ chatHistory: [newChat, ...get().chatHistory] });
 
 				useCurrentChatIdStore.getState().setCurrentChatId(newChat.id);
 
@@ -116,9 +116,9 @@ export const useChatHistoryStore = create(
 			},
 
 			deleteChat: (chatId: string) =>
-				set((state) => ({
-					chatHistory: state.chatHistory.filter((chat) => chat.id !== chatId),
-				})),
+				set({
+					chatHistory: get().chatHistory.filter((chat) => chat.id !== chatId),
+				}),
 		}),
 		{
 			name: "chat-history",
