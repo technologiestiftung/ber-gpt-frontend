@@ -5,10 +5,9 @@ import { PDFIcon } from "../icons/pdf-icon";
 import { MailIcon } from "../icons/mail-icon";
 import { VermerkIcon } from "../icons/vermerk-icon";
 import { BaerIcon } from "../icons/bear-icon";
-
-type GetStartedProps = {
-	onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
-};
+import { useChatHistoryStore } from "../../store/chat-history-store";
+import { useIsLoadingStore } from "../../store/is-loading-store";
+import { streamChatResponse } from "./api";
 
 const startingPrompts = [
 	{
@@ -37,7 +36,7 @@ const startingPrompts = [
 	},
 ];
 
-export const GetStarted: React.FC<GetStartedProps> = ({ onSubmit }) => {
+export const GetStarted: React.FC = () => {
 	return (
 		<div className="flex w-full flex-col items-center justify-center">
 			<div className="flex h-[70px] w-[70px] items-center justify-center rounded-full bg-white drop-shadow-lg">
@@ -48,21 +47,24 @@ export const GetStarted: React.FC<GetStartedProps> = ({ onSubmit }) => {
 			</h2>
 			<div className="flex w-full flex-row flex-wrap justify-center gap-x-7">
 				{startingPrompts.map((prompt) => (
-					<form key={prompt.value} onSubmit={onSubmit}>
-						<input
-							className="hidden"
-							name="message"
-							type="text"
-							value={prompt.value}
-						/>
-						<ChatBoxButton
-							icon={prompt.icon}
-							label={prompt.label}
-							type={"submit"}
-						/>
-					</form>
+					<ChatBoxButton
+						key={prompt.value}
+						icon={prompt.icon}
+						label={prompt.label}
+						onClick={() => onClick(prompt.value)}
+					/>
 				))}
 			</div>
 		</div>
 	);
 };
+
+function onClick(value: string) {
+	useIsLoadingStore.getState().setIsLoading(true);
+
+	const chatId = useChatHistoryStore.getState().createChat(value);
+
+	streamChatResponse(chatId).catch(console.error);
+
+	useIsLoadingStore.getState().setIsLoading(false);
+}
