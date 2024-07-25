@@ -1,6 +1,6 @@
 import React from "react";
 import { Chat } from "./chat/chat";
-import { HistoryBar } from "./historybar/history-bar";
+import { HistoryBar } from "./history-bar/history-bar";
 
 export const Main: React.FC = () => {
 	return (
