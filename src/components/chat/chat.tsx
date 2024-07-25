@@ -40,7 +40,8 @@ export const Chat: React.FC = () => {
 
 	return (
 		<div className="flex h-full w-full flex-col justify-between">
-			{messages.length === 0 && <GetStarted />}
+			{messages.length === 0 && <GetStarted onSubmit={onSubmit} />}
+
 			<div className="flex flex-col">
 				{messages.map(({ id, content }) => (
 					<div key={id} className="border p-2">
