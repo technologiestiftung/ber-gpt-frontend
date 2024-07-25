@@ -6,6 +6,9 @@ import { subDays } from "date-fns";
 import { HistoryGroup } from "./history-group";
 import { useHistoryStore } from "./history-store";
 
+const today = new Date();
+const sevenDaysAgo = subDays(today, 7);
+
 export const HistoryBar: React.FC = () => {
 	const [isOpen, setIsOpen] = useState(true);
 
@@ -15,12 +18,12 @@ export const HistoryBar: React.FC = () => {
 		{
 			id: 0,
 			name: "Wie hoch ist der Fernsehturm in Berlin?",
-			timestamp: "2024-07-24",
+			timestamp: "2024-07-25",
 		},
 		{
 			id: 1,
 			name: "Wo befindet sich das Brandenburger Tor?",
-			timestamp: "2024-07-22",
+			timestamp: "2024-07-25",
 		},
 		{
 			id: 2,
@@ -30,7 +33,7 @@ export const HistoryBar: React.FC = () => {
 		{
 			id: 3,
 			name: "Was ist das Wahrzeichen von Berlin?",
-			timestamp: "2024-07-07",
+			timestamp: "2024-07-21",
 		},
 		{
 			id: 4,
@@ -48,9 +51,6 @@ export const HistoryBar: React.FC = () => {
 		setChatHistory(chatHistoryData);
 		localStorage.removeItem("chat-history");
 	}, []);
-
-	const today = new Date();
-	const sevenDaysAgo = useMemo(() => subDays(today, 7), [today]);
 
 	const chatsToday = useMemo(
 		() =>
@@ -71,7 +71,7 @@ export const HistoryBar: React.FC = () => {
 		[chatHistory, sevenDaysAgo, chatsToday],
 	);
 
-	const previousChats = useMemo(
+	const chatsOlderThanSevenDays = useMemo(
 		() =>
 			chatHistory.filter(
 				(chat) =>
@@ -84,9 +84,9 @@ export const HistoryBar: React.FC = () => {
 		() => [
 			{ label: "Heute", chats: chatsToday },
 			{ label: "Letzte 7 Tage", chats: chatsLastSevenDays },
-			{ label: "Vorherige", chats: previousChats },
+			{ label: "Vorherige", chats: chatsOlderThanSevenDays },
 		],
-		[chatsToday, chatsLastSevenDays, previousChats],
+		[chatsToday, chatsLastSevenDays, chatsOlderThanSevenDays],
 	);
 
 	return (
