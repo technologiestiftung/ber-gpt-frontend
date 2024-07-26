@@ -5,7 +5,7 @@ import { Footer } from "./components/footer";
 
 export const App: React.FC = () => {
 	return (
-		<div className="flex min-h-svh flex-col p-10 font-arial">
+		<div className="flex h-svh flex-col overflow-hidden p-10 font-arial">
 			<Header />
 
 			<Main />

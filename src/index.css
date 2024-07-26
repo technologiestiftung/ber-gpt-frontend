@@ -3,6 +3,10 @@
 @tailwind utilities;
 
 @layer base {
+	.markdown-container p {
+		@apply m-3;
+	}
+
 	.markdown-container ol {
 		@apply my-4 list-none space-y-2;
 		list-style: decimal;

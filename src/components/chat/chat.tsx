@@ -10,72 +10,6 @@ import { useCurrentChatIdStore } from "../../store/current-chat-id-store";
 import { useIsLoadingStore } from "../../store/is-loading-store";
 import ReactMarkdown from "react-markdown";
 
-export const Chat: React.FC = () => {
-	const { getChat } = useChatHistoryStore();
-	const { currentChatId } = useCurrentChatIdStore();
-	const { isLoading } = useIsLoadingStore();
-
-	const helperButtons = [
-		"E-Mail Hilfe",
-		"Vermerk Generieren",
-		"Text Zusammenfassen",
-	];
-
-	const messages = getChat(currentChatId)?.messages || [];
-
-	return (
-		<div className="flex h-full w-full flex-col justify-between">
-			{messages.length === 0 && <GetStarted />}
-
-			<div className="flex flex-col gap-y-4">
-				{messages.map(({ id, content, role }) => (
-					<div
-						key={id}
-						className={`w-96 rounded border-2 p-4 shadow-lg ${role === "user" ? "self-end border-light-grey" : "self-start border-dark-blue"} `}
-					>
-						<ReactMarkdown className="markdown-container">
-							{content === "" ? "..." : content}
-						</ReactMarkdown>
-					</div>
-				))}
-			</div>
-
-			<div className="flex flex-col gap-y-6 rounded border border-gray-400 p-8 shadow-lg">
-				<form
-					className={`flex items-center gap-4 rounded border border-dark-blue px-4 py-2 shadow has-[:focus]:border-blue-500`}
-					onSubmit={onSubmit}
-				>
-					<UploadIcon />
-					<input
-						className="w-full focus:outline-none"
-						name="message"
-						type="text"
-						required
-						placeholder="Stelle eine Frage"
-					/>
-					<PrimaryButton
-						label={
-							<div className="flex flex-row items-center gap-2">
-								<SendIcon />
-								Senden
-							</div>
-						}
-						disabled={isLoading}
-						ariaLabel="Nachricht abschicken"
-						type={"submit"}
-					/>
-				</form>
-
-				<div className="flex gap-2">
-					{helperButtons.map((button) => (
-						<SecondaryButton key={button} label={button} />
-					))}
-				</div>
-			</div>
-		</div>
-	);
-};
-
 function onSubmit(e: React.FormEvent<HTMLFormElement>) {
 	e.preventDefault();
 	useIsLoadingStore.getState().setIsLoading(true);
@@ -112,3 +46,71 @@ function saveMessage(message: string) {
 
 	return currentChatId;
 }
+
+export const Chat: React.FC = () => {
+	const { getChat } = useChatHistoryStore();
+	const { currentChatId } = useCurrentChatIdStore();
+	const { isLoading } = useIsLoadingStore();
+
+	const helperButtons = [
+		"E-Mail Hilfe",
+		"Vermerk Generieren",
+		"Text Zusammenfassen",
+	];
+
+	const messages = getChat(currentChatId)?.messages || [];
+
+	return (
+		<div className="flex h-full w-full max-w-[1000px] flex-col justify-between">
+			{messages.length === 0 && <GetStarted />}
+
+			<div className="shadown-chat flex flex-col gap-y-4 overflow-scroll pb-2">
+				{messages.map(({ id, content, role }) => (
+					<div
+						key={id}
+						className={`max-w-[60%] rounded border-2 p-4 shadow-md ${role === "user" ? "self-end border-mid-grey" : "self-start border-dark-blue"} `}
+					>
+						<ReactMarkdown className="markdown-container">
+							{content === "" ? "..." : content}
+						</ReactMarkdown>
+					</div>
+				))}
+			</div>
+
+			<div className="shadow-[-10px_0px_20px_10px_rgba(255,255,255,75)]">
+				<div className="z-10 flex flex-col gap-y-2 rounded border-2 border-mid-grey bg-white px-6 pb-4 pt-6 shadow-md">
+					<form
+						className={`flex items-center gap-4 rounded border border-dark-blue px-4 py-2 has-[:focus]:border-blue-500`}
+						onSubmit={onSubmit}
+					>
+						<UploadIcon />
+						<input
+							className="w-full focus:outline-none"
+							name="message"
+							type="text"
+							required
+							placeholder="Stelle eine Frage"
+						/>
+						<PrimaryButton
+							label={
+								<div className="flex flex-row items-center gap-2">
+									<SendIcon />
+									Senden
+								</div>
+							}
+							disabled={isLoading}
+							ariaLabel="Nachricht abschicken"
+							type={"submit"}
+						/>
+					</form>
+
+					<div className="flex gap-2">
+						{helperButtons.map((button) => (
+							<SecondaryButton key={button} label={button} />
+						))}
+					</div>
+				</div>
+			</div>
+		</div>
+	);
+};
