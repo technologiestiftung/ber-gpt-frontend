@@ -7,16 +7,12 @@ import { PDFIcon } from "./icons/pdf-icon";
 export const Header: React.FC = () => {
 	return (
 		<header className="flex flex-col gap-4">
-			<img
-				className="w-32"
-				src="https://logos.citylab-berlin.org/logo-berlin.svg"
-				alt={"Berlin Logo"}
-			/>
-			<div className="flex justify-between gap-14">
-				<div className="flex w-fit flex-row items-center gap-3">
-					<h1 className="text-[22px] font-bold">BärGPT</h1>
-					<h2 className="text-[17px]">KI Testumgebung</h2>
-				</div>
+			<div className="flex flex-row justify-between gap-10">
+				<img
+					className="w-32"
+					src="https://logos.citylab-berlin.org/logo-berlin.svg"
+					alt={"Berlin Logo"}
+				/>
 				<nav className="flex w-fit grow pt-1">
 					<ul className="flex h-fit w-full justify-end gap-10 text-[17px]">
 						{[
@@ -35,6 +31,10 @@ export const Header: React.FC = () => {
 						))}
 					</ul>
 				</nav>
+			</div>
+			<div className="flex w-fit flex-row items-center gap-3">
+				<h1 className="text-[22px] font-bold">BärGPT</h1>
+				<h2 className="text-[17px]">KI Testumgebung</h2>
 			</div>
 		</header>
 	);

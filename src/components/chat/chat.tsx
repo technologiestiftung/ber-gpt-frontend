@@ -61,7 +61,7 @@ export const Chat: React.FC = () => {
 	const messages = getChat(currentChatId)?.messages || [];
 
 	return (
-		<div className="flex h-full w-full flex-col justify-between">
+		<div className="flex h-full w-full max-w-[1000px] flex-col justify-between">
 			{messages.length === 0 && <GetStarted />}
 
 			<div className="shadown-chat flex flex-col gap-y-4 overflow-scroll pb-2">
@@ -77,36 +77,38 @@ export const Chat: React.FC = () => {
 				))}
 			</div>
 
-			<div className="z-10 flex flex-col gap-y-2 rounded border border-mid-grey px-4 pb-2 pt-4 shadow-[-10px_0px_20px_10px_rgba(255,255,255,75)]">
-				<form
-					className={`flex items-center gap-4 rounded border border-dark-blue px-4 py-2 shadow has-[:focus]:border-blue-500`}
-					onSubmit={onSubmit}
-				>
-					<UploadIcon />
-					<input
-						className="w-full focus:outline-none"
-						name="message"
-						type="text"
-						required
-						placeholder="Stelle eine Frage"
-					/>
-					<PrimaryButton
-						label={
-							<div className="flex flex-row items-center gap-2">
-								<SendIcon />
-								Senden
-							</div>
-						}
-						disabled={isLoading}
-						ariaLabel="Nachricht abschicken"
-						type={"submit"}
-					/>
-				</form>
+			<div className="shadow-[-10px_0px_20px_10px_rgba(255,255,255,75)]">
+				<div className="z-10 flex flex-col gap-y-2 rounded border-2 border-mid-grey bg-white px-6 pb-4 pt-6 shadow-md">
+					<form
+						className={`flex items-center gap-4 rounded border border-dark-blue px-4 py-2 has-[:focus]:border-blue-500`}
+						onSubmit={onSubmit}
+					>
+						<UploadIcon />
+						<input
+							className="w-full focus:outline-none"
+							name="message"
+							type="text"
+							required
+							placeholder="Stelle eine Frage"
+						/>
+						<PrimaryButton
+							label={
+								<div className="flex flex-row items-center gap-2">
+									<SendIcon />
+									Senden
+								</div>
+							}
+							disabled={isLoading}
+							ariaLabel="Nachricht abschicken"
+							type={"submit"}
+						/>
+					</form>
 
-				<div className="flex gap-2">
-					{helperButtons.map((button) => (
-						<SecondaryButton key={button} label={button} />
-					))}
+					<div className="flex gap-2">
+						{helperButtons.map((button) => (
+							<SecondaryButton key={button} label={button} />
+						))}
+					</div>
 				</div>
 			</div>
 		</div>

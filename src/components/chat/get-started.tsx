@@ -45,7 +45,7 @@ export const GetStarted: React.FC = () => {
 			<h2 className="pb-2 pt-4 text-xl">
 				Starte mit <b>BärGPT!</b>
 			</h2>
-			<div className="flex w-full flex-row flex-wrap justify-center gap-x-7">
+			<div className="flex w-full flex-row flex-wrap justify-center gap-x-4">
 				{startingPrompts.map((prompt) => (
 					<ChatBoxButton
 						key={prompt.value}
