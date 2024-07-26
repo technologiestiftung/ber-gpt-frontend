@@ -20,11 +20,6 @@ const startingPrompts = [
 		value: "Erkläre mir was ich mit BärGPT machen kann.",
 	},
 	{
-		icon: <PDFIcon />,
-		label: "Hilf mir Texte und PDF´s zusammenzufassen.",
-		value: "Hilf mir Texte und PDF´s zusammenzufassen.",
-	},
-	{
 		icon: <MailIcon />,
 		label: "Formuliere einen E–mail Text für mich.",
 		value: "Formuliere einen E–mail Text für mich.",
@@ -33,6 +28,11 @@ const startingPrompts = [
 		icon: <VermerkIcon />,
 		label: "Generiere mir einen Vermerk.",
 		value: "Generiere mir einen Vermerk.",
+	},
+	{
+		icon: <PDFIcon />,
+		label: "Hilf mir Texte und PDF´s zusammenzufassen.",
+		value: "Hilf mir Texte und PDF´s zusammenzufassen.",
 	},
 ];
 
