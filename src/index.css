@@ -5,22 +5,18 @@
 @layer base {
 	.markdown-container ol {
 		@apply my-4 list-none space-y-2;
+		list-style: decimal;
+		padding-left: 2rem;
 	}
 
 	.markdown-container ul {
 		@apply my-4 list-none space-y-2;
+		list-style: disc;
+		padding-left: 2rem;
 	}
 
 	.markdown-container li {
-		@apply relative pl-6;
-	}
-
-	.markdown-container li::before {
-		content: "\2022";
-		position: absolute;
-		left: 0;
-		margin-right: 8px;
-		padding: 2px;
+		@apply relative pl-3;
 	}
 
 	.markdown-container h1 {
