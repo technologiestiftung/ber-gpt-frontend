@@ -68,7 +68,7 @@ export const Chat: React.FC = () => {
 				{messages.map(({ id, content, role }) => (
 					<div
 						key={id}
-						className={`w-96 rounded border-2 p-4 shadow-lg ${role === "user" ? "self-end border-light-grey" : "self-start border-dark-blue"} `}
+						className={`max-w-[60%] rounded border-2 p-4 shadow-md ${role === "user" ? "self-end border-mid-grey" : "self-start border-dark-blue"} `}
 					>
 						<ReactMarkdown className="markdown-container">
 							{content === "" ? "..." : content}
@@ -77,7 +77,7 @@ export const Chat: React.FC = () => {
 				))}
 			</div>
 
-			<div className="z-10 flex flex-col gap-y-6 rounded border border-gray-400 p-8 shadow-[-10px_0px_20px_10px_rgba(255,255,255,75)]">
+			<div className="z-10 flex flex-col gap-y-2 rounded border border-mid-grey px-4 pb-2 pt-4 shadow-[-10px_0px_20px_10px_rgba(255,255,255,75)]">
 				<form
 					className={`flex items-center gap-4 rounded border border-dark-blue px-4 py-2 shadow has-[:focus]:border-blue-500`}
 					onSubmit={onSubmit}

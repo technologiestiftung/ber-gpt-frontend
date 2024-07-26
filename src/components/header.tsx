@@ -6,19 +6,19 @@ import { PDFIcon } from "./icons/pdf-icon";
 
 export const Header: React.FC = () => {
 	return (
-		<header className="flex flex-col">
+		<header className="flex flex-col gap-4">
 			<img
 				className="w-32"
 				src="https://logos.citylab-berlin.org/logo-berlin.svg"
 				alt={"Berlin Logo"}
 			/>
-			<div className="flex pt-5">
-				<div className="w-72">
+			<div className="flex justify-between gap-14">
+				<div className="flex w-fit flex-row items-center gap-3">
 					<h1 className="text-[22px] font-bold">BärGPT</h1>
-					<h2 className="text-[22px]">KI Testumgebung</h2>
+					<h2 className="text-[17px]">KI Testumgebung</h2>
 				</div>
-				<nav className="flex w-full shrink pt-1">
-					<ul className="flex h-fit w-full justify-between px-10 text-[17px]">
+				<nav className="flex w-fit grow pt-1">
+					<ul className="flex h-fit w-full justify-end gap-10 text-[17px]">
 						{[
 							{ label: "Chat Funktion", icon: <ChatIcon /> },
 							{ label: "E-Mail Funktion", icon: <MailIcon /> },

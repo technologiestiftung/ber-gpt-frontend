@@ -72,11 +72,11 @@ export const HistoryBar: React.FC = () => {
 	return (
 		<aside
 			className={`h-full overflow-y-scroll rounded border px-2 pb-6 pt-2 transition-all duration-200 ease-out ${
-				isOpen ? "w-72 border-light-grey" : "w-24 border-transparent"
+				isOpen ? "w-72 border-mid-grey" : "w-24 border-transparent"
 			}`}
 			aria-label="Sidebar"
 		>
-			<div className={`flex flex-row justify-between gap-2 pr-1.5`}>
+			<div className={`flex flex-row justify-between gap-2`}>
 				<IconButton
 					isOutlineVisible={!isOpen}
 					icon={<SidebarIcon />}
