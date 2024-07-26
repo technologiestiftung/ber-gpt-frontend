@@ -15,9 +15,9 @@ export const HistoryEntry: React.FC<Pick<Chat, "id" | "name">> = ({
 	const isSelected = currentChatId === id;
 
 	return (
-		<div className="flex items-center gap-2">
+		<div className="flex items-center justify-between gap-2">
 			<button
-				className={`h-11 w-full truncate rounded border bg-light-grey px-4 text-start hover:border-mid-grey ${isSelected ? "border-mid-grey bg-white" : ""}`}
+				className={`h-11 w-5/6 truncate rounded border bg-light-grey px-4 text-start hover:border-mid-grey ${isSelected ? "border-mid-grey bg-white" : ""}`}
 				onClick={() => setCurrentChatId(id)}
 			>
 				{name}

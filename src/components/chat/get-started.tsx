@@ -38,8 +38,8 @@ const startingPrompts = [
 
 export const GetStarted: React.FC = () => {
 	return (
-		<div className="flex w-full flex-col items-center justify-center">
-			<div className="flex h-[70px] w-[70px] items-center justify-center rounded-full bg-white drop-shadow-lg">
+		<div className="flex w-full flex-col items-center justify-center overflow-scroll">
+			<div className="flex min-h-[70px] w-[70px] items-center justify-center rounded-full bg-white drop-shadow-lg">
 				<BaerIcon />
 			</div>
 			<h2 className="pb-2 pt-4 text-xl">

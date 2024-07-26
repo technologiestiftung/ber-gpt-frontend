@@ -71,12 +71,12 @@ export const HistoryBar: React.FC = () => {
 
 	return (
 		<aside
-			className={`h-full shrink rounded border px-2 pb-6 pt-2 transition-all duration-200 ease-out ${
-				isOpen ? "w-64 border-light-grey" : "w-24 border-transparent"
+			className={`h-full overflow-y-scroll rounded border px-2 pb-6 pt-2 transition-all duration-200 ease-out ${
+				isOpen ? "w-72 border-light-grey" : "w-24 border-transparent"
 			}`}
 			aria-label="Sidebar"
 		>
-			<div className={`flex flex-row justify-between gap-2`}>
+			<div className={`flex flex-row justify-between gap-2 pr-1.5`}>
 				<IconButton
 					isOutlineVisible={!isOpen}
 					icon={<SidebarIcon />}
@@ -93,7 +93,7 @@ export const HistoryBar: React.FC = () => {
 				/>
 			</div>
 			<div
-				className={`flex w-60 flex-col gap-5 px-2 transition-all duration-200 ease-out ${
+				className={`flex w-auto flex-col gap-5 pl-2 transition-all duration-200 ease-out ${
 					isOpen ? "opacity-100" : "opacity-0"
 				}`}
 			>
