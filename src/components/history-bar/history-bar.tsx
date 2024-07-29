@@ -71,7 +71,7 @@ export const HistoryBar: React.FC = () => {
 
 	return (
 		<aside
-			className={`h-full overflow-y-scroll rounded border px-2 pb-6 pt-2 transition-all duration-200 ease-out ${
+			className={`h-full overflow-y-auto rounded border px-2 pb-6 pt-2 transition-all duration-200 ease-out ${
 				isOpen ? "w-72 border-mid-grey" : "w-24 border-transparent"
 			}`}
 			aria-label="Sidebar"
