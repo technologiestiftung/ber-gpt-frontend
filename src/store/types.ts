@@ -1,9 +1,28 @@
-export interface Message {
+export interface File {
+	id: string;
+	name: string;
+	content: string | null;
+	extractionStatus: "pending" | "success" | "error";
+}
+
+export type FileMessage = {
 	id: string;
 	role: string;
+	fileName: string;
+	type: "file";
 	content: string;
 	timestamp: string;
-}
+};
+
+export type TextMessage = {
+	id: string;
+	role: string;
+	type: "text";
+	content: string;
+	timestamp: string;
+};
+
+export type Message = FileMessage | TextMessage;
 
 export interface Chat {
 	id: string;
