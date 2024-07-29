@@ -64,7 +64,7 @@ export const Chat: React.FC = () => {
 		<div className="flex h-full w-full max-w-[1000px] flex-col justify-between">
 			{messages.length === 0 && <GetStarted />}
 
-			<div className="shadown-chat flex flex-col gap-y-4 overflow-scroll pb-2">
+			<div className="shadown-chat flex flex-col gap-y-4 overflow-auto pb-2">
 				{messages.map(({ id, content, role }) => (
 					<div
 						key={id}
