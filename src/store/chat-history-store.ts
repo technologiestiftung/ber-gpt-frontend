@@ -22,6 +22,7 @@ interface ChatHistoryStore {
 		role: string;
 	}) => void;
 	deleteChat: (chatId: string) => void;
+	saveMessage: (message: string) => string;
 }
 
 export const useChatHistoryStore = create(
@@ -119,6 +120,22 @@ export const useChatHistoryStore = create(
 				set({
 					chatHistory: get().chatHistory.filter((chat) => chat.id !== chatId),
 				}),
+
+			saveMessage: (message: string) => {
+				const { currentChatId } = useCurrentChatIdStore.getState();
+
+				if (!currentChatId) {
+					return get().createChat(message);
+				}
+
+				get().addMessageToChat({
+					chatId: currentChatId,
+					content: message,
+					role: "user",
+				});
+
+				return currentChatId;
+			},
 		}),
 		{
 			name: "chat-history",
