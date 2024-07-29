@@ -1,6 +1,10 @@
 import React from "react";
 
-export const UploadIcon: React.FC = () => {
+interface UploadIconProps {
+	className: string;
+}
+
+export const UploadIcon: React.FC<UploadIconProps> = ({ className }) => {
 	return (
 		<svg
 			width="27"
@@ -8,10 +12,11 @@ export const UploadIcon: React.FC = () => {
 			viewBox="0 0 27 35"
 			fill="none"
 			xmlns="http://www.w3.org/2000/svg"
+			className={className}
 		>
 			<path
 				d="M4.5 0C2.01797 0 0 1.96191 0 4.375V30.625C0 33.0381 2.01797 35 4.5 35H22.5C24.982 35 27 33.0381 27 30.625V10.9375H18C16.7555 10.9375 15.75 9.95996 15.75 8.75V0H4.5ZM18 0V8.75H27L18 0ZM15.1875 27.8906C15.1875 28.7998 14.4352 29.5312 13.5 29.5312C12.5648 29.5312 11.8125 28.7998 11.8125 27.8906V20.9111L9.63281 23.0303C8.97188 23.6729 7.90312 23.6729 7.24922 23.0303C6.59531 22.3877 6.58828 21.3486 7.24922 20.7129L12.3117 15.791C12.9727 15.1484 14.0414 15.1484 14.6953 15.791L19.7578 20.7129C20.4188 21.3555 20.4188 22.3945 19.7578 23.0303C19.0969 23.666 18.0281 23.6729 17.3742 23.0303L15.1945 20.9111L15.1875 27.8906Z"
-				fill="#012956"
+				fill="currentColor"
 			/>
 		</svg>
 	);
