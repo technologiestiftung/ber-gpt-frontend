@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { SendIcon } from "../icons/send-icon.tsx";
 import { PrimaryButton } from "../buttons/primary-button.tsx";
 import { useIsLoadingStore } from "../../store/is-loading-store.ts";
@@ -55,7 +55,30 @@ function onSubmit(e: React.FormEvent<HTMLFormElement>) {
 }
 
 export const EmailForm: React.FC = () => {
-	const [textInput, setTextInput] = useState("");
+	const { isLoading: isGPTResponseLoading } = useIsLoadingStore();
+
+	const isLoading = isGPTResponseLoading;
+
+	const radioGroups = [
+		{
+			label: "An wen?",
+			name: "recipient",
+			options: ["Kolleg:in", "Vorgesetzte:n", "Kund:in"],
+			defaultChecked: "Kolleg:in",
+		},
+		{
+			label: "Umfang",
+			name: "scope",
+			options: ["kurz", "mittel", "lang"],
+			defaultChecked: "kurz",
+		},
+		{
+			label: "Formulierung",
+			name: "formality",
+			options: ["formal", "informal"],
+			defaultChecked: "formal",
+		},
+	];
 
 	return (
 		<form
@@ -64,26 +87,7 @@ export const EmailForm: React.FC = () => {
 		>
 			<div className="flex h-24 flex-row justify-between gap-4">
 				<div className="flex flex-row gap-10">
-					{[
-						{
-							label: "An wen?",
-							name: "recipient",
-							options: ["Kolleg:in", "Vorgesetzte:n", "Kund:in"],
-							defaultChecked: "Kolleg:in",
-						},
-						{
-							label: "Umfang",
-							name: "scope",
-							options: ["kurz", "mittel", "lang"],
-							defaultChecked: "kurz",
-						},
-						{
-							label: "Formulierung",
-							name: "formality",
-							options: ["formal", "informal"],
-							defaultChecked: "formal",
-						},
-					].map((group) => (
+					{radioGroups.map((group) => (
 						<div className="flex w-fit flex-col gap-1" key={group.name}>
 							<div className="font-semibold">{group.label}</div>
 							{group.options.map((option) => (
@@ -105,7 +109,7 @@ export const EmailForm: React.FC = () => {
 					))}
 				</div>
 				<div className="flex h-full w-2/5 flex-col gap-2">
-					<label className="font-semibold">E-Mail Text (optional)</label>
+					<label className="font-semibold">Vorherige E-Mail (optional)</label>
 					<textarea
 						className={`h-full resize-none rounded border border-mid-grey p-2 focus:border-blue-500 focus:outline-none`}
 						name="previousMail"
@@ -123,7 +127,6 @@ export const EmailForm: React.FC = () => {
 						name="message"
 						required
 						placeholder="Beschreibe was inhaltlich in der Mail stehen soll..."
-						onChange={(e) => setTextInput(e.currentTarget.value)}
 					/>
 					<div className="flex self-end">
 						<PrimaryButton
@@ -135,7 +138,7 @@ export const EmailForm: React.FC = () => {
 							}
 							ariaLabel="Nachricht abschicken"
 							type={"submit"}
-							disabled={textInput === ""}
+							disabled={isLoading}
 						/>
 					</div>
 				</div>
