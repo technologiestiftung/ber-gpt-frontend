@@ -30,7 +30,6 @@ interface ChatHistoryStore {
 	saveMessage: (message: string) => void;
 
 	deleteChat: (chatId: string) => void;
-	saveMessage: (message: string) => string;
 }
 
 export const useChatHistoryStore = create(

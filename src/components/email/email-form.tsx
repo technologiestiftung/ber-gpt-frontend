@@ -2,8 +2,11 @@ import React, { useState } from "react";
 import { SendIcon } from "../icons/send-icon.tsx";
 import { PrimaryButton } from "../buttons/primary-button.tsx";
 import { useIsLoadingStore } from "../../store/is-loading-store.ts";
-import { streamChatResponse } from "./api.ts";
+import { streamChatResponse } from "../../store/api.ts";
 import { useChatHistoryStore } from "../../store/chat-history-store.ts";
+
+const { setIsLoading } = useIsLoadingStore.getState();
+const { saveMessage } = useChatHistoryStore.getState();
 
 function createEmailPrompt(formData: FormData) {
 	const usePreviousEmail = formData.get("previousMail") !== "";
@@ -15,13 +18,13 @@ Die E-Mail soll **${formData.get("scope")}** und **${formData.get("formality")}*
 
 ${
 	usePreviousEmail
-		? `**Vorherige E-Mail:**
+		? `**Gehe dabei auf folgende vorherige E-Mail ein:**
 
-${formData.get("previousMail")}`
+*${formData.get("previousMail")}*`
 		: ""
 }
 
-**Inhaltliche Punkte:**
+**Folgendes sollte in der ${usePreviousEmail ? "Antwort" : ""} Mail beachtet werden:**
 
 ${formData.get("message")}`;
 
@@ -30,7 +33,7 @@ ${formData.get("message")}`;
 
 function onSubmit(e: React.FormEvent<HTMLFormElement>) {
 	e.preventDefault();
-	useIsLoadingStore.getState().setIsLoading(true);
+	setIsLoading(true);
 
 	const formData = new FormData(e.currentTarget);
 	e.currentTarget.reset();
@@ -40,13 +43,13 @@ function onSubmit(e: React.FormEvent<HTMLFormElement>) {
 	const message = formData.get("message");
 	if (!message) {
 		console.error("The input 'message' from the form is missing.");
-		useIsLoadingStore.getState().setIsLoading(false);
+		setIsLoading(false);
 		return;
 	}
 
-	const chatId = useChatHistoryStore.getState().saveMessage(emailPromt);
+	saveMessage(emailPromt.toString());
 
-	streamChatResponse(chatId).catch(console.error);
+	streamChatResponse().catch(console.error);
 
 	useIsLoadingStore.getState().setIsLoading(false);
 }
@@ -55,12 +58,12 @@ export const EmailForm: React.FC = () => {
 	const [textInput, setTextInput] = useState("");
 
 	return (
-		<div className="z-10 flex flex-col gap-y-2 rounded border-2 border-mid-grey bg-white px-6 pb-4 pt-6 shadow-md">
-			<form
-				className={`flex flex-col gap-4 text-sm text-dark-blue`}
-				onSubmit={onSubmit}
-			>
-				<div className="flex h-24 flex-row justify-between gap-4">
+		<form
+			className={`flex flex-col gap-4 text-sm text-dark-blue`}
+			onSubmit={onSubmit}
+		>
+			<div className="flex h-24 flex-row justify-between gap-4">
+				<div className="flex flex-row gap-10">
 					{[
 						{
 							label: "An wen?",
@@ -71,7 +74,7 @@ export const EmailForm: React.FC = () => {
 						{
 							label: "Umfang",
 							name: "scope",
-							options: ["kurz", "mittel lang", "lang"],
+							options: ["kurz", "mittel", "lang"],
 							defaultChecked: "kurz",
 						},
 						{
@@ -100,43 +103,43 @@ export const EmailForm: React.FC = () => {
 							))}
 						</div>
 					))}
-					<div className="flex h-full w-2/5 flex-col gap-2">
-						<label className="font-semibold">E-Mail Text (optional)</label>
-						<textarea
-							className={`h-full resize-none rounded border border-mid-grey p-2 focus:border-blue-500 focus:outline-none`}
-							name="previousMail"
-							placeholder="Mail auf die geantwortet werden soll einfügen..."
+				</div>
+				<div className="flex h-full w-2/5 flex-col gap-2">
+					<label className="font-semibold">E-Mail Text (optional)</label>
+					<textarea
+						className={`h-full resize-none rounded border border-mid-grey p-2 focus:border-blue-500 focus:outline-none`}
+						name="previousMail"
+						placeholder="Mail auf die geantwortet werden soll einfügen..."
+					/>
+				</div>
+			</div>
+			<div className="flex flex-col gap-2">
+				<label className="font-semibold">Inhaltliches</label>
+				<div
+					className={`flex items-center gap-4 rounded border border-dark-blue px-4 py-2 has-[:focus]:border-blue-500`}
+				>
+					<textarea
+						className="h-5 max-h-40 min-h-5 w-full resize-y focus:outline-none"
+						name="message"
+						required
+						placeholder="Beschreibe was inhaltlich in der Mail stehen soll..."
+						onChange={(e) => setTextInput(e.currentTarget.value)}
+					/>
+					<div className="flex self-end">
+						<PrimaryButton
+							label={
+								<div className="flex flex-row items-center gap-2">
+									<SendIcon />
+									Senden
+								</div>
+							}
+							ariaLabel="Nachricht abschicken"
+							type={"submit"}
+							disabled={textInput === ""}
 						/>
 					</div>
 				</div>
-				<div className="flex flex-col gap-2">
-					<label className="font-semibold">Inhaltliches</label>
-					<div
-						className={`flex items-center gap-4 rounded border border-dark-blue px-4 py-2 has-[:focus]:border-blue-500`}
-					>
-						<textarea
-							className="h-5 max-h-40 min-h-5 w-full resize-y focus:outline-none"
-							name="message"
-							required
-							placeholder="Beschreibe was inhaltlich in der Mail stehen soll..."
-							onChange={(e) => setTextInput(e.currentTarget.value)}
-						/>
-						<div className="flex self-end">
-							<PrimaryButton
-								label={
-									<div className="flex flex-row items-center gap-2">
-										<SendIcon />
-										Senden
-									</div>
-								}
-								ariaLabel="Nachricht abschicken"
-								type={"submit"}
-								disabled={textInput === ""}
-							/>
-						</div>
-					</div>
-				</div>
-			</form>
-		</div>
+			</div>
+		</form>
 	);
 };
