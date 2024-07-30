@@ -7,15 +7,23 @@ import { useChatHistoryStore } from "../../store/chat-history-store.ts";
 
 function createEmailPrompt(formData: FormData) {
 	const usePreviousEmail = formData.get("previousMail") !== "";
-	const emailPrompt = `Schreibe mit eine E-Mail für eine:n **${formData.get("recipient")}**:\
-	\
-	Anforderungen:\
-	E-Mail Länge: **${formData.get("scope")}**\
-	Stil: **${formData.get("formality")}**\
-	${usePreviousEmail ? "" : `Gehe dabei auf die vorherige E-Mail ein: ${formData.get("previousMail")}`}\
-	\
-	Folgende inhaltliche Punkte sollen in der ${formData.get("previousMail") === "" ? "" : "Antwort"} Mail enthalten sein:\
-	${formData.get("message")}`;
+	const emailPrompt = `**Anforderungen**
+
+Schreibe mit eine E-Mail für eine:n **${formData.get("recipient")}**:
+
+Die E-Mail soll **${formData.get("scope")}** und **${formData.get("formality")}** formuliert sein.
+
+${
+	usePreviousEmail
+		? `**Vorherige E-Mail:**
+
+${formData.get("previousMail")}`
+		: ""
+}
+
+**Inhaltliche Punkte:**
+
+${formData.get("message")}`;
 
 	return emailPrompt;
 }
@@ -63,7 +71,7 @@ export const EmailForm: React.FC = () => {
 						{
 							label: "Umfang",
 							name: "scope",
-							options: ["kurz", "mittel", "lang"],
+							options: ["kurz", "mittel lang", "lang"],
 							defaultChecked: "kurz",
 						},
 						{

@@ -21,7 +21,6 @@ export const Chat: React.FC = () => {
 						key={id}
 						className={`max-w-[60%] rounded border-2 p-4 shadow-md ${role === "user" ? "self-end border-mid-grey" : "self-start border-dark-blue"} `}
 					>
-						{console.log(typeof content)}
 						<ReactMarkdown className="markdown-container">
 							{content === "" ? "..." : content}
 						</ReactMarkdown>
