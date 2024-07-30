@@ -5,6 +5,13 @@ import { VermerkIcon } from "./icons/vermerk-icon";
 import { PDFIcon } from "./icons/pdf-icon";
 
 export const Header: React.FC = () => {
+	const navLinks = [
+		{ label: "Chat Funktion", icon: <ChatIcon />, href: "/" },
+		{ label: "E-Mail Funktion", icon: <MailIcon />, href: "/email" },
+		{ label: "Vermerk Funktion", icon: <VermerkIcon />, href: "/note" },
+		{ label: "Zusammenfassen", icon: <PDFIcon />, href: "/summary" },
+	];
+
 	return (
 		<header className="flex flex-col gap-4">
 			<div className="flex flex-row justify-between gap-10">
@@ -15,18 +22,15 @@ export const Header: React.FC = () => {
 				/>
 				<nav className="flex w-fit grow pt-1">
 					<ul className="flex h-fit w-full justify-end gap-10 text-[17px]">
-						{[
-							{ label: "Chat Funktion", icon: <ChatIcon /> },
-							{ label: "E-Mail Funktion", icon: <MailIcon /> },
-							{ label: "Vermerk Funktion", icon: <VermerkIcon /> },
-							{ label: "Zusammenfassen", icon: <PDFIcon /> },
-						].map((item) => (
+						{navLinks.map((item) => (
 							<li
 								key={item.label}
 								className="flex flex-row gap-2 border-transparent hover:border-b-2 hover:border-dark-grey hover:font-semibold"
 							>
 								{item.icon}
-								<a className="text-dark-grey">{item.label}</a>
+								<a className="text-dark-grey" href={item.href}>
+									{item.label}
+								</a>
 							</li>
 						))}
 					</ul>
