@@ -71,7 +71,7 @@ export const HistoryBar: React.FC = () => {
 
 	return (
 		<aside
-			className={`h-full overflow-y-auto rounded border px-2 pb-6 pt-2 transition-all duration-200 ease-out ${
+			className={`flex h-full flex-col justify-start overflow-y-auto rounded border px-2 pb-6 pt-2 transition-all duration-200 ease-out ${
 				isOpen ? "w-72 border-mid-grey" : "w-24 border-transparent"
 			}`}
 			aria-label="Sidebar"
@@ -93,13 +93,22 @@ export const HistoryBar: React.FC = () => {
 				/>
 			</div>
 			<div
-				className={`flex w-auto flex-col gap-5 pl-2 transition-all duration-200 ease-out ${
+				className={`flex w-auto flex-col gap-5 pl-2 transition-all duration-200 ease-in-out ${
 					isOpen ? "opacity-100" : "opacity-0"
 				}`}
 			>
 				{chatGroups.map(({ label, chats }) => (
 					<HistoryGroup key={label} label={label} chats={chats} />
 				))}
+			</div>
+
+			<div
+				className={`mt-4 w-[200px] pl-2 text-sm text-dark-blue transition-all ease-in ${
+					isOpen ? "opacity-100 duration-300" : "opacity-0 duration-0"
+				}`}
+			>
+				Der Chat Verlauf wird lokal gespeichert und ist somit nicht für andere
+				Personen sichtbar.
 			</div>
 		</aside>
 	);
