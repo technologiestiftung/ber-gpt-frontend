@@ -1,6 +1,7 @@
 import React from "react";
 import { Chat } from "./chat/chat";
 import { HistoryBar } from "./history-bar/history-bar";
+import { Email } from "./email/email";
 
 export const Main: React.FC = () => {
 	return (
@@ -8,7 +9,8 @@ export const Main: React.FC = () => {
 			<div className="flex w-full">
 				<HistoryBar />
 				<section className="flex w-full items-center justify-center pl-10">
-					<Chat />
+					{/* <Chat /> */}
+					<Email />
 				</section>
 			</div>
 		</main>
