@@ -1,26 +1,34 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
-import { Chat } from "./types";
+import { Chat, Message } from "./types";
 import { useCurrentChatIdStore } from "./current-chat-id-store";
 
 interface ChatHistoryStore {
 	chatHistory: Chat[];
 
 	getChat: (chatId: string | null) => Chat | undefined;
-	createChat: (firstMessage: string) => string;
+
+	createChat: (args: { fileName?: string; content: string }) => string;
+
 	updateChat: (chat: Chat) => void;
+
 	addMessageToChat: (message: {
 		chatId: string;
 		messageId?: string;
+		fileName?: string;
 		content: string;
 		role: string;
 	}) => void;
+
 	updateMessageFromChat: (message: {
 		chatId: string;
 		messageId: string;
 		content: string;
 		role: string;
 	}) => void;
+
+	saveMessage: (message: string) => void;
+
 	deleteChat: (chatId: string) => void;
 	saveMessage: (message: string) => string;
 }
@@ -38,22 +46,8 @@ export const useChatHistoryStore = create(
 				return get().chatHistory.find((chat) => chat.id === chatId);
 			},
 
-			createChat: (firstMessage) => {
-				const timestamp = new Date().toISOString();
-
-				const newChat = {
-					id: crypto.randomUUID(),
-					name: firstMessage,
-					messages: [
-						{
-							id: crypto.randomUUID(),
-							content: firstMessage,
-							role: "user",
-							timestamp,
-						},
-					],
-					timestamp,
-				};
+			createChat: ({ fileName, content }) => {
+				const newChat = _createChat({ fileName, content });
 
 				set({ chatHistory: [newChat, ...get().chatHistory] });
 
@@ -62,20 +56,20 @@ export const useChatHistoryStore = create(
 				return newChat.id;
 			},
 
-			updateChat: (newChat: Chat) =>
-				set((state) => ({
-					chatHistory: state.chatHistory
-						.map((chat) => (chat.id === newChat.id ? newChat : chat))
-						.sort(
-							(a, b) =>
-								new Date(b.timestamp).getTime() -
-								new Date(a.timestamp).getTime(),
-						),
-				})),
+			updateChat: (updatedChat: Chat) => {
+				const { chatHistory } = get();
 
-			addMessageToChat: ({ chatId, messageId, content, role }) => {
-				const timestamp = new Date().toISOString();
+				const updatedChatHistory = chatHistory
+					.map((chat) => (chat.id === updatedChat.id ? updatedChat : chat))
+					.sort(
+						(a, b) =>
+							new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime(),
+					);
 
+				set({ chatHistory: updatedChatHistory });
+			},
+
+			addMessageToChat: ({ chatId, messageId, fileName, content, role }) => {
 				const chat = get().chatHistory.find(({ id }) => id === chatId);
 				if (!chat) {
 					console.error(
@@ -84,12 +78,12 @@ export const useChatHistoryStore = create(
 					return;
 				}
 
-				const updatedChat = updateChat({
+				const updatedChat = _addMessageToChat({
 					chat,
 					messageId,
+					fileName,
 					content,
 					role,
-					timestamp,
 				});
 
 				get().updateChat(updatedChat);
@@ -116,25 +110,33 @@ export const useChatHistoryStore = create(
 				get().updateChat(updatedChat);
 			},
 
-			deleteChat: (chatId: string) =>
-				set({
-					chatHistory: get().chatHistory.filter((chat) => chat.id !== chatId),
-				}),
-
-			saveMessage: (message: string) => {
+			saveMessage(content: string) {
 				const { currentChatId } = useCurrentChatIdStore.getState();
 
 				if (!currentChatId) {
-					return get().createChat(message);
+					get().createChat({ content });
+					return;
 				}
 
 				get().addMessageToChat({
 					chatId: currentChatId,
-					content: message,
+					content,
 					role: "user",
 				});
+			},
 
-				return currentChatId;
+			deleteChat: (chatId: string) => {
+				const { currentChatId } = useCurrentChatIdStore.getState();
+
+				if (currentChatId === chatId) {
+					useCurrentChatIdStore.getState().setCurrentChatId(null);
+				}
+
+				const chatHistoryWithoutDeletedChat = get().chatHistory.filter(
+					(chat) => chat.id !== chatId,
+				);
+
+				set({ chatHistory: chatHistoryWithoutDeletedChat });
 			},
 		}),
 		{
@@ -143,29 +145,61 @@ export const useChatHistoryStore = create(
 	),
 );
 
-function updateChat({
+function _createChat({
+	fileName,
+	content,
+}: {
+	fileName: string | undefined;
+	content: string;
+}) {
+	const timestamp = new Date().toISOString();
+
+	const chatName = fileName ? fileName.replace(".pdf", "") : content;
+
+	return {
+		id: crypto.randomUUID(),
+		name: chatName,
+		messages: [
+			{
+				id: crypto.randomUUID(),
+				fileName,
+				content,
+				role: "user",
+				type: fileName ? "file" : "text",
+				timestamp,
+			} as Message,
+		],
+		timestamp,
+	};
+}
+
+function _addMessageToChat({
 	chat,
 	messageId,
+	fileName,
 	content,
 	role,
-	timestamp,
 }: {
 	chat: Chat;
 	messageId: string | undefined;
+	fileName?: string;
 	content: string;
 	role: string;
-	timestamp: string;
 }) {
+	const timestamp = new Date().toISOString();
+
 	return {
 		...chat,
 		messages: [
 			...chat.messages,
 			{
 				id: messageId || crypto.randomUUID(),
+				fileName,
 				content,
 				role,
 				timestamp,
-			},
+				type: fileName ? "file" : "text",
+			} as Message,
 		],
 		timestamp,
 	};

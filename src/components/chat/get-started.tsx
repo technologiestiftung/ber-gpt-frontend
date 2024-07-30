@@ -7,7 +7,7 @@ import { VermerkIcon } from "../icons/vermerk-icon";
 import { BaerIcon } from "../icons/bear-icon";
 import { useChatHistoryStore } from "../../store/chat-history-store";
 import { useIsLoadingStore } from "../../store/is-loading-store";
-import { streamChatResponse } from "./api";
+import { streamChatResponse } from "../../store/api";
 
 const startingPrompts = [
 	{
@@ -31,8 +31,8 @@ const startingPrompts = [
 	},
 	{
 		icon: <PDFIcon />,
-		label: "Hilf mir Texte und PDF´s zusammenzufassen.",
-		value: "Hilf mir Texte und PDF´s zusammenzufassen.",
+		label: "Hilf mir Texte und PDFs zusammenzufassen.",
+		value: "Hilf mir Texte und PDFs zusammenzufassen.",
 	},
 ];
 
@@ -59,12 +59,12 @@ export const GetStarted: React.FC = () => {
 	);
 };
 
-function onClick(value: string) {
+async function onClick(value: string) {
 	useIsLoadingStore.getState().setIsLoading(true);
 
-	const chatId = useChatHistoryStore.getState().createChat(value);
+	useChatHistoryStore.getState().createChat({ content: value });
 
-	streamChatResponse(chatId).catch(console.error);
+	await streamChatResponse();
 
 	useIsLoadingStore.getState().setIsLoading(false);
 }

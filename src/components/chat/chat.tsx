@@ -2,9 +2,10 @@ import React from "react";
 import { GetStarted } from "./get-started";
 import { useChatHistoryStore } from "../../store/chat-history-store";
 import { useCurrentChatIdStore } from "../../store/current-chat-id-store";
-import ReactMarkdown from "react-markdown";
-import { EmailForm } from "./email-form";
-import { ChatForm } from "./chat-form";
+import { UploadedFiles } from "./uploaded-files";
+import { ChatForm } from "./chat-form/chat-form";
+import { ChatMessages } from "./chat-messages/chat-messages";
+import { HelperButtons } from "./helper-buttons";
 
 export const Chat: React.FC = () => {
 	const { getChat } = useChatHistoryStore();
@@ -15,22 +16,16 @@ export const Chat: React.FC = () => {
 		<div className="flex h-full w-full max-w-[1000px] flex-col justify-between">
 			{messages.length === 0 && <GetStarted />}
 
-			<div className="shadown-chat flex flex-col gap-y-4 overflow-auto pb-2">
-				{messages.map(({ id, content, role }) => (
-					<div
-						key={id}
-						className={`max-w-[60%] rounded border-2 p-4 shadow-md ${role === "user" ? "self-end border-mid-grey" : "self-start border-dark-blue"} `}
-					>
-						<ReactMarkdown className="markdown-container">
-							{content === "" ? "..." : content}
-						</ReactMarkdown>
-					</div>
-				))}
-			</div>
+			<ChatMessages />
 
 			<div className="shadow-[-10px_0px_20px_10px_rgba(255,255,255,75)]">
-				{/* <ChatForm /> */}
-				<EmailForm />
+				<div className="z-10 flex flex-col gap-y-4 rounded border-2 border-mid-grey bg-white px-6 pb-4 pt-6 shadow-md">
+					<UploadedFiles />
+
+					<ChatForm />
+
+					<HelperButtons />
+				</div>
 			</div>
 		</div>
 	);
