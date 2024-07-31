@@ -29,7 +29,7 @@ export const UploadedFiles: React.FC = () => {
 								onClick={() => removeFile(id)}
 								className="absolute -right-7 -top-11 flex h-6 w-6 items-center justify-center rounded-full border border-gray-300 bg-gray-100 hover:bg-gray-200"
 							>
-								<XIcon />
+								<XIcon className="h-2.5 w-2.5 text-dark-blue" />
 							</button>
 						</div>
 					)}

@@ -1,19 +1,26 @@
 import React from "react";
 import { Header } from "../components/header";
-import { Footer } from "../components/footer";
+import { SplashScreen } from "../components/splash-screen";
+import { useSplashStore } from "../store/splash-store";
 
 interface LayoutProps {
 	children: React.ReactNode;
 }
 
 export const Layout: React.FC<LayoutProps> = ({ children }) => {
+	const { isSplashScreenVisible } = useSplashStore();
 	return (
-		<div className="flex h-svh flex-col overflow-hidden p-10 font-arial">
-			<Header />
+		<div className="flex justify-center font-arial">
+			<div className="flex h-svh flex-col overflow-hidden p-10 font-arial">
+				<Header />
 
-			{children}
-
-			<Footer />
+				{children}
+			</div>
+			{isSplashScreenVisible() && (
+				<div className="absolute h-full w-full backdrop-blur-sm">
+					<SplashScreen />
+				</div>
+			)}
 		</div>
 	);
 };
