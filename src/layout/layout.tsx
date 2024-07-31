@@ -10,7 +10,7 @@ interface LayoutProps {
 export const Layout: React.FC<LayoutProps> = ({ children }) => {
 	const { isSplashScreenVisible } = useSplashStore();
 	return (
-		<div className="flex font-arial">
+		<div className="flex justify-center font-arial">
 			<div className="flex h-svh flex-col overflow-hidden p-10 font-arial">
 				<Header />
 

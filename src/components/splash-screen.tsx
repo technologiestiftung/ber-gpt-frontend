@@ -111,15 +111,15 @@ export const SplashScreen: React.FC = () => {
 					>
 						<img
 							alt="Logo des Regierenden Bürgermeisters von Berlin und der Senatskanzlei"
-							src="https://logos.citylab-berlin.org/logo-berlin.svg"
-							width={92}
+							src="https://logos.citylab-berlin.org/logo-senatskanzlei-buergermeister-horizontal.svg"
+							width={168}
 							height={28}
 						/>
 					</a>
 				</div>
 
 				<button
-					className="absolute right-4 top-4 pb-2 text-dark-blue hover:text-mid-blue"
+					className="hover:text-mid-blue absolute right-4 top-4 pb-2 text-dark-blue"
 					onClick={hideSplashScreen}
 				>
 					<XIcon className="h-5 w-5" />
