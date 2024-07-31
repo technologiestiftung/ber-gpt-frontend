@@ -161,6 +161,9 @@ export const useChatHistoryStore = create(
 				const { currentChatId } = useCurrentChatIdStore.getState();
 				const chat = get().chatHistory.find(({ id }) => id === currentChatId);
 				if (!chat) {
+					console.error(
+						`error: trying to delete a message from a non-existing chat (${currentChatId})`,
+					);
 					return false;
 				}
 
