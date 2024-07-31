@@ -1,8 +1,11 @@
-import { useChatHistoryStore } from "./chat-history-store";
+import { HookType as ChatHistoryStore } from "./history-stores/chat-history-store";
+import { HookType as EmailChatHistoryStore } from "./history-stores/email-history-store";
 import { useCurrentChatIdStore } from "./current-chat-id-store";
-import { File as ExtractedFile } from "./types";
+import { File as ExtractedFile, Message } from "./types";
 
-export async function streamChatResponse() {
+export async function streamChatResponse(
+	historyStore: ChatHistoryStore | EmailChatHistoryStore,
+) {
 	const chatId = useCurrentChatIdStore.getState().currentChatId;
 
 	if (!chatId) {
@@ -10,8 +13,8 @@ export async function streamChatResponse() {
 		return;
 	}
 
-	const previousMessages =
-		useChatHistoryStore.getState().getChat(chatId)?.messages || [];
+	const previousMessages: Message[] =
+		historyStore.getState().getChat(chatId)?.messages || [];
 
 	if (!previousMessages.length) {
 		console.error(`No messages found with chatId ${chatId}`);
@@ -45,7 +48,7 @@ export async function streamChatResponse() {
 		const role = "assistant";
 		let content = "";
 
-		useChatHistoryStore.getState().addMessageToChat({
+		historyStore.getState().addMessageToChat({
 			chatId,
 			messageId,
 			content,
@@ -82,9 +85,12 @@ export async function streamChatResponse() {
 
 				content += contentChunk;
 
-				useChatHistoryStore
-					.getState()
-					.updateMessageFromChat({ chatId, messageId, content, role });
+				historyStore.getState().updateMessageFromChat({
+					chatId,
+					messageId,
+					content,
+					role,
+				});
 
 				await new Promise((resolve) => setTimeout(resolve, 60));
 			}

@@ -5,7 +5,7 @@ import { PDFIcon } from "../icons/pdf-icon";
 import { MailIcon } from "../icons/mail-icon";
 import { VermerkIcon } from "../icons/vermerk-icon";
 import { BaerIcon } from "../icons/bear-icon";
-import { useChatHistoryStore } from "../../store/chat-history-store";
+import { useChatHistoryStore } from "../../store/history-stores/chat-history-store";
 import { useIsLoadingStore } from "../../store/is-loading-store";
 import { streamChatResponse } from "../../store/api";
 
@@ -64,7 +64,7 @@ async function onClick(value: string) {
 
 	useChatHistoryStore.getState().createChat({ content: value });
 
-	await streamChatResponse();
+	await streamChatResponse(useChatHistoryStore);
 
 	useIsLoadingStore.getState().setIsLoading(false);
 }

@@ -1,13 +1,14 @@
 import React from "react";
-import { useChatHistoryStore } from "../../store/chat-history-store";
-import { useCurrentChatIdStore } from "../../store/current-chat-id-store";
 import ReactMarkdown from "react-markdown";
+import { useCurrentChatIdStore } from "../../store/current-chat-id-store";
+import { useEmailChatHistoryStore } from "../../store/history-stores/email-history-store";
+import { Message } from "../../store/types";
 
 export const EmailMessages: React.FC = () => {
-	const { getChat } = useChatHistoryStore();
+	const { getChat } = useEmailChatHistoryStore();
 	const { currentChatId } = useCurrentChatIdStore();
 
-	const messages = getChat(currentChatId)?.messages || [];
+	const messages: Message[] = getChat(currentChatId)?.messages || [];
 
 	return (
 		<div className="shadown-chat flex flex-col gap-y-4 overflow-auto pb-2">

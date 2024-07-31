@@ -1,14 +1,15 @@
 import React from "react";
-import { useChatHistoryStore } from "../../../store/chat-history-store";
+import { useChatHistoryStore } from "../../../store/history-stores/chat-history-store";
 import { useCurrentChatIdStore } from "../../../store/current-chat-id-store";
 import { FileMessage } from "./file-message";
 import { TextMessage } from "./text-message";
+import { Message } from "../../../store/types";
 
 export const ChatMessages: React.FC = () => {
 	const { getChat } = useChatHistoryStore();
 	const { currentChatId } = useCurrentChatIdStore();
 
-	const messages = getChat(currentChatId)?.messages || [];
+	const messages: Message[] = getChat(currentChatId)?.messages || [];
 
 	return (
 		<div className="shadown-chat flex flex-col gap-y-4 overflow-auto pb-2">
