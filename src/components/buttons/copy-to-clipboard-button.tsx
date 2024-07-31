@@ -1,12 +1,14 @@
-import { useEffect, useState } from "react";
-import { CopyIcon } from "../icons/copy-icon";
+import React, { useEffect, useState } from "react";
 import { CheckIcon } from "../icons/check-icon";
+import { CopyIcon } from "../icons/copy-icon";
 
-export function CopyToClipboardButton({
-	generatedAnswer,
-}: {
+interface CopyToClipboardButtonProps {
 	generatedAnswer: string;
-}) {
+}
+
+export const CopyToClipboardButton: React.FC<CopyToClipboardButtonProps> = ({
+	generatedAnswer,
+}) => {
 	const [isCopiedToClipboard, setIsCopiedToClipboard] = useState(false);
 
 	const copyToClipboard = async () => {
@@ -15,7 +17,7 @@ export function CopyToClipboardButton({
 	};
 
 	/**
-	 * reset icon after 2 seconds
+	 * Reset icon after 2 seconds
 	 */
 	useEffect(() => {
 		const timeoutId = setTimeout(() => setIsCopiedToClipboard(false), 2000);
@@ -24,15 +26,14 @@ export function CopyToClipboardButton({
 	}, [isCopiedToClipboard]);
 
 	return (
-		<div>
-			<button
-				className={`hover:text-mid-blue text-dark-blue`}
-				onClick={copyToClipboard}
-				aria-label={isCopiedToClipboard ? "Kopiert!" : "Kopieren"}
-				title={isCopiedToClipboard ? "Kopiert!" : "Kopieren"}
-			>
-				{isCopiedToClipboard ? <CheckIcon /> : <CopyIcon />}
-			</button>
-		</div>
+		<button
+			// prettier-ignore
+			className="text-dark-blue hover:text-mid-blue"
+			onClick={copyToClipboard}
+			aria-label={isCopiedToClipboard ? "Kopiert!" : "Kopieren"}
+			title={isCopiedToClipboard ? "Kopiert!" : "Kopieren"}
+		>
+			{isCopiedToClipboard ? <CheckIcon /> : <CopyIcon />}
+		</button>
 	);
-}
+};

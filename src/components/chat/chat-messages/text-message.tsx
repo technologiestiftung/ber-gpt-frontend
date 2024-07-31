@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React from "react";
 import ReactMarkdown from "react-markdown";
 import { BaerIcon } from "../../icons/bear-icon";
 import { RefreshIcon } from "../../icons/refresh-icon";
@@ -18,11 +18,6 @@ export const TextMessage: React.FC<TextMessageProps> = ({
 	messageId,
 }) => {
 	const { removeMessageFromChat, isLastMessageOfChat } = useChatHistoryStore();
-	const [showRefresh, setShowRefresh] = useState(false);
-
-	useMemo(() => {
-		setShowRefresh(isLastMessageOfChat(messageId));
-	}, [isLastMessageOfChat(messageId)]);
 
 	const onRefresh = () => {
 		removeMessageFromChat(messageId);
@@ -42,14 +37,17 @@ export const TextMessage: React.FC<TextMessageProps> = ({
 					<BaerIcon className="h-[21px] w-[21px]" />
 				</div>
 				<div className="flex flex-row items-center gap-3 self-start p-2 text-dark-blue">
-					<button
-						className={`hover:text-mid-blue text-dark-blue ${showRefresh ? "" : "hidden"}`}
-						aria-label="Neu generieren"
-						title="Neu generieren"
-						onClick={onRefresh}
-					>
-						<RefreshIcon />
-					</button>
+					{isLastMessageOfChat(messageId) && (
+						<button
+							// prettier-ignore
+							className="text-dark-blue hover:text-mid-blue"
+							aria-label="Neu generieren"
+							title="Neu generieren"
+							onClick={onRefresh}
+						>
+							<RefreshIcon />
+						</button>
+					)}
 					<CopyToClipboardButton generatedAnswer={content} />
 				</div>
 			</div>
