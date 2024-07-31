@@ -24,7 +24,7 @@ export function CopyToClipboardButton({
 	}, [isCopiedToClipboard]);
 
 	return (
-		<>
+		<div>
 			<button
 				className={`hover:text-mid-blue text-dark-blue`}
 				onClick={copyToClipboard}
@@ -33,6 +33,6 @@ export function CopyToClipboardButton({
 			>
 				{isCopiedToClipboard ? <CheckIcon /> : <CopyIcon />}
 			</button>
-		</>
+		</div>
 	);
 }
