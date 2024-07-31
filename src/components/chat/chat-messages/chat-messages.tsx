@@ -19,7 +19,11 @@ export const ChatMessages: React.FC = () => {
 					)}
 
 					{message.type === "text" && (
-						<TextMessage role={message.role} content={message.content} />
+						<TextMessage
+							role={message.role}
+							content={message.content}
+							messageId={message.id}
+						/>
 					)}
 				</React.Fragment>
 			))}

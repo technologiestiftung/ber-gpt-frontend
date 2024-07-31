@@ -27,9 +27,13 @@ interface ChatHistoryStore {
 		role: string;
 	}) => void;
 
+	removeMessageFromChat: (messageId: string) => void;
+
 	saveMessage: (message: string) => void;
 
 	deleteChat: (chatId: string) => void;
+
+	isLastMessageOfChat: (chatId: string) => boolean;
 }
 
 export const useChatHistoryStore = create(
@@ -109,6 +113,21 @@ export const useChatHistoryStore = create(
 				get().updateChat(updatedChat);
 			},
 
+			removeMessageFromChat: (messageId: string) => {
+				const updatedChatHistory = get().chatHistory.map((chat) => {
+					const updatedMessages = chat.messages.filter(
+						(message) => message.id !== messageId,
+					);
+
+					return {
+						...chat,
+						messages: updatedMessages,
+					};
+				});
+
+				set({ chatHistory: updatedChatHistory });
+			},
+
 			saveMessage(content: string) {
 				const { currentChatId } = useCurrentChatIdStore.getState();
 
@@ -137,7 +156,21 @@ export const useChatHistoryStore = create(
 
 				set({ chatHistory: chatHistoryWithoutDeletedChat });
 			},
+
+			isLastMessageOfChat(messageId: string) {
+				const { currentChatId } = useCurrentChatIdStore.getState();
+				const chat = get().chatHistory.find(({ id }) => id === currentChatId);
+				if (!chat) {
+					console.error(
+						`error: trying to delete a message from a non-existing chat (${currentChatId})`,
+					);
+					return false;
+				}
+
+				return chat.messages[chat.messages.length - 1].id === messageId;
+			},
 		}),
+
 		{
 			name: "chat-history",
 		},
