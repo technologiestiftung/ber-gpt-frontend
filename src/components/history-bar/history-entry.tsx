@@ -5,6 +5,10 @@ import { IconButton } from "../buttons/icon-button";
 import { BucketIcon } from "../icons/bucket-icon";
 import { useChatHistoryStore } from "../../store/chat-history-store";
 
+const removeMarkdownStyling = (name: string): string => {
+	return name.replace(/[-#`>*]/g, "");
+};
+
 export const HistoryEntry: React.FC<Pick<Chat, "id" | "name">> = ({
 	name,
 	id,
@@ -20,7 +24,7 @@ export const HistoryEntry: React.FC<Pick<Chat, "id" | "name">> = ({
 				className={`h-11 w-5/6 truncate rounded border bg-light-grey px-4 text-start hover:border-mid-grey ${isSelected ? "border-mid-grey bg-white" : ""}`}
 				onClick={() => setCurrentChatId(id)}
 			>
-				{name}
+				{removeMarkdownStyling(name)}
 			</button>
 			<IconButton
 				icon={<BucketIcon />}
