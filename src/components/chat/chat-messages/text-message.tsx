@@ -1,15 +1,34 @@
-import React from "react";
+import React, { useMemo, useState } from "react";
 import ReactMarkdown from "react-markdown";
 import { BaerIcon } from "../../icons/bear-icon";
 import { RefreshIcon } from "../../icons/refresh-icon";
 import { CopyToClipboardButton } from "../../buttons/copy-to-clipboard-button";
+import { streamChatResponse } from "../../../store/api";
+import { useChatHistoryStore } from "../../../store/chat-history-store";
 
 interface TextMessageProps {
 	role: string;
 	content: string;
+	messageId: string;
 }
 
-export const TextMessage: React.FC<TextMessageProps> = ({ role, content }) => {
+export const TextMessage: React.FC<TextMessageProps> = ({
+	role,
+	content,
+	messageId,
+}) => {
+	const { removeMessageFromChat, isLastMessageOfChat } = useChatHistoryStore();
+	const [showRefresh, setShowRefresh] = useState(false);
+
+	useMemo(() => {
+		setShowRefresh(isLastMessageOfChat(messageId));
+	}, [isLastMessageOfChat(messageId)]);
+
+	const onRefresh = () => {
+		removeMessageFromChat(messageId);
+		streamChatResponse().catch(console.error);
+	};
+
 	return (
 		<div
 			className={`max-w-[60%] rounded border-2 p-2 shadow-md ${role === "user" ? "self-end border-mid-grey" : "self-start border-dark-blue"} `}
@@ -23,7 +42,14 @@ export const TextMessage: React.FC<TextMessageProps> = ({ role, content }) => {
 					<BaerIcon className="h-[21px] w-[21px]" />
 				</div>
 				<div className="flex flex-row items-center gap-3 self-start p-2 text-dark-blue">
-					<RefreshIcon />
+					<button
+						className={`hover:text-mid-blue text-dark-blue ${showRefresh ? "" : "hidden"}`}
+						aria-label="Neu generieren"
+						title="Neu generieren"
+						onClick={onRefresh}
+					>
+						<RefreshIcon />
+					</button>
 					<CopyToClipboardButton generatedAnswer={content} />
 				</div>
 			</div>
