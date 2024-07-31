@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
-import { Chat, Message } from "./types";
-import { useCurrentChatIdStore } from "./current-chat-id-store";
+import { Chat, Message } from "../types";
+import { useCurrentChatIdStore } from "../current-chat-id-store";
 
 interface ChatHistoryStore {
 	chatHistory: Chat[];
@@ -176,6 +176,8 @@ export const useChatHistoryStore = create(
 		},
 	),
 );
+
+export type HookType = typeof useChatHistoryStore;
 
 function _createChat({
 	fileName,

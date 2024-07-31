@@ -1,12 +1,12 @@
 import React from "react";
-import { SendIcon } from "../icons/send-icon.tsx";
-import { PrimaryButton } from "../buttons/primary-button.tsx";
-import { useIsLoadingStore } from "../../store/is-loading-store.ts";
-import { streamChatResponse } from "../../store/api.ts";
-import { useChatHistoryStore } from "../../store/chat-history-store.ts";
+import { SendIcon } from "../icons/send-icon";
+import { PrimaryButton } from "../buttons/primary-button";
+import { useIsLoadingStore } from "../../store/is-loading-store";
+import { streamChatResponse } from "../../store/api";
+import { useEmailChatHistoryStore } from "../../store/history-stores/email-history-store";
 
 const { setIsLoading } = useIsLoadingStore.getState();
-const { saveMessage } = useChatHistoryStore.getState();
+const { saveMessage } = useEmailChatHistoryStore.getState();
 
 function createEmailPrompt(formData: FormData) {
 	const usePreviousEmail = formData.get("previousMail") !== "";
@@ -49,9 +49,9 @@ function onSubmit(e: React.FormEvent<HTMLFormElement>) {
 
 	saveMessage(emailPromt.toString());
 
-	streamChatResponse().catch(console.error);
+	streamChatResponse(useEmailChatHistoryStore).catch(console.error);
 
-	useIsLoadingStore.getState().setIsLoading(false);
+	setIsLoading(false);
 }
 
 export const EmailForm: React.FC = () => {

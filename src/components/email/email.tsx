@@ -1,12 +1,12 @@
 import React from "react";
 import { GetStartedMail } from "./get-started-mail";
-import { useChatHistoryStore } from "../../store/chat-history-store";
 import { useCurrentChatIdStore } from "../../store/current-chat-id-store";
 import { EmailForm } from "./email-form";
 import { EmailMessages } from "./email-messages";
+import { useEmailChatHistoryStore } from "../../store/history-stores/email-history-store";
 
 export const Email: React.FC = () => {
-	const { getChat } = useChatHistoryStore();
+	const { getChat } = useEmailChatHistoryStore();
 	const { currentChatId } = useCurrentChatIdStore();
 	const messages = getChat(currentChatId)?.messages || [];
 

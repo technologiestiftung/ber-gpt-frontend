@@ -12,6 +12,8 @@ export const Header: React.FC = () => {
 		{ label: "Zusammenfassen", icon: <PDFIcon />, href: "/summary" },
 	];
 
+	const location = window.location.pathname;
+
 	return (
 		<header className="flex flex-col gap-4">
 			<div className="flex flex-row justify-between gap-10">
@@ -25,7 +27,7 @@ export const Header: React.FC = () => {
 						{navLinks.map((item) => (
 							<li
 								key={item.label}
-								className="flex flex-row gap-2 border-transparent hover:border-b-2 hover:border-dark-grey hover:font-semibold"
+								className={`flex flex-row gap-2 border-transparent hover:border-b-2 hover:border-dark-grey hover:font-semibold ${location === item.href ? "font-semibold" : "font-normal"} `}
 							>
 								{item.icon}
 								<a className="text-dark-grey" href={item.href}>
