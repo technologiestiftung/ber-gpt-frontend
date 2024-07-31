@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import { useSplashStore } from "../store/splash-store";
 import { BaerIcon } from "./icons/bear-icon";
+import { XIcon } from "./icons/x-icon";
 
 export const SplashScreen: React.FC = () => {
 	const { hideSplashScreen } = useSplashStore();
@@ -24,15 +25,15 @@ export const SplashScreen: React.FC = () => {
 			return;
 		}
 
-		// hideSplashScreen();
+		hideSplashScreen();
 	};
 
 	return (
 		<div
 			ref={splashContainer}
-			className={`pointer-events-auto absolute mx-auto max-h-full max-w-xl rounded bg-white shadow-lg`}
+			className={`pointer-events-auto m-1 flex h-fit w-fit rounded border-2 border-mid-grey bg-white shadow-lg sm:mx-auto sm:my-10 sm:h-fit sm:w-[510px]`}
 		>
-			<div className="relative flex flex-col gap-6 rounded border-2 border-mid-grey p-8">
+			<div className="relative flex flex-col gap-6 rounded p-8">
 				<div className="flex min-h-[63px] w-[63px] items-center justify-center rounded-full bg-white drop-shadow-lg">
 					<BaerIcon className="h-[40px] w-[40px]" />
 				</div>
@@ -52,17 +53,29 @@ export const SplashScreen: React.FC = () => {
 					Auskünfte. Letztlich fördert BärGPT eine moderne, digitale Berliner
 					Verwaltung und verbessert die Effizienz sowie Servicequalität.
 				</p>
-				<div className="flex flex-row justify-between gap-4">
-					<a href="https://www.berlin.de" className="text-mid-blue underline">
+				<div className="flex flex-row flex-wrap justify-between gap-2">
+					<a
+						href="https://citylab-berlin.org/de/start/"
+						className="text-mid-blue underline hover:text-dark-blue"
+					>
 						Feedback
 					</a>
-					<a href="https://www.berlin.de" className="text-mid-blue underline">
+					<a
+						href="https://citylab-berlin.org/de/start/"
+						className="text-mid-blue underline hover:text-dark-blue"
+					>
 						Kontakt
 					</a>
-					<a href="https://www.berlin.de" className="text-mid-blue underline">
+					<a
+						href="https://citylab-berlin.org/de/data-privacy/"
+						className="text-mid-blue underline hover:text-dark-blue"
+					>
 						Datenschutz
 					</a>
-					<a href="https://www.berlin.de" className="text-mid-blue underline">
+					<a
+						href="https://citylab-berlin.org/de/imprint/"
+						className="text-mid-blue underline hover:text-dark-blue"
+					>
 						Impressum
 					</a>
 				</div>
@@ -106,10 +119,10 @@ export const SplashScreen: React.FC = () => {
 				</div>
 
 				<button
-					className="absolute right-4 top-4 pb-2 lg:hidden"
+					className="hover:text-mid-blue absolute right-4 top-4 pb-2 text-dark-blue"
 					onClick={hideSplashScreen}
 				>
-					x
+					<XIcon className="h-5 w-5" />
 				</button>
 			</div>
 		</div>
