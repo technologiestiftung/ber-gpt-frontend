@@ -1,10 +1,10 @@
 import React from "react";
 import ReactMarkdown from "react-markdown";
-import { BaerIcon } from "../../icons/bear-icon";
-import { RefreshIcon } from "../../icons/refresh-icon";
-import { CopyToClipboardButton } from "../../buttons/copy-to-clipboard-button";
-import { streamChatResponse } from "../../../store/api";
-import { useChatHistoryStore } from "../../../store/history-stores/chat-history-store";
+import { BaerIcon } from "../icons/bear-icon";
+import { RefreshIcon } from "../icons/refresh-icon";
+import { CopyToClipboardButton } from "../buttons/copy-to-clipboard-button";
+import { streamChatResponse } from "../../store/api";
+import { useChatHistoryStore } from "../../store/chat-history-store";
 
 interface TextMessageProps {
 	role: string;
@@ -21,7 +21,7 @@ export const TextMessage: React.FC<TextMessageProps> = ({
 
 	const onRefresh = () => {
 		removeMessageFromChat(messageId);
-		streamChatResponse(useChatHistoryStore).catch(console.error);
+		streamChatResponse().catch(console.error);
 	};
 
 	return (

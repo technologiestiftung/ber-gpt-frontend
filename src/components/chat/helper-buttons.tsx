@@ -1,7 +1,7 @@
 import React from "react";
 import { SecondaryButton } from "../buttons/secondary-button";
 import { useIsLoadingStore } from "../../store/is-loading-store";
-import { useChatHistoryStore } from "../../store/history-stores/chat-history-store";
+import { useChatHistoryStore } from "../../store/chat-history-store";
 import { streamChatResponse } from "../../store/api";
 
 async function onClick(value: string) {
@@ -9,7 +9,7 @@ async function onClick(value: string) {
 
 	useChatHistoryStore.getState().saveMessage(value);
 
-	await streamChatResponse(useChatHistoryStore);
+	await streamChatResponse();
 
 	useIsLoadingStore.getState().setIsLoading(false);
 }

@@ -1,10 +1,10 @@
 import React from "react";
 import { GetStarted } from "./get-started";
-import { useChatHistoryStore } from "../../store/history-stores/chat-history-store";
+import { useChatHistoryStore } from "../../store/chat-history-store";
 import { useCurrentChatIdStore } from "../../store/current-chat-id-store";
 import { UploadedFiles } from "./uploaded-files";
 import { ChatForm } from "./chat-form/chat-form";
-import { ChatMessages } from "./chat-messages/chat-messages";
+import { ChatMessages } from "./chat-messages";
 import { HelperButtons } from "./helper-buttons";
 
 export const Chat: React.FC = () => {

@@ -5,20 +5,15 @@ import { NewChatIcon } from "../icons/new-chat-icon";
 import { subDays } from "date-fns";
 import { HistoryGroup } from "./history-group";
 import { useCurrentChatIdStore } from "../../store/current-chat-id-store";
-import { HookType as ChatHistoryStore } from "../../store/history-stores/chat-history-store";
-import { HookType as EmailChatHistoryStore } from "../../store/history-stores/email-history-store";
+import { useChatHistoryStore } from "../../store/chat-history-store";
 
 const today = new Date();
 const sevenDaysAgo = subDays(today, 7);
 
-interface HistoryBarProps {
-	useHistoryStore: ChatHistoryStore | EmailChatHistoryStore;
-}
-
-export const HistoryBar: React.FC<HistoryBarProps> = ({ useHistoryStore }) => {
+export const HistoryBar: React.FC = () => {
 	const [isOpen, setIsOpen] = useState(true);
 
-	const { chatHistory } = useHistoryStore();
+	const { chatHistory } = useChatHistoryStore();
 	const { setCurrentChatId } = useCurrentChatIdStore();
 
 	const chatsToday = useMemo(
