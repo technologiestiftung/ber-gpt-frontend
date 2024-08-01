@@ -119,10 +119,10 @@ export const SplashScreen: React.FC = () => {
 				</div>
 
 				<button
-					className="absolute right-4 top-4 pb-2 text-dark-blue hover:text-mid-blue"
+					className="hover:text-mid-blue absolute right-4 top-4 pb-2 text-dark-blue"
 					onClick={hideSplashScreen}
 				>
-					<XIcon className="h-5 w-5" />
+					<XIcon className="h-6 w-6" />
 				</button>
 			</div>
 		</div>

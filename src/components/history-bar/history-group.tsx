@@ -10,7 +10,7 @@ interface HistoryGroupProps {
 export const HistoryGroup: React.FC<HistoryGroupProps> = ({ label, chats }) => {
 	return (
 		<div className="flex flex-col gap-2">
-			<div key={label} className="font-semibold text-dark-grey">
+			<div key={label} className="text-darker-grey font-semibold">
 				{label}
 			</div>
 			{chats.map((chat) => (
