@@ -2,7 +2,7 @@ import { create } from "zustand";
 import { File } from "./types";
 import { extractDocumentContent } from "./api";
 import { useCurrentChatIdStore } from "./current-chat-id-store";
-import { useChatHistoryStore } from "./history-stores/chat-history-store";
+import { useChatHistoryStore } from "./chat-history-store";
 
 interface InputFileStore {
 	files: File[];

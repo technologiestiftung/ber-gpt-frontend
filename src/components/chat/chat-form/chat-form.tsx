@@ -4,7 +4,7 @@ import { PrimaryButton } from "../../buttons/primary-button";
 import { SendIcon } from "../../icons/send-icon";
 import { useIsLoadingStore } from "../../../store/is-loading-store";
 import { useInputFileStore } from "../../../store/input-file-store";
-import { useChatHistoryStore } from "../../../store/history-stores/chat-history-store";
+import { useChatHistoryStore } from "../../../store/chat-history-store";
 import { streamChatResponse } from "../../../store/api";
 
 const { setIsLoading } = useIsLoadingStore.getState();
@@ -30,7 +30,7 @@ function onSubmit(event: React.FormEvent<HTMLFormElement>) {
 
 	saveMessage(message.toString());
 
-	streamChatResponse(useChatHistoryStore).catch(console.error);
+	streamChatResponse().catch(console.error);
 
 	setIsLoading(false);
 }

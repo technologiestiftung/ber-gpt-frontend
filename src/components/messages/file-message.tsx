@@ -1,5 +1,5 @@
 import React from "react";
-import { PDFLargeIcon } from "../../icons/pdf-large-icon";
+import { PDFLargeIcon } from "../icons/pdf-large-icon";
 
 interface FileMessageProps {
 	fileName: string;

@@ -3,10 +3,10 @@ import { SendIcon } from "../icons/send-icon";
 import { PrimaryButton } from "../buttons/primary-button";
 import { useIsLoadingStore } from "../../store/is-loading-store";
 import { streamChatResponse } from "../../store/api";
-import { useEmailChatHistoryStore } from "../../store/history-stores/email-history-store";
+import { useChatHistoryStore } from "../../store/chat-history-store";
 
 const { setIsLoading } = useIsLoadingStore.getState();
-const { saveMessage } = useEmailChatHistoryStore.getState();
+const { saveMessage } = useChatHistoryStore.getState();
 
 function createEmailPrompt(formData: FormData) {
 	const usePreviousEmail = formData.get("previousMail") !== "";
@@ -49,7 +49,7 @@ function onSubmit(e: React.FormEvent<HTMLFormElement>) {
 
 	saveMessage(emailPromt.toString());
 
-	streamChatResponse(useEmailChatHistoryStore).catch(console.error);
+	streamChatResponse().catch(console.error);
 
 	setIsLoading(false);
 }
