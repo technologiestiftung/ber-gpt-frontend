@@ -3,8 +3,8 @@ import { ChatIcon } from "./icons/chat-icon";
 import { MailIcon } from "./icons/mail-icon";
 import { VermerkIcon } from "./icons/vermerk-icon";
 import { PDFIcon } from "./icons/pdf-icon";
-import { Faq } from "./faq/faq";
 import { FaqIcon } from "./icons/faq-icon";
+import { Faq } from "./faq/faq";
 
 export const Header: React.FC = () => {
 	const navLinks = [
@@ -43,7 +43,9 @@ export const Header: React.FC = () => {
 				<button
 					className="text-dark-blue hover:text-light-blue"
 					onClick={() =>
-						(document.getElementById("faq-dialog") as HTMLDialogElement).show()
+						(
+							document.getElementById("faq-dialog") as HTMLDialogElement
+						).showModal()
 					}
 				>
 					<FaqIcon />

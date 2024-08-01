@@ -4,16 +4,12 @@ import { QuestionAnswer } from "./question-answer";
 import { qas } from "./qas";
 
 export const Faq: React.FC = () => {
-	const onClick = () => {
-		(document.getElementById("faq-dialog") as HTMLDialogElement).close();
-	};
-
 	return (
 		<dialog
 			id="faq-dialog"
-			className="z-20 max-h-[90%] w-5/6 max-w-[1000px] overflow-y-auto rounded border-2 border-mid-grey bg-white shadow-lg"
+			className="z-50 max-h-[90%] w-5/6 max-w-[1000px] gap-4 overflow-y-auto rounded-md border-2 border-mid-grey bg-white px-8 py-10 shadow-lg backdrop:backdrop-blur-sm"
 		>
-			<div className="flex flex-col gap-4 px-8 py-10">
+			<div className="flex flex-col">
 				<h1 className="px-2 text-[22px] font-bold leading-6">Über BärGPT</h1>
 				<p className="p-2">
 					Der Einsatz von <b>BärGPT</b> in der öffentlichen Verwaltung bietet
@@ -78,7 +74,11 @@ export const Faq: React.FC = () => {
 
 				<button
 					className="text-darker-blue absolute right-4 top-4 pb-2 hover:text-dark-grey"
-					onClick={onClick}
+					onClick={() => {
+						(
+							document.getElementById("faq-dialog") as HTMLDialogElement
+						).close();
+					}}
 				>
 					<XIcon className="h-6 w-6" />
 				</button>
