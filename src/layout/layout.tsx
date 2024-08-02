@@ -20,7 +20,7 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
 			</div>
 
 			{isSplashScreenVisible() && (
-				<div className="absolute h-full w-full backdrop-blur-sm">
+				<div className="absolute z-50 h-full w-full backdrop-blur-sm">
 					<SplashScreen />
 				</div>
 			)}
