@@ -76,7 +76,7 @@ export const EmailForm: React.FC = () => {
 			label: "Formulierung",
 			name: "formality",
 			options: ["formell", "informell"],
-			defaultChecked: "formel",
+			defaultChecked: "formell",
 		},
 	];
 
