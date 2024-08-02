@@ -3,6 +3,8 @@ import { ChatIcon } from "./icons/chat-icon";
 import { MailIcon } from "./icons/mail-icon";
 import { VermerkIcon } from "./icons/vermerk-icon";
 import { PDFIcon } from "./icons/pdf-icon";
+import { FaqIcon } from "./icons/faq-icon";
+import { Faq } from "./faq/faq";
 
 export const Header: React.FC = () => {
 	const navLinks = [
@@ -16,7 +18,7 @@ export const Header: React.FC = () => {
 
 	return (
 		<header className="flex flex-col gap-4">
-			<div className="flex flex-row justify-between gap-10">
+			<div className="flex flex-row items-center justify-between gap-10">
 				<img
 					className="w-32"
 					src="https://logos.citylab-berlin.org/logo-berlin.svg"
@@ -27,21 +29,33 @@ export const Header: React.FC = () => {
 						{navLinks.map((item) => (
 							<li
 								key={item.label}
-								className={`flex flex-row gap-2 border-transparent hover:border-b-2 hover:border-dark-grey hover:font-semibold ${location === item.href ? "font-semibold" : "font-normal"} `}
+								className={`flex flex-row gap-2 border-transparent hover:border-b-2 hover:border-darker-grey hover:font-semibold ${location === item.href ? "font-semibold" : "font-normal"} `}
 							>
 								{item.icon}
-								<a className="text-dark-grey" href={item.href}>
+								<a className="text-darker-grey" href={item.href}>
 									{item.label}
 								</a>
 							</li>
 						))}
 					</ul>
 				</nav>
+
+				<button
+					className="text-dark-blue hover:text-light-blue"
+					onClick={() =>
+						(
+							document.getElementById("faq-dialog") as HTMLDialogElement
+						).showModal()
+					}
+				>
+					<FaqIcon />
+				</button>
 			</div>
 			<div className="flex w-fit flex-row items-center gap-3">
 				<h1 className="text-[22px] font-bold">BärGPT</h1>
 				<h2 className="text-[17px]">KI Testumgebung</h2>
 			</div>
+			<Faq />
 		</header>
 	);
 };
