@@ -58,6 +58,7 @@ export const ChatForm: React.FC = () => {
 				placeholder="Stelle eine Frage"
 			/>
 			<PrimaryButton
+				className="hidden md:flex"
 				label={
 					<div className="flex flex-row items-center gap-2">
 						<SendIcon />
@@ -68,6 +69,9 @@ export const ChatForm: React.FC = () => {
 				ariaLabel="Nachricht abschicken"
 				type={"submit"}
 			/>
+			<button className="flex md:hidden" disabled={isLoading} type="submit">
+				<SendIcon className="h-7 w-7 text-dark-blue hover:text-light-blue" />
+			</button>
 		</form>
 	);
 };

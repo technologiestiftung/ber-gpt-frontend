@@ -13,13 +13,13 @@ export const Chat: React.FC = () => {
 	const messages = getChat(currentChatId)?.messages || [];
 
 	return (
-		<div className="flex h-full w-full max-w-[1000px] flex-col justify-between">
+		<div className="flex h-full w-full flex-col justify-between">
 			{messages.length === 0 && <GetStarted />}
 
 			<ChatMessages />
 
 			<div className="shadow-[-10px_0px_20px_10px_rgba(255,255,255,75)]">
-				<div className="z-10 flex flex-col gap-y-4 rounded border-2 border-mid-grey bg-white px-6 pb-4 pt-6 shadow-md">
+				<div className="z-10 flex flex-col rounded border-mid-grey bg-white px-0.5 pb-4 pt-6 md:gap-y-4 md:border-2 md:px-6 md:shadow-md">
 					<UploadedFiles />
 
 					<ChatForm />

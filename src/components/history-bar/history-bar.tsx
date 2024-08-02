@@ -71,10 +71,10 @@ export const HistoryBar: React.FC = () => {
 
 	return (
 		<aside
-			className={`absolute z-40 flex h-full flex-col justify-start overflow-y-auto rounded px-0.5 pb-6 transition-all duration-200 ease-out md:relative md:border md:px-2 md:pt-2 ${
+			className={`absolute z-40 flex flex-col justify-start overflow-y-auto rounded px-0.5 pb-6 transition-all duration-200 ease-out md:relative md:border md:px-2 md:pt-2 ${
 				isOpen
-					? "w-full border-mid-grey bg-white md:w-72"
-					: "w-24 border-transparent"
+					? "h-full w-full border-mid-grey bg-white md:w-72"
+					: "h-fit w-24 border-transparent"
 			}`}
 			aria-label="Sidebar"
 		>

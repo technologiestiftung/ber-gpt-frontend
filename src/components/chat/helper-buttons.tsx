@@ -21,7 +21,7 @@ export const HelperButtons: React.FC = () => {
 			value: "Formuliere einen E–mail Text für mich.",
 		},
 		{
-			label: "Vermerk Generieren",
+			label: "Vermerk generieren",
 			value: "Generiere mir einen Vermerk.",
 		},
 		{
