@@ -29,7 +29,7 @@ export const Header: React.FC = () => {
 						{navLinks.map((item) => (
 							<li
 								key={item.label}
-								className={`hover:border-darker-grey flex flex-row gap-2 border-transparent hover:border-b-2 hover:font-semibold ${location === item.href ? "font-semibold" : "font-normal"} `}
+								className={`flex flex-row gap-2 border-transparent hover:border-b-2 hover:border-darker-grey hover:font-semibold ${location === item.href ? "font-semibold" : "font-normal"} `}
 							>
 								{item.icon}
 								<a className="text-darker-grey" href={item.href}>
