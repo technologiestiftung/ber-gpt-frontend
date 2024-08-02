@@ -25,13 +25,13 @@ export const Header: React.FC = () => {
 					alt={"Berlin Logo"}
 				/>
 				<nav className="hidden w-fit grow pt-1 md:flex">
-					<ul className="flex h-fit w-full justify-end gap-10 text-[17px]">
+					<ul className="flex h-fit w-full justify-end gap-6 md:text-[17px] lg:gap-6">
 						{navLinks.map((item) => (
 							<li
 								key={item.label}
 								className={`hover:border-darker-grey flex flex-row gap-2 border-transparent hover:border-b-2 hover:font-semibold ${location === item.href ? "font-semibold" : "font-normal"} `}
 							>
-								{item.icon}
+								<div className="hidden lg:flex">{item.icon}</div>
 								<a className="text-darker-grey" href={item.href}>
 									{item.label}
 								</a>
