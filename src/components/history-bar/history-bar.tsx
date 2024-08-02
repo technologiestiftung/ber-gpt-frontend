@@ -71,12 +71,14 @@ export const HistoryBar: React.FC = () => {
 
 	return (
 		<aside
-			className={`flex h-full flex-col justify-start overflow-y-auto rounded border px-2 pb-6 pt-2 transition-all duration-200 ease-out ${
-				isOpen ? "w-72 border-mid-grey" : "w-24 border-transparent"
+			className={`absolute z-40 flex h-full flex-col justify-start overflow-y-auto rounded px-2 pb-6 pt-2 transition-all duration-200 ease-out md:relative md:border ${
+				isOpen
+					? "w-[95%] border-mid-grey bg-white md:w-72"
+					: "w-24 border-transparent"
 			}`}
 			aria-label="Sidebar"
 		>
-			<div className={`flex flex-row justify-between gap-2`}>
+			<div className={`flex flex-col justify-between md:flex-row md:gap-2`}>
 				<IconButton
 					isOutlineVisible={!isOpen}
 					icon={<SidebarIcon />}
@@ -84,13 +86,15 @@ export const HistoryBar: React.FC = () => {
 					title={toggleIsSidebarOpenLabel}
 					onClick={() => setIsOpen(!isOpen)}
 				/>
-				<IconButton
-					isOutlineVisible={!isOpen}
-					icon={<NewChatIcon />}
-					ariaLabel="Neuen Chat starten"
-					title="Neuen Chat starten"
-					onClick={() => setCurrentChatId(null)}
-				/>
+				<div className={`${isOpen ? "hidden md:flex" : "flex"}`}>
+					<IconButton
+						isOutlineVisible={!isOpen}
+						icon={<NewChatIcon />}
+						ariaLabel="Neuen Chat starten"
+						title="Neuen Chat starten"
+						onClick={() => setCurrentChatId(null)}
+					/>
+				</div>
 			</div>
 			<div
 				className={`flex w-auto flex-col gap-5 pl-2 transition-all duration-200 ease-in-out ${
@@ -103,7 +107,7 @@ export const HistoryBar: React.FC = () => {
 			</div>
 
 			<div
-				className={`mt-4 w-[200px] pl-2 text-sm text-dark-blue transition-all ease-in ${
+				className={`mt-4 w-fit pl-2 text-sm text-dark-blue transition-all ease-in md:w-[200px] ${
 					isOpen ? "opacity-100 duration-300" : "opacity-0 duration-0"
 				}`}
 			>

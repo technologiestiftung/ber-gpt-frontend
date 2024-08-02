@@ -15,15 +15,15 @@ export const Header: React.FC = () => {
 	const location = window.location.pathname;
 
 	return (
-		<header className="flex flex-col gap-4">
+		<header className="flex items-start gap-4 md:flex-col">
 			<div className="flex flex-row justify-between gap-10">
 				<img
-					className="w-32"
+					className="w-20 md:w-32"
 					src="https://logos.citylab-berlin.org/logo-berlin.svg"
 					alt={"Berlin Logo"}
 				/>
 				<nav className="flex w-fit grow pt-1">
-					<ul className="flex h-fit w-full justify-end gap-10 text-[17px]">
+					<ul className="hidden h-fit w-full justify-end gap-10 text-[17px] md:flex">
 						{navLinks.map((item) => (
 							<li
 								key={item.label}
@@ -38,7 +38,7 @@ export const Header: React.FC = () => {
 					</ul>
 				</nav>
 			</div>
-			<div className="flex w-fit flex-row items-center gap-3">
+			<div className="flex w-fit flex-col items-center md:flex-row md:gap-3">
 				<h1 className="text-[22px] font-bold">BärGPT</h1>
 				<h2 className="text-[17px]">KI Testumgebung</h2>
 			</div>
