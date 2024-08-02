@@ -26,8 +26,8 @@ const startingPrompts = [
 	},
 	{
 		icon: <VermerkIcon />,
-		label: "Generiere mir einen Vermerk.",
-		value: "Generiere mir einen Vermerk.",
+		label: "Hilf mir einen Vermerk zu erstellen.",
+		value: "Hilf mir einen Vermerk zu erstellen.",
 	},
 	{
 		icon: <PDFIcon />,
@@ -39,13 +39,13 @@ const startingPrompts = [
 export const GetStarted: React.FC = () => {
 	return (
 		<div className="flex w-full flex-col items-center justify-center overflow-auto">
-			<div className="flex min-h-[70px] w-[70px] items-center justify-center rounded-full bg-white drop-shadow-lg">
-				<BaerIcon />
+			<div className="flex size-[50px] items-center justify-center rounded-full bg-white drop-shadow-lg md:min-h-[70px] md:w-[70px]">
+				<BaerIcon className="h-8 w-8" />
 			</div>
 			<h2 className="pb-2 pt-4 text-xl">
 				Starte mit <b>BärGPT!</b>
 			</h2>
-			<div className="flex w-full flex-row flex-wrap justify-center gap-x-4">
+			<div className="flex w-full flex-row flex-wrap justify-center gap-x-3">
 				{startingPrompts.map((prompt) => (
 					<ChatBoxButton
 						key={prompt.value}
