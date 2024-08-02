@@ -4,6 +4,30 @@ import { QuestionAnswer } from "./question-answer";
 import { qas } from "./qas";
 
 export const Faq: React.FC = () => {
+	const logoLinks = [
+		{
+			href: "https://citylab-berlin.org/de/start/",
+			alt: "Logo CityLAB Berlin",
+			src: "https://logos.citylab-berlin.org/logo-citylab-color.svg",
+			width: 131,
+			height: 28,
+		},
+		{
+			href: "https://technologiestiftung-berlin.de/",
+			alt: "Logo der Technologiestiftung Berlin",
+			src: "https://logos.citylab-berlin.org/logo-tsb-outline.svg",
+			width: 92,
+			height: 28,
+		},
+		{
+			href: "https://www.berlin.de/senatskanzlei/",
+			alt: "Logo des Regierenden Bürgermeisters von Berlin und der Senatskanzlei",
+			src: "https://logos.citylab-berlin.org/logo-senatskanzlei-buergermeister-horizontal.svg",
+			width: 168,
+			height: 28,
+		},
+	];
+
 	return (
 		<dialog
 			id="faq-dialog"
@@ -34,42 +58,21 @@ export const Faq: React.FC = () => {
 					/>
 				))}
 				<div className="flex flex-row flex-wrap justify-start gap-10 border-t border-mid-grey p-2 pt-6">
-					<a
-						href="https://citylab-berlin.org/de/start/"
-						target="_blank"
-						rel="noreferrer"
-					>
-						<img
-							alt="Logo CityLAB Berlin"
-							src="https://logos.citylab-berlin.org/logo-citylab-color.svg"
-							width={131}
-							height={28}
-						/>
-					</a>
-					<a
-						href="https://technologiestiftung-berlin.de/"
-						target="_blank"
-						rel="noreferrer"
-					>
-						<img
-							alt="Logo der Technologiestiftung Berlin"
-							src="https://logos.citylab-berlin.org/logo-tsb-outline.svg"
-							width={92}
-							height={28}
-						/>
-					</a>
-					<a
-						href="https://www.berlin.de/senatskanzlei/"
-						target="_blank"
-						rel="noreferrer"
-					>
-						<img
-							alt="Logo des Regierenden Bürgermeisters von Berlin und der Senatskanzlei"
-							src="https://logos.citylab-berlin.org/logo-senatskanzlei-buergermeister-horizontal.svg"
-							width={168}
-							height={28}
-						/>
-					</a>
+					{logoLinks.map((link) => (
+						<a
+							key={link.href}
+							href={link.href}
+							target="_blank"
+							rel="noreferrer"
+						>
+							<img
+								alt={link.alt}
+								src={link.src}
+								width={link.width}
+								height={link.height}
+							/>
+						</a>
+					))}
 				</div>
 
 				<button
