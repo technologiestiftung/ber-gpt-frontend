@@ -5,6 +5,8 @@ import { RefreshIcon } from "../icons/refresh-icon";
 import { CopyToClipboardButton } from "../buttons/copy-to-clipboard-button";
 import { streamChatResponse } from "../../store/api";
 import { useChatHistoryStore } from "../../store/chat-history-store";
+import { EmailChatButtons } from "../email/email-chat-buttons";
+import { getStorageKey } from "../../store/storage";
 
 interface TextMessageProps {
 	role: string;
@@ -54,6 +56,9 @@ export const TextMessage: React.FC<TextMessageProps> = ({
 			<ReactMarkdown className="markdown-container">
 				{content === "" ? "..." : content}
 			</ReactMarkdown>
+
+			{isLastMessageOfChat(messageId) &&
+				getStorageKey() === "email-history" && <EmailChatButtons />}
 		</div>
 	);
 };

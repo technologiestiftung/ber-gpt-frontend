@@ -1,7 +1,7 @@
 import React from "react";
 import { SecondaryButton } from "../buttons/secondary-button";
 import { useIsLoadingStore } from "../../store/is-loading-store";
-import { useChatHistoryStore } from "../../store/history-stores/chat-history-store";
+import { useChatHistoryStore } from "../../store/chat-history-store";
 import { streamChatResponse } from "../../store/api";
 
 const formatButtons = [
@@ -25,14 +25,14 @@ async function onClick(value: string) {
 
 	useChatHistoryStore.getState().saveMessage(value);
 
-	await streamChatResponse(useChatHistoryStore);
+	await streamChatResponse().catch(console.error);
 
 	useIsLoadingStore.getState().setIsLoading(false);
 }
 
 export const EmailChatButtons: React.FC = () => {
 	return (
-		<div className="flex gap-2 border-t border-mid-grey pt-2">
+		<div className="flex gap-4 border-t border-mid-grey pt-2">
 			{formatButtons.map(({ label, value }) => (
 				<SecondaryButton
 					key={label}
