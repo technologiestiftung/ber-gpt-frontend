@@ -9,7 +9,7 @@ export const Faq: React.FC = () => {
 			id="faq-dialog"
 			className="z-50 max-h-[90%] w-5/6 max-w-[1000px] gap-4 overflow-y-auto rounded-md border-2 border-mid-grey bg-white px-8 py-10 shadow-lg backdrop:backdrop-blur-sm"
 		>
-			<div className="flex flex-col">
+			<div className="flex flex-col gap-4">
 				<h1 className="px-2 text-[22px] font-bold leading-6">Über BärGPT</h1>
 				<p className="p-2">
 					Der Einsatz von <b>BärGPT</b> in der öffentlichen Verwaltung bietet
@@ -23,7 +23,7 @@ export const Faq: React.FC = () => {
 					Auskünfte. Letztlich fördert BärGPT eine moderne, digitale Berliner
 					Verwaltung und verbessert die Effizienz sowie Servicequalität.
 				</p>
-				<h1 className="px-2 text-[22px] font-bold leading-6">
+				<h1 className="px-2 pt-2 text-[22px] font-bold leading-6">
 					Häufig gestellte Fragen:
 				</h1>
 				{qas.map((qa) => (

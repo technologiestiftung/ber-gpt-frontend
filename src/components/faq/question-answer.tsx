@@ -14,7 +14,7 @@ export const QuestionAnswer: React.FC<QuestionAnswerProps> = ({
 
 	return (
 		<div
-			className={`my-2 flex flex-col rounded border-2 p-2 py-4 transition-all duration-200 ease-in-out ${isExpanded ? "border-darker-grey" : "border-transparent"}`}
+			className={`flex flex-col rounded border-2 p-2 py-4 transition-all duration-200 ease-in-out ${isExpanded ? "border-darker-grey" : "border-transparent"}`}
 		>
 			<div className="flex flex-row justify-between">
 				<button
