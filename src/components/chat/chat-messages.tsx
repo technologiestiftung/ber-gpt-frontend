@@ -1,9 +1,9 @@
 import React from "react";
-import { useChatHistoryStore } from "../../../store/history-stores/chat-history-store";
-import { useCurrentChatIdStore } from "../../../store/current-chat-id-store";
-import { FileMessage } from "./file-message";
-import { TextMessage } from "./text-message";
-import { Message } from "../../../store/types";
+import { useChatHistoryStore } from "../../store/chat-history-store";
+import { useCurrentChatIdStore } from "../../store/current-chat-id-store";
+import { FileMessage } from "../messages/file-message";
+import { TextMessage } from "../messages/text-message";
+import { Message } from "../../store/types";
 
 export const ChatMessages: React.FC = () => {
 	const { getChat } = useChatHistoryStore();
