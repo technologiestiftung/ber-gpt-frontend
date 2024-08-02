@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from "react";
 import { useSplashStore } from "../store/splash-store";
 import { BaerIcon } from "./icons/bear-icon";
 import { XIcon } from "./icons/x-icon";
+import { logoLinks } from "./logo-links";
 
 export const SplashScreen: React.FC = () => {
 	const { hideSplashScreen } = useSplashStore();
@@ -27,6 +28,16 @@ export const SplashScreen: React.FC = () => {
 
 		hideSplashScreen();
 	};
+
+	const links = [
+		{ href: "https://citylab-berlin.org/de/start/", text: "Feedback" },
+		{ href: "https://citylab-berlin.org/de/start/", text: "Kontakt" },
+		{
+			href: "https://citylab-berlin.org/de/data-privacy/",
+			text: "Datenschutz",
+		},
+		{ href: "https://citylab-berlin.org/de/imprint/", text: "Impressum" },
+	];
 
 	return (
 		<div
@@ -54,77 +65,36 @@ export const SplashScreen: React.FC = () => {
 					Verwaltung und verbessert die Effizienz sowie Servicequalität.
 				</p>
 				<div className="flex flex-row flex-wrap justify-between gap-2">
-					<a
-						href="https://citylab-berlin.org/de/start/"
-						className="text-mid-blue underline hover:text-dark-blue"
-					>
-						Feedback
-					</a>
-					<a
-						href="https://citylab-berlin.org/de/start/"
-						className="text-mid-blue underline hover:text-dark-blue"
-					>
-						Kontakt
-					</a>
-					<a
-						href="https://citylab-berlin.org/de/data-privacy/"
-						className="text-mid-blue underline hover:text-dark-blue"
-					>
-						Datenschutz
-					</a>
-					<a
-						href="https://citylab-berlin.org/de/imprint/"
-						className="text-mid-blue underline hover:text-dark-blue"
-					>
-						Impressum
-					</a>
+					{links.map((link) => (
+						<a
+							key={link.text}
+							href={link.href}
+							className="text-mid-blue underline hover:text-dark-blue"
+						>
+							{link.text}
+						</a>
+					))}
 				</div>
 				<div className="flex flex-row flex-wrap justify-between gap-6">
-					<a
-						href="https://citylab-berlin.org/de/start/"
-						target="_blank"
-						rel="noreferrer"
-					>
-						<img
-							alt="Logo CityLAB Berlin"
-							src="https://logos.citylab-berlin.org/logo-citylab-color.svg"
-							width={131}
-							height={28}
-						/>
-					</a>
-					<a
-						href="https://technologiestiftung-berlin.de/"
-						target="_blank"
-						rel="noreferrer"
-					>
-						<img
-							alt="Logo der Technologiestiftung Berlin"
-							src="https://logos.citylab-berlin.org/logo-tsb-outline.svg"
-							width={92}
-							height={28}
-						/>
-					</a>
-					<a
-						href="https://www.berlin.de/senatskanzlei/"
-						target="_blank"
-						rel="noreferrer"
-					>
-						<img
-							alt="Logo des Regierenden Bürgermeisters von Berlin und der Senatskanzlei"
-							src="https://logos.citylab-berlin.org/logo-senatskanzlei-buergermeister-horizontal.svg"
-							width={168}
-							height={28}
-						/>
-					</a>
+					{logoLinks.map((logo) => (
+						<a key={logo.alt} href={logo.href} target="_blank" rel="noreferrer">
+							<img
+								alt={logo.alt}
+								src={logo.src}
+								width={logo.width}
+								height={logo.height}
+							/>
+						</a>
+					))}
 				</div>
-
-				<button
-					className="absolute right-4 top-4 pb-2 text-dark-blue hover:text-mid-blue"
-					onClick={hideSplashScreen}
-				>
-					<XIcon className="h-5 w-5" />
-				</button>
 			</div>
+
+			<button
+				className="absolute right-4 top-4 pb-2 text-dark-blue hover:text-mid-blue"
+				onClick={hideSplashScreen}
+			>
+				<XIcon className="h-6 w-6" />
+			</button>
 		</div>
 	);
 };
