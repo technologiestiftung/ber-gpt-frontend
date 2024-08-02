@@ -71,9 +71,9 @@ export const HistoryBar: React.FC = () => {
 
 	return (
 		<aside
-			className={`absolute z-40 flex h-full flex-col justify-start overflow-y-auto rounded px-2 pb-6 pt-2 transition-all duration-200 ease-out md:relative md:border ${
+			className={`absolute z-40 flex h-full flex-col justify-start overflow-y-auto rounded px-0.5 pb-6 transition-all duration-200 ease-out md:relative md:border md:px-2 md:pt-2 ${
 				isOpen
-					? "w-[95%] border-mid-grey bg-white md:w-72"
+					? "w-full border-mid-grey bg-white md:w-72"
 					: "w-24 border-transparent"
 			}`}
 			aria-label="Sidebar"
@@ -97,7 +97,7 @@ export const HistoryBar: React.FC = () => {
 				</div>
 			</div>
 			<div
-				className={`flex w-auto flex-col gap-5 pl-2 transition-all duration-200 ease-in-out ${
+				className={`flex w-auto flex-col gap-5 pl-0.5 transition-all duration-200 ease-in-out md:pl-2 ${
 					isOpen ? "opacity-100" : "opacity-0"
 				}`}
 			>

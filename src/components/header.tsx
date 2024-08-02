@@ -17,15 +17,15 @@ export const Header: React.FC = () => {
 	const location = window.location.pathname;
 
 	return (
-		<header className="flex items-start gap-4 md:flex-col">
-			<div className="flex flex-row items-center justify-between gap-10">
+		<header className="flex items-start gap-4 md:flex-col md:items-stretch">
+			<div className="flex w-full flex-row items-center justify-between gap-10">
 				<img
 					className="w-20 md:w-32"
 					src="https://logos.citylab-berlin.org/logo-berlin.svg"
 					alt={"Berlin Logo"}
 				/>
-				<nav className="flex w-fit grow pt-1">
-					<ul className="hidden h-fit w-full justify-end gap-10 text-[17px] md:flex">
+				<nav className="hidden w-fit grow pt-1 md:flex">
+					<ul className="flex h-fit w-full justify-end gap-10 text-[17px]">
 						{navLinks.map((item) => (
 							<li
 								key={item.label}
@@ -39,6 +39,10 @@ export const Header: React.FC = () => {
 						))}
 					</ul>
 				</nav>
+				<div className="flex w-fit flex-col items-center md:hidden">
+					<h1 className="text-[22px] font-bold">BärGPT</h1>
+					<h2 className="text-[17px]">KI Testumgebung</h2>
+				</div>
 
 				<button
 					className="text-dark-blue hover:text-light-blue"
@@ -51,10 +55,11 @@ export const Header: React.FC = () => {
 					<FaqIcon />
 				</button>
 			</div>
-			<div className="flex w-fit flex-col items-center md:flex-row md:gap-3">
+			<div className="hidden w-fit flex-row items-center gap-3 md:flex">
 				<h1 className="text-[22px] font-bold">BärGPT</h1>
 				<h2 className="text-[17px]">KI Testumgebung</h2>
 			</div>
+
 			<Faq />
 		</header>
 	);

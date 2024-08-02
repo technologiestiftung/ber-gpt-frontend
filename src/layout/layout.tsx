@@ -13,7 +13,7 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
 
 	return (
 		<div className="flex justify-center font-arial">
-			<div className="relative flex h-svh flex-col overflow-hidden p-2.5 font-arial md:p-10">
+			<div className="flex h-svh flex-col overflow-hidden p-2.5 font-arial md:p-10">
 				<Header />
 
 				<Main>{children}</Main>
