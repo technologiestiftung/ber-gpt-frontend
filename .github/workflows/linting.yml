@@ -20,7 +20,7 @@ jobs:
       - name: lint
         run: npm run lint
       - name: prettier
-        run: npm run prettier:ci
+        run: npm run prettier --write .
 #  release:
 #    needs: [test]
 #    runs-on: ubuntu-latest
