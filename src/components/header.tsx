@@ -18,7 +18,7 @@ export const Header: React.FC = () => {
 
 	return (
 		<header className="flex items-start gap-4 md:flex-col md:items-stretch">
-			<div className="flex w-full flex-row items-center justify-between gap-10">
+			<div className="flex w-full flex-row items-center justify-between md:gap-10">
 				<img
 					className="w-20 md:w-32"
 					src="https://logos.citylab-berlin.org/logo-berlin.svg"
@@ -44,16 +44,18 @@ export const Header: React.FC = () => {
 					<h2 className="text-[17px]">KI Testumgebung</h2>
 				</div>
 
-				<button
-					className="text-dark-blue hover:text-light-blue"
-					onClick={() =>
-						(
-							document.getElementById("faq-dialog") as HTMLDialogElement
-						).showModal()
-					}
-				>
-					<FaqIcon />
-				</button>
+				<div className="flex w-20 justify-end">
+					<button
+						className="text-dark-blue hover:text-light-blue"
+						onClick={() =>
+							(
+								document.getElementById("faq-dialog") as HTMLDialogElement
+							).showModal()
+						}
+					>
+						<FaqIcon />
+					</button>
+				</div>
 			</div>
 			<div className="hidden w-fit flex-row items-center gap-3 md:flex">
 				<h1 className="text-[22px] font-bold">BärGPT</h1>

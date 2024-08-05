@@ -11,7 +11,7 @@ const today = new Date();
 const sevenDaysAgo = subDays(today, 7);
 
 export const HistoryBar: React.FC = () => {
-	const [isOpen, setIsOpen] = useState(true);
+	const [isOpen, setIsOpen] = useState(false);
 
 	const { chatHistory } = useChatHistoryStore();
 	const { setCurrentChatId } = useCurrentChatIdStore();
@@ -71,7 +71,7 @@ export const HistoryBar: React.FC = () => {
 
 	return (
 		<aside
-			className={`absolute z-30 flex flex-col justify-start overflow-y-auto rounded px-0.5 pb-6 transition-all duration-200 ease-out md:relative md:border md:px-2 md:pt-2 ${
+			className={`absolute z-30 flex flex-col justify-start overflow-y-auto overflow-x-hidden rounded px-0.5 pb-6 transition-all duration-200 ease-out md:relative md:border md:px-2 md:pt-2 ${
 				isOpen
 					? "h-full w-full border-mid-grey bg-white md:w-72"
 					: "h-fit w-24 border-transparent"
