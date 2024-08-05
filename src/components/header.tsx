@@ -46,7 +46,7 @@ export const Header: React.FC = () => {
 
 				<div className="flex w-20 justify-end">
 					<button
-						className="text-dark-blue hover:text-light-blue"
+						className="hidden text-dark-blue hover:text-light-blue md:flex"
 						onClick={() =>
 							(
 								document.getElementById("faq-dialog") as HTMLDialogElement
