@@ -71,14 +71,16 @@ export const HistoryBar: React.FC = () => {
 
 	return (
 		<aside
-			className={`absolute z-30 flex flex-col justify-start overflow-y-auto overflow-x-hidden rounded px-0.5 pb-6 transition-all duration-200 ease-out md:relative md:border md:px-2 md:pt-2 ${
+			className={`absolute top-[70px] z-30 flex h-fit flex-col justify-start overflow-y-auto overflow-x-hidden rounded transition-all duration-200 ease-out md:relative md:top-0 md:border md:py-2 ${
 				isOpen
-					? "h-full w-full border-mid-grey bg-white md:w-72"
+					? "h-[90%] w-[96%] border-mid-grey bg-white pb-6 md:w-72 md:px-2"
 					: "h-fit w-24 border-transparent"
 			}`}
 			aria-label="Sidebar"
 		>
-			<div className={`flex flex-col justify-between md:flex-row md:gap-2`}>
+			<div
+				className={`flex flex-col justify-between px-0.5 md:flex-row md:gap-2`}
+			>
 				<IconButton
 					isOutlineVisible={!isOpen}
 					icon={<SidebarIcon />}
@@ -97,8 +99,8 @@ export const HistoryBar: React.FC = () => {
 				</div>
 			</div>
 			<div
-				className={`flex w-auto flex-col gap-5 pl-0.5 transition-all duration-200 ease-in-out md:pl-2 ${
-					isOpen ? "opacity-100" : "opacity-0"
+				className={`flex w-11/12 flex-col gap-5 transition-all duration-200 ease-in-out md:w-11/12 md:pl-2 ${
+					isOpen ? "opacity-100" : "hidden opacity-0"
 				}`}
 			>
 				{chatGroups.map(({ label, chats }) => (
@@ -107,8 +109,8 @@ export const HistoryBar: React.FC = () => {
 			</div>
 
 			<div
-				className={`mt-4 w-fit pl-2 text-sm text-dark-blue transition-all ease-in md:w-[200px] ${
-					isOpen ? "opacity-100 duration-300" : "opacity-0 duration-0"
+				className={`mt-4 w-10/12 text-sm text-dark-blue transition-all ease-in md:w-[200px] md:pl-2 ${
+					isOpen ? "opacity-100 duration-300" : "hidden opacity-0 duration-0"
 				}`}
 			>
 				Der Chat Verlauf wird lokal gespeichert und ist somit nicht für andere

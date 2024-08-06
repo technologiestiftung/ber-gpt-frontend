@@ -32,7 +32,7 @@ async function onClick(value: string) {
 
 export const EmailChatButtons: React.FC = () => {
 	return (
-		<div className="flex gap-4 border-t border-mid-grey pt-2">
+		<div className="flex gap-2 border-t border-mid-grey pt-2 md:gap-4">
 			{formatButtons.map(({ label, value }) => (
 				<SecondaryButton
 					key={label}

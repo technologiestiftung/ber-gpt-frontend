@@ -20,7 +20,7 @@ export const Header: React.FC = () => {
 		<header className="flex items-start gap-4 md:flex-col md:items-stretch">
 			<div className="flex w-full flex-row items-center justify-between md:gap-10">
 				<img
-					className="w-20 md:w-32"
+					className="w-20 sm:pl-0 md:w-32"
 					src="https://logos.citylab-berlin.org/logo-berlin.svg"
 					alt={"Berlin Logo"}
 				/>
