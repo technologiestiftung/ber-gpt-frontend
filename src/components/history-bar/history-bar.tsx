@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { useMemo, useEffect, useState } from "react";
 import { IconButton } from "../buttons/icon-button";
 import { SidebarIcon } from "../icons/sidebar-icon";
 import { NewChatIcon } from "../icons/new-chat-icon";
@@ -14,7 +14,14 @@ export const HistoryBar: React.FC = () => {
 	const [isOpen, setIsOpen] = useState(false);
 
 	const { chatHistory } = useChatHistoryStore();
-	const { setCurrentChatId } = useCurrentChatIdStore();
+	const { setCurrentChatId, currentChatId } = useCurrentChatIdStore();
+
+	useEffect(() => {
+		// close sidebar on mobile when a chat is selected
+		if (window.innerWidth < 768) {
+			setIsOpen(false);
+		}
+	}, [currentChatId]);
 
 	const chatsToday = useMemo(
 		() =>
