@@ -5,6 +5,9 @@ import { VermerkIcon } from "./icons/vermerk-icon";
 import { PDFIcon } from "./icons/pdf-icon";
 import { FaqIcon } from "./icons/faq-icon";
 import { Faq } from "./faq/faq";
+import { getStorageKeyName } from "../store/storage";
+import { MenuIcon } from "./icons/menu-icon";
+import { ArrowBackIcon } from "./icons/arrow-back-icon";
 
 export const Header: React.FC = () => {
 	const navLinks = [
@@ -17,7 +20,7 @@ export const Header: React.FC = () => {
 	const location = window.location.pathname;
 
 	return (
-		<header className="flex items-start gap-4 md:flex-col md:items-stretch">
+		<header className="flex flex-col items-start md:items-stretch md:gap-4">
 			<div className="flex w-full flex-row items-center justify-between md:gap-10">
 				<img
 					className="w-20 sm:pl-0 md:w-32"
@@ -60,6 +63,57 @@ export const Header: React.FC = () => {
 			<div className="hidden w-fit flex-row items-center gap-3 md:flex">
 				<h1 className="text-[22px] font-bold">BärGPT</h1>
 				<h2 className="text-[17px]">KI Testumgebung</h2>
+			</div>
+			<div className="flex w-full flex-row justify-between pt-2 md:hidden">
+				<div className="w-9" />
+				<div className="w-fit text-[22px]">{getStorageKeyName()}</div>
+				<div className="">
+					<button className="w-9 p-1 text-dark-blue hover:text-light-blue">
+						<MenuIcon />
+						<div className="absolute left-0 top-[70px] z-40 hidden h-[90%] w-full bg-white">
+							<div className="flex flex-row justify-start gap-6 px-2 pt-6">
+								<ArrowBackIcon />
+								<h1 className="text-[22px] text-darker-grey">
+									Funktionsübersicht
+								</h1>
+							</div>
+							<nav className="md:hiddens flex w-full items-center justify-center pt-1">
+								<ul className="flex h-fit w-64 flex-col items-start gap-10 pt-16">
+									{navLinks.map((item) => (
+										<li
+											key={item.label}
+											className={`flex flex-row items-center gap-6 hover:border-b-2 hover:border-darker-grey ${location === item.href ? "border-b-2 border-darker-grey font-semibold" : "border-transparent font-normal"} `}
+										>
+											<div className="flex">{item.icon}</div>
+											<a
+												className="text-[22px] text-darker-grey"
+												href={item.href}
+											>
+												{item.label}
+											</a>
+										</li>
+									))}
+									<li>
+										<button
+											className="flex items-center gap-5 text-dark-blue hover:text-light-blue"
+											onClick={() =>
+												(
+													document.getElementById(
+														"faq-dialog",
+													) as HTMLDialogElement
+												).showModal()
+											}
+										>
+											<FaqIcon className="h-6 w-6" />
+
+											<h1 className="text-[22px] text-darker-grey">F.A.Q.</h1>
+										</button>
+									</li>
+								</ul>
+							</nav>
+						</div>
+					</button>
+				</div>
 			</div>
 
 			<Faq />

@@ -1,12 +1,17 @@
 import React from "react";
 
-export const FaqIcon: React.FC = () => (
+interface FaqIconProps {
+	className?: string;
+}
+
+export const FaqIcon: React.FC<FaqIconProps> = ({ className }) => (
 	<svg
 		xmlns="http://www.w3.org/2000/svg"
 		width="35"
 		height="35"
 		viewBox="0 0 35 35"
 		fill="none"
+		className={`${className ? className : "h-9 w-9"}`}
 	>
 		<ellipse
 			cx="17.5"
