@@ -13,7 +13,7 @@ export const ErrorToast: React.FC<ErrorToastProps> = ({ error }) => {
 			<div className="relative flex w-full flex-row justify-center">
 				<div className="border-orange flex w-fit flex-row items-center justify-between gap-4 rounded border-4 bg-white px-6 py-4 text-[16px] font-semibold text-darker-grey shadow-md">
 					<ErrorIcon />
-					<div>{error}</div>
+					{error}
 					<button className="pl-8" onClick={clearErrors}>
 						<XIcon />
 					</button>
