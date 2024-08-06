@@ -23,7 +23,7 @@ export const QuestionAnswer: React.FC<QuestionAnswerProps> = ({
 				>
 					<h1 className="text-[22px] font-bold leading-6">{question}</h1>
 					<ArrowIcon
-						className={`text-darker-grey hover:text-dark-grey ${isExpanded ? "rotate-90" : "rotate-0"}`}
+						className={`min-size-7 shrink-0 text-darker-grey hover:text-dark-grey ${isExpanded ? "rotate-90" : "rotate-0"}`}
 					/>
 				</button>
 			</div>
