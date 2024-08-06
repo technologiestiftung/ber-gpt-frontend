@@ -12,6 +12,7 @@ export default {
 				"mid-grey": "#D7D7D7",
 				"dark-grey": "#999999;",
 				"darker-grey": "#333333",
+				orange: "#F29301",
 			},
 			fontFamily: {
 				arial: ["Arial"],

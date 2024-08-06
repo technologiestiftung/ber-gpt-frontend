@@ -1,9 +1,12 @@
 import { useCurrentChatIdStore } from "./current-chat-id-store";
 import { useChatHistoryStore } from "./chat-history-store";
 import { File as ExtractedFile, Message } from "./types";
+import { useErrorStore } from "./error-store";
 
 export async function streamChatResponse() {
 	const chatId = useCurrentChatIdStore.getState().currentChatId;
+
+	const { handleError } = useErrorStore.getState();
 
 	if (!chatId) {
 		console.error("No currentChatId found");
@@ -38,6 +41,11 @@ export async function streamChatResponse() {
 
 		if (!response.body) {
 			console.error("Response body from API is empty");
+			return;
+		}
+
+		if (!response.ok) {
+			handleError(await response.json());
 			return;
 		}
 
@@ -94,6 +102,7 @@ export async function streamChatResponse() {
 		}
 	} catch (error) {
 		console.error(error);
+		handleError();
 	}
 }
 
@@ -104,6 +113,8 @@ export async function extractDocumentContent({
 	file: File;
 	id: string;
 }): Promise<ExtractedFile> {
+	const { handleError } = useErrorStore.getState();
+
 	const formdata = new FormData();
 	formdata.append("file", file, file.name);
 
@@ -124,6 +135,11 @@ export async function extractDocumentContent({
 			console.error("Response body from API is empty");
 			return { id, name: file.name, content: null, extractionStatus: "error" };
 		}
+
+		if (!response.ok) {
+			handleError(await response.json());
+		}
+
 		const { content } = await response.json();
 
 		const contentWithMetaData = `Datei:${file.name}\nInhalt:\n${content}`;
@@ -136,6 +152,7 @@ export async function extractDocumentContent({
 		};
 	} catch (error) {
 		console.error(error);
+		handleError();
 		return { id, name: file.name, content: null, extractionStatus: "error" };
 	}
 }
