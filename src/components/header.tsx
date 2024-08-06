@@ -27,14 +27,18 @@ export const Header: React.FC = () => {
 				<img
 					className="w-20 sm:pl-0 md:w-32"
 					src="https://logos.citylab-berlin.org/logo-berlin.svg"
-					alt={"Berlin Logo"}
+					alt="Berlin Logo"
 				/>
 				<nav className="hidden w-fit grow pt-1 md:flex">
 					<ul className="flex h-fit w-full justify-end gap-6 md:text-[17px] lg:gap-6">
 						{navLinks.map((item) => (
 							<li
 								key={item.label}
-								className={`flex flex-row gap-2 hover:border-b-2 hover:border-darker-grey ${location === item.href ? "border-b-2 border-darker-grey font-semibold" : "border-transparent font-normal"} `}
+								className={`flex flex-row gap-2 hover:border-b-2 hover:border-darker-grey ${
+									location === item.href
+										? "border-b-2 border-darker-grey font-semibold"
+										: "border-transparent font-normal"
+								}`}
 							>
 								<div className="hidden lg:flex">{item.icon}</div>
 								<a className="text-darker-grey" href={item.href}>
@@ -69,7 +73,7 @@ export const Header: React.FC = () => {
 			<div className="flex w-full flex-row justify-between pt-2 md:hidden">
 				<div className="w-9" />
 				<div className="w-fit text-[22px]">{getStorageKeyName()}</div>
-				<div className="">
+				<div>
 					<button
 						className="w-9 p-1 text-dark-blue"
 						onClick={() => setIsMobileMenuOpen(true)}
@@ -77,7 +81,9 @@ export const Header: React.FC = () => {
 						<MenuIcon />
 					</button>
 					<div
-						className={`absolute left-0 top-[70px] z-40 h-[90%] w-full bg-white ${isMobileMenuOpen ? "" : "hidden"}`}
+						className={`absolute left-0 top-[70px] z-40 h-[90%] w-full bg-white ${
+							isMobileMenuOpen ? "" : "hidden"
+						}`}
 					>
 						<div className="flex flex-row justify-start gap-6 px-2.5 pt-6">
 							<button
@@ -95,7 +101,11 @@ export const Header: React.FC = () => {
 								{navLinks.map((item) => (
 									<li
 										key={item.label}
-										className={`flex flex-row items-center gap-6 hover:border-b-2 hover:border-darker-grey ${location === item.href ? "border-b-2 border-darker-grey font-semibold" : "border-transparent font-normal"} `}
+										className={`flex flex-row items-center gap-6 hover:border-b-2 hover:border-darker-grey ${
+											location === item.href
+												? "border-b-2 border-darker-grey font-semibold"
+												: "border-transparent font-normal"
+										}`}
 									>
 										<div className="flex">{item.icon}</div>
 										<a
