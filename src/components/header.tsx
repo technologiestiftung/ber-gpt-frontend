@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { ChatIcon } from "./icons/chat-icon";
 import { MailIcon } from "./icons/mail-icon";
 import { VermerkIcon } from "./icons/vermerk-icon";
@@ -10,8 +10,10 @@ import { MenuIcon } from "./icons/menu-icon";
 import { ArrowBackIcon } from "./icons/arrow-back-icon";
 
 export const Header: React.FC = () => {
+	const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
 	const navLinks = [
-		{ label: "Chat Funktion", icon: <ChatIcon />, href: "/" },
+		{ label: "Freier Chat", icon: <ChatIcon />, href: "/" },
 		{ label: "E-Mail Funktion", icon: <MailIcon />, href: "/email" },
 		{ label: "Vermerk Funktion", icon: <VermerkIcon />, href: "/note" },
 		{ label: "Zusammenfassen", icon: <PDFIcon />, href: "/summary" },
@@ -32,7 +34,7 @@ export const Header: React.FC = () => {
 						{navLinks.map((item) => (
 							<li
 								key={item.label}
-								className={`flex flex-row gap-2 border-transparent hover:border-b-2 hover:border-darker-grey hover:font-semibold ${location === item.href ? "font-semibold" : "font-normal"} `}
+								className={`flex flex-row gap-2 hover:border-b-2 hover:border-darker-grey ${location === item.href ? "border-b-2 border-darker-grey font-semibold" : "border-transparent font-normal"} `}
 							>
 								<div className="hidden lg:flex">{item.icon}</div>
 								<a className="text-darker-grey" href={item.href}>
@@ -68,51 +70,61 @@ export const Header: React.FC = () => {
 				<div className="w-9" />
 				<div className="w-fit text-[22px]">{getStorageKeyName()}</div>
 				<div className="">
-					<button className="w-9 p-1 text-dark-blue hover:text-light-blue">
+					<button
+						className="w-9 p-1 text-dark-blue"
+						onClick={() => setIsMobileMenuOpen(true)}
+					>
 						<MenuIcon />
-						<div className="absolute left-0 top-[70px] z-40 hidden h-[90%] w-full bg-white">
-							<div className="flex flex-row justify-start gap-6 px-2 pt-6">
-								<ArrowBackIcon />
-								<h1 className="text-[22px] text-darker-grey">
-									Funktionsübersicht
-								</h1>
-							</div>
-							<nav className="md:hiddens flex w-full items-center justify-center pt-1">
-								<ul className="flex h-fit w-64 flex-col items-start gap-10 pt-16">
-									{navLinks.map((item) => (
-										<li
-											key={item.label}
-											className={`flex flex-row items-center gap-6 hover:border-b-2 hover:border-darker-grey ${location === item.href ? "border-b-2 border-darker-grey font-semibold" : "border-transparent font-normal"} `}
-										>
-											<div className="flex">{item.icon}</div>
-											<a
-												className="text-[22px] text-darker-grey"
-												href={item.href}
-											>
-												{item.label}
-											</a>
-										</li>
-									))}
-									<li>
-										<button
-											className="flex items-center gap-5 text-dark-blue hover:text-light-blue"
-											onClick={() =>
-												(
-													document.getElementById(
-														"faq-dialog",
-													) as HTMLDialogElement
-												).showModal()
-											}
-										>
-											<FaqIcon className="h-6 w-6" />
-
-											<h1 className="text-[22px] text-darker-grey">F.A.Q.</h1>
-										</button>
-									</li>
-								</ul>
-							</nav>
-						</div>
 					</button>
+					<div
+						className={`absolute left-0 top-[70px] z-40 h-[90%] w-full bg-white ${isMobileMenuOpen ? "" : "hidden"}`}
+					>
+						<div className="flex flex-row justify-start gap-6 px-2.5 pt-6">
+							<button
+								className="text-dark-blue"
+								onClick={() => setIsMobileMenuOpen(false)}
+							>
+								<ArrowBackIcon />
+							</button>
+							<h1 className="text-[22px] text-darker-grey">
+								Funktionsübersicht
+							</h1>
+						</div>
+						<nav className="md:hiddens flex w-full items-center justify-center pt-1">
+							<ul className="flex h-fit w-64 flex-col items-start gap-10 pt-16">
+								{navLinks.map((item) => (
+									<li
+										key={item.label}
+										className={`flex flex-row items-center gap-6 hover:border-b-2 hover:border-darker-grey ${location === item.href ? "border-b-2 border-darker-grey font-semibold" : "border-transparent font-normal"} `}
+									>
+										<div className="flex">{item.icon}</div>
+										<a
+											className="text-[22px] text-darker-grey"
+											href={item.href}
+										>
+											{item.label}
+										</a>
+									</li>
+								))}
+								<li>
+									<button
+										className="flex items-center gap-5 text-dark-blue hover:text-light-blue"
+										onClick={() =>
+											(
+												document.getElementById(
+													"faq-dialog",
+												) as HTMLDialogElement
+											).showModal()
+										}
+									>
+										<FaqIcon className="h-6 w-6" />
+
+										<h1 className="text-[22px] text-darker-grey">F.A.Q.</h1>
+									</button>
+								</li>
+							</ul>
+						</nav>
+					</div>
 				</div>
 			</div>
 

@@ -71,7 +71,7 @@ export const HistoryBar: React.FC = () => {
 
 	return (
 		<aside
-			className={`absolute top-[70px] z-30 flex h-fit flex-col justify-start overflow-y-auto overflow-x-hidden rounded transition-all duration-200 ease-out md:relative md:top-0 md:border md:py-2 ${
+			className={`absolute top-[70px] z-30 flex h-fit flex-col justify-start overflow-y-auto overflow-x-hidden rounded ease-out md:relative md:top-0 md:border md:py-2 md:transition-all md:duration-200 ${
 				isOpen
 					? "h-[90%] w-[96%] border-mid-grey bg-white pb-6 md:w-72 md:px-2"
 					: "h-fit w-24 border-transparent"
