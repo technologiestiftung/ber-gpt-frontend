@@ -61,7 +61,9 @@ export async function streamChatResponse() {
 			role,
 		});
 
-		const reader = response.body.getReader();
+		const reader = response.body
+			.pipeThrough(new TextDecoderStream())
+			.getReader();
 
 		while (reader) {
 			const stream = await reader.read();
@@ -73,9 +75,7 @@ export async function streamChatResponse() {
 				.toString()
 				.replace(/^data: /gm, "")
 				.split("\n")
-				.filter(
-					(c: string) => Boolean(c.length) && c !== "[DONE]" && c !== null,
-				)
+				.filter((c: string) => Boolean(c?.length) && c !== "[DONE]")
 				.map((c: string) => {
 					try {
 						return JSON.parse(c);
