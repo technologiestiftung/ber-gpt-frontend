@@ -75,7 +75,16 @@ export async function streamChatResponse() {
 				.replace(/^data: /gm, "")
 				.split("\n")
 				.filter((c: string) => Boolean(c.length) && c !== "[DONE]")
-				.map((c: string) => JSON.parse(c));
+				.map((c: string) => {
+					try {
+						return JSON.parse(c);
+					} catch (error) {
+						console.error("Failed to parse JSON:", error);
+						handleError();
+						return null;
+					}
+				})
+				.filter((c: string) => c !== null); // filter out null values
 
 			if (!chunks) {
 				continue;
