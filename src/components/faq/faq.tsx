@@ -25,7 +25,7 @@ export const Faq: React.FC = () => {
 					Verwaltung und verbessert die Effizienz sowie Servicequalität.
 				</p>
 				<h1 className="px-2 pt-2 text-[22px] font-bold leading-6">
-					Häufig gestellte Fragen:
+					Häufig gestellte Fragen
 				</h1>
 				{qas.map((qa) => (
 					<QuestionAnswer
