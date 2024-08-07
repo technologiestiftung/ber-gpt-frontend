@@ -45,7 +45,7 @@ export const ChatForm: React.FC = () => {
 
 	return (
 		<form
-			className={`flex items-center gap-4 rounded border border-dark-blue px-4 py-2 has-[:focus]:border-blue-500`}
+			className={`flex items-center gap-4 rounded border border-mid-grey px-4 py-2 shadow-md has-[:focus]:border-blue-500 md:border-dark-blue md:shadow-none`}
 			onSubmit={onSubmit}
 		>
 			<FileUploadButton />
@@ -58,6 +58,7 @@ export const ChatForm: React.FC = () => {
 				placeholder="Stelle eine Frage"
 			/>
 			<PrimaryButton
+				className="hidden md:flex"
 				label={
 					<div className="flex flex-row items-center gap-2">
 						<SendIcon />
@@ -68,6 +69,9 @@ export const ChatForm: React.FC = () => {
 				ariaLabel="Nachricht abschicken"
 				type={"submit"}
 			/>
+			<button className="flex md:hidden" disabled={isLoading} type="submit">
+				<SendIcon className="h-7 w-7 text-dark-blue hover:text-light-blue" />
+			</button>
 		</form>
 	);
 };

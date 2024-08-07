@@ -8,7 +8,7 @@ export const Faq: React.FC = () => {
 	return (
 		<dialog
 			id="faq-dialog"
-			className="z-50 max-h-[90%] w-5/6 max-w-[1000px] gap-4 overflow-y-auto rounded-md border-2 border-mid-grey bg-white px-8 py-10 shadow-lg backdrop:backdrop-blur-sm"
+			className="z-50 w-11/12 max-w-[1000px] gap-4 overflow-y-auto rounded-md border-2 border-mid-grey bg-white px-8 py-10 shadow-lg backdrop:backdrop-blur-sm md:max-h-[90%] md:w-5/6"
 		>
 			<div className="flex flex-col gap-4">
 				<h1 className="px-2 text-[22px] font-bold leading-6">Über BärGPT</h1>

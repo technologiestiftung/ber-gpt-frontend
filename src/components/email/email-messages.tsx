@@ -11,7 +11,7 @@ export const EmailMessages: React.FC = () => {
 	const messages: Message[] = getChat(currentChatId)?.messages || [];
 
 	return (
-		<div className="shadown-chat flex flex-col gap-y-4 overflow-auto pb-2">
+		<div className="shadown-chat flex flex-col gap-y-4 overflow-auto pb-16 md:pb-4">
 			{messages.map((message) => (
 				<TextMessage
 					key={message.id}

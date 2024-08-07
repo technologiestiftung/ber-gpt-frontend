@@ -17,9 +17,7 @@ export const Email: React.FC = () => {
 			<EmailMessages />
 
 			<div className="shadow-[-10px_0px_20px_10px_rgba(255,255,255,75)]">
-				<div className="z-10 flex flex-col gap-y-4 rounded border-2 border-mid-grey bg-white px-6 pb-4 pt-6 shadow-md">
-					<EmailForm />
-				</div>
+				<EmailForm />
 			</div>
 		</div>
 	);

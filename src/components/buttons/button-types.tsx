@@ -10,4 +10,5 @@ export interface ButtonProps {
 	isLoading?: boolean;
 	icon?: React.ReactNode;
 	isOutlineVisible?: boolean;
+	className?: string;
 }

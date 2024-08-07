@@ -4,14 +4,14 @@ import { BaerIcon } from "../icons/bear-icon";
 export const GetStartedMail: React.FC = () => {
 	return (
 		<div className="flex w-full flex-col items-center justify-center overflow-auto">
-			<div className="flex min-h-[70px] w-[70px] items-center justify-center rounded-full bg-white drop-shadow-lg">
-				<BaerIcon />
+			<div className="flex size-[50px] items-center justify-center rounded-full bg-white drop-shadow-lg md:min-h-[70px] md:w-[70px]">
+				<BaerIcon className="h-8 w-8 md:h-10 md:w-10" />
 			</div>
 			<h2 className="pb-2 pt-4 text-xl">
 				Starte mit <b>BärGPT!</b>
 			</h2>
 			<div
-				className={`mt-2 max-w-[60%] flex-col self-start rounded border-2 border-dark-blue p-2 shadow-md`}
+				className={`mt-2 max-w-[90%] flex-col self-start rounded border-2 border-dark-blue p-2 shadow-md sm:max-w-[80%] lg:max-w-[60%]`}
 			>
 				<div className="mb-2 flex min-h-[37px] w-[37px] items-center justify-center rounded-full bg-white drop-shadow-lg">
 					<BaerIcon className="h-[21px] w-[21px]" />
