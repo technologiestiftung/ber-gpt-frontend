@@ -42,7 +42,7 @@ export const SplashScreen: React.FC = () => {
 	return (
 		<div
 			ref={splashContainer}
-			className={`pointer-events-auto relative z-50 m-1 flex h-fit w-fit rounded border-2 border-mid-grey bg-white shadow-lg sm:mx-auto sm:my-10 sm:h-fit sm:w-[510px]`}
+			className={`pointer-events-auto relative z-50 m-1 flex h-fit w-fit rounded border border-mid-grey bg-white shadow-lg sm:mx-auto sm:my-10 sm:h-fit sm:w-[560px]`}
 		>
 			<div className="relative flex flex-col gap-6 rounded p-8">
 				<div className="flex min-h-[63px] w-[63px] items-center justify-center rounded-full bg-white drop-shadow-lg">
