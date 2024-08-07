@@ -22,7 +22,7 @@ export const UploadedFiles: React.FC = () => {
 
 							<div className="flex flex-col">
 								<span>{name.replace(".pdf", "")}</span>
-								<span className="font-light text-gray-300">PDF</span>
+								<span className="font-light text-mid-grey">PDF</span>
 							</div>
 
 							{extractionStatus !== "pending" && (
