@@ -86,7 +86,7 @@ export const EmailForm: React.FC = () => {
 
 	return (
 		<div
-			className={`absolute bottom-0 left-0 z-30 flex w-full flex-col gap-y-4 bg-white px-2.5 pb-4 pt-1 shadow-md md:relative md:top-0 md:gap-y-4 md:rounded md:border-2 md:px-6 md:pt-6 md:shadow-md ${isEmailFormExpanded ? "top-[75px] rounded-t-2xl border-x-2 border-t-2 border-mid-grey" : ""}`}
+			className={`absolute bottom-0 left-0 z-30 flex w-full flex-col gap-y-4 bg-light-grey px-2.5 pb-4 pt-1 shadow-md md:relative md:top-0 md:gap-y-4 md:rounded-md md:px-6 md:pt-4 md:shadow-md ${isEmailFormExpanded ? "top-[75px] rounded-t-2xl border-x-2 border-t-2 border-mid-grey" : ""}`}
 		>
 			<div
 				className={`flex-row items-center justify-between ${isEmailFormExpanded ? "flex" : "hidden md:flex"}`}
@@ -124,7 +124,7 @@ export const EmailForm: React.FC = () => {
 												name={group.name}
 												value={option}
 												defaultChecked={group.defaultChecked === option}
-												className="h-3 w-3 appearance-none self-center rounded-full ring-1 ring-dark-blue ring-offset-1 checked:bg-dark-blue"
+												className="h-3 w-3 appearance-none self-center rounded-full bg-white ring-1 ring-dark-blue ring-offset-1 checked:bg-dark-blue"
 											/>
 										</div>
 									))}
@@ -148,7 +148,7 @@ export const EmailForm: React.FC = () => {
 						Inhaltliches
 					</label>
 					<div
-						className={`flex items-center gap-4 rounded border border-mid-grey px-2 py-2 shadow-md has-[:focus]:border-blue-500 md:border-dark-blue md:shadow-none`}
+						className={`flex items-center gap-4 rounded border border-mid-grey bg-white px-2 py-2 shadow-md has-[:focus]:border-blue-500 md:border-mid-grey md:shadow-none`}
 					>
 						<textarea
 							className={`min-h-5 w-full resize-none focus:outline-none md:h-10 md:max-h-40 md:resize-y ${isEmailFormExpanded ? "h-20" : "h-5"}`}
