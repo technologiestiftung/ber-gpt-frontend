@@ -84,7 +84,6 @@ export const useChatHistoryStore = create(
 						new Error(
 							`Trying to add a message to a non-existing chat (${chatId})`,
 						),
-						"Es wird versucht, eine Nachricht zu einem nicht vorhandenen Chat hinzuzufügen.",
 					);
 					return;
 				}
@@ -107,7 +106,6 @@ export const useChatHistoryStore = create(
 						new Error(
 							`Trying to update a message from a non-existing chat (${chatId})`,
 						),
-						"Es wird versucht, eine Nachricht aus einem nicht vorhandenen Chat zu aktualisieren.",
 					);
 					return;
 				}
@@ -176,7 +174,6 @@ export const useChatHistoryStore = create(
 						new Error(
 							`Trying to delete a message from a non-existing chat (${currentChatId})`,
 						),
-						"Es wird versucht, eine Nachricht aus einem nicht vorhandenen Chat zu löschen.",
 					);
 					return false;
 				}

@@ -3,7 +3,7 @@ import { create } from "zustand";
 interface ErrorStore {
 	error?: string;
 	clearErrors: () => void;
-	handleError: (error: unknown, errorMessage: string) => void;
+	handleError: (error: unknown) => void;
 }
 
 const errorShowTimeMs = 5000;
@@ -26,19 +26,35 @@ const errorMessages: { [key: string]: string } = {
 		"Kontextlänge überschritten, bitte starten Sie einen neuen Chat.",
 };
 
+// "Das Streamen der Chatantworten ist fehlgeschlagen."
+// "Fehler beim Einfügen der Chatantwort."
+// "Response body from API is empty",
+// "Extract document content failed"
+// "Es wird versucht, eine Nachricht zu einem nicht vorhandenen Chat hinzuzufügen.",
+// "Es wird versucht, eine Nachricht aus einem nicht vorhandenen Chat zu aktualisieren.",
+// "Es wird versucht, eine Nachricht aus einem nicht vorhandenen Chat zu löschen.",
+
 export const useErrorStore = create<ErrorStore>()((set, get) => ({
 	error: undefined,
 
 	clearErrors: () => set({ error: undefined }),
 
-	handleError: (error: unknown, errorMessage: string) => {
-		console.error(error);
-		set({
-			// show translated error message if it exists in errorMessages, otherwise show the original error message
-			error: errorMessages[errorMessage]
-				? errorMessages[errorMessage]
-				: errorMessage,
-		});
+	handleError: (error: unknown) => {
+		if (!isError(error)) {
+			// todo maybe print this as an error
+			return;
+		}
+
+		// show translated error message if it exists in errorMessages,
+		// otherwise show the original error message
+		// todo maybe print a generic error instead of the original error message
+		const _error = errorMessages[error.message] ?? error.message;
+
+		set({ error: _error });
 		setTimeout(get().clearErrors, errorShowTimeMs);
 	},
 }));
+
+function isError(error: unknown): error is Error {
+	return error instanceof Error;
+}

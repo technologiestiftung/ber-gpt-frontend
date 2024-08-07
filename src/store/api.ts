@@ -46,7 +46,7 @@ export async function streamChatResponse() {
 
 		if (!response.ok) {
 			const errorResponse = await response.json();
-			handleError(new Error(errorResponse.message), errorResponse.code);
+			handleError(new Error(errorResponse.code));
 			return;
 		}
 
@@ -80,7 +80,7 @@ export async function streamChatResponse() {
 					try {
 						return JSON.parse(c);
 					} catch (error) {
-						handleError(error, "Fehler beim Einfügen der Chatantwort.");
+						handleError(error);
 						return null;
 					}
 				});
@@ -109,7 +109,7 @@ export async function streamChatResponse() {
 			}
 		}
 	} catch (error) {
-		handleError(error, "Das Streamen der Chatantworten ist fehlgeschlagen.");
+		handleError(error);
 	}
 }
 
@@ -140,16 +140,13 @@ export async function extractDocumentContent({
 
 		if (!response.body) {
 			console.error("Response body from API is empty");
-			handleError(
-				new Error("Response body from API is empty"),
-				"Response body from API is empty",
-			);
+			handleError(new Error("Response body from API is empty"));
 			return { id, name: file.name, content: null, extractionStatus: "error" };
 		}
 
 		if (!response.ok) {
 			const errorResponse = await response.json();
-			handleError(new Error(errorResponse.message), errorResponse.code);
+			handleError(new Error(errorResponse.code));
 		}
 
 		const { content } = await response.json();
@@ -163,7 +160,7 @@ export async function extractDocumentContent({
 			extractionStatus: "success",
 		};
 	} catch (error) {
-		handleError(error, "Extract document content failed");
+		handleError(error);
 		return { id, name: file.name, content: null, extractionStatus: "error" };
 	}
 }
