@@ -45,11 +45,17 @@ export const GetStarted: React.FC = () => {
 			<h2 className="pt-4 text-xl">
 				Starte mit <b>BärGPT</b>!
 			</h2>
-			<p className="pb-2 pt-2">Sie können <b>BärGPT</b> direkt nutzen, indem Sie Ihre Frage oder Ihr Anliegen in das Chatfenster unten eintippen.</p>
-			<h2 className="pb-2 pt-8 text-xl">
-				KI Apps
-			</h2>
-			<p className="pb-4 pt-2"><b>BärGPT</b> bietet spezialisierte KI-Funktionen, die Sie bei der Erledigung von typischen Aufgaben unterstützen.<br/>Dieses Angebot befindet sich noch im Aufbau und wird stetig erweitert.</p>
+			<p className="pb-2 pt-2">
+				Sie können <b>BärGPT</b> direkt nutzen, indem Sie Ihre Frage oder Ihr
+				Anliegen in das Chatfenster unten eintippen.
+			</p>
+			<h2 className="pb-2 pt-8 text-xl">KI Apps</h2>
+			<p className="pb-4 pt-2">
+				<b>BärGPT</b> bietet spezialisierte KI-Funktionen, die Sie bei der
+				Erledigung von typischen Aufgaben unterstützen.
+				<br />
+				Dieses Angebot befindet sich noch im Aufbau und wird stetig erweitert.
+			</p>
 			<div className="flex w-full flex-row flex-wrap justify-center gap-x-3">
 				{startingPrompts.map((prompt) => (
 					<ChatBoxButton

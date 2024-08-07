@@ -4,7 +4,6 @@ import { BaerIcon } from "../icons/bear-icon";
 export const GetStartedMail: React.FC = () => {
 	return (
 		<div className="flex w-full flex-col items-center justify-center overflow-auto">
-
 			<div
 				className={`mt-2 max-w-[90%] flex-col self-start rounded border-2 border-dark-blue p-2 shadow-md sm:max-w-[80%] lg:max-w-[60%]`}
 			>

@@ -30,7 +30,10 @@ export const SplashScreen: React.FC = () => {
 	};
 
 	const links = [
-		{ href: "https://citylabberlin.typeform.com/to/kCdnCgvC#product_id=baergpt", text: "Feedback" },
+		{
+			href: "https://citylabberlin.typeform.com/to/kCdnCgvC#product_id=baergpt",
+			text: "Feedback",
+		},
 		{ href: "https://citylab-berlin.org/de/start/", text: "Kontakt" },
 		{
 			href: "https://citylab-berlin.org/de/data-privacy/",
@@ -65,7 +68,14 @@ export const SplashScreen: React.FC = () => {
 					Verwaltung und verbessert die Effizienz sowie Servicequalität.
 				</p>
 				<p className="py-0">
-					Wir wünschen viel Spaß bei der Nutzung von BärGPT und freuen uns über <a className="text-mid-blue underline hover:text-dark-blue" href="https://citylabberlin.typeform.com/to/kCdnCgvC#product_id=baergpt">Feedback</a>!
+					Wir wünschen viel Spaß bei der Nutzung von BärGPT und freuen uns über{" "}
+					<a
+						className="text-mid-blue underline hover:text-dark-blue"
+						href="https://citylabberlin.typeform.com/to/kCdnCgvC#product_id=baergpt"
+					>
+						Feedback
+					</a>
+					!
 				</p>
 
 				<div className="flex flex-row flex-wrap justify-between gap-2">
