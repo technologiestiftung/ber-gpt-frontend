@@ -1,20 +1,14 @@
 import { create } from "zustand";
 
-interface errorResponse {
-	status: number;
-	code: string;
-	message: string;
-}
-
 interface ErrorStore {
 	error?: string;
-	handleError: (response?: errorResponse) => void;
 	clearErrors: () => void;
+	handleError: (error: unknown, errorMessage: string) => void;
 }
 
 const errorShowTimeMs = 5000;
 
-const errorCodes: { [key: string]: string } = {
+const errorMessages: { [key: string]: string } = {
 	failed_to_call_llm: "Fehler beim Aufrufen des LLM.",
 	no_file_uploaded: "Es wurde keine Datei hochgeladen.",
 	text_extraction_failed:
@@ -37,13 +31,13 @@ export const useErrorStore = create<ErrorStore>()((set, get) => ({
 
 	clearErrors: () => set({ error: undefined }),
 
-	handleError: (response?: errorResponse) => {
-		console.error(response);
+	handleError: (error: unknown, errorMessage: string) => {
+		console.error(error);
 		set({
-			error:
-				response && errorCodes[response.code]
-					? errorCodes[response.code]
-					: "Es ist ein Fehler aufgetreten. Bitte versuchen Sie es später erneut!",
+			// show translated error message if it exists in errorMessages, otherwise show the original error message
+			error: errorMessages[errorMessage]
+				? errorMessages[errorMessage]
+				: errorMessage,
 		});
 		setTimeout(get().clearErrors, errorShowTimeMs);
 	},

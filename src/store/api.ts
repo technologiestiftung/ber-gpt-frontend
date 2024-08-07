@@ -45,7 +45,8 @@ export async function streamChatResponse() {
 		}
 
 		if (!response.ok) {
-			handleError(await response.json());
+			const errorResponse = await response.json();
+			handleError(new Error(errorResponse.message), errorResponse.code);
 			return;
 		}
 
@@ -60,9 +61,7 @@ export async function streamChatResponse() {
 			role,
 		});
 
-		const reader = response.body
-			.pipeThrough(new TextDecoderStream())
-			.getReader();
+		const reader = response.body.getReader();
 
 		while (reader) {
 			const stream = await reader.read();
@@ -74,17 +73,17 @@ export async function streamChatResponse() {
 				.toString()
 				.replace(/^data: /gm, "")
 				.split("\n")
-				.filter((c: string) => Boolean(c.length) && c !== "[DONE]")
+				.filter(
+					(c: string) => Boolean(c.length) && c !== "[DONE]" && c !== null,
+				)
 				.map((c: string) => {
 					try {
 						return JSON.parse(c);
 					} catch (error) {
-						console.error("Failed to parse JSON:", error);
-						handleError();
+						handleError(error, "Fehler beim Einfügen der Chatantwort.");
 						return null;
 					}
-				})
-				.filter((c: string) => c !== null); // filter out null values
+				});
 
 			if (!chunks) {
 				continue;
@@ -110,8 +109,7 @@ export async function streamChatResponse() {
 			}
 		}
 	} catch (error) {
-		console.error(error);
-		handleError();
+		handleError(error, "Das Streamen der Chatantworten ist fehlgeschlagen.");
 	}
 }
 
@@ -142,11 +140,16 @@ export async function extractDocumentContent({
 
 		if (!response.body) {
 			console.error("Response body from API is empty");
+			handleError(
+				new Error("Response body from API is empty"),
+				"Response body from API is empty",
+			);
 			return { id, name: file.name, content: null, extractionStatus: "error" };
 		}
 
 		if (!response.ok) {
-			handleError(await response.json());
+			const errorResponse = await response.json();
+			handleError(new Error(errorResponse.message), errorResponse.code);
 		}
 
 		const { content } = await response.json();
@@ -160,8 +163,7 @@ export async function extractDocumentContent({
 			extractionStatus: "success",
 		};
 	} catch (error) {
-		console.error(error);
-		handleError();
+		handleError(error, "Extract document content failed");
 		return { id, name: file.name, content: null, extractionStatus: "error" };
 	}
 }
