@@ -3,8 +3,10 @@ import { persist } from "zustand/middleware";
 import { Chat, Message } from "./types";
 import { useCurrentChatIdStore } from "./current-chat-id-store";
 import { getStorageKey } from "./storage";
+import { useErrorStore } from "./error-store";
 
 const STORAGE_KEY = getStorageKey();
+const { handleError } = useErrorStore.getState();
 
 interface ChatHistoryStore {
 	chatHistory: Chat[];
@@ -78,8 +80,10 @@ export const useChatHistoryStore = create(
 			addMessageToChat: ({ chatId, messageId, fileName, content, role }) => {
 				const chat = get().chatHistory.find(({ id }) => id === chatId);
 				if (!chat) {
-					console.error(
-						`error: trying to add a message to a non-existing chat (${chatId})`,
+					handleError(
+						new Error(
+							`Trying to add a message to a non-existing chat (${chatId})`,
+						),
 					);
 					return;
 				}
@@ -98,8 +102,10 @@ export const useChatHistoryStore = create(
 			updateMessageFromChat({ chatId, messageId, content }) {
 				const chat = get().chatHistory.find(({ id }) => id === chatId);
 				if (!chat) {
-					console.error(
-						`error: trying to update a message from a non-existing chat (${chatId})`,
+					handleError(
+						new Error(
+							`Trying to update a message from a non-existing chat (${chatId})`,
+						),
 					);
 					return;
 				}
@@ -164,8 +170,10 @@ export const useChatHistoryStore = create(
 				const { currentChatId } = useCurrentChatIdStore.getState();
 				const chat = get().chatHistory.find(({ id }) => id === currentChatId);
 				if (!chat) {
-					console.error(
-						`error: trying to delete a message from a non-existing chat (${currentChatId})`,
+					handleError(
+						new Error(
+							`Trying to delete a message from a non-existing chat (${currentChatId})`,
+						),
 					);
 					return false;
 				}
