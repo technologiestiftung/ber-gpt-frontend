@@ -13,10 +13,10 @@ export const Header: React.FC = () => {
 	const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
 	const navLinks = [
-		{ label: "Freier Chat", icon: <ChatIcon />, href: "/" },
-		{ label: "E-Mail Funktion", icon: <MailIcon />, href: "/email" },
-		{ label: "Vermerk Funktion", icon: <VermerkIcon />, href: "/note" },
-		{ label: "Zusammenfassen", icon: <PDFIcon />, href: "/summary" },
+		{ label: "Chat", icon: <ChatIcon />, href: "/" },
+		{ label: "E-Mail formulieren", icon: <MailIcon />, href: "/email" },
+		{ label: "Vermerk erstellen", icon: <VermerkIcon />, href: "/note" },
+		{ label: "Text Zusammenfassen", icon: <PDFIcon />, href: "/summary" },
 	];
 
 	const location = window.location.pathname;
@@ -50,7 +50,7 @@ export const Header: React.FC = () => {
 				</nav>
 				<div className="flex w-fit flex-col items-center md:hidden">
 					<h1 className="text-[22px] font-bold">BärGPT</h1>
-					<h2 className="text-[17px]">KI Testumgebung</h2>
+					<h2 className="text-[17px]">KI-Testumgebung</h2>
 				</div>
 
 				<div className="flex w-20 justify-end">
@@ -68,7 +68,7 @@ export const Header: React.FC = () => {
 			</div>
 			<div className="hidden w-fit flex-row items-center gap-3 md:flex">
 				<h1 className="text-[22px] font-bold">BärGPT</h1>
-				<h2 className="text-[17px]">KI Testumgebung</h2>
+				<h2 className="text-[17px]">KI-Testumgebung</h2>
 			</div>
 			<div className="flex w-full flex-row justify-between pt-2 md:hidden">
 				<div className="w-9" />

@@ -55,7 +55,7 @@ export const ChatForm: React.FC = () => {
 				name="message"
 				type="text"
 				required
-				placeholder="Stelle eine Frage"
+				placeholder="Wie kann ich Ihnen helfen?"
 			/>
 			<PrimaryButton
 				className="hidden md:flex"
