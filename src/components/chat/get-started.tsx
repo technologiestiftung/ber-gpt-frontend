@@ -45,12 +45,12 @@ export const GetStarted: React.FC = () => {
 			<h2 className="pt-4 text-xl">
 				Starte mit <b>BärGPT</b>!
 			</h2>
-			<p className="pb-2 pt-2">
+			<p className="pb-2 pt-2 text-center">
 				Sie können <b>BärGPT</b> direkt nutzen, indem Sie Ihre Frage oder Ihr
 				Anliegen in das Chatfenster unten eintippen.
 			</p>
 			<h2 className="pb-2 pt-8 text-xl">KI Apps</h2>
-			<p className="pb-4 pt-2">
+			<p className="pb-4 pt-2 text-center">
 				<b>BärGPT</b> bietet spezialisierte KI-Funktionen, die Sie bei der
 				Erledigung von typischen Aufgaben unterstützen.
 				<br />
