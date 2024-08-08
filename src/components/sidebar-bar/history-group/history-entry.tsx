@@ -1,8 +1,8 @@
 import React from "react";
-import { useCurrentChatIdStore } from "../../store/current-chat-id-store";
-import { IconButton } from "../buttons/icon-button";
-import { BucketIcon } from "../icons/bucket-icon";
-import { useChatHistoryStore } from "../../store/chat-history-store";
+import { useCurrentChatIdStore } from "../../../store/current-chat-id-store";
+import { IconButton } from "../../buttons/icon-button";
+import { BucketIcon } from "../../icons/bucket-icon";
+import { useChatHistoryStore } from "../../../store/chat-history-store";
 
 const removeMarkdownStyling = (name: string): string => {
 	return name.replace(/[-#`>*]/g, "");

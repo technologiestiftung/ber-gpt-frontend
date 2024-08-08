@@ -1,6 +1,6 @@
 import React from "react";
 import { HistoryEntry } from "./history-entry";
-import { Chat } from "../../store/types";
+import { Chat } from "../../../store/types";
 
 interface HistoryGroupProps {
 	label: string;

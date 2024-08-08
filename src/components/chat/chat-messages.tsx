@@ -12,7 +12,7 @@ export const ChatMessages: React.FC = () => {
 	const messages: Message[] = getChat(currentChatId)?.messages || [];
 
 	return (
-		<div className="shadown-chat flex flex-col gap-y-4 overflow-auto pb-2">
+		<div className="flex flex-col gap-y-4 overflow-auto pb-2">
 			{messages.map((message) => (
 				<React.Fragment key={message.id}>
 					{message.type === "file" && (

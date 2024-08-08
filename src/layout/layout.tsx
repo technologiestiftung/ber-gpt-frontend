@@ -5,6 +5,7 @@ import { SplashScreen } from "../components/splash-screen";
 import { useSplashStore } from "../store/splash-store";
 import { useErrorStore } from "../store/error-store";
 import { ErrorToast } from "../components/error-toast";
+import { Faq } from "../components/faq/faq";
 
 interface LayoutProps {
 	children: React.ReactNode;
@@ -15,8 +16,8 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
 	const error = useErrorStore().error;
 
 	return (
-		<div className="flex justify-center font-arial">
-			<div className="flex h-svh w-full flex-col overflow-hidden p-2.5 font-arial md:p-10 2xl:max-w-[1400px]">
+		<div className="flex font-arial">
+			<div className="flex h-svh w-full flex-col overflow-hidden ">
 				<Header />
 
 				<Main>{children}</Main>
@@ -27,6 +28,8 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
 					<SplashScreen />
 				</div>
 			)}
+
+			<Faq />
 
 			{error && <ErrorToast error={error} />}
 		</div>
