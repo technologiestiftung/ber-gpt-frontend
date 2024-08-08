@@ -137,7 +137,7 @@ export const EmailForm: React.FC = () => {
 						<textarea
 							className={`h-20 w-full resize-none rounded border border-mid-grey p-2 focus:border-blue-500 focus:outline-none`}
 							name="previousMail"
-							placeholder="Mail auf die geantwortet werden soll einfügen..."
+							placeholder="Mail auf die geantwortet werden soll, hier einfügen..."
 						/>
 					</div>
 				</div>

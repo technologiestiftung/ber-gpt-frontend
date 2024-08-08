@@ -1,9 +1,12 @@
 import { useCurrentChatIdStore } from "./current-chat-id-store";
 import { useChatHistoryStore } from "./chat-history-store";
 import { File as ExtractedFile, Message } from "./types";
+import { useErrorStore } from "./error-store";
 
 export async function streamChatResponse() {
 	const chatId = useCurrentChatIdStore.getState().currentChatId;
+
+	const { handleError } = useErrorStore.getState();
 
 	if (!chatId) {
 		console.error("No currentChatId found");
@@ -26,7 +29,7 @@ export async function streamChatResponse() {
 			headers: {
 				"Content-Type": "application/json",
 				"x-api-key": import.meta.env.VITE_X_API_KEY,
-				llm: "azure",
+				llm: "openai",
 			},
 			body: JSON.stringify({
 				messages: previousMessages.map(({ role, content }) => ({
@@ -38,6 +41,12 @@ export async function streamChatResponse() {
 
 		if (!response.body) {
 			console.error("Response body from API is empty");
+			return;
+		}
+
+		if (!response.ok) {
+			const errorResponse = await response.json();
+			handleError(new Error(errorResponse.code));
 			return;
 		}
 
@@ -66,8 +75,15 @@ export async function streamChatResponse() {
 				.toString()
 				.replace(/^data: /gm, "")
 				.split("\n")
-				.filter((c: string) => Boolean(c.length) && c !== "[DONE]")
-				.map((c: string) => JSON.parse(c));
+				.filter((c: string) => Boolean(c?.length) && c !== "[DONE]")
+				.map((c: string) => {
+					try {
+						return JSON.parse(c);
+					} catch (error) {
+						handleError(error);
+						return null;
+					}
+				});
 
 			if (!chunks) {
 				continue;
@@ -93,7 +109,7 @@ export async function streamChatResponse() {
 			}
 		}
 	} catch (error) {
-		console.error(error);
+		handleError(error);
 	}
 }
 
@@ -104,6 +120,8 @@ export async function extractDocumentContent({
 	file: File;
 	id: string;
 }): Promise<ExtractedFile> {
+	const { handleError } = useErrorStore.getState();
+
 	const formdata = new FormData();
 	formdata.append("file", file, file.name);
 
@@ -122,8 +140,15 @@ export async function extractDocumentContent({
 
 		if (!response.body) {
 			console.error("Response body from API is empty");
+			handleError(new Error("Response body from API is empty"));
 			return { id, name: file.name, content: null, extractionStatus: "error" };
 		}
+
+		if (!response.ok) {
+			const errorResponse = await response.json();
+			handleError(new Error(errorResponse.code));
+		}
+
 		const { content } = await response.json();
 
 		const contentWithMetaData = `Datei:${file.name}\nInhalt:\n${content}`;
@@ -135,7 +160,7 @@ export async function extractDocumentContent({
 			extractionStatus: "success",
 		};
 	} catch (error) {
-		console.error(error);
+		handleError(error);
 		return { id, name: file.name, content: null, extractionStatus: "error" };
 	}
 }
