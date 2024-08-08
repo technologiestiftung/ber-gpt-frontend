@@ -92,7 +92,7 @@ export const SideBar: React.FC = () => {
 
 	return (
 		<aside
-			className={`absolute md:relative flex pt-11 md:pt-0 top-0 flex-col left-0 z-30 justify-between overflow-hidden gap-2 overflow-x-hidden ${
+			className={`absolute md:relative flex pt-12 md:pt-0 top-0 flex-col left-0 z-30 justify-between overflow-hidden gap-2 overflow-x-hidden ${
 				isOpen
 					? "bg-sidebar-grey min-w-72 w-72 h-full pb-4"
 					: "min-w-24 w-28 h-fit"
