@@ -3,6 +3,7 @@ import { File } from "./types";
 import { extractDocumentContent } from "./api";
 import { useCurrentChatIdStore } from "./current-chat-id-store";
 import { useChatHistoryStore } from "./chat-history-store";
+import { trackInteraction } from "../analytics/matomo";
 
 interface InputFileStore {
 	files: File[];
@@ -27,6 +28,10 @@ export const useInputFileStore = create<InputFileStore>()((set, get) => ({
 		})) as File[];
 
 		set({ files: preExtractedFiles });
+		trackInteraction({
+			eventAction: "file-upload",
+			eventName: "file-upload",
+		});
 
 		const promises = files.map((file, index) =>
 			extractDocumentContent({ file, id: preExtractedFiles[index].id }),

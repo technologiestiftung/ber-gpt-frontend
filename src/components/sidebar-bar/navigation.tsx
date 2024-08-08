@@ -3,6 +3,7 @@ import { ChatIcon } from "../icons/chat-icon";
 import { MailIcon } from "../icons/mail-icon";
 import { VermerkIcon } from "../icons/vermerk-icon";
 import { PDFIcon } from "../icons/pdf-icon";
+import { trackInteraction } from "../../analytics/matomo";
 
 const navLinks = [
 	{ label: "Chat", icon: <ChatIcon />, href: "/" },
@@ -27,7 +28,16 @@ export const Navigation: React.FC = () => {
 							}`}
 						>
 							<div className="flex size-4">{item.icon}</div>
-							<a className="text-darker-grey" href={item.href}>
+							<a
+								className="text-darker-grey"
+								href={item.href}
+								onClick={() =>
+									trackInteraction({
+										eventAction: "navbar-click",
+										eventName: item.label,
+									})
+								}
+							>
 								{item.label}
 							</a>
 						</li>

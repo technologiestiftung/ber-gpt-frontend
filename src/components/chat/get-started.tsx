@@ -8,6 +8,7 @@ import { BaerIcon } from "../icons/bear-icon";
 import { useChatHistoryStore } from "../../store/chat-history-store";
 import { useIsLoadingStore } from "../../store/is-loading-store";
 import { streamChatResponse } from "../../store/api";
+import { trackInteraction } from "../../analytics/matomo";
 
 const startingPrompts = [
 	{
@@ -75,6 +76,7 @@ export const GetStarted: React.FC = () => {
 async function onClick(value: string) {
 	useIsLoadingStore.getState().setIsLoading(true);
 
+	trackInteraction({ eventAction: "get-started-click", eventName: value });
 	useChatHistoryStore.getState().createChat({ content: value });
 
 	await streamChatResponse();

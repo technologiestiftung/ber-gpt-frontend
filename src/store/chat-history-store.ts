@@ -4,6 +4,7 @@ import { Chat, Message } from "./types";
 import { useCurrentChatIdStore } from "./current-chat-id-store";
 import { getStorageKey } from "./storage";
 import { useErrorStore } from "./error-store";
+import { trackInteraction } from "../analytics/matomo";
 
 const STORAGE_KEY = getStorageKey();
 const { handleError } = useErrorStore.getState();
@@ -60,6 +61,11 @@ export const useChatHistoryStore = create(
 				set({ chatHistory: [newChat, ...get().chatHistory] });
 
 				useCurrentChatIdStore.getState().setCurrentChatId(newChat.id);
+
+				trackInteraction({
+					eventAction: "initiated-conversation",
+					eventName: `conversion-initiated-conversation (${STORAGE_KEY.replace("-history", "")})`,
+				});
 
 				return newChat.id;
 			},
