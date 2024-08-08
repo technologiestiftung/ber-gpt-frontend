@@ -116,15 +116,17 @@ export const SideBar: React.FC = () => {
 				/>
 			</div>
 			<div
-				className={`flex-col px-5 gap-8 pb-8 h-full overflow-y-auto ${isOpen ? "flex" : "hidden"}`}
+				className={`flex-col gap-8 pb-8 h-full overflow-y-auto ${isOpen ? "flex" : "hidden"}`}
 			>
-				<div className={`flex-col text-[22px] ${isOpen ? "flex" : "hidden"}`}>
+				<div
+					className={`flex-col px-5 text-[22px] ${isOpen ? "flex" : "hidden"}`}
+				>
 					<h1 className="font-bold">BärGPT</h1>
 					<h2>KI-Testumgebung</h2>
 				</div>
 
 				<nav>
-					<ul className="flex flex-col items-start gap-3">
+					<ul className="flex flex-col px-5 items-start gap-4">
 						{navLinks.map((item) => (
 							<li
 								key={item.label}
@@ -147,7 +149,7 @@ export const SideBar: React.FC = () => {
 					))}
 				</div>
 
-				<div className={`text-sm text-dark-blue`}>
+				<div className={`px-5 text-sm text-dark-blue`}>
 					Der Chat Verlauf wird lokal gespeichert und ist somit nicht für andere
 					Personen sichtbar.
 				</div>
@@ -160,7 +162,7 @@ export const SideBar: React.FC = () => {
 					).showModal()
 				}
 			>
-				<FaqIcon className="h-8 w-8" />
+				<FaqIcon className="h-6 w-6" />
 			</button>
 		</aside>
 	);
