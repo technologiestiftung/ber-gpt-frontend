@@ -31,6 +31,7 @@ export const HistoryEntry: React.FC<HistoryEntryProps> = ({ name, id }) => {
 				icon={<BucketIcon />}
 				onClick={() => deleteChat(id)}
 				isOutlineVisible={false}
+				className="text-dark-grey"
 			/>
 		</div>
 	);

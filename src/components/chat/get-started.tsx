@@ -38,7 +38,7 @@ const startingPrompts = [
 
 export const GetStarted: React.FC = () => {
 	return (
-		<div className="flex w-full flex-col items-center justify-center overflow-auto">
+		<div className="flex w-[580px] flex-col items-center justify-center overflow-auto">
 			<div className="flex min-h-[50px] w-[50px] items-center justify-center rounded-full bg-white drop-shadow-lg md:min-h-[70px] md:w-[70px]">
 				<BaerIcon className="h-8 w-8 md:h-10 md:w-10" />
 			</div>
@@ -49,7 +49,7 @@ export const GetStarted: React.FC = () => {
 				Sie können <b>BärGPT</b> direkt nutzen, indem Sie Ihre Frage oder Ihr
 				Anliegen in das Chatfenster unten eintippen.
 			</p>
-			<h2 className="pb-2 pt-8 text-xl">KI Apps</h2>
+			<h2 className="pb-2 pt-8 text-xl font-semibold">KI Apps</h2>
 			<p className="pb-4 pt-2 text-center">
 				<b>BärGPT</b> bietet spezialisierte KI-Funktionen, die Sie bei der
 				Erledigung von typischen Aufgaben unterstützen.

@@ -28,7 +28,7 @@ export const TextMessage: React.FC<TextMessageProps> = ({
 
 	return (
 		<div
-			className={`flex max-w-[87%] flex-row rounded-md sm:max-w-[80%] ${role === "user" ? "self-end shadow-md lg:max-w-[60%]" : "self-start"} `}
+			className={`flex max-w-[87%] flex-row rounded-md sm:max-w-full ${role === "user" ? "self-end shadow-md lg:max-w-[80%]" : "self-start"} `}
 		>
 			<div
 				className={`${role === "assistant" ? "" : "hidden"} mt-1 flex size-[37px] min-w-[37px] items-center justify-center rounded-full bg-white drop-shadow-md`}

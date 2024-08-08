@@ -12,22 +12,24 @@ export const ChatMessages: React.FC = () => {
 	const messages: Message[] = getChat(currentChatId)?.messages || [];
 
 	return (
-		<div className="flex flex-col gap-y-4 overflow-auto pb-2">
-			{messages.map((message) => (
-				<React.Fragment key={message.id}>
-					{message.type === "file" && (
-						<FileMessage fileName={message.fileName} />
-					)}
+		<div className="flex w-full justify-center overflow-auto pb-2">
+			<div className="w-[640px] flex flex-col gap-y-4">
+				{messages.map((message) => (
+					<React.Fragment key={message.id}>
+						{message.type === "file" && (
+							<FileMessage fileName={message.fileName} />
+						)}
 
-					{message.type === "text" && (
-						<TextMessage
-							role={message.role}
-							content={message.content}
-							messageId={message.id}
-						/>
-					)}
-				</React.Fragment>
-			))}
+						{message.type === "text" && (
+							<TextMessage
+								role={message.role}
+								content={message.content}
+								messageId={message.id}
+							/>
+						)}
+					</React.Fragment>
+				))}
+			</div>
 		</div>
 	);
 };

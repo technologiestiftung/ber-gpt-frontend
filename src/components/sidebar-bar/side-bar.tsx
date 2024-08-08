@@ -25,7 +25,7 @@ const navLinks = [
 const location = window.location.pathname;
 
 export const SideBar: React.FC = () => {
-	const [isOpen, setIsOpen] = useState(false);
+	const [isOpen, setIsOpen] = useState(true);
 
 	const { chatHistory } = useChatHistoryStore();
 	const { setCurrentChatId, currentChatId } = useCurrentChatIdStore();
@@ -33,7 +33,7 @@ export const SideBar: React.FC = () => {
 	useEffect(() => {
 		// close sidebar on mobile when a chat is selected
 		if (window.innerWidth < 768) {
-			setIsOpen(false);
+			setIsOpen(true);
 		}
 	}, [currentChatId]);
 
@@ -92,12 +92,14 @@ export const SideBar: React.FC = () => {
 
 	return (
 		<aside
-			className={`flex flex-col left-0 z-30 justify-between overflow-hidden gap-2 overflow-x-hidden ${
-				isOpen ? " bg-sidebar-grey w-72 h-full pb-2" : " w-24 h-fit"
+			className={`absolute md:relative flex pt-11 md:pt-0 top-0 flex-col left-0 z-30 justify-between overflow-hidden gap-2 overflow-x-hidden ${
+				isOpen
+					? "bg-sidebar-grey min-w-72 w-72 h-full pb-2"
+					: "min-w-24 w-24 h-fit"
 			}`}
 			aria-label="Sidebar"
 		>
-			<div className={`flex flex-col justify-between  px-5 md:flex-row gap-2`}>
+			<div className={`flex justify-between px-5 flex-row gap-2`}>
 				<IconButton
 					isOutlineVisible={!isOpen}
 					icon={<SidebarIcon />}
@@ -116,7 +118,7 @@ export const SideBar: React.FC = () => {
 				/>
 			</div>
 			<div
-				className={`flex-col px-5 gap-8 pb-8  h-full overflow-y-auto ${isOpen ? "flex" : "hidden"}`}
+				className={`flex-col px-5 gap-8 pb-8 h-full overflow-y-auto ${isOpen ? "flex" : "hidden"}`}
 			>
 				<div className={`flex-col text-[22px] ${isOpen ? "flex" : "hidden"}`}>
 					<h1 className="font-bold">BärGPT</h1>
@@ -153,7 +155,7 @@ export const SideBar: React.FC = () => {
 				</div>
 			</div>
 			<button
-				className={`px-5  w-full text-dark-blue hover:text-light-blue ${isOpen ? "flex" : "hidden"}`}
+				className={`px-5 w-fit text-dark-blue hover:text-light-blue ${isOpen ? "flex" : "hidden"}`}
 				onClick={() =>
 					(
 						document.getElementById("faq-dialog") as HTMLDialogElement
