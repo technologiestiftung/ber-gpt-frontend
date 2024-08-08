@@ -86,7 +86,7 @@ export const EmailForm: React.FC = () => {
 
 	return (
 		<div
-			className={`absolute bottom-0 left-0 z-30 flex w-full flex-col gap-y-4 bg-light-grey px-2.5 pb-4 pt-1 shadow-md md:relative md:top-0 md:gap-y-4 md:rounded-md md:px-6 md:pt-4 md:shadow-md ${isEmailFormExpanded ? "top-[75px] rounded-t-2xl border-x-2 border-t-2 border-mid-grey" : ""}`}
+			className={`absolut w-full md:w-[640px] bottom-0 left-0 z-30 flex flex-col gap-y-4 md:bg-light-grey px-2.5 pb-4 pt-1 md:relative md:top-0 md:gap-y-4 md:rounded-md md:px-6 md:pt-4 md:shadow-md ${isEmailFormExpanded ? "top-[75px] rounded-t-2xl border-x-2 border-t-2 border-mid-grey" : ""}`}
 		>
 			<div
 				className={`flex-row items-center justify-between ${isEmailFormExpanded ? "flex" : "hidden md:flex"}`}
@@ -106,7 +106,7 @@ export const EmailForm: React.FC = () => {
 				onSubmit={onSubmit}
 			>
 				<div
-					className={`flex-col justify-between gap-6 lg:h-24 lg:flex-row ${isEmailFormExpanded ? "flex" : "hidden md:flex"}`}
+					className={`flex-col justify-between gap-6 lg:h-28 lg:flex-row ${isEmailFormExpanded ? "flex" : "hidden md:flex"}`}
 				>
 					<div className="flex flex-col gap-4 md:flex-row md:gap-10">
 						{radioGroups.map((group) => (

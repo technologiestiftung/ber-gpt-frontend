@@ -33,7 +33,7 @@ export const SideBar: React.FC = () => {
 	useEffect(() => {
 		// close sidebar on mobile when a chat is selected
 		if (window.innerWidth < 768) {
-			setIsOpen(true);
+			setIsOpen(false);
 		}
 	}, [currentChatId]);
 
@@ -94,8 +94,8 @@ export const SideBar: React.FC = () => {
 		<aside
 			className={`absolute md:relative flex pt-11 md:pt-0 top-0 flex-col left-0 z-30 justify-between overflow-hidden gap-2 overflow-x-hidden ${
 				isOpen
-					? "bg-sidebar-grey min-w-72 w-72 h-full pb-2"
-					: "min-w-24 w-24 h-fit"
+					? "bg-sidebar-grey min-w-72 w-72 h-full pb-4"
+					: "min-w-24 w-28 h-fit"
 			}`}
 			aria-label="Sidebar"
 		>
@@ -106,7 +106,6 @@ export const SideBar: React.FC = () => {
 					ariaLabel={toggleIsSidebarOpenLabel}
 					title={toggleIsSidebarOpenLabel}
 					onClick={() => setIsOpen(!isOpen)}
-					className="-mx-2"
 				/>
 				<IconButton
 					isOutlineVisible={!isOpen}
@@ -114,7 +113,6 @@ export const SideBar: React.FC = () => {
 					ariaLabel="Neuen Chat starten"
 					title="Neuen Chat starten"
 					onClick={() => setCurrentChatId(null)}
-					className="mx-2"
 				/>
 			</div>
 			<div

@@ -11,7 +11,7 @@ export const Email: React.FC = () => {
 	const messages = getChat(currentChatId)?.messages || [];
 
 	return (
-		<div className="flex h-full w-full flex-col justify-between py-4">
+		<div className="flex h-full flex-col items-center justify-between pt-12 md:py-5">
 			{messages.length === 0 && <GetStartedMail />}
 
 			<EmailMessages />

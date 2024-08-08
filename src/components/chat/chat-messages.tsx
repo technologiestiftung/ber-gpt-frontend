@@ -13,7 +13,7 @@ export const ChatMessages: React.FC = () => {
 
 	return (
 		<div className="flex w-full justify-center overflow-auto pb-2">
-			<div className="w-[640px] flex flex-col gap-y-4">
+			<div className="md:w-[640px] flex flex-col gap-y-4">
 				{messages.map((message) => (
 					<React.Fragment key={message.id}>
 						{message.type === "file" && (

@@ -28,16 +28,16 @@ export const TextMessage: React.FC<TextMessageProps> = ({
 
 	return (
 		<div
-			className={`flex max-w-[87%] flex-row rounded-md sm:max-w-full ${role === "user" ? "self-end shadow-md lg:max-w-[80%]" : "self-start"} `}
+			className={`flex flex-row ${role === "user" ? "self-end shadow-md max-w-[85%] lg:max-w-[80%]" : "self-start"} `}
 		>
 			<div
-				className={`${role === "assistant" ? "" : "hidden"} mt-1 flex size-[37px] min-w-[37px] items-center justify-center rounded-full bg-white drop-shadow-md`}
+				className={`${role === "assistant" ? "" : "hidden"} mt-3.5 flex size-[37px] min-w-[37px] items-center justify-center rounded-full bg-white drop-shadow-md`}
 			>
 				<BaerIcon className="h-[21px] w-[21px]" />
 			</div>
 			<div className="flex flex-col">
 				<ReactMarkdown
-					className={`markdown-container px-2 ${role === "user" ? "bg-light-grey py-2" : ""}`}
+					className={`markdown-container ${role === "user" ? "bg-light-grey py-2" : ""}`}
 				>
 					{content === "" ? "..." : content}
 				</ReactMarkdown>
@@ -59,8 +59,8 @@ export const TextMessage: React.FC<TextMessageProps> = ({
 				</div>
 			</div>
 
-			{isLastMessageOfChat(messageId) &&
-				getStorageKey() === "email-history" && <EmailChatButtons />}
+			{/* {isLastMessageOfChat(messageId) &&
+				getStorageKey() === "email-history" && <EmailChatButtons />} */}
 		</div>
 	);
 };
