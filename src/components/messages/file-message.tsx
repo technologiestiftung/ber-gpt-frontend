@@ -7,7 +7,7 @@ interface FileMessageProps {
 
 export const FileMessage: React.FC<FileMessageProps> = ({ fileName }) => {
 	return (
-		<div className="flex w-60 items-center gap-2 self-end rounded-md bg-light-grey px-4 py-3 shadow-md">
+		<div className="flex w-60 items-center gap-2 self-end rounded-sm bg-light-grey px-4 py-3 shadow-md">
 			<PDFLargeIcon />
 			<div className="flex flex-col">
 				<span>{fileName.replace(".pdf", "")}</span>

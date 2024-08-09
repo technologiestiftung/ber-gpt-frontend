@@ -41,7 +41,7 @@ export const PasswordModal: React.FC = () => {
 						<input
 							type="password"
 							id="password"
-							className="bg-neutral-100 p-2 rounded"
+							className="bg-neutral-100 p-2 rounded-sm"
 						/>
 						<PrimaryButton
 							type="submit"

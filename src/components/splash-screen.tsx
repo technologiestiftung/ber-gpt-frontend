@@ -45,9 +45,9 @@ export const SplashScreen: React.FC = () => {
 	return (
 		<div
 			ref={splashContainer}
-			className={`pointer-events-auto relative z-50 m-1 flex h-fit w-fit rounded border border-mid-grey bg-white shadow-lg sm:mx-auto sm:my-10 sm:h-fit sm:w-[540px]`}
+			className={`pointer-events-auto relative z-50 m-1 flex h-fit w-fit rounded-sm border border-mid-grey bg-white shadow-lg sm:mx-auto sm:my-10 sm:h-fit sm:w-[540px]`}
 		>
-			<div className="relative flex flex-col gap-6 rounded p-8">
+			<div className="relative flex flex-col gap-6 rounded-sm p-8">
 				<div className="flex min-h-[63px] w-[63px] items-center justify-center rounded-full bg-white drop-shadow-lg">
 					<BaerIcon className="h-[40px] w-[40px]" />
 				</div>

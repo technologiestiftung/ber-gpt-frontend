@@ -45,7 +45,7 @@ export const ChatForm: React.FC = () => {
 
 	return (
 		<form
-			className={`flex items-center gap-4 rounded px-4 py-2 has-[:focus]:border-blue-500 md:shadow-none`}
+			className={`flex items-center gap-4 rounded-sm px-4 py-2 has-[:focus]:border-blue-500 md:shadow-none`}
 			onSubmit={onSubmit}
 		>
 			<FileUploadButton />
