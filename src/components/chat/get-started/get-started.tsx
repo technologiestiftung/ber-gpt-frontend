@@ -27,7 +27,7 @@ export const GetStarted: React.FC = () => {
 				<div className="flex min-h-[50px] w-[50px] items-center justify-center border border-black bg-white md:min-h-[60px] md:w-[60px]">
 					<BaerIcon className="h-8 w-8 md:h-10 md:w-10" />
 				</div>
-				<h2 className="py-4 text-3xl md:text-5xl font-bold">
+				<h2 className="py-4 text-3xl md:text-4xl font-bold">
 					Starte mit BärGPT!
 				</h2>
 				<p className="pb-4 pt-2 text-center md:text-xl text-sm">
