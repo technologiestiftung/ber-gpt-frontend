@@ -14,9 +14,8 @@ export const SideBar: React.FC = () => {
 
 	const { setCurrentChatId, currentChatId } = useCurrentChatIdStore();
 
-	const isMobile = window.innerWidth < mdWidth;
-
 	useEffect(() => {
+		const isMobile = window.innerWidth < mdWidth;
 		// close sidebar on mobile when a chat is selected
 		if (isMobile) {
 			setIsOpen(false);
@@ -42,6 +41,7 @@ export const SideBar: React.FC = () => {
 			event.target as Node,
 		);
 
+		const isMobile = window.innerWidth < mdWidth;
 		if (isMobile && isClickOutsideNavbar) {
 			setIsOpen(false);
 		}
