@@ -38,7 +38,6 @@ export const SideBar: React.FC = () => {
 	}, []);
 
 	const handleClickListener = (event: MouseEvent) => {
-		console.log(isMobile);
 		const isClickOutsideNavbar = !sidebarRef?.current?.contains(
 			event.target as Node,
 		);
