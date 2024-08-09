@@ -51,7 +51,7 @@ export const ChatForm: React.FC = () => {
 			<FileUploadButton />
 
 			<input
-				className="w-full bg-lighter-grey focus:outline-none"
+				className="w-full bg-light-grey focus:outline-none"
 				name="message"
 				type="text"
 				required
