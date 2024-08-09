@@ -62,6 +62,7 @@ export const TextMessage: React.FC<TextMessageProps> = ({
 			</div>
 
 			{isLastMessageOfChat(messageId) &&
+				role === "assistant" &&
 				getStorageKey() === "email-history" && <EmailChatButtons />}
 		</div>
 	);
