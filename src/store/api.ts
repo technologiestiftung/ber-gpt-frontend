@@ -1,11 +1,10 @@
 import { useCurrentChatIdStore } from "./current-chat-id-store";
 import { useChatHistoryStore } from "./chat-history-store";
-import { File as ExtractedFile, Message } from "./types";
+import { File as ExtractedFile } from "./types";
 import { useErrorStore } from "./error-store";
 
 export async function streamChatResponse() {
 	const chatId = useCurrentChatIdStore.getState().currentChatId;
-
 	const { handleError } = useErrorStore.getState();
 
 	if (!chatId) {
@@ -13,7 +12,7 @@ export async function streamChatResponse() {
 		return;
 	}
 
-	const previousMessages: Message[] =
+	const previousMessages =
 		useChatHistoryStore.getState().getChat(chatId)?.messages || [];
 
 	if (!previousMessages.length) {
@@ -52,12 +51,12 @@ export async function streamChatResponse() {
 
 		const messageId = crypto.randomUUID();
 		const role = "assistant";
-		let content = "";
+		let allChunks = "";
 
 		useChatHistoryStore.getState().addMessageToChat({
 			chatId,
 			messageId,
-			content,
+			content: "",
 			role,
 		});
 
@@ -65,48 +64,42 @@ export async function streamChatResponse() {
 			.pipeThrough(new TextDecoderStream())
 			.getReader();
 
-		while (reader) {
+		// eslint-disable-next-line no-constant-condition
+		while (true) {
 			const streamChunks = await reader.read();
 			if (streamChunks.done) {
 				break;
 			}
 
-			const parsedChunks = streamChunks.value
+			const stringifiedChunks = streamChunks.value
 				.toString()
-				.replace(/^data: /gm, "")
-				.split("\n")
-				.filter((chunk: string) => Boolean(chunk?.length) && chunk !== "[DONE]")
-				.map((chunk: string) => {
-					try {
-						return JSON.parse(chunk);
-					} catch (error) {
-						handleError(error);
-						return { choices: [{ delta: { content: null } }] };
+				.replace(/^data: /gm, "");
+			allChunks += stringifiedChunks;
+
+			let content = "";
+			for (const chunk of allChunks.split("\n")) {
+				try {
+					const parsedChunk = JSON.parse(chunk);
+					const contentChunk = parsedChunk?.choices?.[0]?.delta?.content;
+
+					// eslint-disable-next-line max-depth
+					if (!contentChunk) {
+						continue;
 					}
-				});
 
-			if (!parsedChunks) {
-				continue;
-			}
-
-			for (const chunk of parsedChunks) {
-				const contentChunk = chunk.choices[0].delta.content;
-
-				if (!contentChunk) {
-					continue;
+					content += contentChunk;
+				} catch (error) {
+					handleError(error);
 				}
-
-				content += contentChunk;
-
-				useChatHistoryStore.getState().updateMessageFromChat({
-					chatId,
-					messageId,
-					content,
-					role,
-				});
-
-				await new Promise((resolve) => setTimeout(resolve, 60));
 			}
+
+			useChatHistoryStore.getState().updateMessageFromChat({
+				chatId,
+				messageId,
+				content,
+				role,
+			});
+			await new Promise((resolve) => setTimeout(resolve, 60));
 		}
 	} catch (error) {
 		handleError(error);
