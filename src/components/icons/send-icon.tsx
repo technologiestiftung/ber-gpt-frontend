@@ -10,7 +10,7 @@ export const SendIcon: React.FC<SendIconProps> = ({ className }) => (
 		width="19"
 		height="19"
 		viewBox="0 0 19 19"
-		fill="none"
+		fill="currentBackground"
 		className={` ${className}`}
 	>
 		<path

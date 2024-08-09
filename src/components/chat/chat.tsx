@@ -12,13 +12,13 @@ export const Chat: React.FC = () => {
 	const messages = getChat(currentChatId)?.messages || [];
 
 	return (
-		<div className="flex h-full w-full flex-col justify-between">
+		<div className="flex h-full flex-col items-center justify-between pt-12 py-5">
 			{messages.length === 0 && <GetStarted />}
 
 			<ChatMessages />
 
-			<div className="shadow-[-10px_0px_20px_10px_rgba(255,255,255,75)]">
-				<div className="z-10 flex flex-col gap-y-2 rounded border-mid-grey bg-white px-0.5 pb-6 pt-1 md:gap-y-4 md:border-2 md:px-6 md:pt-4 md:shadow-md">
+			<div className="px-5 w-full flex justify-center">
+				<div className="md:w-[640px] w-full z-10 flex flex-col rounded-md bg-light-grey shadow-md">
 					<UploadedFiles />
 
 					<ChatForm />

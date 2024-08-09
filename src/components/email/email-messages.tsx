@@ -11,15 +11,17 @@ export const EmailMessages: React.FC = () => {
 	const messages: Message[] = getChat(currentChatId)?.messages || [];
 
 	return (
-		<div className="shadown-chat flex flex-col gap-y-4 overflow-auto pb-16 md:pb-4">
-			{messages.map((message) => (
-				<TextMessage
-					key={message.id}
-					role={message.role}
-					content={message.content}
-					messageId={message.id}
-				/>
-			))}
+		<div className="flex w-full justify-center overflow-auto pb-2 px-5">
+			<div className="md:w-[640px] flex flex-col gap-y-4">
+				{messages.map((message) => (
+					<TextMessage
+						key={message.id}
+						role={message.role}
+						content={message.content}
+						messageId={message.id}
+					/>
+				))}
+			</div>
 		</div>
 	);
 };

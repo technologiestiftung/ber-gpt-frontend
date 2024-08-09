@@ -1,6 +1,6 @@
 import React from "react";
 import { HistoryEntry } from "./history-entry";
-import { Chat } from "../../store/types";
+import { Chat } from "../../../store/types";
 
 interface HistoryGroupProps {
 	label: string;
@@ -9,8 +9,8 @@ interface HistoryGroupProps {
 
 export const HistoryGroup: React.FC<HistoryGroupProps> = ({ label, chats }) => {
 	return (
-		<div className="flex flex-col gap-2">
-			<div key={label} className="font-semibold text-darker-grey">
+		<div className="flex flex-col">
+			<div key={label} className="px-5 pb-1 font-semibold text-darker-grey">
 				{label}
 			</div>
 			{chats.map((chat) => (

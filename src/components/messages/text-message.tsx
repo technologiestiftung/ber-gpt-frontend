@@ -28,34 +28,38 @@ export const TextMessage: React.FC<TextMessageProps> = ({
 
 	return (
 		<div
-			className={`max-w-[87%] rounded border-2 p-2 shadow-md sm:max-w-[80%] lg:max-w-[60%] ${role === "user" ? "self-end border-mid-grey" : "self-start border-dark-blue"} `}
+			className={`flex flex-col ${role === "user" ? "self-end shadow-md max-w-[85%] lg:max-w-[80%]" : "self-start"} `}
 		>
-			<div
-				className={`flex flex-row items-center justify-between gap-2 ${role === "assistant" ? "" : "hidden"}`}
-			>
+			<div className={`flex flex-row`}>
 				<div
-					className={`mb-2 flex min-h-[37px] w-[37px] items-center justify-center rounded-full bg-white drop-shadow-lg`}
+					className={`${role === "assistant" ? "" : "hidden"} mt-3.5 flex size-[37px] min-w-[37px] items-center justify-center rounded-full bg-white drop-shadow-md`}
 				>
 					<BaerIcon className="h-[21px] w-[21px]" />
 				</div>
-				<div className="flex flex-row items-center gap-3 self-start p-2 text-dark-blue">
-					{isLastMessageOfChat(messageId) && (
-						<button
-							// prettier-ignore
-							className="text-dark-blue hover:text-mid-blue"
-							aria-label="Neu generieren"
-							title="Neu generieren"
-							onClick={onRefresh}
-						>
-							<RefreshIcon />
-						</button>
-					)}
-					<CopyToClipboardButton generatedAnswer={content} />
+				<div className="flex flex-col">
+					<ReactMarkdown
+						className={`markdown-container ${role === "user" ? "bg-light-grey py-2" : ""}`}
+					>
+						{content === "" ? "..." : content}
+					</ReactMarkdown>
+					<div
+						className={`flex flex-row items-center justify-between gap-3 self-start px-3 py-2 text-dark-blue ${role === "assistant" ? "" : "hidden"}`}
+					>
+						{isLastMessageOfChat(messageId) && (
+							<button
+								// prettier-ignore
+								className="text-dark-blue hover:text-mid-blue"
+								aria-label="Neu generieren"
+								title="Neu generieren"
+								onClick={onRefresh}
+							>
+								<RefreshIcon />
+							</button>
+						)}
+						<CopyToClipboardButton generatedAnswer={content} />
+					</div>
 				</div>
 			</div>
-			<ReactMarkdown className="markdown-container">
-				{content === "" ? "..." : content}
-			</ReactMarkdown>
 
 			{isLastMessageOfChat(messageId) &&
 				getStorageKey() === "email-history" && <EmailChatButtons />}

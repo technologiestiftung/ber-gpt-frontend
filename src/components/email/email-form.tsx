@@ -86,7 +86,7 @@ export const EmailForm: React.FC = () => {
 
 	return (
 		<div
-			className={`absolute bottom-0 left-0 z-30 flex w-full flex-col gap-y-4 bg-white px-2.5 pb-4 pt-1 shadow-md md:relative md:top-0 md:gap-y-4 md:rounded md:border-2 md:px-6 md:pt-6 md:shadow-md ${isEmailFormExpanded ? "top-[75px] rounded-t-2xl border-x-2 border-t-2 border-mid-grey" : ""}`}
+			className={`absolut w-full md:w-[640px] bottom-0 left-0 z-20 flex flex-col gap-y-4 bg-white px-5 pb-4 pt-1 md:relative md:border md:border-light-grey md:top-0 md:gap-y-4 md:rounded-md md:px-6 md:pt-4 md:shadow-md ${isEmailFormExpanded ? "top-[75px] rounded-t-2xl border-x border-t border-mid-grey" : ""}`}
 		>
 			<div
 				className={`flex-row items-center justify-between ${isEmailFormExpanded ? "flex" : "hidden md:flex"}`}
@@ -106,7 +106,7 @@ export const EmailForm: React.FC = () => {
 				onSubmit={onSubmit}
 			>
 				<div
-					className={`flex-col justify-between gap-6 lg:h-24 lg:flex-row ${isEmailFormExpanded ? "flex" : "hidden md:flex"}`}
+					className={`flex-col justify-between gap-6 lg:h-28 lg:flex-row ${isEmailFormExpanded ? "flex" : "hidden md:flex"}`}
 				>
 					<div className="flex flex-col gap-4 md:flex-row md:gap-10">
 						{radioGroups.map((group) => (
@@ -124,7 +124,7 @@ export const EmailForm: React.FC = () => {
 												name={group.name}
 												value={option}
 												defaultChecked={group.defaultChecked === option}
-												className="h-3 w-3 appearance-none self-center rounded-full ring-1 ring-dark-blue ring-offset-1 checked:bg-dark-blue"
+												className="h-3 w-3 appearance-none self-center rounded-full bg-white ring-1 ring-dark-blue ring-offset-1 checked:bg-dark-blue"
 											/>
 										</div>
 									))}
@@ -135,7 +135,7 @@ export const EmailForm: React.FC = () => {
 					<div className="flex h-full flex-col gap-2 py-4 md:py-0 lg:w-2/5">
 						<label className="font-semibold">Vorherige E-Mail (optional)</label>
 						<textarea
-							className={`h-20 w-full resize-none rounded border border-mid-grey p-2 focus:border-blue-500 focus:outline-none`}
+							className={`h-20 w-full resize-none rounded bg-light-grey p-2 focus:border-blue-500 focus:outline-none`}
 							name="previousMail"
 							placeholder="Mail auf die geantwortet werden soll, hier einfügen..."
 						/>
@@ -148,17 +148,16 @@ export const EmailForm: React.FC = () => {
 						Inhaltliches
 					</label>
 					<div
-						className={`flex items-center gap-4 rounded border border-mid-grey px-2 py-2 shadow-md has-[:focus]:border-blue-500 md:border-dark-blue md:shadow-none`}
+						className={`flex items-center gap-4 rounded bg-light-grey px-2 py-2 ${isEmailFormExpanded ? "shadow-none" : "shadow-md"} has-[:focus]:border-blue-500  md:shadow-none`}
 					>
 						<textarea
-							className={`min-h-5 w-full resize-none focus:outline-none md:h-10 md:max-h-40 md:resize-y ${isEmailFormExpanded ? "h-20" : "h-5"}`}
+							className={`min-h-5 w-full bg-light-grey resize-none focus:outline-none md:h-10 md:max-h-40 md:resize-y ${isEmailFormExpanded ? "h-20" : "h-5"}`}
 							name="message"
 							required
 							placeholder="Was soll in der Mail stehen?"
 							onFocus={() => {
 								setIsEmailFormExpanded(true);
 							}}
-							// onBlur={}
 						/>
 						<div className="flex self-end">
 							<PrimaryButton

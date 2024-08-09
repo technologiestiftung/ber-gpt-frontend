@@ -38,33 +38,35 @@ const startingPrompts = [
 
 export const GetStarted: React.FC = () => {
 	return (
-		<div className="flex w-full flex-col items-center justify-center overflow-auto">
-			<div className="flex min-h-[50px] w-[50px] items-center justify-center rounded-full bg-white drop-shadow-lg md:min-h-[70px] md:w-[70px]">
-				<BaerIcon className="h-8 w-8 md:h-10 md:w-10" />
-			</div>
-			<h2 className="pt-4 text-xl">
-				Starte mit <b>BärGPT</b>!
-			</h2>
-			<p className="pb-2 pt-2">
-				Sie können <b>BärGPT</b> direkt nutzen, indem Sie Ihre Frage oder Ihr
-				Anliegen in das Chatfenster unten eintippen.
-			</p>
-			<h2 className="pb-2 pt-8 text-xl">KI Apps</h2>
-			<p className="pb-4 pt-2">
-				<b>BärGPT</b> bietet spezialisierte KI-Funktionen, die Sie bei der
-				Erledigung von typischen Aufgaben unterstützen.
-				<br />
-				Dieses Angebot befindet sich noch im Aufbau und wird stetig erweitert.
-			</p>
-			<div className="flex w-full flex-row flex-wrap justify-center gap-x-3">
-				{startingPrompts.map((prompt) => (
-					<ChatBoxButton
-						key={prompt.value}
-						icon={prompt.icon}
-						label={prompt.label}
-						onClick={() => onClick(prompt.value)}
-					/>
-				))}
+		<div className="flex w-full justify-center overflow-auto pb-2">
+			<div className="flex md:w-[600px] flex-col items-center px-5">
+				<div className="flex min-h-[50px] w-[50px] items-center justify-center rounded-full bg-white drop-shadow-lg md:min-h-[70px] md:w-[70px]">
+					<BaerIcon className="h-8 w-8 md:h-10 md:w-10" />
+				</div>
+				<h2 className="pt-4 text-xl">
+					Starte mit <b>BärGPT</b>!
+				</h2>
+				<p className="pb-2 pt-2 text-center">
+					Sie können <b>BärGPT</b> direkt nutzen, indem Sie Ihre Frage oder Ihr
+					Anliegen in das Chatfenster unten eintippen.
+				</p>
+				<h2 className="pb-2 pt-8 text-xl font-semibold">KI Apps</h2>
+				<p className="pb-4 pt-2 text-center">
+					<b>BärGPT</b> bietet spezialisierte KI-Funktionen, die Sie bei der
+					Erledigung von typischen Aufgaben unterstützen.
+					<br />
+					Dieses Angebot befindet sich noch im Aufbau und wird stetig erweitert.
+				</p>
+				<div className="flex w-full flex-row flex-wrap justify-center gap-x-3">
+					{startingPrompts.map((prompt) => (
+						<ChatBoxButton
+							key={prompt.value}
+							icon={prompt.icon}
+							label={prompt.label}
+							onClick={() => onClick(prompt.value)}
+						/>
+					))}
+				</div>
 			</div>
 		</div>
 	);
