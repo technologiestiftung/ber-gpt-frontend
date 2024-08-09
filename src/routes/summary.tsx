@@ -16,7 +16,7 @@ export const Summary: React.FC = () => {
 						Text zusammenfassen
 					</h1>
 					<div className="md:text-xl text-darker-grey">
-						Mit der Funktion &quot;Zusammenfassen&quot; können Sie längere Text
+						Mit der Funktion &quot;Zusammenfassen&quot; können Sie längere Texte
 						einfach auf das Wesentliche reduzieren. So schaffen Sie sich einen
 						schnellen Überblick über die Inhalte oder geben Kolleg:innen einen
 						schnellen Einblick in das Dokument, welches Sie z.B. per E-Mail
