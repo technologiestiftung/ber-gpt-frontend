@@ -66,30 +66,30 @@ export async function streamChatResponse() {
 			.getReader();
 
 		while (reader) {
-			const stream = await reader.read();
-			if (stream.done) {
+			const streamChunks = await reader.read();
+			if (streamChunks.done) {
 				break;
 			}
 
-			const chunks = stream.value
+			const parsedChunks = streamChunks.value
 				.toString()
 				.replace(/^data: /gm, "")
 				.split("\n")
-				.filter((c: string) => Boolean(c?.length) && c !== "[DONE]")
-				.map((c: string) => {
+				.filter((chunk: string) => Boolean(chunk?.length) && chunk !== "[DONE]")
+				.map((chunk: string) => {
 					try {
-						return JSON.parse(c);
+						return JSON.parse(chunk);
 					} catch (error) {
 						handleError(error);
-						return null;
+						return { choices: [{ delta: { content: null } }] };
 					}
 				});
 
-			if (!chunks) {
+			if (!parsedChunks) {
 				continue;
 			}
 
-			for (const chunk of chunks) {
+			for (const chunk of parsedChunks) {
 				const contentChunk = chunk.choices[0].delta.content;
 
 				if (!contentChunk) {

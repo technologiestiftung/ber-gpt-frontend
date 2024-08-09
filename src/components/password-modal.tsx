@@ -17,7 +17,7 @@ export const PasswordModal: React.FC = () => {
 		const password = (e.currentTarget.elements[0] as HTMLInputElement).value;
 
 		if (password !== p) {
-			handleError(new Error("falsches Passwort"));
+			handleError(new Error("wrong_password"));
 			return;
 		}
 
