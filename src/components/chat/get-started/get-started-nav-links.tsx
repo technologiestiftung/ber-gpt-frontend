@@ -13,7 +13,7 @@ const appLinks = [
 		backgroundColor: "bg-ber-green hover:bg-ber-green-darker",
 	},
 	{
-		label: "Formuliere eine Email für mich",
+		label: "Formuliere eine E-Mail für mich",
 		icon: <MailIcon />,
 		href: "/email",
 		backgroundColor: "bg-ber-blue hover:bg-ber-blue-darker",

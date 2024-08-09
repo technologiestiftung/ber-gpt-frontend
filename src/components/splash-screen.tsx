@@ -56,26 +56,29 @@ export const SplashScreen: React.FC = () => {
 					<h2 className="text-[22px]">KI-Testumgebung</h2>
 				</div>
 				<p className="py-2">
-					Der Einsatz von <b>BärGPT</b> in der öffentlichen Verwaltung bietet
-					eine Vielzahl von Vorteilen für Mitarbeitende. Es kann Routineanfragen
-					effizient und rund um die Uhr beantworten, wodurch Verwaltungspersonal
-					entlastet und der Service für Bürgerinnen und Bürger verbessert wird.
-					Mitarbeitende können sich so auf komplexere und wertschöpfendere
-					Aufgaben konzentrieren. Darüber hinaus tragen Chatbots zur
-					Beschleunigung von Verwaltungsprozessen bei und erhöhen die
-					Zufriedenheit der Bürger:innen durch schnellere und präzisere
-					Auskünfte. Letztlich fördert BärGPT eine moderne, digitale Berliner
-					Verwaltung und verbessert die Effizienz sowie Servicequalität.
-				</p>
-				<p className="py-0">
-					Wir wünschen viel Spaß bei der Nutzung von BärGPT und freuen uns über{" "}
+					BärGPT ist eine produktiv nutzbare KI-Testumgebung für Beschäftigte
+					der Berliner Landesverwaltung, bereitgestellt vom{" "}
+					<a
+						className="text-mid-blue underline hover:text-dark-blue"
+						href="https://www.citylab-berlin.org"
+					>
+						CityLAB Berlin
+					</a>
+					. BärGPT soll dabei helfen, die Anwendungsmöglichkeiten von
+					Künstlicher Intelligenz für die Verwaltungsarbeit in der Praxis zu
+					erproben. Neben einer Chat-Funktion enthält BärGPT eine Reihe erster
+					kleinerer Anwendungen (KI-Apps) für spezifische Aufgaben aus dem
+					Verwaltungskontext. Die Liste an Anwendungen soll im Dialog mit
+					Beschäftigten der Berliner Verwaltung kontinuierlich erweitert werden.
+					Hierzu werden wir in Zukunft regelmäßige Workshop-Formate anbieten und
+					freuen uns über Ideen und{" "}
 					<a
 						className="text-mid-blue underline hover:text-dark-blue"
 						href="https://citylabberlin.typeform.com/to/kCdnCgvC#product_id=baergpt"
 					>
 						Feedback
 					</a>
-					!
+					.
 				</p>
 
 				<div className="flex flex-row flex-wrap justify-between gap-2">

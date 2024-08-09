@@ -13,16 +13,29 @@ export const Faq: React.FC = () => {
 			<div className="flex flex-col gap-4">
 				<h1 className="px-2 text-[22px] font-bold leading-6">Über BärGPT</h1>
 				<p className="p-2">
-					Der Einsatz von <b>BärGPT</b> in der öffentlichen Verwaltung bietet
-					eine Vielzahl von Vorteilen für Mitarbeitende. Es kann Routineanfragen
-					effizient und rund um die Uhr beantworten, wodurch Verwaltungspersonal
-					entlastet und der Service für Bürgerinnen und Bürger verbessert wird.
-					Mitarbeitende können sich so auf komplexere und wertschöpfendere
-					Aufgaben konzentrieren. Darüber hinaus tragen Chatbots zur
-					Beschleunigung von Verwaltungsprozessen bei und erhöhen die
-					Zufriedenheit der Bürger:innen durch schnellere und präzisere
-					Auskünfte. Letztlich fördert BärGPT eine moderne, digitale Berliner
-					Verwaltung und verbessert die Effizienz sowie Servicequalität.
+					BärGPT ist eine produktiv nutzbare KI-Testumgebung für Beschäftigte
+					der Berliner Landesverwaltung, bereitgestellt vom{" "}
+					<a
+						className="text-mid-blue underline hover:text-dark-blue"
+						href="https://www.citylab-berlin.org"
+					>
+						CityLAB Berlin
+					</a>
+					. BärGPT soll dabei helfen, die Anwendungsmöglichkeiten von
+					Künstlicher Intelligenz für die Verwaltungsarbeit in der Praxis zu
+					erproben. Neben einer Chat-Funktion enthält BärGPT eine Reihe erster
+					kleinerer Anwendungen (KI-Apps) für spezifische Aufgaben aus dem
+					Verwaltungskontext. Die Liste an Anwendungen soll im Dialog mit
+					Beschäftigten der Berliner Verwaltung kontinuierlich erweitert werden.
+					Hierzu werden wir in Zukunft regelmäßige Workshop-Formate anbieten und
+					freuen uns über Ideen und{" "}
+					<a
+						className="text-mid-blue underline hover:text-dark-blue"
+						href="https://citylabberlin.typeform.com/to/kCdnCgvC#product_id=baergpt"
+					>
+						Feedback
+					</a>
+					.
 				</p>
 				<h1 className="px-2 pt-2 text-[22px] font-bold leading-6">
 					Häufig gestellte Fragen

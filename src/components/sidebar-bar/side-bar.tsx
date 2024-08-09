@@ -96,7 +96,7 @@ export const SideBar: React.FC = () => {
 					<History />
 
 					<div className={`px-5 text-sm text-dark-blue`}>
-						Der Chat Verlauf wird lokal gespeichert und ist somit nicht für
+						Der Chat-Verlauf wird lokal gespeichert und ist somit nicht für
 						andere Personen sichtbar.
 					</div>
 				</div>
