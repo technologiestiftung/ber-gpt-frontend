@@ -23,27 +23,12 @@
 		@apply relative pl-3;
 	}
 
-	.markdown-container h1 {
-		@apply text-6xl;
-	}
-
-	.markdown-container h2 {
-		@apply text-5xl;
-	}
-
-	.markdown-container h3 {
-		@apply text-4xl;
-	}
-
-	.markdown-container h4 {
-		@apply text-3xl;
-	}
-
-	.markdown-container h5 {
-		@apply text-2xl;
-	}
-
-	.markdown-container h6 {
+	.markdown-container h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6 {
 		@apply text-xl;
 	}
 }
