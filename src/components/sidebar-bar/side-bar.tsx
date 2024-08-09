@@ -83,12 +83,13 @@ export const SideBar: React.FC = () => {
 				<div
 					className={`flex-col gap-8 pb-8 h-full overflow-y-auto ${isOpen ? "flex" : "hidden"}`}
 				>
-					<div
+					<a
 						className={`flex-col px-5 text-[22px] ${isOpen ? "flex" : "hidden"}`}
+						href="/"
 					>
 						<h1 className="font-bold">BärGPT</h1>
 						<h2>KI-Testumgebung</h2>
-					</div>
+					</a>
 
 					<Navigation />
 

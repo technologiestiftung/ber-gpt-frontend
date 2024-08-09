@@ -1,19 +1,21 @@
 import React from "react";
 import { Layout } from "../layout/layout";
-import { PDFIcon } from "../components/icons/pdf-icon";
+import { InfoIcon } from "../components/icons/info-icon";
 
 export const Summary: React.FC = () => {
 	return (
 		<Layout>
 			<div className="flex h-full w-full items-center justify-center">
-				<div className=" md:w-[640px] px-5 text-center items-center flex flex-col gap-6">
+				<div className=" md:w-[640px] px-5 text-center items-center flex flex-col gap-2">
 					<div
-						className={`flex flex-row gap-3 w-fit rounded-sm px-4 py-2.5 bg-ber-pink`}
+						className={`flex flex-row gap-3 w-fit text-xs border border-black rounded-full px-3 py-1 `}
 					>
-						<PDFIcon /> Text zusammenfassen
+						<InfoIcon /> Bald verfügbar
 					</div>
-					<h1 className="text-5xl font-bold">Bald verfügbar</h1>
-					<div className="text-xl ">
+					<h1 className="text-3xl md:text-5xl font-bold text-darker-grey pb-4">
+						Text zusammenfassen
+					</h1>
+					<div className="md:text-xl text-darker-grey">
 						Mit der Funktion &quot;Zusammenfassen&quot; können Sie längere Text
 						einfach auf das Wesentliche reduzieren. So schaffen Sie sich einen
 						schnellen Überblick über die Inhalte oder geben Kolleg:innen einen
