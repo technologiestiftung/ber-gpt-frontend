@@ -10,10 +10,17 @@ export const EmailMessages: React.FC = () => {
 
 	const messages: Message[] = getChat(currentChatId)?.messages || [];
 
-	const messagesEndRef = useRef<null | HTMLDivElement>(null);
+	const messageContainerRef = useRef<null | HTMLDivElement>(null);
 
 	const scrollToBottom = () => {
-		messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+		const messagesContainer = messageContainerRef.current;
+
+		if (messagesContainer) {
+			messagesContainer.scrollTo({
+				top: messagesContainer.scrollHeight,
+				behavior: "smooth",
+			});
+		}
 	};
 
 	useEffect(() => {
@@ -21,7 +28,10 @@ export const EmailMessages: React.FC = () => {
 	}, [messages]);
 
 	return (
-		<div className="flex w-full justify-center overflow-auto pb-2 px-5">
+		<div
+			ref={messageContainerRef}
+			className="flex w-full justify-center overflow-auto pb-2 px-5"
+		>
 			<div className="md:w-[640px] flex flex-col gap-y-4">
 				{messages.map((message) => (
 					<TextMessage
@@ -31,7 +41,6 @@ export const EmailMessages: React.FC = () => {
 						messageId={message.id}
 					/>
 				))}
-				<div ref={messagesEndRef} />
 			</div>
 		</div>
 	);
