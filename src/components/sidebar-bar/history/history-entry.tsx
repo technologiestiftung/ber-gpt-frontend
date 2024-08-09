@@ -20,9 +20,9 @@ export const HistoryEntry: React.FC<HistoryEntryProps> = ({ name, id }) => {
 	const isSelected = currentChatId === id;
 
 	return (
-		<div className="flex items-center justify-start">
+		<div className="flex items-center justify-start gap-1">
 			<button
-				className={`h-11 w-9/12 truncate rounded mx-2.5 px-2.5 text-start hover:bg-mid-grey ${isSelected ? "bg-mid-grey" : ""}`}
+				className={`h-11 w-[70%] truncate rounded-sm ml-5 px-2.5 text-start hover:bg-mid-grey ${isSelected ? "bg-mid-grey" : ""}`}
 				onClick={() => setCurrentChatId(id)}
 			>
 				{removeMarkdownStyling(name)}
