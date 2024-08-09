@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { useCurrentChatIdStore } from "../../store/current-chat-id-store";
 import { Message } from "../../store/types";
 import { TextMessage } from "../messages/text-message";
@@ -9,6 +9,16 @@ export const EmailMessages: React.FC = () => {
 	const { currentChatId } = useCurrentChatIdStore();
 
 	const messages: Message[] = getChat(currentChatId)?.messages || [];
+
+	const messagesEndRef = useRef<null | HTMLDivElement>(null);
+
+	const scrollToBottom = () => {
+		messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+	};
+
+	useEffect(() => {
+		scrollToBottom();
+	}, [messages]);
 
 	return (
 		<div className="flex w-full justify-center overflow-auto pb-2 px-5">
@@ -21,6 +31,7 @@ export const EmailMessages: React.FC = () => {
 						messageId={message.id}
 					/>
 				))}
+				<div ref={messagesEndRef} />
 			</div>
 		</div>
 	);
