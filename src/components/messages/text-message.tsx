@@ -38,7 +38,7 @@ export const TextMessage: React.FC<TextMessageProps> = ({
 				</div>
 				<div className="flex flex-col">
 					<ReactMarkdown
-						className={`markdown-container ${role === "user" ? "bg-light-grey py-2" : ""}`}
+						className={`markdown-container ${role === "user" ? "bg-lighter-grey py-2" : ""}`}
 					>
 						{content === "" ? "..." : content}
 					</ReactMarkdown>

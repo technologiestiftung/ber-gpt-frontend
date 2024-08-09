@@ -1,5 +1,5 @@
 import React from "react";
-import { GetStarted } from "./get-started";
+import { GetStarted } from "./get-started/get-started";
 import { useChatHistoryStore } from "../../store/chat-history-store";
 import { useCurrentChatIdStore } from "../../store/current-chat-id-store";
 import { UploadedFiles } from "./uploaded-files";
@@ -18,7 +18,7 @@ export const Chat: React.FC = () => {
 			<ChatMessages />
 
 			<div className="px-5 w-full flex justify-center">
-				<div className="md:w-[640px] w-full z-10 flex flex-col rounded-md bg-light-grey shadow-md">
+				<div className="md:w-[640px] w-full z-10 flex flex-col rounded-md bg-lighter-grey shadow-md">
 					<UploadedFiles />
 
 					<ChatForm />
