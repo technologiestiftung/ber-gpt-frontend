@@ -40,7 +40,7 @@ export const GetStarted: React.FC = () => {
 
 				<h2 className="pb-2 pt-8  text-xl md:text-2xl font-semibold">Chat</h2>
 				<p className="pb-2 pt-2 md:text-base text-sm text-center">
-					Sie können BärGPT direkt nutzen, indem Sie Ihre Frage oder Ihr
+					Sie können BärGPT direkt nutzen, indem Sie Ihre Frage oder Ihr
 					Anliegen in das Chatfenster unten eintippen oder direkt eine Frage
 					auswählen:
 				</p>
