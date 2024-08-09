@@ -24,7 +24,7 @@ export const GetStarted: React.FC = () => {
 	return (
 		<div className="flex w-full justify-center overflow-auto pb-2 text-darker-grey">
 			<div className="flex md:w-[640px] flex-col items-center justify-between px-5 md:px-0">
-				<div className="flex min-h-[50px] w-[50px] items-center justify-center rounded-full bg-white drop-shadow-lg md:min-h-[70px] md:w-[70px]">
+				<div className="flex min-h-[50px] w-[50px] items-center justify-center border border-black bg-white md:min-h-[60px] md:w-[60px]">
 					<BaerIcon className="h-8 w-8 md:h-10 md:w-10" />
 				</div>
 				<h2 className="py-4 text-3xl md:text-5xl font-bold">

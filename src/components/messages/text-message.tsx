@@ -32,7 +32,7 @@ export const TextMessage: React.FC<TextMessageProps> = ({
 		>
 			<div className={`flex flex-row`}>
 				<div
-					className={`${role === "assistant" ? "" : "hidden"} mt-3.5 flex size-[37px] min-w-[37px] items-center justify-center rounded-full bg-white drop-shadow-md`}
+					className={`${role === "assistant" ? "" : "hidden"} mt-3.5 flex size-[35px] min-w-[35px] items-center justify-center border border-black bg-white`}
 				>
 					<BaerIcon className="h-[21px] w-[21px]" />
 				</div>
