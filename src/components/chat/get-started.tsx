@@ -19,21 +19,25 @@ const startingPrompts = [
 			</div>
 		),
 		value: "Erkläre mir was ich mit BärGPT machen kann.",
+		backgroundColor: "bg-ber-green hover:bg-ber-green-darker",
 	},
 	{
 		icon: <MailIcon />,
 		label: "Formuliere eine E–Mail für mich.",
 		value: "Formuliere eine E–mail für mich.",
+		backgroundColor: "bg-ber-blue hover:bg-ber-blue-darker",
 	},
 	{
 		icon: <VermerkIcon />,
 		label: "Hilf mir einen Vermerk zu erstellen.",
 		value: "Hilf mir einen Vermerk zu erstellen.",
+		backgroundColor: "bg-ber-yellow hover:bg-ber-yellow-darker",
 	},
 	{
 		icon: <PDFIcon />,
 		label: "Hilf mir Texte und PDFs zusammenzufassen.",
 		value: "Hilf mir Texte und PDFs zusammenzufassen.",
+		backgroundColor: "bg-ber-pink hover:bg-ber-pink-darker",
 	},
 ];
 
@@ -65,6 +69,7 @@ export const GetStarted: React.FC = () => {
 							icon={prompt.icon}
 							label={prompt.label}
 							onClick={() => onClick(prompt.value)}
+							className={prompt.backgroundColor}
 						/>
 					))}
 				</div>
