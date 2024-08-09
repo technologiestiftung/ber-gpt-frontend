@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { useChatHistoryStore } from "../../store/chat-history-store";
 import { useCurrentChatIdStore } from "../../store/current-chat-id-store";
 import { FileMessage } from "../messages/file-message";
@@ -11,9 +11,29 @@ export const ChatMessages: React.FC = () => {
 
 	const messages: Message[] = getChat(currentChatId)?.messages || [];
 
+	const messageContainerRef = useRef<null | HTMLDivElement>(null);
+
+	const scrollToBottom = () => {
+		const messagesContainer = messageContainerRef.current;
+
+		if (messagesContainer) {
+			messagesContainer.scrollTo({
+				top: messagesContainer.scrollHeight,
+				behavior: "smooth",
+			});
+		}
+	};
+
+	useEffect(() => {
+		scrollToBottom();
+	}, [messages]);
+
 	return (
-		<div className="flex w-full justify-center overflow-auto pb-2">
-			<div className="md:w-[640px] flex flex-col gap-y-4 px-5">
+		<div
+			ref={messageContainerRef}
+			className="flex w-full justify-center overflow-auto scroll-smooth mb-2"
+		>
+			<div className="md:w-[640px] w-full h-full flex flex-col gap-y-4 px-5">
 				{messages.map((message) => (
 					<React.Fragment key={message.id}>
 						{message.type === "file" && (
