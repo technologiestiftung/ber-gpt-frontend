@@ -24,6 +24,7 @@ const errorMessages: { [key: string]: string } = {
 		"Datei-Upload unterstützt nur die folgenden Dateitypen: [pdf]",
 	context_length_exceeded:
 		"Kontextlänge überschritten, bitte starten Sie einen neuen Chat.",
+	wrong_password: "Falsches Passwort.",
 };
 
 // "Das Streamen der Chatantworten ist fehlgeschlagen."
@@ -39,18 +40,21 @@ export const useErrorStore = create<ErrorStore>()((set, get) => ({
 
 	clearErrors: () => set({ error: undefined }),
 
-	handleError: (error: unknown) => {
+	handleError: (error) => {
 		if (!isError(error)) {
-			// todo maybe print this as an error
+			console.error("Given error object is not an instance of Error:", error);
 			return;
 		}
 
-		// show translated error message if it exists in errorMessages,
-		// otherwise show the original error message
-		// todo maybe print a generic error instead of the original error message
-		const _error = errorMessages[error.message] ?? error.message;
+		console.error(error);
 
-		set({ error: _error });
+		const userReadableErrorMessage = errorMessages[error.message];
+
+		if (!userReadableErrorMessage) {
+			return;
+		}
+
+		set({ error: userReadableErrorMessage });
 		setTimeout(get().clearErrors, errorShowTimeMs);
 	},
 }));
