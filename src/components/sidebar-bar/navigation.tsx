@@ -40,15 +40,11 @@ export const Navigation: React.FC = () => {
 			<nav>
 				<ul className="flex flex-col px-5 items-start gap-4">
 					{navLinks.map((item) => (
-						<li
-							key={item.label}
-							className={`flex flex-row gap-3 w-full rounded-sm px-4 py-2.5 hover:underline ${item.backgroundColor} ${
-								location === item.href ? "underline" : "no-underline"
-							}`}
-						>
-							<div className="flex size-4">{item.icon}</div>
+						<li key={item.label} className="w-full">
 							<a
-								className="text-darker-grey"
+								className={`text-darker-grey flex-row flex gap-3 w-full rounded-sm px-4 py-2.5 hover:underline ${item.backgroundColor} ${
+									location === item.href ? "underline" : "no-underline"
+								}`}
 								href={item.href}
 								onClick={() =>
 									trackInteraction({
@@ -57,6 +53,7 @@ export const Navigation: React.FC = () => {
 									})
 								}
 							>
+								<div className="flex size-4">{item.icon}</div>
 								{item.label}
 							</a>
 						</li>
