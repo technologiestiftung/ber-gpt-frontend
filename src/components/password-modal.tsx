@@ -29,7 +29,7 @@ export const PasswordModal: React.FC = () => {
 			<dialog open={isLocked} className="w-svw">
 				<form className="flex w-full justify-center mt-20" onSubmit={onSubmit}>
 					<div className="flex flex-col w-[20.5rem] gap-y-2 border border-zinc-300 rounded p-7 shadow-md">
-						<div className="rounded-full bg-white drop-shadow-md w-fit p-2 self-center">
+						<div className="border border-black bg-white w-fit p-2 self-center">
 							<BaerIcon />
 						</div>
 						<h1 className="self-center font-bold text-2xl mt-3.5">BärGPT</h1>

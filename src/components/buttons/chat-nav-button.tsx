@@ -1,7 +1,7 @@
 import React from "react";
 import { ButtonProps } from "./button-types";
 
-export const ChatBoxButton: React.FC<ButtonProps> = ({
+export const ChatNavButton: React.FC<ButtonProps> = ({
 	label,
 	onClick,
 	disabled,
@@ -24,7 +24,7 @@ export const ChatBoxButton: React.FC<ButtonProps> = ({
 		>
 			<div className="flex w-[144px] flex-col items-start gap-2 md:w-[180px] md:pb-2">
 				<div> {icon} </div>
-				<div className="text-md text-start">{label}</div>
+				<div className="text-base text-start">{label}</div>
 			</div>
 		</button>
 	);

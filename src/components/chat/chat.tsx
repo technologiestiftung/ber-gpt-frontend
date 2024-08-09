@@ -1,5 +1,5 @@
 import React from "react";
-import { GetStarted } from "./get-started";
+import { GetStarted } from "./get-started/get-started";
 import { useChatHistoryStore } from "../../store/chat-history-store";
 import { useCurrentChatIdStore } from "../../store/current-chat-id-store";
 import { UploadedFiles } from "./uploaded-files";
