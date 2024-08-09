@@ -6,23 +6,11 @@ import { subDays } from "date-fns";
 import { HistoryGroup } from "./history-group/history-group";
 import { useCurrentChatIdStore } from "../../store/current-chat-id-store";
 import { useChatHistoryStore } from "../../store/chat-history-store";
-import { ChatIcon } from "../icons/chat-icon";
-import { MailIcon } from "../icons/mail-icon";
-import { VermerkIcon } from "../icons/vermerk-icon";
-import { PDFIcon } from "../icons/pdf-icon";
 import { FaqIcon } from "../icons/faq-icon";
+import { Navigation } from "./navigation";
 
 const today = new Date();
 const sevenDaysAgo = subDays(today, 7);
-
-const navLinks = [
-	{ label: "Chat", icon: <ChatIcon />, href: "/" },
-	{ label: "E-Mail formulieren", icon: <MailIcon />, href: "/email" },
-	{ label: "Vermerk erstellen", icon: <VermerkIcon />, href: "/note" },
-	{ label: "Text Zusammenfassen", icon: <PDFIcon />, href: "/summary" },
-];
-
-const location = window.location.pathname;
 
 export const SideBar: React.FC = () => {
 	const [isOpen, setIsOpen] = useState(true);
@@ -125,23 +113,7 @@ export const SideBar: React.FC = () => {
 					<h2>KI-Testumgebung</h2>
 				</div>
 
-				<nav>
-					<ul className="flex flex-col px-5 items-start gap-4">
-						{navLinks.map((item) => (
-							<li
-								key={item.label}
-								className={`flex flex-row gap-3 hover:font-semibold ${
-									location === item.href ? " font-semibold" : "font-normal"
-								}`}
-							>
-								<div className="flex size-4">{item.icon}</div>
-								<a className="text-darker-grey" href={item.href}>
-									{item.label}
-								</a>
-							</li>
-						))}
-					</ul>
-				</nav>
+				<Navigation />
 
 				<div className={`flex flex-col gap-4`}>
 					{chatGroups.map(({ label, chats }) => (
