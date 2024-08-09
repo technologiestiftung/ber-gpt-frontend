@@ -1,21 +1,15 @@
-import React, { useMemo, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { IconButton } from "../buttons/icon-button";
 import { SidebarIcon } from "../icons/sidebar-icon";
 import { NewChatIcon } from "../icons/new-chat-icon";
-import { subDays } from "date-fns";
-import { HistoryGroup } from "./history-group/history-group";
 import { useCurrentChatIdStore } from "../../store/current-chat-id-store";
-import { useChatHistoryStore } from "../../store/chat-history-store";
 import { FaqIcon } from "../icons/faq-icon";
 import { Navigation } from "./navigation";
-
-const today = new Date();
-const sevenDaysAgo = subDays(today, 7);
+import { History } from "./history/history";
 
 export const SideBar: React.FC = () => {
 	const [isOpen, setIsOpen] = useState(true);
 
-	const { chatHistory } = useChatHistoryStore();
 	const { setCurrentChatId, currentChatId } = useCurrentChatIdStore();
 
 	useEffect(() => {
@@ -24,55 +18,6 @@ export const SideBar: React.FC = () => {
 			setIsOpen(false);
 		}
 	}, [currentChatId]);
-
-	const chatsToday = useMemo(
-		() =>
-			chatHistory.filter(
-				(chat) =>
-					new Date(chat.timestamp).toDateString() === today.toDateString(),
-			),
-		[chatHistory, today],
-	);
-
-	const chatsLastSevenDays = useMemo(
-		() =>
-			chatHistory.filter(
-				(chat) =>
-					new Date(chat.timestamp) >= sevenDaysAgo &&
-					!chatsToday.includes(chat),
-			),
-		[chatHistory, sevenDaysAgo, chatsToday],
-	);
-
-	const chatsOlderThanSevenDays = useMemo(
-		() =>
-			chatHistory.filter(
-				(chat) =>
-					!chatsLastSevenDays.includes(chat) && !chatsToday.includes(chat),
-			),
-		[chatHistory, chatsLastSevenDays, chatsToday],
-	);
-
-	const chatGroups = useMemo(() => {
-		const groups = [];
-
-		if (chatsToday.length > 0) {
-			groups.push({ label: "Heute", chats: chatsToday });
-		}
-
-		if (chatsLastSevenDays.length > 0) {
-			groups.push({ label: "Letzte 7 Tage", chats: chatsLastSevenDays });
-		}
-
-		if (chatsOlderThanSevenDays.length > 0) {
-			groups.push({
-				label: "Älter als 7 Tage",
-				chats: chatsOlderThanSevenDays,
-			});
-		}
-
-		return groups;
-	}, [chatsToday, chatsLastSevenDays, chatsOlderThanSevenDays]);
 
 	const toggleIsSidebarOpenLabel = isOpen
 		? "Seitenleiste schließen"
@@ -115,11 +60,7 @@ export const SideBar: React.FC = () => {
 
 				<Navigation />
 
-				<div className={`flex flex-col gap-4`}>
-					{chatGroups.map(({ label, chats }) => (
-						<HistoryGroup key={label} label={label} chats={chats} />
-					))}
-				</div>
+				<History />
 
 				<div className={`px-5 text-sm text-dark-blue`}>
 					Der Chat Verlauf wird lokal gespeichert und ist somit nicht für andere
