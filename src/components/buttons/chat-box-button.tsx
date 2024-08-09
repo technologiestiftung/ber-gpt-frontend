@@ -13,7 +13,7 @@ export const ChatBoxButton: React.FC<ButtonProps> = ({
 }) => {
 	return (
 		<button
-			className={`text-md min-h-[135px]  my-1.5 flex h-fit w-fit items-start justify-center rounded-sm  px-3 py-4 font-normal text-dark-blue  disabled:bg-light-grey disabled:font-normal disabled:text-mid-grey ${
+			className={`text-md min-h-[135px]  my-1.5 flex h-fit w-fit items-start justify-center rounded-sm  px-3 py-4 font-normal text-darker-grey  disabled:bg-light-grey disabled:font-normal disabled:text-mid-grey ${
 				className
 			}`}
 			disabled={disabled}
