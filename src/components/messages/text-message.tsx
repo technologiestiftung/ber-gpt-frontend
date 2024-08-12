@@ -47,25 +47,25 @@ export const TextMessage: React.FC<TextMessageProps> = ({
 					>
 						{content === "" ? "..." : content}
 					</ReactMarkdown>
-					{!isLoading && (
-						<div
-							className={`flex flex-row items-center justify-between gap-3 self-start px-3 py-2 text-dark-blue ${role === "assistant" ? "" : "hidden"}`}
-						>
-							{isLastMessageOfChat(messageId) && (
-								<button
-									// prettier-ignore
-									className="text-dark-blue hover:text-mid-blue disabled:text-red-400"
-									aria-label="Neu generieren"
-									title="Neu generieren"
-									onClick={onRefresh}
-									disabled={isLoading}
-								>
-									<RefreshIcon />
-								</button>
-							)}
-							<CopyToClipboardButton generatedAnswer={content} />
-						</div>
-					)}
+					<div
+						className={`flex flex-row items-center justify-between gap-3 self-start px-3 py-2 text-dark-blue 
+							${role === "assistant" ? "" : "hidden"} 
+							${isLoading ? "opacity-0" : "opacity-100"}`}
+					>
+						{isLastMessageOfChat(messageId) && (
+							<button
+								// prettier-ignore
+								className="text-dark-blue hover:text-mid-blue disabled:text-red-400"
+								aria-label="Neu generieren"
+								title="Neu generieren"
+								onClick={onRefresh}
+								disabled={isLoading}
+							>
+								<RefreshIcon />
+							</button>
+						)}
+						<CopyToClipboardButton generatedAnswer={content} />
+					</div>
 				</div>
 			</div>
 
