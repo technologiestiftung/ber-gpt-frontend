@@ -59,7 +59,7 @@ export const EmailForm: React.FC = () => {
 		},
 	];
 
-	const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+	const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 		setIsEmailFormExpanded(false);
 
 		e.preventDefault();
@@ -79,7 +79,7 @@ export const EmailForm: React.FC = () => {
 
 		saveMessage(emailPromt.toString());
 
-		streamChatResponse().catch(console.error);
+		await streamChatResponse().catch(console.error);
 
 		setIsLoading(false);
 	};

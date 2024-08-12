@@ -7,6 +7,7 @@ import { streamChatResponse } from "../../store/api";
 import { useChatHistoryStore } from "../../store/chat-history-store";
 import { EmailChatButtons } from "../email/email-chat-buttons";
 import { getStorageKey } from "../../store/storage";
+import { useIsLoadingStore } from "../../store/is-loading-store";
 
 interface TextMessageProps {
 	role: string;
@@ -21,9 +22,13 @@ export const TextMessage: React.FC<TextMessageProps> = ({
 }) => {
 	const { removeMessageFromChat, isLastMessageOfChat } = useChatHistoryStore();
 
-	const onRefresh = () => {
+	const { isLoading, setIsLoading } = useIsLoadingStore();
+
+	const onRefresh = async () => {
+		setIsLoading(true);
 		removeMessageFromChat(messageId);
-		streamChatResponse().catch(console.error);
+		await streamChatResponse().catch(console.error);
+		setIsLoading(false);
 	};
 
 	return (
@@ -42,22 +47,25 @@ export const TextMessage: React.FC<TextMessageProps> = ({
 					>
 						{content === "" ? "..." : content}
 					</ReactMarkdown>
-					<div
-						className={`flex flex-row items-center justify-between gap-3 self-start px-3 py-2 text-dark-blue ${role === "assistant" ? "" : "hidden"}`}
-					>
-						{isLastMessageOfChat(messageId) && (
-							<button
-								// prettier-ignore
-								className="text-dark-blue hover:text-mid-blue"
-								aria-label="Neu generieren"
-								title="Neu generieren"
-								onClick={onRefresh}
-							>
-								<RefreshIcon />
-							</button>
-						)}
-						<CopyToClipboardButton generatedAnswer={content} />
-					</div>
+					{!isLoading && (
+						<div
+							className={`flex flex-row items-center justify-between gap-3 self-start px-3 py-2 text-dark-blue ${role === "assistant" ? "" : "hidden"}`}
+						>
+							{isLastMessageOfChat(messageId) && (
+								<button
+									// prettier-ignore
+									className="text-dark-blue hover:text-mid-blue disabled:text-red-400"
+									aria-label="Neu generieren"
+									title="Neu generieren"
+									onClick={onRefresh}
+									disabled={isLoading}
+								>
+									<RefreshIcon />
+								</button>
+							)}
+							<CopyToClipboardButton generatedAnswer={content} />
+						</div>
+					)}
 				</div>
 			</div>
 

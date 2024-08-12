@@ -11,7 +11,7 @@ const { setIsLoading } = useIsLoadingStore.getState();
 const { reset: resetFiles, saveFilesAsMessages } = useInputFileStore.getState();
 const { saveMessage } = useChatHistoryStore.getState();
 
-function onSubmit(event: React.FormEvent<HTMLFormElement>) {
+async function onSubmit(event: React.FormEvent<HTMLFormElement>) {
 	event.preventDefault();
 	setIsLoading(true);
 
@@ -30,7 +30,7 @@ function onSubmit(event: React.FormEvent<HTMLFormElement>) {
 
 	saveMessage(message.toString());
 
-	streamChatResponse().catch(console.error);
+	await streamChatResponse().catch(console.error);
 
 	setIsLoading(false);
 }
