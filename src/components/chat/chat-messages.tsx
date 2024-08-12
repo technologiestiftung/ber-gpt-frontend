@@ -41,11 +41,21 @@ export const ChatMessages: React.FC = () => {
 					passive: true,
 				},
 			);
+			messagesContainer.addEventListener(
+				"touchmove",
+				() => setIsUserScrolling(true),
+				{
+					passive: true,
+				},
+			);
 		}
 
 		return () => {
 			if (messagesContainer) {
 				messagesContainer.removeEventListener("wheel", () =>
+					setIsUserScrolling(false),
+				);
+				messagesContainer.removeEventListener("touchmove", () =>
 					setIsUserScrolling(false),
 				);
 			}
