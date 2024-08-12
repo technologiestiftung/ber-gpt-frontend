@@ -38,7 +38,7 @@ export const EmailForm: React.FC = () => {
 	const [isEmailFormExpanded, setIsEmailFormExpanded] = useState(isDesktop);
 	const { isLoading } = useIsLoadingStore();
 
-	const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+	const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 		setIsEmailFormExpanded(false);
 
 		e.preventDefault();
@@ -58,7 +58,7 @@ export const EmailForm: React.FC = () => {
 
 		saveMessage(emailPrompt.toString());
 
-		streamChatResponse().catch(console.error);
+		await streamChatResponse().catch(console.error);
 
 		setIsLoading(false);
 	};
@@ -80,7 +80,7 @@ export const EmailForm: React.FC = () => {
 						>
 							Mailanforderungen{" "}
 							<span
-								className={`transition mt-0.5 ${isEmailFormExpanded ? "rotate-90 group-hover:rotate-180" : "rotate-180 group-hover:rotate-90"} `}
+								className={`transition mt-0.5 ${isEmailFormExpanded ? "rotate-180 group-hover:rotate-90" : "rotate-90 group-hover:rotate-180"}`}
 							>
 								<ChevronUp />
 							</span>
@@ -98,7 +98,7 @@ export const EmailForm: React.FC = () => {
 					</div>
 					<div className="flex items-center w-full bg-light-grey py-3 px-6 gap-4">
 						<textarea
-							className="w-full bg-light-grey focus:outline-none"
+							className="w-full bg-light-grey focus:outline-none max-h-72"
 							placeholder="Beschreibe was inhaltlich in der Mail stehen soll"
 							rows={2}
 							name="message"
