@@ -33,7 +33,7 @@ export const TextMessage: React.FC<TextMessageProps> = ({
 
 	return (
 		<div
-			className={`flex flex-col ${role === "user" ? "self-end shadow-md max-w-[85%] lg:max-w-[80%]" : "self-start"} pb-4`}
+			className={`flex flex-col ${role === "user" ? "self-end shadow-md max-w-[85%] lg:max-w-[80%]" : "self-start pb-4"}`}
 		>
 			<div className={`flex flex-row`}>
 				<div
