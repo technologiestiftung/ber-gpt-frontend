@@ -1,0 +1,116 @@
+import React, { useState } from "react";
+import { SendIcon } from "../../icons/send-icon";
+import { useIsLoadingStore } from "../../../store/is-loading-store";
+import { streamChatResponse } from "../../../store/api";
+import { useChatHistoryStore } from "../../../store/chat-history-store";
+import { ChevronUp } from "../../icons/chevron-up";
+import { RadioGroups } from "./radio-groups";
+import { PreviousEmail } from "./previous-email";
+
+const { setIsLoading } = useIsLoadingStore.getState();
+const { saveMessage } = useChatHistoryStore.getState();
+
+function createEmailPrompt(formData: FormData) {
+	const hasPreviousMail = formData.get("previousMail") !== "";
+	const emailPrompt = `**Anforderungen**
+
+Schreibe mit eine E-Mail für eine:n **${formData.get("recipient")}**:
+
+Die E-Mail soll **${formData.get("scope")}** und **${formData.get("formality")}** formuliert sein.
+
+${
+	hasPreviousMail
+		? `**Gehe dabei auf folgende vorherige E-Mail ein:**
+
+*${formData.get("previousMail")}*`
+		: ""
+}
+
+**Folgendes sollte in der ${hasPreviousMail ? "Antwort" : "Mail"} beachtet werden:**
+
+${formData.get("message")}`;
+
+	return emailPrompt;
+}
+
+export const EmailForm: React.FC = () => {
+	const isDesktop = window.innerWidth > 767;
+	const [isEmailFormExpanded, setIsEmailFormExpanded] = useState(isDesktop);
+	const { isLoading } = useIsLoadingStore();
+
+	const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+		setIsEmailFormExpanded(false);
+
+		e.preventDefault();
+		setIsLoading(true);
+
+		const formData = new FormData(e.currentTarget);
+		e.currentTarget.reset();
+
+		const emailPrompt = createEmailPrompt(formData);
+
+		const message = formData.get("message");
+		if (!message) {
+			console.error("The input 'message' from the form is missing.");
+			setIsLoading(false);
+			return;
+		}
+
+		saveMessage(emailPrompt.toString());
+
+		streamChatResponse().catch(console.error);
+
+		setIsLoading(false);
+	};
+
+	return (
+		<>
+			<form
+				className="flex w-full justify-center px-5 pb-3 bg-transparent"
+				onSubmit={onSubmit}
+			>
+				<div
+					className={`flex flex-col max-w-[640px] grow bg-transparent ${isEmailFormExpanded && "gap-y-3 sm:gap-y-8"}`}
+				>
+					<div className="bg-transparent">
+						<button
+							className="group flex w-full items-center gap-2 pb-2 pt-2 bg-gradient-to-t from-white to-transparent shadow-[0px_0px_20px_20px_rgba(255,255,255,75)]"
+							type="button"
+							onClick={() => setIsEmailFormExpanded(!isEmailFormExpanded)}
+						>
+							Mailanforderungen{" "}
+							<span
+								className={`transition mt-0.5 ${isEmailFormExpanded ? "rotate-90 group-hover:rotate-180" : "rotate-180 group-hover:rotate-90"} `}
+							>
+								<ChevronUp />
+							</span>
+						</button>
+						{isEmailFormExpanded && (
+							<div className="flex flex-col gap-y-3 sm:flex-row sm:gap-x-5">
+								<div className="flex flex-col bg-light-grey w-full py-6 px-6 gap-y-5">
+									<RadioGroups />
+								</div>
+								<div className="flex flex-col bg-light-grey w-full py-6 px-6 gap-y-5">
+									<PreviousEmail />
+								</div>
+							</div>
+						)}
+					</div>
+					<div className="flex items-center w-full bg-light-grey py-3 px-6 gap-4">
+						<textarea
+							className="w-full bg-light-grey focus:outline-none"
+							placeholder="Beschreibe was inhaltlich in der Mail stehen soll"
+							rows={2}
+							name="message"
+							required
+							onFocus={() => setIsEmailFormExpanded(true)}
+						/>
+						<button type="submit" disabled={isLoading}>
+							<SendIcon className="w-8 h-8 text-darker-grey hover:text-grey" />
+						</button>
+					</div>
+				</div>
+			</form>
+		</>
+	);
+};

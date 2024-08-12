@@ -18,7 +18,9 @@ export const UploadedFiles: React.FC = () => {
 						>
 							{extractionStatus === "pending" && <SpinnerIcon />}
 							{extractionStatus === "error" && "❌"}
-							{extractionStatus === "success" && <PDFLargeIcon />}
+							{extractionStatus === "success" && (
+								<PDFLargeIcon className="text-darker-grey" />
+							)}
 
 							<div className="flex flex-col">
 								<span>{name.replace(".pdf", "")}</span>

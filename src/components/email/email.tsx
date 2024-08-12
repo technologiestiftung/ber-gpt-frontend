@@ -1,7 +1,7 @@
 import React from "react";
 import { GetStartedMail } from "./get-started-mail";
 import { useCurrentChatIdStore } from "../../store/current-chat-id-store";
-import { EmailForm } from "./email-form";
+import { EmailForm } from "./email-form/email-form";
 import { EmailMessages } from "./email-messages";
 import { useChatHistoryStore } from "../../store/chat-history-store";
 
