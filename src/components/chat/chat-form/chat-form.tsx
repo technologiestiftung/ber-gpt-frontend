@@ -6,14 +6,17 @@ import { useIsLoadingStore } from "../../../store/is-loading-store";
 import { useInputFileStore } from "../../../store/input-file-store";
 import { useChatHistoryStore } from "../../../store/chat-history-store";
 import { streamChatResponse } from "../../../store/api";
+import { useIsUserScrollingStore } from "../../../store/is-user-scrolling-store";
 
 const { setIsLoading } = useIsLoadingStore.getState();
 const { reset: resetFiles, saveFilesAsMessages } = useInputFileStore.getState();
 const { saveMessage } = useChatHistoryStore.getState();
+const { setIsUserScrolling } = useIsUserScrollingStore.getState();
 
 async function onSubmit(event: React.FormEvent<HTMLFormElement>) {
 	event.preventDefault();
 	setIsLoading(true);
+	setIsUserScrolling(false);
 
 	const formData = new FormData(event.currentTarget);
 	event.currentTarget.reset();

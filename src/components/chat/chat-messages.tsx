@@ -4,10 +4,12 @@ import { useCurrentChatIdStore } from "../../store/current-chat-id-store";
 import { FileMessage } from "../messages/file-message";
 import { TextMessage } from "../messages/text-message";
 import { Message } from "../../store/types";
+import { useIsUserScrollingStore } from "../../store/is-user-scrolling-store";
 
 export const ChatMessages: React.FC = () => {
 	const { getChat } = useChatHistoryStore();
 	const { currentChatId } = useCurrentChatIdStore();
+	const { isUserScrolling, setIsUserScrolling } = useIsUserScrollingStore();
 
 	const messages: Message[] = getChat(currentChatId)?.messages || [];
 
@@ -25,7 +27,29 @@ export const ChatMessages: React.FC = () => {
 	};
 
 	useEffect(() => {
-		scrollToBottom();
+		if (!isUserScrolling) {
+			scrollToBottom();
+		}
+
+		const messagesContainer = messageContainerRef.current;
+
+		if (messagesContainer) {
+			messagesContainer.addEventListener(
+				"wheel",
+				() => setIsUserScrolling(true),
+				{
+					passive: true,
+				},
+			);
+		}
+
+		return () => {
+			if (messagesContainer) {
+				messagesContainer.removeEventListener("wheel", () =>
+					setIsUserScrolling(false),
+				);
+			}
+		};
 	}, [messages]);
 
 	return (

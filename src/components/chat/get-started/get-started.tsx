@@ -3,6 +3,7 @@ import { ChatPromptButton } from "../../buttons/chat-prompt-button";
 import { BaerIcon } from "../../icons/bear-icon";
 import { useChatHistoryStore } from "../../../store/chat-history-store";
 import { useIsLoadingStore } from "../../../store/is-loading-store";
+import { useIsUserScrollingStore } from "../../../store/is-user-scrolling-store";
 import { streamChatResponse } from "../../../store/api";
 import { trackInteraction } from "../../../analytics/matomo";
 import { GetStartedNavLinks } from "./get-started-nav-links";
@@ -60,6 +61,7 @@ export const GetStarted: React.FC = () => {
 
 async function onClick(value: string) {
 	useIsLoadingStore.getState().setIsLoading(true);
+	useIsUserScrollingStore.getState().setIsUserScrolling(false);
 
 	trackInteraction({ eventAction: "get-started-click", eventName: value });
 	useChatHistoryStore.getState().createChat({ content: value });
