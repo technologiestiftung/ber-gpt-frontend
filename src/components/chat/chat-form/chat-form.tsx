@@ -1,6 +1,5 @@
 import React from "react";
 import { FileUploadButton } from "./file-upload-button";
-import { PrimaryButton } from "../../buttons/primary-button";
 import { SendIcon } from "../../icons/send-icon";
 import { useIsLoadingStore } from "../../../store/is-loading-store";
 import { useInputFileStore } from "../../../store/input-file-store";
@@ -48,7 +47,7 @@ export const ChatForm: React.FC = () => {
 
 	return (
 		<form
-			className={`flex items-center gap-4 rounded-sm px-4 py-2 has-[:focus]:border-blue-500 md:shadow-none`}
+			className={`flex items-center gap-4 px-6 py-3 has-[:focus]:border-blue-500`}
 			onSubmit={onSubmit}
 		>
 			<FileUploadButton />
@@ -60,20 +59,13 @@ export const ChatForm: React.FC = () => {
 				required
 				placeholder="Wie kann ich Ihnen helfen?"
 			/>
-			<PrimaryButton
-				className="hidden md:flex"
-				label={
-					<div className="flex flex-row items-center gap-2">
-						<SendIcon />
-						Senden
-					</div>
-				}
+
+			<button
+				type="submit"
 				disabled={isLoading}
-				ariaLabel="Nachricht abschicken"
-				type={"submit"}
-			/>
-			<button className="flex md:hidden" disabled={isLoading} type="submit">
-				<SendIcon className="h-7 w-7 text-dark-blue hover:text-light-blue" />
+				className="text-darker-grey hover:text-grey disabled:hover:text-light-grey"
+			>
+				<SendIcon className="w-8 h-8" />
 			</button>
 		</form>
 	);

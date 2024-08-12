@@ -95,13 +95,13 @@ export const SideBar: React.FC = () => {
 
 					<History />
 
-					<div className={`px-5 text-sm text-dark-blue`}>
-						Der Chat-Verlauf wird lokal gespeichert und ist somit nicht für
+					<div className={`px-5 text-sm text-darker-grey`}>
+						Der Chat-Verlauf wird nur lokal gespeichert und ist somit nicht für
 						andere Personen sichtbar.
 					</div>
 				</div>
 				<button
-					className={`px-5 w-fit text-dark-blue hover:text-light-blue ${isOpen ? "flex" : "hidden"}`}
+					className={`px-5 w-fit text-darker-grey hover:text-grey ${isOpen ? "flex" : "hidden"}`}
 					onClick={() =>
 						(
 							document.getElementById("faq-dialog") as HTMLDialogElement

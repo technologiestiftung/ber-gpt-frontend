@@ -12,6 +12,7 @@ export default {
 				"light-grey": "#ECECEC",
 				"mid-grey": "#D7D7D7",
 				"sidebar-grey": "#F7F7F7",
+				grey: "#666",
 				"dark-grey": "#999999;",
 				"darker-grey": "#333333",
 				"ber-yellow": "#FFE612",
