@@ -6,6 +6,7 @@ import { useChatHistoryStore } from "../../../store/chat-history-store";
 import { ChevronUp } from "../../icons/chevron-up";
 import { RadioGroups } from "./radio-groups";
 import { PreviousEmail } from "./previous-email";
+import { useIsUserScrollingStore } from "../../../store/is-user-scrolling-store";
 
 const { setIsLoading } = useIsLoadingStore.getState();
 const { saveMessage } = useChatHistoryStore.getState();
@@ -37,12 +38,14 @@ export const EmailForm: React.FC = () => {
 	const isDesktop = window.innerWidth > 767;
 	const [isEmailFormExpanded, setIsEmailFormExpanded] = useState(isDesktop);
 	const { isLoading } = useIsLoadingStore();
+	const { setIsUserScrolling } = useIsUserScrollingStore();
 
 	const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 		setIsEmailFormExpanded(false);
 
 		e.preventDefault();
 		setIsLoading(true);
+		setIsUserScrolling(false);
 
 		const formData = new FormData(e.currentTarget);
 		e.currentTarget.reset();

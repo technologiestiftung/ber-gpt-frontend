@@ -3,10 +3,12 @@ import { useCurrentChatIdStore } from "../../store/current-chat-id-store";
 import { Message } from "../../store/types";
 import { TextMessage } from "../messages/text-message";
 import { useChatHistoryStore } from "../../store/chat-history-store";
+import { useIsUserScrollingStore } from "../../store/is-user-scrolling-store";
 
 export const EmailMessages: React.FC = () => {
 	const { getChat } = useChatHistoryStore();
 	const { currentChatId } = useCurrentChatIdStore();
+	const { isUserScrolling, setIsUserScrolling } = useIsUserScrollingStore();
 
 	const messages: Message[] = getChat(currentChatId)?.messages || [];
 
@@ -24,7 +26,39 @@ export const EmailMessages: React.FC = () => {
 	};
 
 	useEffect(() => {
-		scrollToBottom();
+		if (!isUserScrolling) {
+			scrollToBottom();
+		}
+
+		const messagesContainer = messageContainerRef.current;
+
+		if (messagesContainer) {
+			messagesContainer.addEventListener(
+				"wheel",
+				() => setIsUserScrolling(true),
+				{
+					passive: true,
+				},
+			);
+			messagesContainer.addEventListener(
+				"touchmove",
+				() => setIsUserScrolling(true),
+				{
+					passive: true,
+				},
+			);
+		}
+
+		return () => {
+			if (messagesContainer) {
+				messagesContainer.removeEventListener("wheel", () =>
+					setIsUserScrolling(false),
+				);
+				messagesContainer.removeEventListener("touchmove", () =>
+					setIsUserScrolling(false),
+				);
+			}
+		};
 	}, [messages]);
 
 	return (

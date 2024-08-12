@@ -3,6 +3,7 @@ import { SecondaryButton } from "../buttons/secondary-button";
 import { useIsLoadingStore } from "../../store/is-loading-store";
 import { useChatHistoryStore } from "../../store/chat-history-store";
 import { streamChatResponse } from "../../store/api";
+import { useIsUserScrollingStore } from "../../store/is-user-scrolling-store";
 
 const formatButtons = [
 	{
@@ -22,6 +23,7 @@ const formatButtons = [
 
 async function onClick(value: string) {
 	useIsLoadingStore.getState().setIsLoading(true);
+	useIsUserScrollingStore.getState().setIsUserScrolling(false);
 
 	useChatHistoryStore.getState().saveMessage(value);
 
@@ -32,7 +34,10 @@ async function onClick(value: string) {
 
 export const EmailChatButtons: React.FC = () => {
 	return (
-		<div className="flex w-fit gap-2 border-t border-mid-grey ml-11 mt-2 pt-2 md:gap-4">
+		<div
+			className={`flex w-fit gap-2 border-t border-mid-grey ml-11 mt-2 pt-2 md:gap-4 
+		${useIsLoadingStore.getState().isLoading ? "opacity-0" : "opacity-100"}`}
+		>
 			{formatButtons.map(({ label, value }) => (
 				<SecondaryButton
 					key={label}
