@@ -105,8 +105,12 @@ export const EmailForm: React.FC = () => {
 							required
 							onFocus={() => setIsEmailFormExpanded(true)}
 						/>
-						<button type="submit" disabled={isLoading}>
-							<SendIcon className="w-8 h-8 text-darker-grey hover:text-grey" />
+						<button
+							type="submit"
+							disabled={isLoading}
+							className="text-darker-grey hover:text-grey disabled:hover:text-darker-grey"
+						>
+							<SendIcon className="w-8 h-8" />
 						</button>
 					</div>
 				</div>
