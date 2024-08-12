@@ -22,8 +22,8 @@ const startingPrompts = [
 
 export const GetStarted: React.FC = () => {
 	return (
-		<div className="flex w-full justify-center overflow-auto pb-2 text-darker-grey">
-			<div className="flex md:w-[640px] flex-col items-center justify-between px-5 md:px-0">
+		<div className="flex w-full justify-center overflow-y-auto overflow-x-hidden pb-2 text-darker-grey">
+			<div className="flex w-full h-fit md:w-[640px] flex-col items-center justify-between px-5 md:px-0">
 				<div className="flex min-h-[50px] w-[50px] items-center justify-center border border-black bg-white md:min-h-[60px] md:w-[60px]">
 					<BaerIcon className="h-8 w-8 md:h-10 md:w-10" />
 				</div>
@@ -38,14 +38,13 @@ export const GetStarted: React.FC = () => {
 
 				<GetStartedNavLinks />
 
-				<h2 className="pb-2 pt-8  text-xl md:text-2xl font-semibold">Chat</h2>
+				<h2 className="pb-2 pt-8 text-xl md:text-2xl font-semibold">Chat</h2>
 				<p className="pb-2 pt-2 md:text-base text-sm text-center">
 					Sie können BärGPT direkt nutzen, indem Sie Ihre Frage oder Ihr
 					Anliegen in das Chatfenster unten eintippen oder direkt eine Frage
 					auswählen:
 				</p>
-
-				<div className="flex w-full flex-row flex-wrap md:flex-nowrap justify-start md:justify-center gap-x-4">
+				<div className="flex flex-row w-full overflow-x-auto px-2 md:px-0 self-start sm:self-center sm:justify-center gap-x-4">
 					{startingPrompts.map((prompt) => (
 						<ChatPromptButton
 							key={prompt.value}
