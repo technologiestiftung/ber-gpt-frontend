@@ -29,41 +29,37 @@ export const ChatMessages: React.FC = () => {
 		}
 	};
 
-	useEffect(() => {
-		scrollToBottom();
-	}, [messages]);
+	const handleScroll = () => {
+		const messagesContainer = messageContainerRef.current;
+
+		if (
+			messagesContainer &&
+			messagesContainer.scrollTop + messagesContainer.clientHeight >=
+				messagesContainer.scrollHeight - 10
+		) {
+			sethasUserScrolled(false);
+		} else {
+			sethasUserScrolled(true);
+		}
+	};
 
 	useEffect(() => {
 		const messagesContainer = messageContainerRef.current;
 
 		if (messagesContainer) {
-			messagesContainer.addEventListener(
-				"wheel",
-				() => sethasUserScrolled(true),
-				{
-					passive: true,
-				},
-			);
-			messagesContainer.addEventListener(
-				"touchmove",
-				() => sethasUserScrolled(true),
-				{
-					passive: true,
-				},
-			);
+			messagesContainer.addEventListener("scroll", handleScroll);
 		}
 
 		return () => {
 			if (messagesContainer) {
-				messagesContainer.removeEventListener("wheel", () =>
-					sethasUserScrolled(false),
-				);
-				messagesContainer.removeEventListener("touchmove", () =>
-					sethasUserScrolled(false),
-				);
+				messagesContainer.removeEventListener("scroll", handleScroll);
 			}
 		};
 	}, []);
+
+	useEffect(() => {
+		scrollToBottom();
+	}, [messages]);
 
 	return (
 		<div
