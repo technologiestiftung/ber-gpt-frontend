@@ -4,12 +4,12 @@ import { useCurrentChatIdStore } from "../../store/current-chat-id-store";
 import { FileMessage } from "../messages/file-message";
 import { TextMessage } from "../messages/text-message";
 import { Message } from "../../store/types";
-import { useIsUserScrollingStore } from "../../store/is-user-scrolling-store";
+import { useHasUserScrolledStore } from "../../store/has-user-scrolled-store";
 
 export const ChatMessages: React.FC = () => {
 	const { getChat } = useChatHistoryStore();
 	const { currentChatId } = useCurrentChatIdStore();
-	const { isUserScrolling, setIsUserScrolling } = useIsUserScrollingStore();
+	const { sethasUserScrolled } = useHasUserScrolledStore();
 
 	const messages: Message[] = getChat(currentChatId)?.messages || [];
 
@@ -18,7 +18,10 @@ export const ChatMessages: React.FC = () => {
 	const scrollToBottom = () => {
 		const messagesContainer = messageContainerRef.current;
 
-		if (messagesContainer) {
+		if (
+			messagesContainer &&
+			!useHasUserScrolledStore.getState().hasUserScrolled
+		) {
 			messagesContainer.scrollTo({
 				top: messagesContainer.scrollHeight,
 				behavior: "smooth",
@@ -27,23 +30,23 @@ export const ChatMessages: React.FC = () => {
 	};
 
 	useEffect(() => {
-		if (!isUserScrolling) {
-			scrollToBottom();
-		}
+		scrollToBottom();
+	}, [messages]);
 
+	useEffect(() => {
 		const messagesContainer = messageContainerRef.current;
 
 		if (messagesContainer) {
 			messagesContainer.addEventListener(
 				"wheel",
-				() => setIsUserScrolling(true),
+				() => sethasUserScrolled(true),
 				{
 					passive: true,
 				},
 			);
 			messagesContainer.addEventListener(
 				"touchmove",
-				() => setIsUserScrolling(true),
+				() => sethasUserScrolled(true),
 				{
 					passive: true,
 				},
@@ -53,14 +56,14 @@ export const ChatMessages: React.FC = () => {
 		return () => {
 			if (messagesContainer) {
 				messagesContainer.removeEventListener("wheel", () =>
-					setIsUserScrolling(false),
+					sethasUserScrolled(false),
 				);
 				messagesContainer.removeEventListener("touchmove", () =>
-					setIsUserScrolling(false),
+					sethasUserScrolled(false),
 				);
 			}
 		};
-	}, [messages]);
+	}, []);
 
 	return (
 		<div

@@ -8,7 +8,7 @@ import { useChatHistoryStore } from "../../store/chat-history-store";
 import { EmailChatButtons } from "../email/email-chat-buttons";
 import { getStorageKey } from "../../store/storage";
 import { useIsLoadingStore } from "../../store/is-loading-store";
-import { useIsUserScrollingStore } from "../../store/is-user-scrolling-store";
+import { useHasUserScrolledStore } from "../../store/has-user-scrolled-store";
 
 interface TextMessageProps {
 	role: string;
@@ -24,11 +24,11 @@ export const TextMessage: React.FC<TextMessageProps> = ({
 	const { removeMessageFromChat, isLastMessageOfChat } = useChatHistoryStore();
 
 	const { isLoading, setIsLoading } = useIsLoadingStore();
-	const { setIsUserScrolling } = useIsUserScrollingStore();
+	const { sethasUserScrolled } = useHasUserScrolledStore();
 
 	const onRefresh = async () => {
 		setIsLoading(true);
-		setIsUserScrolling(false);
+		sethasUserScrolled(false);
 		removeMessageFromChat(messageId);
 		await streamChatResponse().catch(console.error);
 		setIsLoading(false);

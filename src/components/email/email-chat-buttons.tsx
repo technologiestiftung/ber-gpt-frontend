@@ -3,7 +3,7 @@ import { SecondaryButton } from "../buttons/secondary-button";
 import { useIsLoadingStore } from "../../store/is-loading-store";
 import { useChatHistoryStore } from "../../store/chat-history-store";
 import { streamChatResponse } from "../../store/api";
-import { useIsUserScrollingStore } from "../../store/is-user-scrolling-store";
+import { useHasUserScrolledStore } from "../../store/has-user-scrolled-store";
 
 const formatButtons = [
 	{
@@ -23,7 +23,7 @@ const formatButtons = [
 
 async function onClick(value: string) {
 	useIsLoadingStore.getState().setIsLoading(true);
-	useIsUserScrollingStore.getState().setIsUserScrolling(false);
+	useHasUserScrolledStore.getState().sethasUserScrolled(false);
 
 	useChatHistoryStore.getState().saveMessage(value);
 
