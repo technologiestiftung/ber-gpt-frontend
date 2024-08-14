@@ -8,7 +8,7 @@ import { useHasUserScrolledStore } from "../../store/has-user-scrolled-store";
 export const EmailMessages: React.FC = () => {
 	const { getChat } = useChatHistoryStore();
 	const { currentChatId } = useCurrentChatIdStore();
-	const { sethasUserScrolled } = useHasUserScrolledStore();
+	const { setHasUserScrolled } = useHasUserScrolledStore();
 
 	const messages: Message[] = getChat(currentChatId)?.messages || [];
 
@@ -31,28 +31,28 @@ export const EmailMessages: React.FC = () => {
 	const handleScroll = () => {
 		const messagesContainer = messageContainerRef.current;
 
-		if (
-			messagesContainer &&
-			messagesContainer.scrollTop + messagesContainer.clientHeight >=
-				messagesContainer.scrollHeight - 10
-		) {
-			sethasUserScrolled(false);
-		} else {
-			sethasUserScrolled(true);
+		if (messagesContainer) {
+			const isScrollPositionCloseToEnd =
+				messagesContainer.scrollTop + messagesContainer.clientHeight >=
+				messagesContainer.scrollHeight - 10;
+
+			isScrollPositionCloseToEnd
+				? setHasUserScrolled(false)
+				: setHasUserScrolled(true);
 		}
 	};
 
 	useEffect(() => {
 		const messagesContainer = messageContainerRef.current;
 
-		if (messagesContainer) {
-			messagesContainer.addEventListener("scroll", handleScroll);
+		if (!messagesContainer) {
+			return () => {};
 		}
 
+		messagesContainer.addEventListener("scroll", handleScroll);
+
 		return () => {
-			if (messagesContainer) {
-				messagesContainer.removeEventListener("scroll", handleScroll);
-			}
+			messagesContainer.removeEventListener("scroll", handleScroll);
 		};
 	}, []);
 

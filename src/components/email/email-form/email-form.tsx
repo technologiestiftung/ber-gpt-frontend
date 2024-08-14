@@ -38,14 +38,14 @@ export const EmailForm: React.FC = () => {
 	const isDesktop = window.innerWidth > 767;
 	const [isEmailFormExpanded, setIsEmailFormExpanded] = useState(isDesktop);
 	const { isLoading } = useIsLoadingStore();
-	const { sethasUserScrolled } = useHasUserScrolledStore();
+	const { setHasUserScrolled } = useHasUserScrolledStore();
 
 	const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 		setIsEmailFormExpanded(false);
 
 		e.preventDefault();
 		setIsLoading(true);
-		sethasUserScrolled(false);
+		setHasUserScrolled(false);
 
 		const formData = new FormData(e.currentTarget);
 		e.currentTarget.reset();

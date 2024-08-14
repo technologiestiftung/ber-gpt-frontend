@@ -10,12 +10,12 @@ import { useHasUserScrolledStore } from "../../../store/has-user-scrolled-store"
 const { setIsLoading } = useIsLoadingStore.getState();
 const { reset: resetFiles, saveFilesAsMessages } = useInputFileStore.getState();
 const { saveMessage } = useChatHistoryStore.getState();
-const { sethasUserScrolled } = useHasUserScrolledStore.getState();
+const { setHasUserScrolled } = useHasUserScrolledStore.getState();
 
 async function onSubmit(event: React.FormEvent<HTMLFormElement>) {
 	event.preventDefault();
 	setIsLoading(true);
-	sethasUserScrolled(false);
+	setHasUserScrolled(false);
 
 	const formData = new FormData(event.currentTarget);
 	event.currentTarget.reset();

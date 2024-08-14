@@ -61,7 +61,7 @@ export const GetStarted: React.FC = () => {
 
 async function onClick(value: string) {
 	useIsLoadingStore.getState().setIsLoading(true);
-	useHasUserScrolledStore.getState().sethasUserScrolled(false);
+	useHasUserScrolledStore.getState().setHasUserScrolled(false);
 
 	trackInteraction({ eventAction: "get-started-click", eventName: value });
 	useChatHistoryStore.getState().createChat({ content: value });

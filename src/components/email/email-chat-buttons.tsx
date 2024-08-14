@@ -23,7 +23,7 @@ const formatButtons = [
 
 async function onClick(value: string) {
 	useIsLoadingStore.getState().setIsLoading(true);
-	useHasUserScrolledStore.getState().sethasUserScrolled(false);
+	useHasUserScrolledStore.getState().setHasUserScrolled(false);
 
 	useChatHistoryStore.getState().saveMessage(value);
 

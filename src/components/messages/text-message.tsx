@@ -24,11 +24,11 @@ export const TextMessage: React.FC<TextMessageProps> = ({
 	const { removeMessageFromChat, isLastMessageOfChat } = useChatHistoryStore();
 
 	const { isLoading, setIsLoading } = useIsLoadingStore();
-	const { sethasUserScrolled } = useHasUserScrolledStore();
+	const { setHasUserScrolled } = useHasUserScrolledStore();
 
 	const onRefresh = async () => {
 		setIsLoading(true);
-		sethasUserScrolled(false);
+		setHasUserScrolled(false);
 		removeMessageFromChat(messageId);
 		await streamChatResponse().catch(console.error);
 		setIsLoading(false);
