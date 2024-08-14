@@ -32,15 +32,20 @@ export const ChatMessages: React.FC = () => {
 	const handleScroll = () => {
 		const messagesContainer = messageContainerRef.current;
 
-		if (messagesContainer) {
-			const isScrollPositionCloseToEnd =
-				messagesContainer.scrollTop + messagesContainer.clientHeight >=
-				messagesContainer.scrollHeight - 10;
-
-			isScrollPositionCloseToEnd
-				? setHasUserScrolled(false)
-				: setHasUserScrolled(true);
+		if (!messagesContainer) {
+			return;
 		}
+
+		const isScrollPositionCloseToEnd =
+			messagesContainer.scrollTop + messagesContainer.clientHeight >=
+			messagesContainer.scrollHeight - 10;
+
+		if (isScrollPositionCloseToEnd) {
+			setHasUserScrolled(false);
+			return;
+		}
+
+		setHasUserScrolled(true);
 	};
 
 	useEffect(() => {
