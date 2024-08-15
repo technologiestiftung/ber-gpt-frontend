@@ -45,7 +45,7 @@ export const SplashScreen: React.FC = () => {
 	return (
 		<div
 			ref={splashContainer}
-			className={`pointer-events-auto relative z-50 m-1 flex h-fit w-fit rounded-sm border border-mid-grey bg-white shadow-lg sm:mx-auto sm:my-10 sm:h-fit sm:w-[540px] text-darker-grey`}
+			className={`pointer-events-auto relative z-50 m-1 flex h-fit w-fit rounded-sm border border--grey bg-white shadow-lg sm:mx-auto sm:my-10 sm:h-fit sm:w-[540px] text-darker-grey`}
 		>
 			<div className="relative flex flex-col gap-6 rounded-sm p-8">
 				<div className="flex min-h-[63px] w-[63px] items-center justify-center bg-white border-black border">
@@ -59,7 +59,7 @@ export const SplashScreen: React.FC = () => {
 					BärGPT ist eine produktiv nutzbare KI-Testumgebung für Beschäftigte
 					der Berliner Landesverwaltung, bereitgestellt vom{" "}
 					<a
-						className="text-ber-link-grey underline hover:text-darker-grey"
+						className="text-ber-mid-grey underline hover:text-darker-grey"
 						href="https://www.citylab-berlin.org"
 					>
 						CityLAB Berlin
@@ -73,7 +73,7 @@ export const SplashScreen: React.FC = () => {
 					Hierzu werden wir in Zukunft regelmäßige Workshop-Formate anbieten und
 					freuen uns über Ideen und{" "}
 					<a
-						className="text-ber-link-grey underline hover:text-darker-grey"
+						className="text-ber-mid-grey underline hover:text-darker-grey"
 						href="https://citylabberlin.typeform.com/to/kCdnCgvC#product_id=baergpt"
 					>
 						Feedback
@@ -86,7 +86,7 @@ export const SplashScreen: React.FC = () => {
 						<a
 							key={link.text}
 							href={link.href}
-							className="text-ber-link-grey underline hover:text-darker-grey"
+							className="text-ber-mid-grey underline hover:text-darker-grey"
 						>
 							{link.text}
 						</a>
@@ -107,7 +107,7 @@ export const SplashScreen: React.FC = () => {
 			</div>
 
 			<button
-				className="absolute right-4 top-4 pb-2 text-darker-grey hover:text-dark-grey"
+				className="absolute right-4 top-4 pb-2 text-darker-grey hover:text-darker-grey"
 				onClick={hideSplashScreen}
 			>
 				<XIcon className="h-6 w-6" />

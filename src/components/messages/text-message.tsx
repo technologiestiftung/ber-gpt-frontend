@@ -36,7 +36,7 @@ export const TextMessage: React.FC<TextMessageProps> = ({
 
 	return (
 		<div
-			className={`flex flex-col ${role === "user" ? "self-end shadow-md max-w-[85%] lg:max-w-[80%]" : "self-start pb-4"}`}
+			className={`flex flex-col ${role === "user" ? "self-end max-w-[85%] lg:max-w-[80%]" : "self-start pb-4"}`}
 		>
 			<div className={`flex flex-row`}>
 				<div
@@ -46,12 +46,12 @@ export const TextMessage: React.FC<TextMessageProps> = ({
 				</div>
 				<div className="flex flex-col">
 					<ReactMarkdown
-						className={`markdown-container ${role === "user" ? "bg-lighter-grey py-2" : ""}`}
+						className={`markdown-container ${role === "user" ? "bg-ber-lighter-grey py-2" : ""}`}
 					>
 						{content === "" ? "..." : content}
 					</ReactMarkdown>
 					<div
-						className={`flex flex-row items-center justify-between gap-3 self-start px-3 py-2 text-dark-blue 
+						className={`flex flex-row items-center justify-between gap-3 self-start px-3 py-2 
 								${role === "assistant" ? "" : "hidden"}
 								${isLoading ? "opacity-0" : "opacity-100"}`}
 					>

@@ -49,7 +49,7 @@ export const SideBar: React.FC = () => {
 
 	return (
 		<div
-			className={`absolute md:relative top-0 pt-11 md:pt-0 left-0 z-20 ${
+			className={`absolute md:relative top-0 pt-11 md:pt-0 left-0 z-20 text-darker-grey ${
 				isOpen
 					? "w-full h-full backdrop-brightness-90 mh:min-w-72 md:w-72 md:backdrop-brightness-100"
 					: ""
@@ -59,7 +59,7 @@ export const SideBar: React.FC = () => {
 				ref={sidebarRef}
 				className={`flex flex-col z-30 justify-between overflow-hidden gap-2 overflow-x-hidden ${
 					isOpen
-						? "bg-sidebar-grey min-w-72 w-72 h-full pb-4"
+						? "bg-ber-lighter-grey min-w-72 w-72 h-full pb-4"
 						: "min-w-24 w-28 h-fit"
 				}`}
 				aria-label="Sidebar"

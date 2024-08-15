@@ -53,7 +53,7 @@ export const ChatForm: React.FC = () => {
 			<FileUploadButton />
 
 			<input
-				className="w-full bg-light-grey focus:outline-none"
+				className="w-full bg-ber-lighter-grey focus:outline-none"
 				name="message"
 				type="text"
 				required
@@ -63,7 +63,7 @@ export const ChatForm: React.FC = () => {
 			<button
 				type="submit"
 				disabled={isLoading}
-				className="text-darker-grey hover:text-grey disabled:hover:text-light-grey"
+				className="text-darker-grey hover:text-grey disabled:text-light-grey"
 			>
 				<SendIcon className="w-8 h-8" />
 			</button>

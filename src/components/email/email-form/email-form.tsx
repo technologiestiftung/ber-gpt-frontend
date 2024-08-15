@@ -90,18 +90,18 @@ export const EmailForm: React.FC = () => {
 						</button>
 						{isEmailFormExpanded && (
 							<div className="flex flex-col gap-y-3 sm:flex-row sm:gap-x-5">
-								<div className="flex flex-col bg-light-grey w-full py-6 px-6 gap-y-5">
+								<div className="flex flex-col bg-ber-lighter-grey w-full py-6 px-6 gap-y-5">
 									<RadioGroups />
 								</div>
-								<div className="flex flex-col bg-light-grey w-full py-6 px-6 gap-y-5">
+								<div className="flex flex-col bg-ber-lighter-grey w-full py-6 px-6 gap-y-5">
 									<PreviousEmail />
 								</div>
 							</div>
 						)}
 					</div>
-					<div className="flex items-center w-full bg-light-grey py-3 px-6 gap-4">
+					<div className="flex items-center w-full bg-ber-lighter-grey py-3 px-6 gap-4">
 						<textarea
-							className="w-full bg-light-grey focus:outline-none max-h-72"
+							className="w-full bg-ber-lighter-grey focus:outline-none max-h-72"
 							placeholder="Beschreibe was inhaltlich in der Mail stehen soll"
 							rows={2}
 							name="message"
