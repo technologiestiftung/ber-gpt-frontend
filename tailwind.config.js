@@ -23,6 +23,7 @@ export default {
 				"ber-green-darker": "#69B585",
 				"ber-pink": "#F5B3CB",
 				"ber-pink-darker": "#EF81A9",
+				"ber-link-grey": "#808080",
 				orange: "#F29301",
 			},
 			fontFamily: {
