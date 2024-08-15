@@ -12,10 +12,10 @@ export const Note: React.FC = () => {
 					>
 						<InfoIcon /> Bald verfügbar
 					</div>
-					<h1 className="text-3xl md:text-5xl font-bold text-darker-grey pb-4">
+					<h1 className="text-3xl md:text-5xl font-bold text-ber-darker-grey pb-4">
 						Vermerk erstellen
 					</h1>
-					<div className="md:text-xl text-darker-grey">
+					<div className="md:text-xl text-ber-darker-grey">
 						Der Vermerk-Assistent unterstützt Sie, aussagekräftige und leicht
 						verständliche Sachverhalte, Entscheidungen und Hinweise zu
 						formulieren.

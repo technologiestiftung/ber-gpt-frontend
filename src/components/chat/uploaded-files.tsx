@@ -19,7 +19,7 @@ export const UploadedFiles: React.FC = () => {
 							{extractionStatus === "pending" && <SpinnerIcon />}
 							{extractionStatus === "error" && "❌"}
 							{extractionStatus === "success" && (
-								<PDFLargeIcon className="text-darker-grey" />
+								<PDFLargeIcon className="text-ber-darker-grey" />
 							)}
 
 							<div className="flex flex-col">
@@ -33,7 +33,7 @@ export const UploadedFiles: React.FC = () => {
 										onClick={() => removeFile(id)}
 										className="absolute -right-7 -top-11 flex h-6 w-6 items-center justify-center rounded-full border border-gray-300 bg-gray-100 hover:bg-gray-200"
 									>
-										<XIcon className="h-2.5 w-2.5 text-darker-grey" />
+										<XIcon className="h-2.5 w-2.5 text-ber-darker-grey" />
 									</button>
 								</div>
 							)}

@@ -63,7 +63,7 @@ export const ChatForm: React.FC = () => {
 			<button
 				type="submit"
 				disabled={isLoading}
-				className="text-darker-grey hover:text-grey disabled:text-light-grey"
+				className="text-ber-darker-grey hover:text-grey disabled:text-light-grey"
 			>
 				<SendIcon className="w-8 h-8" />
 			</button>

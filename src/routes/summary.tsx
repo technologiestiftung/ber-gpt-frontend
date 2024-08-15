@@ -12,10 +12,10 @@ export const Summary: React.FC = () => {
 					>
 						<InfoIcon /> Bald verfügbar
 					</div>
-					<h1 className="text-3xl md:text-5xl font-bold text-darker-grey pb-4">
+					<h1 className="text-3xl md:text-5xl font-bold text-ber-darker-grey pb-4">
 						Text zusammenfassen
 					</h1>
-					<div className="md:text-xl text-darker-grey">
+					<div className="md:text-xl text-ber-darker-grey">
 						Mit der Funktion &quot;Zusammenfassen&quot; können Sie längere Texte
 						einfach auf das Wesentliche reduzieren. So schaffen Sie sich einen
 						schnellen Überblick über die Inhalte oder geben Kolleg:innen einen

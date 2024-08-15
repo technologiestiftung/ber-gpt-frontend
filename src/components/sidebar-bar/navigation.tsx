@@ -42,7 +42,7 @@ export const Navigation: React.FC = () => {
 					{navLinks.map((item) => (
 						<li key={item.label} className="w-full">
 							<a
-								className={`text-darker-grey flex-row flex gap-3 w-full rounded-sm px-4 py-2.5 hover:underline ${item.backgroundColor} ${
+								className={`text-ber-darker-grey flex-row flex gap-3 w-full rounded-sm px-4 py-2.5 hover:underline ${item.backgroundColor} ${
 									location === item.href ? "underline" : "no-underline"
 								}`}
 								href={item.href}

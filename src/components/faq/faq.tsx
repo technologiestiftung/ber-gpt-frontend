@@ -16,7 +16,7 @@ export const Faq: React.FC = () => {
 					BärGPT ist eine produktiv nutzbare KI-Testumgebung für Beschäftigte
 					der Berliner Landesverwaltung, bereitgestellt vom{" "}
 					<a
-						className="text-ber-mid-grey underline hover:text-darker-grey"
+						className="text-ber-mid-grey underline hover:text-ber-darker-grey"
 						href="https://www.citylab-berlin.org"
 					>
 						CityLAB Berlin
@@ -30,7 +30,7 @@ export const Faq: React.FC = () => {
 					Hierzu werden wir in Zukunft regelmäßige Workshop-Formate anbieten und
 					freuen uns über Ideen und{" "}
 					<a
-						className="text-ber-mid-grey underline hover:text-darker-grey"
+						className="text-ber-mid-grey underline hover:text-ber-darker-grey"
 						href="https://citylabberlin.typeform.com/to/kCdnCgvC#product_id=baergpt"
 					>
 						Feedback
@@ -66,7 +66,7 @@ export const Faq: React.FC = () => {
 				</div>
 
 				<button
-					className="text-darker-blue absolute right-4 top-4 pb-2 hover:text-darker-grey"
+					className="text-darker-blue absolute right-4 top-4 pb-2 hover:text-ber-darker-grey"
 					onClick={() => {
 						(
 							document.getElementById("faq-dialog") as HTMLDialogElement

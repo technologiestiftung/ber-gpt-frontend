@@ -11,7 +11,7 @@ export const ErrorToast: React.FC<ErrorToastProps> = ({ error }) => {
 	return (
 		<div className="absolute bottom-5 left-0 right-0 z-[1000000] px-4 text-sm md:bottom-10 md:text-lg">
 			<div className="relative flex w-full flex-row justify-center">
-				<div className="flex w-fit flex-row items-center justify-between gap-4 rounded-sm border-4 border-ber-orange bg-white px-6 py-4 text-[16px] font-semibold text-darker-grey shadow-md">
+				<div className="flex w-fit flex-row items-center justify-between gap-4 rounded-sm border-4 border-ber-orange bg-white px-6 py-4 text-[16px] font-semibold text-ber-darker-grey shadow-md">
 					<ErrorIcon />
 					{error}
 					<button className="pl-8" onClick={clearErrors}>

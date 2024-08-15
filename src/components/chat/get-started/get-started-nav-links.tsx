@@ -44,7 +44,7 @@ export const GetStartedNavLinks: React.FC = () => {
 						>
 							<div className="flex size-4">{item.icon}</div>
 							<a
-								className="text-darker-grey"
+								className="text-ber-darker-grey"
 								href={item.href}
 								onClick={() =>
 									trackInteraction({

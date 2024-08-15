@@ -13,8 +13,8 @@ export const PrimaryButton: React.FC<ButtonProps> = ({
 	return (
 		<button
 			className={`
-			my-2 flex min-h-[46px] w-fit items-center justify-center rounded-sm bg-ber-green px-4 text-lg
-			text-darker-grey outline--grey hover:bg-ber-green-darker hover:underline
+			my-2 flex min-h-[46px] w-fit items-center justify-center rounded-sm bg-ber-darker-grey px-4 text-lg
+			text-white outline--grey hover:bg-grey hover:underline
 			${className ? className : ""}`}
 			disabled={disabled}
 			onClick={onClick}

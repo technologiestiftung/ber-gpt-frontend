@@ -12,9 +12,9 @@ export const TagButton: React.FC<ButtonProps> = ({
 	return (
 		<button
 			className={`
-            rounded-full border border-darker-grey py-2 px-2.5 cursor-pointer
+            rounded-full border border-ber-darker-grey py-2 px-2.5 cursor-pointer
             hover:text-grey hover:border-grey text-sm
-            active:bg-darker-grey active:text-white
+            active:bg-ber-darker-grey active:text-white
            `}
 			disabled={disabled}
 			onClick={onClick}
