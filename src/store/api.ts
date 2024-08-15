@@ -89,7 +89,7 @@ export async function streamChatResponse() {
 
 					content += contentChunk;
 				} catch (error) {
-					handleError(error);
+					// handleError(error);
 				}
 			}
 

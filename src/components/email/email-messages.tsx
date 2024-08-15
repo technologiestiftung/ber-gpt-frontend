@@ -3,10 +3,12 @@ import { useCurrentChatIdStore } from "../../store/current-chat-id-store";
 import { Message } from "../../store/types";
 import { TextMessage } from "../messages/text-message";
 import { useChatHistoryStore } from "../../store/chat-history-store";
+import { useHasUserScrolledStore } from "../../store/has-user-scrolled-store";
 
 export const EmailMessages: React.FC = () => {
 	const { getChat } = useChatHistoryStore();
 	const { currentChatId } = useCurrentChatIdStore();
+	const { setHasUserScrolled } = useHasUserScrolledStore();
 
 	const messages: Message[] = getChat(currentChatId)?.messages || [];
 
@@ -15,13 +17,49 @@ export const EmailMessages: React.FC = () => {
 	const scrollToBottom = () => {
 		const messagesContainer = messageContainerRef.current;
 
-		if (messagesContainer) {
+		if (
+			messagesContainer &&
+			!useHasUserScrolledStore.getState().hasUserScrolled
+		) {
 			messagesContainer.scrollTo({
 				top: messagesContainer.scrollHeight,
 				behavior: "smooth",
 			});
 		}
 	};
+
+	const handleScroll = () => {
+		const messagesContainer = messageContainerRef.current;
+
+		if (!messagesContainer) {
+			return;
+		}
+
+		const isScrollPositionCloseToEnd =
+			messagesContainer.scrollTop + messagesContainer.clientHeight >=
+			messagesContainer.scrollHeight - 10;
+
+		if (isScrollPositionCloseToEnd) {
+			setHasUserScrolled(false);
+			return;
+		}
+
+		setHasUserScrolled(true);
+	};
+
+	useEffect(() => {
+		const messagesContainer = messageContainerRef.current;
+
+		if (!messagesContainer) {
+			return () => {};
+		}
+
+		messagesContainer.addEventListener("scroll", handleScroll);
+
+		return () => {
+			messagesContainer.removeEventListener("scroll", handleScroll);
+		};
+	}, []);
 
 	useEffect(() => {
 		scrollToBottom();

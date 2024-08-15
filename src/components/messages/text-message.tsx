@@ -8,6 +8,7 @@ import { useChatHistoryStore } from "../../store/chat-history-store";
 import { EmailChatButtons } from "../email/email-chat-buttons";
 import { getStorageKey } from "../../store/storage";
 import { useIsLoadingStore } from "../../store/is-loading-store";
+import { useHasUserScrolledStore } from "../../store/has-user-scrolled-store";
 
 interface TextMessageProps {
 	role: string;
@@ -23,9 +24,11 @@ export const TextMessage: React.FC<TextMessageProps> = ({
 	const { removeMessageFromChat, isLastMessageOfChat } = useChatHistoryStore();
 
 	const { isLoading, setIsLoading } = useIsLoadingStore();
+	const { setHasUserScrolled } = useHasUserScrolledStore();
 
 	const onRefresh = async () => {
 		setIsLoading(true);
+		setHasUserScrolled(false);
 		removeMessageFromChat(messageId);
 		await streamChatResponse().catch(console.error);
 		setIsLoading(false);
@@ -47,25 +50,25 @@ export const TextMessage: React.FC<TextMessageProps> = ({
 					>
 						{content === "" ? "..." : content}
 					</ReactMarkdown>
-					{!isLoading && (
-						<div
-							className={`flex flex-row items-center justify-between gap-3 self-start px-3 py-2 text-dark-blue ${role === "assistant" ? "" : "hidden"}`}
-						>
-							{isLastMessageOfChat(messageId) && (
-								<button
-									// prettier-ignore
-									className="text-darker-grey hover:text-grey disabled:text-red-400"
-									aria-label="Neu generieren"
-									title="Neu generieren"
-									onClick={onRefresh}
-									disabled={isLoading}
-								>
-									<RefreshIcon />
-								</button>
-							)}
-							<CopyToClipboardButton generatedAnswer={content} />
-						</div>
-					)}
+					<div
+						className={`flex flex-row items-center justify-between gap-3 self-start px-3 py-2 text-dark-blue 
+								${role === "assistant" ? "" : "hidden"}
+								${isLoading ? "opacity-0" : "opacity-100"}`}
+					>
+						{isLastMessageOfChat(messageId) && (
+							<button
+								// prettier-ignore
+								className="text-darker-grey hover:text-grey disabled:text-red-400"
+								aria-label="Neu generieren"
+								title="Neu generieren"
+								onClick={onRefresh}
+								disabled={isLoading}
+							>
+								<RefreshIcon />
+							</button>
+						)}
+						<CopyToClipboardButton generatedAnswer={content} />
+					</div>
 				</div>
 			</div>
 
