@@ -14,7 +14,7 @@ export const UploadedFiles: React.FC = () => {
 					{files.map(({ id, name, extractionStatus }) => (
 						<div
 							key={id}
-							className="flex items-center gap-2 rounded-sm border border-ber-light-grey bg-white px-4 py-3"
+							className="flex items-center gap-4 rounded-sm border border-ber-light-grey bg-white px-4 py-3"
 						>
 							{extractionStatus === "pending" && <SpinnerIcon />}
 							{extractionStatus === "error" && "❌"}
