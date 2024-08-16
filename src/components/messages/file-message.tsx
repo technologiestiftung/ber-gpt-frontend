@@ -11,7 +11,7 @@ export const FileMessage: React.FC<FileMessageProps> = ({ fileName }) => {
 			<PDFLargeIcon className={"text-ber-darker-grey"} />
 			<div className="flex flex-col">
 				<span>{fileName.replace(".pdf", "")}</span>
-				<span className="font-light text--grey">PDF</span>
+				<span className="font-light text-ber-light-grey">PDF</span>
 			</div>
 		</div>
 	);

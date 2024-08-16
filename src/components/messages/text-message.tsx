@@ -58,7 +58,7 @@ export const TextMessage: React.FC<TextMessageProps> = ({
 						{isLastMessageOfChat(messageId) && (
 							<button
 								// prettier-ignore
-								className="text-ber-darker-grey hover:text-grey disabled:text-red-400"
+								className="text-ber-darker-grey hover:text-ber-dark-grey disabled:text-red-400"
 								aria-label="Neu generieren"
 								title="Neu generieren"
 								onClick={onRefresh}

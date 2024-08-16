@@ -12,7 +12,7 @@ export const FileUploadButton: React.FC = () => {
 			aria-label={"Datei hochladen"}
 			title={"Datei hochladen"}
 		>
-			<UploadIcon className="text-ber-darker-grey hover:text-grey" />
+			<UploadIcon className="text-ber-darker-grey hover:text-ber-dark-grey" />
 
 			<input
 				onInput={(e) => setFiles(e.currentTarget.files)}

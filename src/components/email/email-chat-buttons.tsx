@@ -35,7 +35,7 @@ async function onClick(value: string) {
 export const EmailChatButtons: React.FC = () => {
 	return (
 		<div
-			className={`flex w-fit gap-2 border-t border--grey ml-11 mt-2 pt-2 md:gap-4 
+			className={`flex w-fit gap-2 border-t border-ber-light-grey ml-11 mt-2 pt-4 md:gap-4 
 		${useIsLoadingStore.getState().isLoading ? "opacity-0" : "opacity-100"}`}
 		>
 			{formatButtons.map(({ label, value }) => (

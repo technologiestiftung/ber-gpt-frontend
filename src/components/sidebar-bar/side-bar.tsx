@@ -101,7 +101,7 @@ export const SideBar: React.FC = () => {
 					</div>
 				</div>
 				<button
-					className={`px-5 w-fit text-ber-darker-grey hover:text-grey ${isOpen ? "flex" : "hidden"}`}
+					className={`px-5 w-fit text-ber-darker-grey hover:text-ber-dark-grey ${isOpen ? "flex" : "hidden"}`}
 					onClick={() =>
 						(
 							document.getElementById("faq-dialog") as HTMLDialogElement

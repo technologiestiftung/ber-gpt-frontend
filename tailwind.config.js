@@ -8,7 +8,7 @@ export default {
 				"ber-lighter-grey": "#F5F5F5",
 				"ber-light-grey": "#CCCCCC",
 				"ber-mid-grey": "#808080",
-				grey: "#666",
+				"ber-dark-grey": "#666",
 				"ber-darker-grey": "#333333",
 				"ber-yellow": "#FFE612",
 				"ber-yellow-darker": "#E0CA00",

@@ -36,8 +36,8 @@ export const RadioGroups: React.FC = () => {
 									htmlFor={option}
 									className={`
 									rounded-full border border-ber-darker-grey py-2 px-2.5 cursor-pointer
-									hover:text-grey hover:border-grey
-									has-[:checked]:hover:bg-grey has-[:checked]:hover:text-white has-[:checked]:hover:border-grey
+									hover:text-ber-dark-grey hover:border-ber-dark-grey
+									has-[:checked]:hover:bg-ber-dark-grey has-[:checked]:hover:text-white has-[:checked]:hover:border-ber-dark-grey
 								  has-[:checked]:bg-ber-darker-grey has-[:checked]:text-white`}
 								>
 									{option}
