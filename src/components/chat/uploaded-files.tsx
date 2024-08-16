@@ -14,26 +14,26 @@ export const UploadedFiles: React.FC = () => {
 					{files.map(({ id, name, extractionStatus }) => (
 						<div
 							key={id}
-							className="flex items-center gap-2 rounded-sm border border-mid-grey bg-white px-4 py-3 shadow-md"
+							className="flex items-center gap-4 rounded-sm border border-ber-light-grey bg-white px-4 py-3"
 						>
 							{extractionStatus === "pending" && <SpinnerIcon />}
 							{extractionStatus === "error" && "❌"}
 							{extractionStatus === "success" && (
-								<PDFLargeIcon className="text-darker-grey" />
+								<PDFLargeIcon className="text-ber-darker-grey" />
 							)}
 
 							<div className="flex flex-col">
 								<span>{name.replace(".pdf", "")}</span>
-								<span className="font-light text-mid-grey">PDF</span>
+								<span className="font-light text-ber-light-grey">PDF</span>
 							</div>
 
 							{extractionStatus !== "pending" && (
 								<div className="relative">
 									<button
 										onClick={() => removeFile(id)}
-										className="absolute -right-7 -top-11 flex h-6 w-6 items-center justify-center rounded-full border border-gray-300 bg-gray-100 hover:bg-gray-200"
+										className="absolute -right-7 -top-11 flex h-6 w-6 items-center justify-center rounded-full border border-ber-dark-grey bg-gray-100 hover:bg-gray-200"
 									>
-										<XIcon className="h-2.5 w-2.5 text-dark-blue" />
+										<XIcon className="h-2.5 w-2.5 text-ber-dark-grey" />
 									</button>
 								</div>
 							)}

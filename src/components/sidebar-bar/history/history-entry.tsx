@@ -22,7 +22,7 @@ export const HistoryEntry: React.FC<HistoryEntryProps> = ({ name, id }) => {
 	return (
 		<div className="flex items-center justify-start gap-1">
 			<button
-				className={`h-11 w-[70%] truncate rounded-sm ml-5 px-2.5 text-start hover:bg-mid-grey ${isSelected ? "bg-mid-grey" : ""}`}
+				className={`h-11 w-[70%] truncate rounded-sm ml-5 px-2.5 text-start hover:bg-ber-light-grey ${isSelected ? "bg-ber-light-grey" : ""}`}
 				onClick={() => setCurrentChatId(id)}
 			>
 				{removeMarkdownStyling(name)}
@@ -31,7 +31,7 @@ export const HistoryEntry: React.FC<HistoryEntryProps> = ({ name, id }) => {
 				icon={<BucketIcon />}
 				onClick={() => deleteChat(id)}
 				isOutlineVisible={false}
-				className="text-dark-grey"
+				className="text-ber-darker-grey"
 			/>
 		</div>
 	);

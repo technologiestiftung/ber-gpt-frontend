@@ -9,6 +9,7 @@ import { EmailChatButtons } from "../email/email-chat-buttons";
 import { getStorageKey } from "../../store/storage";
 import { useIsLoadingStore } from "../../store/is-loading-store";
 import { useHasUserScrolledStore } from "../../store/has-user-scrolled-store";
+import { PreformattedTextElement } from "./preformatted-text-element";
 
 interface TextMessageProps {
 	role: string;
@@ -36,7 +37,7 @@ export const TextMessage: React.FC<TextMessageProps> = ({
 
 	return (
 		<div
-			className={`flex flex-col ${role === "user" ? "self-end shadow-md max-w-[85%] lg:max-w-[80%]" : "self-start pb-4"}`}
+			className={`flex flex-col ${role === "user" ? "self-end max-w-[85%] lg:max-w-[80%]" : "self-start pb-4"}`}
 		>
 			<div className={`flex flex-row`}>
 				<div
@@ -46,19 +47,21 @@ export const TextMessage: React.FC<TextMessageProps> = ({
 				</div>
 				<div className="flex flex-col">
 					<ReactMarkdown
-						className={`markdown-container ${role === "user" ? "bg-lighter-grey py-2" : ""}`}
+						// @ts-expect-error typing too complex
+						components={{ pre: PreformattedTextElement }}
+						className={`markdown-container ${role === "user" ? "bg-ber-lighter-grey py-2" : ""}`}
 					>
 						{content === "" ? "..." : content}
 					</ReactMarkdown>
 					<div
-						className={`flex flex-row items-center justify-between gap-3 self-start px-3 py-2 text-dark-blue 
+						className={`flex flex-row items-center justify-between gap-3 self-start px-3 py-2 
 								${role === "assistant" ? "" : "hidden"}
 								${isLoading ? "opacity-0" : "opacity-100"}`}
 					>
 						{isLastMessageOfChat(messageId) && (
 							<button
 								// prettier-ignore
-								className="text-darker-grey hover:text-grey disabled:text-red-400"
+								className="text-ber-darker-grey hover:text-ber-dark-grey disabled:text-red-400"
 								aria-label="Neu generieren"
 								title="Neu generieren"
 								onClick={onRefresh}

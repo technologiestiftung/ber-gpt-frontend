@@ -8,7 +8,7 @@ export const Faq: React.FC = () => {
 	return (
 		<dialog
 			id="faq-dialog"
-			className="z-50 w-11/12 max-w-[1000px] gap-4 overflow-y-auto rounded-sm border-2 border-mid-grey bg-white px-8 py-10 shadow-lg backdrop:backdrop-blur-sm md:max-h-[90%] md:w-5/6"
+			className="z-50 w-11/12 max-w-[1000px] gap-4 overflow-y-auto rounded-sm border border-ber-light-grey bg-white px-8 py-10 shadow-lg backdrop:backdrop-blur-sm md:max-h-[90%] md:w-5/6"
 		>
 			<div className="flex flex-col gap-4">
 				<h1 className="px-2 text-[22px] font-bold leading-6">Über BärGPT</h1>
@@ -16,7 +16,7 @@ export const Faq: React.FC = () => {
 					BärGPT ist eine produktiv nutzbare KI-Testumgebung für Beschäftigte
 					der Berliner Landesverwaltung, bereitgestellt vom{" "}
 					<a
-						className="text-mid-blue underline hover:text-dark-blue"
+						className="text-ber-mid-grey underline hover:text-ber-darker-grey"
 						href="https://www.citylab-berlin.org"
 					>
 						CityLAB Berlin
@@ -30,7 +30,7 @@ export const Faq: React.FC = () => {
 					Hierzu werden wir in Zukunft regelmäßige Workshop-Formate anbieten und
 					freuen uns über Ideen und{" "}
 					<a
-						className="text-mid-blue underline hover:text-dark-blue"
+						className="text-ber-mid-grey underline hover:text-ber-darker-grey"
 						href="https://citylabberlin.typeform.com/to/kCdnCgvC#product_id=baergpt"
 					>
 						Feedback
@@ -47,7 +47,7 @@ export const Faq: React.FC = () => {
 						answer={qa.answer}
 					/>
 				))}
-				<div className="flex flex-row flex-wrap justify-start gap-10 border-t border-mid-grey p-2 pt-6">
+				<div className="flex flex-row flex-wrap justify-start gap-10 border-t border-ber-light-grey p-2 pt-6">
 					{logoLinks.map((link) => (
 						<a
 							key={link.href}
@@ -66,14 +66,14 @@ export const Faq: React.FC = () => {
 				</div>
 
 				<button
-					className="text-darker-blue absolute right-4 top-4 pb-2 hover:text-dark-grey"
+					className="text-darker-blue absolute right-4 top-4 pb-2 hover:text-ber-darker-grey"
 					onClick={() => {
 						(
 							document.getElementById("faq-dialog") as HTMLDialogElement
 						).close();
 					}}
 				>
-					<XIcon className="h-6 w-6" />
+					<XIcon className="size-5" />
 				</button>
 			</div>
 		</dialog>

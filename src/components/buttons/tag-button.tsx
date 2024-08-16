@@ -1,21 +1,21 @@
 import React from "react";
 import { ButtonProps } from "./button-types";
 
-export const PrimaryButton: React.FC<ButtonProps> = ({
+export const TagButton: React.FC<ButtonProps> = ({
 	label,
 	onClick,
 	disabled,
 	type = "button",
 	ariaLabel,
 	title,
-	className,
 }) => {
 	return (
 		<button
 			className={`
-			my-2 flex min-h-[46px] w-fit items-center justify-center rounded-sm bg-ber-darker-grey px-4 text-lg
-			text-white hover:bg-ber-dark-grey hover:underline
-			${className ? className : ""}`}
+            rounded-full border border-ber-darker-grey py-2 px-2.5 cursor-pointer
+            hover:text-ber-dark-grey hover:border-ber-dark-grey text-sm
+            active:bg-ber-darker-grey active:text-white
+           `}
 			disabled={disabled}
 			onClick={onClick}
 			type={type}

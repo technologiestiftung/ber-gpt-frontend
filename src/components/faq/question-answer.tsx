@@ -18,12 +18,12 @@ export const QuestionAnswer: React.FC<QuestionAnswerProps> = ({
 		>
 			<div className="flex flex-row justify-between">
 				<button
-					className="flex w-full flex-row justify-between text-left"
+					className="flex w-full flex-row justify-between text-left group"
 					onClick={() => setIsExpanded(!isExpanded)}
 				>
 					<h1 className="text-[18px] font-bold leading-6">{question}</h1>
 					<ArrowIcon
-						className={`min-size-7 shrink-0 text-darker-grey hover:text-dark-grey ${isExpanded ? "rotate-90" : "rotate-0"}`}
+						className={`min-h-5 min-w-5 size-5 md:h-6 text-ber-darker-grey hover:text-ber-darker-grey transition ${isExpanded ? "rotate-90 group-hover:rotate-0" : "rotate-0 group-hover:rotate-90"}`}
 					/>
 				</button>
 			</div>

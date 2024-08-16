@@ -70,7 +70,7 @@ export const EmailMessages: React.FC = () => {
 			ref={messageContainerRef}
 			className="flex w-full justify-center overflow-auto pb-2 px-5"
 		>
-			<div className="md:w-[640px] flex flex-col gap-y-4">
+			<div className="md:w-[640px] lg:w-[768px] flex flex-col gap-y-4">
 				{messages.map((message) => (
 					<TextMessage
 						key={message.id}

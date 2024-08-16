@@ -27,7 +27,7 @@ export const CopyToClipboardButton: React.FC<CopyToClipboardButtonProps> = ({
 
 	return (
 		<button
-			className="text-darker-grey hover:text-grey"
+			className="text-ber-darker-grey hover:text-ber-dark-grey"
 			onClick={copyToClipboard}
 			aria-label={isCopiedToClipboard ? "Kopiert!" : "Kopieren"}
 			title={isCopiedToClipboard ? "Kopiert!" : "Kopieren"}
