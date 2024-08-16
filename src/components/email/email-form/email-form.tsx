@@ -73,7 +73,7 @@ export const EmailForm: React.FC = () => {
 				onSubmit={onSubmit}
 			>
 				<div
-					className={`flex flex-col max-w-[640px] grow bg-transparent ${isEmailFormExpanded && "gap-y-3 sm:gap-y-8"}`}
+					className={`flex flex-col md:max-w-[640px] lg:max-w-[768px] grow bg-transparent ${isEmailFormExpanded && "gap-y-3 sm:gap-y-8"}`}
 				>
 					<div className="bg-transparent">
 						<button

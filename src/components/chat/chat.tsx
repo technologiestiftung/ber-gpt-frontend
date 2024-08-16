@@ -18,7 +18,7 @@ export const Chat: React.FC = () => {
 			<ChatMessages />
 
 			<div className="px-5 w-full flex justify-center">
-				<div className="md:w-[640px] w-full z-10 flex flex-col bg-ber-lighter-grey">
+				<div className="md:w-[640px] lg:w-[768px] w-full z-10 flex flex-col bg-ber-lighter-grey">
 					<UploadedFiles />
 
 					<ChatForm />

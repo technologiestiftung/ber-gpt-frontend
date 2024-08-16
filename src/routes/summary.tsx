@@ -6,7 +6,7 @@ export const Summary: React.FC = () => {
 	return (
 		<Layout>
 			<div className="flex h-full w-full items-center justify-center">
-				<div className=" md:w-[640px] px-5 text-center items-center flex flex-col gap-2">
+				<div className=" md:w-[640px] lg:w-[768px] px-5 text-center items-center flex flex-col gap-2">
 					<div
 						className={`flex flex-row gap-3 w-fit text-xs border border-black rounded-full px-3 py-1 `}
 					>
