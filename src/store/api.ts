@@ -2,9 +2,11 @@ import { useCurrentChatIdStore } from "./current-chat-id-store";
 import { useChatHistoryStore } from "./chat-history-store";
 import { File as ExtractedFile } from "./types";
 import { useErrorStore } from "./error-store";
+import { useCurrentLLMStore } from "./current-llm-store";
 
 export async function streamChatResponse() {
 	const chatId = useCurrentChatIdStore.getState().currentChatId;
+	const { currentLLM } = useCurrentLLMStore.getState();
 	const { handleError } = useErrorStore.getState();
 
 	if (!chatId) {
@@ -28,7 +30,7 @@ export async function streamChatResponse() {
 			headers: {
 				"Content-Type": "application/json",
 				"x-api-key": import.meta.env.VITE_X_API_KEY,
-				llm: "openai",
+				llm: currentLLM,
 			},
 			body: JSON.stringify({
 				messages: previousMessages.map(({ role, content }) => ({
