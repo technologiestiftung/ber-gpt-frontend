@@ -102,7 +102,7 @@ export const EmailForm: React.FC = () => {
 					<div className="flex items-center w-full bg-ber-lighter-grey py-3 px-6 gap-4">
 						<textarea
 							className="w-full bg-ber-lighter-grey focus:outline-none max-h-72"
-							placeholder="Beschreibe was inhaltlich in der Mail stehen soll"
+							placeholder="Inhalt der zu generierenden Mail"
 							rows={2}
 							name="message"
 							required
