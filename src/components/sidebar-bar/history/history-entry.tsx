@@ -32,6 +32,8 @@ export const HistoryEntry: React.FC<HistoryEntryProps> = ({ name, id }) => {
 				onClick={() => deleteChat(id)}
 				isOutlineVisible={false}
 				className="text-ber-darker-grey"
+				ariaLabel="Löschen"
+				title="Löschen"
 			/>
 		</div>
 	);
