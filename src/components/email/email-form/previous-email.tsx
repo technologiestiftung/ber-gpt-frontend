@@ -7,7 +7,7 @@ export const PreviousEmail: React.FC = () => {
 			<textarea
 				className="flex bg-ber-lighter-grey w-full h-full max-h-72 focus:outline-none"
 				name="previousMail"
-				placeholder="Auf welche E-mail soll geantwortet werden?"
+				placeholder="Auf welche E-Mail soll geantwortet werden?"
 				rows={4}
 			></textarea>
 		</>
