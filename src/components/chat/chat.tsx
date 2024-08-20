@@ -38,7 +38,7 @@ export const Chat: React.FC = () => {
 			>
 				{availableLLMs.map((model) => (
 					<option value={model.identifier} key={model.identifier}>
-						{model.provider} ({model.name}
+						{model.provider} ({model.baseModelName}
 						{model.isGdprCompliant ? " DSGVO ✓" : " DSGVO 𐄂"})
 					</option>
 				))}

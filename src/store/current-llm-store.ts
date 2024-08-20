@@ -3,7 +3,7 @@ import { useErrorStore } from "./error-store";
 
 interface availableLLM {
 	identifier: string;
-	name: string;
+	baseModelName: string;
 	provider: string;
 	isGdprCompliant: boolean;
 }
