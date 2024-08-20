@@ -64,7 +64,7 @@ export const SideBar: React.FC = () => {
 				}`}
 				aria-label="Sidebar"
 			>
-				<div className={`flex justify-between px-5 pt-2 flex-row gap-2`}>
+				<div className={`flex justify-between px-5 pt-2 my-2 flex-row gap-2`}>
 					<IconButton
 						isOutlineVisible={!isOpen}
 						icon={<SidebarIcon />}
@@ -81,14 +81,13 @@ export const SideBar: React.FC = () => {
 					/>
 				</div>
 				<div
-					className={`flex-col gap-8 pb-8 h-full overflow-y-auto ${isOpen ? "flex" : "hidden"}`}
+					className={`flex-col gap-6 pb-8 h-full overflow-y-auto ${isOpen ? "flex" : "hidden"}`}
 				>
 					<a
-						className={`flex-col px-5 text-[22px] ${isOpen ? "flex" : "hidden"}`}
+						className={`flex-col font-bold px-5 text-[22px] ${isOpen ? "flex" : "hidden"}`}
 						href="/"
 					>
-						<h1 className="font-bold">BärGPT</h1>
-						<h2>KI-Testumgebung</h2>
+						BärGPT
 					</a>
 
 					<Navigation />

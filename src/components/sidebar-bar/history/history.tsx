@@ -60,7 +60,7 @@ export const History: React.FC = () => {
 
 	return (
 		<div>
-			<div className={`flex flex-col gap-4`}>
+			<div className={`flex flex-col gap-4 px-5`}>
 				{chatGroups.map(({ label, chats }) => (
 					<HistoryGroup key={label} label={label} chats={chats} />
 				))}

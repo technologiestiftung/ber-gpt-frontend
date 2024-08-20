@@ -13,7 +13,7 @@ export const IconButton: React.FC<ButtonProps> = ({
 }) => {
 	return (
 		<button
-			className={`${isOutlineVisible ? "outline-ber-light-grey outline-1" : ""} outline-0  my-2 flex size-[34px] items-center justify-center hover:outline-1 rounded-sm p-4 text-ber-darker-grey outline hover:bg-ber-lighter-grey hover:outline-ber-mid-grey active:bg-white ${className}`}
+			className={`${isOutlineVisible ? "outline-ber-light-grey outline-1" : ""} outline-0 flex size-[34px] items-center justify-center hover:outline-1 rounded-sm p-4 text-ber-darker-grey outline hover:bg-ber-lighter-grey hover:outline-ber-mid-grey active:bg-white ${className}`}
 			disabled={disabled}
 			onClick={onClick}
 			type={type}
