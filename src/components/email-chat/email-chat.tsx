@@ -1,22 +1,22 @@
 import React from "react";
-import { GetStartedMail } from "./get-started-mail";
 import { useCurrentChatIdStore } from "../../store/current-chat-id-store";
-import { EmailForm } from "./email-form/email-form";
-import { EmailMessages } from "./email-messages";
+import { EmailChatForm } from "./email-chat-form/email-chat-form";
+import { GetStartedEmailChat } from "./get-started-email-chat";
+import { EmailChatMessages } from "./email-chat-messages";
 import { useChatHistoryStore } from "../../store/chat-history-store";
 
-export const Email: React.FC = () => {
+export const EmailChat: React.FC = () => {
 	const { getChat } = useChatHistoryStore();
 	const { currentChatId } = useCurrentChatIdStore();
 	const messages = getChat(currentChatId)?.messages || [];
 
 	return (
 		<div className="flex h-full flex-col items-center justify-between pt-16 md:py-5 relative">
-			{messages.length === 0 && <GetStartedMail />}
+			{messages.length === 0 && <GetStartedEmailChat />}
 
-			<EmailMessages />
+			<EmailChatMessages />
 
-			<EmailForm />
+			<EmailChatForm />
 		</div>
 	);
 };

@@ -24,7 +24,8 @@ export async function streamChatResponse() {
 	const location = window.location.pathname;
 	const systemPrompt =
 		{
-			"/email": SYSTEM_PROMPTS.EMAIL_SYSTEM_PROMPT,
+			"/email": SYSTEM_PROMPTS.CHAT_SYSTEM_PROMPT,
+			"/email-chat": SYSTEM_PROMPTS.EMAIL_SYSTEM_PROMPT,
 			"/note": SYSTEM_PROMPTS.NOTE_SYSTEM_PROMPT,
 			"/summary": SYSTEM_PROMPTS.SUMMARY_SYSTEM_PROMPT,
 		}[location] || SYSTEM_PROMPTS.CHAT_SYSTEM_PROMPT;

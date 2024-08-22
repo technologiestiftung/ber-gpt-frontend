@@ -8,7 +8,7 @@ import { useHasUserScrolledStore } from "../../../store/has-user-scrolled-store"
 const { setIsLoading } = useIsLoadingStore.getState();
 const { saveMessage } = useChatHistoryStore.getState();
 
-export const EmailFormSinglePrompt: React.FC = () => {
+export const EmailChatForm: React.FC = () => {
 	const { isLoading } = useIsLoadingStore();
 	const { setHasUserScrolled } = useHasUserScrolledStore();
 

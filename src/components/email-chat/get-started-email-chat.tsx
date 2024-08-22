@@ -32,7 +32,7 @@ async function onClick(value: string) {
 	useIsLoadingStore.getState().setIsLoading(false);
 }
 
-export const GetStartedMailChat: React.FC = () => {
+export const GetStartedEmailChat: React.FC = () => {
 	return (
 		<div className="flex md:w-[640px] lg:w-[768px] max-w-full flex-row overflow-auto px-5">
 			<div className="mt-1 flex size-[35px] min-w-[35px] items-center justify-center border border-black bg-white">
