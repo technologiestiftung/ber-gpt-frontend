@@ -8,12 +8,14 @@ export const TagButton: React.FC<ButtonProps> = ({
 	type = "button",
 	ariaLabel,
 	title,
+	className = "",
 }) => {
 	return (
 		<button
 			className={`
             rounded-full border border-ber-darker-grey py-1 px-2.5 cursor-pointer
             hover:bg-ber-darker-grey hover:text-white active:text-white
+			${className}
            `}
 			disabled={disabled}
 			onClick={onClick}
