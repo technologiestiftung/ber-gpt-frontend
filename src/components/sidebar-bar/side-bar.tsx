@@ -6,6 +6,7 @@ import { useCurrentChatIdStore } from "../../store/current-chat-id-store";
 import { FaqIcon } from "../icons/faq-icon";
 import { Navigation } from "./navigation";
 import { History } from "./history/history";
+import { SettingsIcon } from "../icons/settings-icon";
 
 const mdWidth = 768;
 
@@ -57,14 +58,14 @@ export const SideBar: React.FC = () => {
 		>
 			<aside
 				ref={sidebarRef}
-				className={`flex flex-col z-30 justify-between overflow-hidden gap-2 overflow-x-hidden ${
+				className={`flex flex-col z-30 justify-between overflow-hidden gap-5 overflow-x-hidden ${
 					isOpen
 						? "bg-ber-lighter-grey min-w-72 w-72 h-full pb-4"
 						: "min-w-24 w-28 h-fit"
 				}`}
 				aria-label="Sidebar"
 			>
-				<div className={`flex justify-between px-5 pt-2 my-2 flex-row gap-2`}>
+				<div className={`flex justify-between px-5 mt-6 flex-row gap-2`}>
 					<IconButton
 						isOutlineVisible={!isOpen}
 						icon={<SidebarIcon />}
@@ -81,34 +82,46 @@ export const SideBar: React.FC = () => {
 					/>
 				</div>
 				<div
-					className={`flex-col gap-6 pb-8 h-full overflow-y-auto ${isOpen ? "flex" : "hidden"}`}
+					className={`flex-col flex gap-5 mb-5 ${isOpen ? "flex" : "hidden"}`}
 				>
-					<a
-						className={`flex-col font-bold px-5 text-[22px] ${isOpen ? "flex" : "hidden"}`}
-						href="/"
-					>
+					<a className={`flex-col font-bold px-5 text-[34px]`} href="/">
 						BärGPT
 					</a>
 
 					<Navigation />
-
+				</div>
+				<div
+					className={`flex-col gap-5 pb-8 h-full overflow-y-auto ${isOpen ? "flex" : "hidden"}`}
+				>
 					<History />
 
-					<div className={`px-5 text-sm text-ber-darker-grey`}>
+					<div className={`px-9 text-sm text-ber-darker-grey`}>
 						Der Chat-Verlauf wird nur lokal gespeichert und ist somit nicht für
 						andere Personen sichtbar.
 					</div>
 				</div>
-				<button
-					className={`px-5 w-fit text-ber-darker-grey hover:text-ber-dark-grey ${isOpen ? "flex" : "hidden"}`}
-					onClick={() =>
-						(
-							document.getElementById("faq-dialog") as HTMLDialogElement
-						).showModal()
-					}
-				>
-					<FaqIcon className="h-6 w-6" />
-				</button>
+				<div className={`flex justify-start flex-row px-5 gap-2.5`}>
+					<button
+						className={`w-fit text-ber-darker-grey hover:text-ber-dark-grey ${isOpen ? "flex" : "hidden"}`}
+						onClick={() =>
+							(
+								document.getElementById("faq-dialog") as HTMLDialogElement
+							).showModal()
+						}
+					>
+						<FaqIcon className="h-6 w-6" />
+					</button>
+					<button
+						className={`w-fit text-ber-darker-grey hover:text-ber-dark-grey ${isOpen ? "flex" : "hidden"}`}
+						onClick={() =>
+							(
+								document.getElementById("settings-dialog") as HTMLDialogElement
+							).showModal()
+						}
+					>
+						<SettingsIcon className="h-6 w-6" />
+					</button>
+				</div>
 			</aside>
 		</div>
 	);
