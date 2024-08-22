@@ -2,6 +2,7 @@ import { useCurrentChatIdStore } from "./current-chat-id-store";
 import { useChatHistoryStore } from "./chat-history-store";
 import { File as ExtractedFile } from "./types";
 import { useErrorStore } from "./error-store";
+import { SYSTEM_PROMPTS } from "../system-prompts";
 
 export async function streamChatResponse() {
 	const chatId = useCurrentChatIdStore.getState().currentChatId;
@@ -20,6 +21,14 @@ export async function streamChatResponse() {
 		return;
 	}
 
+	const location = window.location.pathname;
+	const systemPrompt =
+		{
+			"/email": SYSTEM_PROMPTS.EMAIL_SYSTEM_PROMPT,
+			"/note": SYSTEM_PROMPTS.NOTE_SYSTEM_PROMPT,
+			"/summary": SYSTEM_PROMPTS.SUMMARY_SYSTEM_PROMPT,
+		}[location] || SYSTEM_PROMPTS.CHAT_SYSTEM_PROMPT;
+
 	const url = `${import.meta.env.VITE_API_URL}/chat`;
 
 	try {
@@ -31,10 +40,16 @@ export async function streamChatResponse() {
 				llm: "openai",
 			},
 			body: JSON.stringify({
-				messages: previousMessages.map(({ role, content }) => ({
-					role,
-					content,
-				})),
+				messages: [
+					{
+						role: "system",
+						content: systemPrompt,
+					},
+					...previousMessages.map(({ role, content }) => ({
+						role,
+						content,
+					})),
+				],
 			}),
 		});
 
