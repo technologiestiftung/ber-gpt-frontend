@@ -27,8 +27,6 @@ export const EmailFormSinglePrompt: React.FC = () => {
 			return;
 		}
 
-		console.log("saveMessage", message.toString());
-
 		saveMessage(message.toString());
 
 		await streamChatResponse().catch(console.error);

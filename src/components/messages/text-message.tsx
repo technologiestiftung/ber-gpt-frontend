@@ -74,10 +74,10 @@ export const TextMessage: React.FC<TextMessageProps> = ({
 					</div>
 				</div>
 			</div>
-
+			{/* 
 			{isLastMessageOfChat(messageId) &&
 				role === "assistant" &&
-				getStorageKey() === "email-history" && <EmailChatButtons />}
+				getStorageKey() === "email-history" && <EmailChatButtons />} */}
 		</div>
 	);
 };

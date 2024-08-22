@@ -29,8 +29,8 @@ export const Email: React.FC = () => {
 				onChange={(e) => setIsEmailFormVisible(e.target.value)}
 				className="absolute top-4 left-5 bg-ber-lighter-grey rounded-sm p-1 w-fit h-fit text-sm"
 			>
-				<option value="current-form">Current Form</option>
 				<option value="single-prompt-form">Single Prompt Form</option>
+				<option value="current-form">Current Form</option>
 			</select>
 		</div>
 	);
