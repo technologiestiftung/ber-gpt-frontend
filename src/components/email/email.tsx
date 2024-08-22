@@ -33,7 +33,7 @@ export const Email: React.FC = () => {
 				<option value="email-formulieren-chat">
 					E-Mail formulieren (Chat)
 				</option>
-				<option value="email-formulieren">E-Mail furmulieren</option>
+				<option value="email-formulieren">E-Mail formulieren</option>
 			</select>
 		</div>
 	);
