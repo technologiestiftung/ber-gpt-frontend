@@ -11,8 +11,9 @@ export const Email: React.FC = () => {
 	const { currentChatId } = useCurrentChatIdStore();
 	const messages = getChat(currentChatId)?.messages || [];
 
-	const [isEmailFormVisible, setIsEmailFormVisible] =
-		useState("single-prompt-form");
+	const [isEmailFormVisible, setIsEmailFormVisible] = useState(
+		"email-formulieren-chat",
+	);
 
 	return (
 		<div className="flex h-full flex-col items-center justify-between pt-16 md:py-5 relative">
@@ -20,7 +21,7 @@ export const Email: React.FC = () => {
 
 			<EmailMessages />
 
-			{isEmailFormVisible === "current-form" ? (
+			{isEmailFormVisible === "email-formulieren" ? (
 				<EmailForm />
 			) : (
 				<EmailFormSinglePrompt />
@@ -29,8 +30,10 @@ export const Email: React.FC = () => {
 				onChange={(e) => setIsEmailFormVisible(e.target.value)}
 				className="absolute top-4 left-5 bg-ber-lighter-grey rounded-sm p-1 w-fit h-fit text-sm"
 			>
-				<option value="single-prompt-form">Single Prompt Form</option>
-				<option value="current-form">Current Form</option>
+				<option value="email-formulieren-chat">
+					E-Mail formulieren (Chat)
+				</option>
+				<option value="email-formulieren">E-Mail furmulieren</option>
 			</select>
 		</div>
 	);
