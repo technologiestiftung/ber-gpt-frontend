@@ -42,12 +42,19 @@ export const EmailFormSinglePrompt: React.FC = () => {
 						className={`flex items-center gap-4 px-6 py-3 has-[:focus]:border-blue-500`}
 						onSubmit={onSubmit}
 					>
-						<input
-							className="w-full bg-ber-lighter-grey focus:outline-none"
+						<textarea
+							className="w-full h-6 bg-ber-lighter-grey focus:outline-none max-h-72 resize-y"
 							name="message"
-							type="text"
 							required
 							placeholder="Was für eine E-Mail möchten Sie formulieren?"
+							onKeyDown={(e) => {
+								if (e.key === "Enter" && !e.shiftKey) {
+									e.preventDefault();
+									e.currentTarget.form?.dispatchEvent(
+										new Event("submit", { bubbles: true }),
+									);
+								}
+							}}
 						/>
 
 						<button

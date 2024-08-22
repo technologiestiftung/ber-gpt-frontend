@@ -5,8 +5,8 @@ import { RefreshIcon } from "../icons/refresh-icon";
 import { CopyToClipboardButton } from "../buttons/copy-to-clipboard-button";
 import { streamChatResponse } from "../../store/api";
 import { useChatHistoryStore } from "../../store/chat-history-store";
-import { EmailChatButtons } from "../email/email-chat-buttons";
-import { getStorageKey } from "../../store/storage";
+// import { EmailChatButtons } from "../email/email-chat-buttons";
+// import { getStorageKey } from "../../store/storage";
 import { useIsLoadingStore } from "../../store/is-loading-store";
 import { useHasUserScrolledStore } from "../../store/has-user-scrolled-store";
 import { PreformattedTextElement } from "./preformatted-text-element";
@@ -74,8 +74,8 @@ export const TextMessage: React.FC<TextMessageProps> = ({
 					</div>
 				</div>
 			</div>
-			{/* 
-			{isLastMessageOfChat(messageId) &&
+
+			{/* {isLastMessageOfChat(messageId) &&
 				role === "assistant" &&
 				getStorageKey() === "email-history" && <EmailChatButtons />} */}
 		</div>
