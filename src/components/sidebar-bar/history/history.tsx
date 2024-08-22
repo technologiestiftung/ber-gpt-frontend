@@ -60,13 +60,13 @@ export const History: React.FC = () => {
 
 	return (
 		<>
-			<div className={`flex flex-col gap-8 px-5 mb-5`}>
+			<div className={`flex flex-col gap-8 px-5 mb-5 text-sm`}>
 				{chatGroups.map(({ label, chats }) => (
 					<HistoryGroup key={label} label={label} chats={chats} />
 				))}
 			</div>
 			{chatGroups.length > 0 && (
-				<div className={`px-9 text-sm text-ber-darker-grey`}>
+				<div className={`px-9 text-xs text-ber-mid-grey`}>
 					Der Chat-Verlauf wird nur lokal gespeichert und ist somit nicht für
 					andere Personen sichtbar.
 				</div>

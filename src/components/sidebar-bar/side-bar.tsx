@@ -58,7 +58,7 @@ export const SideBar: React.FC = () => {
 		>
 			<aside
 				ref={sidebarRef}
-				className={`flex flex-col z-30 justify-between overflow-hidden gap-5 overflow-x-hidden ${
+				className={`flex flex-col z-30 justify-between overflow-hidden gap-10 overflow-x-hidden ${
 					isOpen
 						? "bg-ber-lighter-grey min-w-72 w-72 h-full pb-4"
 						: "min-w-24 w-28 h-fit"
@@ -79,10 +79,8 @@ export const SideBar: React.FC = () => {
 						onClick={() => setCurrentChatId(null)}
 					/>
 				</div>
-				<div
-					className={`flex-col flex gap-5 mb-5 ${isOpen ? "flex" : "hidden"}`}
-				>
-					<a className={`flex-col font-bold px-5 text-[34px]`} href="/">
+				<div className={`flex-col flex gap-5 ${isOpen ? "flex" : "hidden"}`}>
+					<a className={`flex-col font-bold px-5 text-xl`} href="/">
 						BärGPT
 					</a>
 
