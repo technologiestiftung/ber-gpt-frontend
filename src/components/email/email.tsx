@@ -1,10 +1,11 @@
 import React, { useState } from "react";
-import { GetStartedMail } from "./get-started-mail";
+// import { GetStartedMail } from "./get-started-mail";
 import { useCurrentChatIdStore } from "../../store/current-chat-id-store";
 import { EmailForm } from "./email-form/email-form";
 import { EmailMessages } from "./email-messages";
 import { useChatHistoryStore } from "../../store/chat-history-store";
 import { EmailFormSinglePrompt } from "./email-form-single-prompt/email-form-single-prompt";
+import { GetStartedMailChat } from "./get-started-mail-chat";
 
 export const Email: React.FC = () => {
 	const { getChat } = useChatHistoryStore();
@@ -17,7 +18,7 @@ export const Email: React.FC = () => {
 
 	return (
 		<div className="flex h-full flex-col items-center justify-between pt-16 md:py-5 relative">
-			{messages.length === 0 && <GetStartedMail />}
+			{messages.length === 0 && <GetStartedMailChat />}
 
 			<EmailMessages />
 
