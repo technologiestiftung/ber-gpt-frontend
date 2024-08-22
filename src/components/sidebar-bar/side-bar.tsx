@@ -67,14 +67,12 @@ export const SideBar: React.FC = () => {
 			>
 				<div className={`flex justify-between px-5 mt-6 flex-row gap-2`}>
 					<IconButton
-						isOutlineVisible={!isOpen}
 						icon={<SidebarIcon />}
 						ariaLabel={toggleIsSidebarOpenLabel}
 						title={toggleIsSidebarOpenLabel}
 						onClick={() => setIsOpen(!isOpen)}
 					/>
 					<IconButton
-						isOutlineVisible={!isOpen}
 						icon={<NewChatIcon />}
 						ariaLabel="Neuen Chat starten"
 						title="Neuen Chat starten"
@@ -91,36 +89,33 @@ export const SideBar: React.FC = () => {
 					<Navigation />
 				</div>
 				<div
-					className={`flex-col gap-5 pb-8 h-full overflow-y-auto ${isOpen ? "flex" : "hidden"}`}
+					className={`flex-col pb-8 h-full overflow-y-auto ${isOpen ? "flex" : "hidden"}`}
 				>
 					<History />
-
-					<div className={`px-9 text-sm text-ber-darker-grey`}>
-						Der Chat-Verlauf wird nur lokal gespeichert und ist somit nicht für
-						andere Personen sichtbar.
-					</div>
 				</div>
-				<div className={`flex justify-start flex-row px-5 gap-2.5`}>
-					<button
-						className={`w-fit text-ber-darker-grey hover:text-ber-dark-grey ${isOpen ? "flex" : "hidden"}`}
+				<div
+					className={`flex justify-start flex-row px-5 gap-2.5 ${isOpen ? "flex" : "hidden"}`}
+				>
+					<IconButton
+						icon={<FaqIcon />}
+						ariaLabel="FAQ"
+						title="FAQ"
 						onClick={() =>
 							(
 								document.getElementById("faq-dialog") as HTMLDialogElement
-							).showModal()
+							)?.showModal()
 						}
-					>
-						<FaqIcon className="h-6 w-6" />
-					</button>
-					<button
-						className={`w-fit text-ber-darker-grey hover:text-ber-dark-grey ${isOpen ? "flex" : "hidden"}`}
+					/>
+					<IconButton
+						icon={<SettingsIcon />}
+						ariaLabel="Einstellungen"
+						title="Einstellungen"
 						onClick={() =>
 							(
 								document.getElementById("settings-dialog") as HTMLDialogElement
-							).showModal()
+							)?.showModal()
 						}
-					>
-						<SettingsIcon className="h-6 w-6" />
-					</button>
+					/>
 				</div>
 			</aside>
 		</div>

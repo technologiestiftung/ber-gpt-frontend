@@ -8,10 +8,11 @@ export const IconButton: React.FC<ButtonProps> = ({
 	ariaLabel,
 	title,
 	icon,
+	className = "",
 }) => {
 	return (
 		<button
-			className={`flex size-[30px] items-center justify-center rounded-sm hover:text-ber-dark-grey text-ber-darker-grey`}
+			className={`flex size-[30px] items-center justify-center rounded-sm hover:text-ber-dark-grey text-ber-darker-grey ${className}`}
 			disabled={disabled}
 			onClick={onClick}
 			type={type}
