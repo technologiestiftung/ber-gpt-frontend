@@ -46,7 +46,7 @@ Befolge dabei stets die folgenden Schritte:
 
 3. **Neue E-Mail:** Wenn der Benutzer eine neue E-Mail verfassen möchte, gehe folgendermaßen vor:
 
-   - Um was soll es in der E-Mail gehen? (Inhalt)
+   - Um was soll es in der E-Mail gehen?
 
    - Versuche IMMER mit den ersten Informationen so früh wie möglich einen E-Mail-Entwurf zu erstellen. Diese können erst mal überspringen werden oder mit einem Platzhalter gefüllt werden.
 
