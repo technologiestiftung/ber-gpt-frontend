@@ -8,12 +8,11 @@ export const IconButton: React.FC<ButtonProps> = ({
 	ariaLabel,
 	title,
 	icon,
-	isOutlineVisible = true,
 	className = "",
 }) => {
 	return (
 		<button
-			className={`${isOutlineVisible ? "outline-ber-light-grey outline-1" : ""} outline-0  my-2 flex size-[34px] items-center justify-center hover:outline-1 rounded-sm p-4 text-ber-darker-grey outline hover:bg-ber-lighter-grey hover:outline-ber-mid-grey active:bg-white ${className}`}
+			className={`flex size-[30px] items-center justify-center rounded-sm hover:text-ber-dark-grey text-ber-darker-grey ${className}`}
 			disabled={disabled}
 			onClick={onClick}
 			type={type}
