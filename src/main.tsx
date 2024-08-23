@@ -6,6 +6,7 @@ import { Note } from "./routes/note";
 import { Summary } from "./routes/summary";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./index.css";
+import { EmailChat } from "./routes/email-chat";
 
 const router = createBrowserRouter([
 	{
@@ -15,6 +16,10 @@ const router = createBrowserRouter([
 	{
 		path: "/email",
 		element: <Email />,
+	},
+	{
+		path: "/email-chat",
+		element: <EmailChat />,
 	},
 	{
 		path: "/summary",
