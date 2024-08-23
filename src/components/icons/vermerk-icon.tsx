@@ -3,8 +3,8 @@ import React from "react";
 export const VermerkIcon: React.FC = () => (
 	<svg
 		xmlns="http://www.w3.org/2000/svg"
-		width="21"
-		height="24"
+		width="15.75"
+		height="18"
 		viewBox="0 0 21 24"
 		fill="none"
 	>

@@ -3,8 +3,8 @@ import React from "react";
 export const PDFIcon: React.FC = () => (
 	<svg
 		xmlns="http://www.w3.org/2000/svg"
-		width="18"
-		height="23"
+		width="14.09"
+		height="18"
 		viewBox="0 0 18 23"
 		fill="none"
 	>

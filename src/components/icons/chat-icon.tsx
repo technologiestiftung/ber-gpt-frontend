@@ -3,8 +3,8 @@ import React from "react";
 export const ChatIcon: React.FC = () => (
 	<svg
 		xmlns="http://www.w3.org/2000/svg"
-		width="23"
-		height="23"
+		width="18"
+		height="18"
 		viewBox="0 0 23 23"
 		fill="none"
 	>
