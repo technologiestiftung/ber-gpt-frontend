@@ -1,13 +1,15 @@
 import React from "react";
-import { XIcon } from "../icons/x-icon";
 import { QuestionAnswer } from "./question-answer";
 import { qas } from "./qas";
-import { logoLinks } from "../logo-links";
+import { logoLinks } from "../../logo-links";
+import { DefaultDialog } from "../default-dialog";
 
-export const Faq: React.FC = () => {
+export const faqDialogId = "faq-dialog";
+
+export const FaqDialog: React.FC = () => {
 	return (
-		<dialog
-			id="faq-dialog"
+		<DefaultDialog
+			id={faqDialogId}
 			className="z-50 w-11/12 max-w-[1000px] gap-4 overflow-y-auto rounded-sm border border-ber-light-grey bg-white px-8 py-10 shadow-lg backdrop:backdrop-blur-sm md:max-h-[90%] md:w-5/6"
 		>
 			<div className="flex flex-col gap-4">
@@ -64,18 +66,7 @@ export const Faq: React.FC = () => {
 						</a>
 					))}
 				</div>
-
-				<button
-					className="text-darker-blue absolute right-4 top-4 pb-2 hover:text-ber-darker-grey"
-					onClick={() => {
-						(
-							document.getElementById("faq-dialog") as HTMLDialogElement
-						).close();
-					}}
-				>
-					<XIcon className="size-5" />
-				</button>
 			</div>
-		</dialog>
+		</DefaultDialog>
 	);
 };

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { ArrowIcon } from "../icons/arrow-icon";
+import { ArrowIcon } from "../../icons/arrow-icon";
 
 interface QuestionAnswerProps {
 	question: string;

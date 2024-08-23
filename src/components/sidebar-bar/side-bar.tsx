@@ -7,6 +7,8 @@ import { FaqIcon } from "../icons/faq-icon";
 import { Navigation } from "./navigation";
 import { History } from "./history/history";
 import { SettingsIcon } from "../icons/settings-icon";
+import { faqDialogId } from "../dialogs/faq-dialog/faq-dialog";
+import { settingsDialogId } from "../dialogs/settings-dialog/settings-dialog";
 
 const mdWidth = 768;
 
@@ -100,7 +102,7 @@ export const SideBar: React.FC = () => {
 						title="FAQ"
 						onClick={() =>
 							(
-								document.getElementById("faq-dialog") as HTMLDialogElement
+								document.getElementById(faqDialogId) as HTMLDialogElement
 							)?.showModal()
 						}
 					/>
@@ -110,7 +112,7 @@ export const SideBar: React.FC = () => {
 						title="Einstellungen"
 						onClick={() =>
 							(
-								document.getElementById("settings-dialog") as HTMLDialogElement
+								document.getElementById(settingsDialogId) as HTMLDialogElement
 							)?.showModal()
 						}
 					/>
