@@ -11,14 +11,14 @@ export const Email: React.FC = () => {
 	const messages = getChat(currentChatId)?.messages || [];
 
 	return (
-		<div className="flex h-full flex-col items-center justify-between pt-16 md:py-5 relative">
+		<div className="flex h-full flex-col items-center justify-between pt-16 md:pb-5 relative">
 			{messages.length === 0 && <GetStartedMail />}
 
 			<EmailMessages />
 
 			<EmailForm />
 
-			<label className="inline-flex items-center cursor-pointer absolute top-5 left-5">
+			<label className="inline-flex items-center cursor-pointer absolute top-7 md:left-5 right-5">
 				<input
 					type="checkbox"
 					value=""
