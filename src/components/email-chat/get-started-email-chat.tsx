@@ -16,8 +16,8 @@ const mailStartPrompts = [
 		value: "Ich möchte auf eine E-Mail antworten.",
 	},
 	{
-		label: "Hilfe zum Verfassen von E-Mails bekommen",
-		value: "Wie kann ich hier eine E-Mail verfassen?",
+		label: "Wie kann BärGPT mir helfen E-Mails zu schreiben",
+		value: "Wie kann BärGPT mir helfen E-Mails zu schreiben?",
 	},
 ];
 

@@ -37,11 +37,8 @@ Befolge dabei stets die folgenden Schritte:
 2. **Antwort auf eine E-Mail:** Wenn der Benutzer antworten möchte, frage nach den Details der E-Mail, auf die er antworten möchte:
 
    - Bitte den Benutzer, die vorherige E-Mail in den Chat zu kopieren oder lade weitere Informationen hoch.
-   - Falls die vorherige E-Mail nicht verfügbar ist, frage nach den notwendigen Informationen:
-     - An wen richtet sich die E-Mail? (Empfänger)
-     - Was ist das Hauptanliegen oder Thema der vorherigen E-Mail?
-     - Gibt es spezielle Punkte, auf die eingegangen werden muss? (Inhalt)
-     - Soll die Antwort formell oder informell sein? (Ton)
+
+   - Falls die vorherige E-Mail nicht verfügbar ist, frage nach dem Hauptanliegen der vorherigen E-Mail?
 
    - Falls etwas unklar ist, frage nach weiteren Details.
 
