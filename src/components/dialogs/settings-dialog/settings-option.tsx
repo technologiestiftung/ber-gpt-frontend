@@ -21,7 +21,7 @@ export const SettingsOption: React.FC<SettingsOptionProps> = ({ option }) => {
 	return (
 		<label
 			htmlFor={option.identifier}
-			className="flex flex-row p-[18px] cursor-pointer gap-5"
+			className="flex flex-row p-3 md:p-[18px] cursor-pointer gap-5"
 		>
 			<div className="mt-1">
 				{isChecked && <CheckSolidIcon />}
@@ -29,7 +29,7 @@ export const SettingsOption: React.FC<SettingsOptionProps> = ({ option }) => {
 			</div>
 
 			<div className="flex flex-col gap-2">
-				<div className="flex flex-row gap-5 mb-2">
+				<div className="flex flex-wrap gap-y-2 gap-x-5 mb-2">
 					<h3 className="font-bold text-lg">{option.identifier}</h3>
 					{option.provider === "Azure" && (
 						<div className="text-white bg-ber-green-darker rounded-full px-2 text-sm flex items-center">
@@ -44,7 +44,7 @@ export const SettingsOption: React.FC<SettingsOptionProps> = ({ option }) => {
 					sed diam
 				</p>
 
-				<div className="flex-row flex gap-5 text-sm">
+				<div className="flex-wrap flex gap-x-5 gap-y-1 text-sm">
 					<div className="flex flex-row gap-2 items-center">
 						<p className="font-bold">Datenschutzkonform</p>
 						{option.isGdprCompliant ? <CheckIcon /> : <UnavailableIcon />}

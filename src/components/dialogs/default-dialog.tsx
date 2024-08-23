@@ -54,7 +54,7 @@ export const DefaultDialog: React.FC<DefaultDialogProps> = ({
 			<dialog open={isOpen} ref={dialogRef} id={id} className={className}>
 				{children}
 				<button
-					className="text-ber-darker-grey absolute right-4 top-4 pb-2 hover:text-ber-dark-grey"
+					className="text-ber-darker-grey absolute right-5 top-5 pb-2 hover:text-ber-dark-grey"
 					onClick={closeDialog}
 				>
 					<XIcon className="size-6" />
