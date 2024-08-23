@@ -12,7 +12,7 @@ export const Chat: React.FC = () => {
 	const messages = getChat(currentChatId)?.messages || [];
 
 	return (
-		<div className="flex h-full flex-col items-center justify-between pt-14 py-5 relative">
+		<div className="flex h-full flex-col items-center justify-between pt-14 py-5">
 			{messages.length === 0 && <GetStarted />}
 
 			<ChatMessages />

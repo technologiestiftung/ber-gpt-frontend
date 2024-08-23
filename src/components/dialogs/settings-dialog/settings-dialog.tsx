@@ -9,21 +9,28 @@ export const SettingsDialog: React.FC = () => {
 	const { availableLLMs } = useCurrentLLMStore();
 
 	return (
-		<DefaultDialog id={settingsDialogId} className={"max-w-[67rem]"}>
-			<div className="max-w-[39rem]">
-				<h2 className="text-2xl font-bold">Einstellungen</h2>
-				<h3 className="font-bold">Modellauswahl</h3>
-				<p>
-					Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
-					nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
-					sed diam voluptua. At vero eos et accusam et justo duo dolores et ea
-					rebum
-				</p>
+		<DefaultDialog
+			id={settingsDialogId}
+			className={"max-w-[1076px] w-5/6 px-24 pt-12 pb-8"}
+		>
+			<div className="w-full flex justify-center">
+				<div className="flex flex-col max-w-[600px] gap-y-11">
+					<h2 className="text-2xl font-bold">Einstellungen</h2>
+					<div className="text-lg flex flex-col gap-3">
+						<h3 className="font-bold">Modellauswahl</h3>
+						<p>
+							Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
+							nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
+							erat, sed diam voluptua. At vero eos et accusam et justo duo
+							dolores et ea rebum
+						</p>
+					</div>
 
-				<div className="flex gap-x-2">
-					{availableLLMs.map((option) => (
-						<SettingsOption key={option.identifier} option={option} />
-					))}
+					<div className="flex flex-col gap-x-2">
+						{availableLLMs.map((option) => (
+							<SettingsOption key={option.identifier} option={option} />
+						))}
+					</div>
 				</div>
 			</div>
 		</DefaultDialog>
