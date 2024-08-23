@@ -6,6 +6,7 @@ import { useCurrentChatIdStore } from "../../store/current-chat-id-store";
 import { FaqIcon } from "../icons/faq-icon";
 import { Navigation } from "./navigation";
 import { History } from "./history/history";
+import { SettingsIcon } from "../icons/settings-icon";
 
 const mdWidth = 768;
 
@@ -57,59 +58,63 @@ export const SideBar: React.FC = () => {
 		>
 			<aside
 				ref={sidebarRef}
-				className={`flex flex-col z-30 justify-between overflow-hidden gap-2 overflow-x-hidden ${
+				className={`flex flex-col z-30 justify-between overflow-hidden gap-10 overflow-x-hidden ${
 					isOpen
 						? "bg-ber-lighter-grey min-w-72 w-72 h-full pb-4"
 						: "min-w-24 w-28 h-fit"
 				}`}
 				aria-label="Sidebar"
 			>
-				<div className={`flex justify-between px-5 pt-2 flex-row gap-2`}>
+				<div className={`flex justify-between px-5 mt-6 flex-row gap-2`}>
 					<IconButton
-						isOutlineVisible={!isOpen}
 						icon={<SidebarIcon />}
 						ariaLabel={toggleIsSidebarOpenLabel}
 						title={toggleIsSidebarOpenLabel}
 						onClick={() => setIsOpen(!isOpen)}
 					/>
 					<IconButton
-						isOutlineVisible={!isOpen}
 						icon={<NewChatIcon />}
 						ariaLabel="Neuen Chat starten"
 						title="Neuen Chat starten"
 						onClick={() => setCurrentChatId(null)}
 					/>
 				</div>
-				<div
-					className={`flex-col gap-8 pb-8 h-full overflow-y-auto ${isOpen ? "flex" : "hidden"}`}
-				>
-					<a
-						className={`flex-col px-5 text-[22px] ${isOpen ? "flex" : "hidden"}`}
-						href="/"
-					>
-						<h1 className="font-bold">BärGPT</h1>
-						<h2>KI-Testumgebung</h2>
+				<div className={`flex-col flex gap-5 ${isOpen ? "flex" : "hidden"}`}>
+					<a className={`flex-col font-bold px-5 text-xl`} href="/">
+						BärGPT
 					</a>
 
 					<Navigation />
-
-					<History />
-
-					<div className={`px-5 text-sm text-ber-darker-grey`}>
-						Der Chat-Verlauf wird nur lokal gespeichert und ist somit nicht für
-						andere Personen sichtbar.
-					</div>
 				</div>
-				<button
-					className={`px-5 w-fit text-ber-darker-grey hover:text-ber-dark-grey ${isOpen ? "flex" : "hidden"}`}
-					onClick={() =>
-						(
-							document.getElementById("faq-dialog") as HTMLDialogElement
-						).showModal()
-					}
+				<div
+					className={`flex-col pb-8 h-full overflow-y-auto ${isOpen ? "flex" : "hidden"}`}
 				>
-					<FaqIcon className="h-6 w-6" />
-				</button>
+					<History />
+				</div>
+				<div
+					className={`flex justify-start flex-row px-5 gap-2.5 ${isOpen ? "flex" : "hidden"}`}
+				>
+					<IconButton
+						icon={<FaqIcon />}
+						ariaLabel="FAQ"
+						title="FAQ"
+						onClick={() =>
+							(
+								document.getElementById("faq-dialog") as HTMLDialogElement
+							)?.showModal()
+						}
+					/>
+					<IconButton
+						icon={<SettingsIcon />}
+						ariaLabel="Einstellungen"
+						title="Einstellungen"
+						onClick={() =>
+							(
+								document.getElementById("settings-dialog") as HTMLDialogElement
+							)?.showModal()
+						}
+					/>
+				</div>
 			</aside>
 		</div>
 	);
