@@ -31,4 +31,8 @@
 	h6 {
 		@apply text-xl;
 	}
+
+	.markdown-container a {
+		@apply text-ber-mid-grey underline hover:text-ber-darker-grey;
+	}
 }
