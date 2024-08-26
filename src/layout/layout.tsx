@@ -1,26 +1,25 @@
 import React from "react";
 import { Header } from "../components/header";
 import { Main } from "../components/main";
-import { SplashScreen } from "../components/splash-screen";
-import { useSplashStore } from "../store/splash-store";
+import { SplashScreenDialog } from "../components/dialogs/splash-screen-dialog";
 import { useErrorStore } from "../store/error-store";
 import { ErrorToast } from "../components/error-toast";
-import { Faq } from "../components/faq/faq";
+import { FaqDialog } from "../components/dialogs/faq-dialog/faq-dialog";
 import { useIsLockedStore } from "../store/is-locked-store";
-import { PasswordModal } from "../components/password-modal";
+import { PasswordDialog } from "../components/dialogs/password-dialog";
+import { SettingsDialog } from "../components/dialogs/settings-dialog/settings-dialog";
 
 interface LayoutProps {
 	children: React.ReactNode;
 }
 
 export const Layout: React.FC<LayoutProps> = ({ children }) => {
-	const { isSplashScreenVisible } = useSplashStore();
 	const error = useErrorStore().error;
 	const { isLocked } = useIsLockedStore();
 
 	return (
 		<div className="flex font-arial">
-			{isLocked && <PasswordModal />}
+			{isLocked && <PasswordDialog />}
 
 			{!isLocked && (
 				<>
@@ -30,15 +29,11 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
 						<Main>{children}</Main>
 					</div>
 
-					{isSplashScreenVisible() && (
-						<div className="absolute z-50 h-full w-full flex items-center backdrop-blur-sm">
-							<SplashScreen />
-						</div>
-					)}
+					<SplashScreenDialog />
+					<FaqDialog />
+					<SettingsDialog />
 				</>
 			)}
-
-			<Faq />
 
 			{error && <ErrorToast error={error} />}
 		</div>

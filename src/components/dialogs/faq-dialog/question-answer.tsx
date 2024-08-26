@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { ArrowIcon } from "../icons/arrow-icon";
+import { ArrowIcon } from "../../icons/arrow-icon";
 
 interface QuestionAnswerProps {
 	question: string;
@@ -14,7 +14,7 @@ export const QuestionAnswer: React.FC<QuestionAnswerProps> = ({
 
 	return (
 		<div
-			className={`flex flex-col rounded-sm border-2 p-2 py-2 transition-all duration-200 ease-in-out border-transparent`}
+			className={`flex flex-col rounded-sm border-2 transition-all duration-200 ease-in-out border-transparent`}
 		>
 			<div className="flex flex-row justify-between">
 				<button

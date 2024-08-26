@@ -1,11 +1,10 @@
 import React from "react";
+import { useIsLockedStore } from "../../store/is-locked-store";
+import { PrimaryButton } from "../buttons/primary-button";
+import { useErrorStore } from "../../store/error-store";
+import { BaerIcon } from "../icons/bear-icon";
 
-import { useIsLockedStore } from "../store/is-locked-store";
-import { PrimaryButton } from "./buttons/primary-button";
-import { useErrorStore } from "../store/error-store";
-import { BaerIcon } from "./icons/bear-icon";
-
-export const PasswordModal: React.FC = () => {
+export const PasswordDialog: React.FC = () => {
 	const { isLocked, unlock } = useIsLockedStore();
 	const { handleError } = useErrorStore();
 

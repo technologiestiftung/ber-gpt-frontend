@@ -1,33 +1,21 @@
-import React, { useEffect, useRef } from "react";
-import { useSplashStore } from "../store/splash-store";
-import { BaerIcon } from "./icons/bear-icon";
-import { XIcon } from "./icons/x-icon";
-import { logoLinks } from "./logo-links";
+import React, { useEffect } from "react";
+import { useSplashStore } from "../../store/splash-store";
+import { BaerIcon } from "../icons/bear-icon";
+import { logoLinks } from "../logo-links";
+import { DefaultDialog } from "./default-dialog";
 
-export const SplashScreen: React.FC = () => {
-	const { hideSplashScreen } = useSplashStore();
+const dialogId = "splash-screen-dialog";
 
-	const splashContainer = useRef<HTMLDivElement | null>(null);
+export const SplashScreenDialog: React.FC = () => {
+	const { hideSplashScreen, isSplashScreenVisible } = useSplashStore();
 
 	useEffect(() => {
-		document.addEventListener("mousedown", handleClickListener);
-
-		return () => {
-			document.removeEventListener("mousedown", handleClickListener);
-		};
-	}, []);
-
-	const handleClickListener = (event: MouseEvent) => {
-		const clickedInside =
-			splashContainer &&
-			splashContainer.current?.contains(event.target as Node);
-
-		if (clickedInside) {
+		if (!isSplashScreenVisible()) {
 			return;
 		}
 
-		hideSplashScreen();
-	};
+		(document.getElementById(dialogId) as HTMLDialogElement).showModal();
+	}, []);
 
 	const links = [
 		{
@@ -43,9 +31,10 @@ export const SplashScreen: React.FC = () => {
 	];
 
 	return (
-		<div
-			ref={splashContainer}
-			className={`pointer-events-auto relative z-50 m-1 flex h-fit w-fit rounded-sm bg-white border border-ber-lighter-grey shadow-lg sm:mx-auto sm:my-10 sm:h-fit sm:w-[540px] text-ber-darker-grey`}
+		<DefaultDialog
+			id={dialogId}
+			afterClose={hideSplashScreen}
+			className={`h-fit w-fit rounded-sm bg-white shadow-lg sm:h-fit sm:w-[540px] text-ber-darker-grey`}
 		>
 			<div className="relative flex flex-col gap-6 rounded-sm p-8">
 				<div className="flex min-h-[63px] w-[63px] items-center justify-center bg-white border-black border">
@@ -105,13 +94,6 @@ export const SplashScreen: React.FC = () => {
 					))}
 				</div>
 			</div>
-
-			<button
-				className="absolute right-4 top-4 pb-2 text-ber-darker-grey hover:text-ber-darker-grey"
-				onClick={hideSplashScreen}
-			>
-				<XIcon className="h-6 w-6" />
-			</button>
-		</div>
+		</DefaultDialog>
 	);
 };
