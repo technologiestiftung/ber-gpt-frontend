@@ -1,30 +1,31 @@
 import React from "react";
-import { GetStartedMail } from "./get-started-mail";
 import { useCurrentChatIdStore } from "../../store/current-chat-id-store";
-import { EmailForm } from "./email-form/email-form";
-import { EmailMessages } from "./email-messages";
+import { EmailChatForm } from "./email-chat-form";
+import { GetStartedEmailChat } from "./get-started-email-chat";
+import { EmailChatMessages } from "./email-chat-messages";
 import { useChatHistoryStore } from "../../store/chat-history-store";
 
-export const Email: React.FC = () => {
+export const EmailChat: React.FC = () => {
 	const { getChat } = useChatHistoryStore();
 	const { currentChatId } = useCurrentChatIdStore();
 	const messages = getChat(currentChatId)?.messages || [];
 
 	return (
-		<div className="flex h-full flex-col items-center justify-between pt-16 md:pb-5 relative">
-			{messages.length === 0 && <GetStartedMail />}
+		<div className="flex h-full flex-col items-center justify-between pt-16 pb-5 relative">
+			{messages.length === 0 && <GetStartedEmailChat />}
 
-			<EmailMessages />
+			<EmailChatMessages />
 
-			<EmailForm />
+			<EmailChatForm />
 
 			<label className="inline-flex items-center cursor-pointer absolute top-7 md:left-5 right-5">
 				<input
 					type="checkbox"
 					value=""
+					checked={true}
 					className="sr-only peer"
 					onChange={() => {
-						window.location.href = "/email-chat";
+						window.location.href = "/email";
 					}}
 				/>
 				<div className="relative w-9 h-5 bg-ber-light-grey rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-ber-light-grey after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-ber-darker-grey"></div>

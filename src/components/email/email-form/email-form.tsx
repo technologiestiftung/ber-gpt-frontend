@@ -91,10 +91,10 @@ export const EmailForm: React.FC = () => {
 						{isEmailFormExpanded && (
 							<div className="flex flex-col gap-y-3 sm:flex-row sm:gap-x-5">
 								<div className="flex flex-col bg-ber-lighter-grey w-full py-6 px-6 gap-y-5">
-									<RadioGroups />
+									<PreviousEmail />
 								</div>
 								<div className="flex flex-col bg-ber-lighter-grey w-full py-6 px-6 gap-y-5">
-									<PreviousEmail />
+									<RadioGroups />
 								</div>
 							</div>
 						)}

@@ -1,11 +1,11 @@
 import React from "react";
 import { Layout } from "../layout/layout";
-import { Email as EmailChat } from "../components/email/email";
+import { Email as EmailUI } from "../components/email/email";
 
 export const Email: React.FC = () => {
 	return (
 		<Layout>
-			<EmailChat />
+			<EmailUI />
 		</Layout>
 	);
 };
