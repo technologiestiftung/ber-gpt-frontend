@@ -2,6 +2,7 @@ import { useCurrentChatIdStore } from "./current-chat-id-store";
 import { useChatHistoryStore } from "./chat-history-store";
 import { File as ExtractedFile } from "./types";
 import { useErrorStore } from "./error-store";
+import { useCurrentLLMStore } from "./current-llm-store";
 import { SYSTEM_PROMPTS } from "../system-prompts";
 
 const systemPrompts: { [key: string]: string } = {
@@ -13,6 +14,7 @@ const systemPrompts: { [key: string]: string } = {
 
 export async function streamChatResponse() {
 	const chatId = useCurrentChatIdStore.getState().currentChatId;
+	const { currentLLM } = useCurrentLLMStore.getState();
 	const { handleError } = useErrorStore.getState();
 
 	if (!chatId) {
@@ -38,7 +40,7 @@ export async function streamChatResponse() {
 			headers: {
 				"Content-Type": "application/json",
 				"x-api-key": import.meta.env.VITE_X_API_KEY,
-				llm: "openai",
+				llm: currentLLM,
 			},
 			body: JSON.stringify({
 				messages: [
@@ -97,7 +99,9 @@ export async function streamChatResponse() {
 			for (const chunk of allChunks.split("\n")) {
 				try {
 					const parsedChunk = JSON.parse(chunk);
-					const contentChunk = parsedChunk?.choices?.[0]?.delta?.content;
+					const contentChunk =
+						parsedChunk?.choices?.[0]?.delta?.content ?? // This is for chunks in the OpenAI Style
+						parsedChunk?.message.content; // This is for chunks in the Ollama Style
 
 					// eslint-disable-next-line max-depth
 					if (!contentChunk) {

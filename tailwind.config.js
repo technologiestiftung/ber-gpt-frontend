@@ -19,6 +19,7 @@ export default {
 				"ber-pink": "#F5B3CB",
 				"ber-pink-darker": "#EF81A9",
 				"ber-orange": "#F29301",
+				"ber-red": "#FF4949",
 			},
 			fontFamily: {
 				arial: ["Arial"],
