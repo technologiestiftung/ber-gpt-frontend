@@ -29,10 +29,38 @@
 	h4,
 	h5,
 	h6 {
-		@apply text-xl;
+		@apply font-bold pl-3 pt-2 text-ber-darker-grey;
+	}
+
+	.markdown-container h1 {
+		@apply text-[22px] pb-4;
+	}
+
+	.markdown-container h2 {
+		@apply text-[20px];
+	}
+
+	.markdown-container h3 {
+		@apply text-[18px];
+	}
+
+	.markdown-container h4 {
+		@apply text-[16px];
+	}
+
+	.markdown-container h5 {
+		@apply text-[14px];
+	}
+
+	.markdown-container h6 {
+		@apply text-[12px];
 	}
 
 	.markdown-container a {
 		@apply text-ber-mid-grey underline hover:text-ber-darker-grey;
+	}
+
+	.markdown-container code {
+		@apply font-arial;
 	}
 }
