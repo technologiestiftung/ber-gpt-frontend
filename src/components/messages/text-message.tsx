@@ -35,9 +35,9 @@ export const TextMessage: React.FC<TextMessageProps> = ({
 		setIsLoading(false);
 	};
 
-	const isMailChat = getStorageKey().startsWith("email");
-
-	const messageContainsCode = content.includes("```");
+	const showEmailChatButtons =
+		getStorageKey() === "email-history" ||
+		(getStorageKey() === "email-chat-history" && content.includes("```"));
 
 	return (
 		<div
@@ -77,8 +77,7 @@ export const TextMessage: React.FC<TextMessageProps> = ({
 						<CopyToClipboardButton generatedAnswer={content} />
 						{isLastMessageOfChat(messageId) &&
 							role === "assistant" &&
-							isMailChat &&
-							messageContainsCode && <EmailChatButtons />}
+							showEmailChatButtons && <EmailChatButtons />}
 					</div>
 				</div>
 			</div>
