@@ -21,7 +21,7 @@ export const SettingsOption: React.FC<SettingsOptionProps> = ({ option }) => {
 	return (
 		<label
 			htmlFor={option.identifier}
-			className="flex flex-row p-3 md:p-[18px] cursor-pointer gap-5"
+			className={`flex flex-row p-3 md:p-[18px] cursor-pointer gap-5 hover:bg-ber-lighter-grey  ${isChecked && "bg-ber-lighter-grey"}`}
 		>
 			<div className="mt-1">
 				{isChecked && <CheckSolidIcon />}
