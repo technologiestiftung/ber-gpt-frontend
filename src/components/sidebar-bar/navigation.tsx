@@ -25,7 +25,7 @@ const navLinks = [
 		backgroundColor: "bg-ber-yellow hover:bg-ber-yellow-darker",
 	},
 	{
-		label: "Text zusammenfassen",
+		label: "Text bearbeiten",
 		icon: <PDFIcon />,
 		href: "/summary",
 		backgroundColor: "bg-ber-pink hover:bg-ber-pink-darker",
