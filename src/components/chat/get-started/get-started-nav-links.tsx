@@ -19,16 +19,16 @@ const appLinks = [
 		backgroundColor: "bg-ber-blue hover:bg-ber-blue-darker",
 	},
 	{
-		label: "Hilf mir einen Vermerk zu erstellen",
-		icon: <VermerkIcon />,
-		href: "/note",
-		backgroundColor: "bg-ber-yellow hover:bg-ber-yellow-darker",
-	},
-	{
-		label: "Hilf mir Texte zusammenzufassen",
+		label: "Hilf mir, einen Text zu bearbeiten",
 		icon: <PDFIcon />,
 		href: "/summary",
 		backgroundColor: "bg-ber-pink hover:bg-ber-pink-darker",
+	},
+	{
+		label: "Hilf mir, einen Vermerk zu erstellen",
+		icon: <VermerkIcon />,
+		href: "/note",
+		backgroundColor: "bg-ber-yellow hover:bg-ber-yellow-darker",
 	},
 ];
 
@@ -40,7 +40,7 @@ export const GetStartedNavLinks: React.FC = () => {
 					{appLinks.map((item) => (
 						<li
 							key={item.label}
-							className={`flex flex-row items-center w-[304px] gap-3 rounded-sm px-4 py-2 hover:underline ${item.backgroundColor} `}
+							className={`flex flex-row items-center w-[308px] gap-3 rounded-sm px-4 py-2 hover:underline ${item.backgroundColor} `}
 						>
 							<div className="flex">{item.icon}</div>
 							<a
