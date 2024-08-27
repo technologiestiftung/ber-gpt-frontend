@@ -19,16 +19,16 @@ const appLinks = [
 		backgroundColor: "bg-ber-blue hover:bg-ber-blue-darker",
 	},
 	{
+		label: "Hilf mir Texte zu bearbeiten",
+		icon: <PDFIcon />,
+		href: "/summary",
+		backgroundColor: "bg-ber-pink hover:bg-ber-pink-darker",
+	},
+	{
 		label: "Hilf mir einen Vermerk zu erstellen",
 		icon: <VermerkIcon />,
 		href: "/note",
 		backgroundColor: "bg-ber-yellow hover:bg-ber-yellow-darker",
-	},
-	{
-		label: "Hilf mir Texte zusammenzufassen",
-		icon: <PDFIcon />,
-		href: "/summary",
-		backgroundColor: "bg-ber-pink hover:bg-ber-pink-darker",
 	},
 ];
 
