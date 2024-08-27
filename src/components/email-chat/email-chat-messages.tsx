@@ -4,6 +4,7 @@ import { Message } from "../../store/types";
 import { TextMessage } from "../messages/text-message";
 import { useChatHistoryStore } from "../../store/chat-history-store";
 import { useHasUserScrolledStore } from "../../store/has-user-scrolled-store";
+import { GetStartedEmailChat } from "./get-started-email-chat";
 
 export const EmailChatMessages: React.FC = () => {
 	const { getChat } = useChatHistoryStore();
@@ -71,6 +72,9 @@ export const EmailChatMessages: React.FC = () => {
 			className="flex w-full justify-center overflow-auto pb-2 px-5"
 		>
 			<div className="md:w-[640px] lg:w-[768px] flex flex-col gap-y-4">
+				<div className="flex">
+					<GetStartedEmailChat />
+				</div>
 				{messages.map((message) => (
 					<TextMessage
 						key={message.id}

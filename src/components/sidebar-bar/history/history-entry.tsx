@@ -5,7 +5,7 @@ import { BucketIcon } from "../../icons/bucket-icon";
 import { useChatHistoryStore } from "../../../store/chat-history-store";
 
 const removeMarkdownStyling = (name: string): string => {
-	return name.replace(/[-#`>*]/g, "");
+	return name.replace(/[#`>*]/g, "");
 };
 
 interface HistoryEntryProps {

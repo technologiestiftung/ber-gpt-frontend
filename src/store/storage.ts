@@ -1,6 +1,7 @@
 const storageKeys: Record<string, string> = {
 	"/": "chat-history",
 	"/email": "email-history",
+	"/email-chat": "email-chat-history",
 	"/note": "note-history",
 	"/summary": "summary-history",
 };
@@ -19,6 +20,7 @@ export function getStorageKey(): string {
 const storageKeyNames: Record<string, string> = {
 	"/": "Chat Funktion",
 	"/email": "E-Mail Funktion",
+	"/email-chat": "E-Mail Chat Funktion",
 	"/note": "Vermerk Funktion",
 	"/summary": "Zusammenfassung",
 };
