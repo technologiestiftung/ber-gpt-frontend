@@ -18,6 +18,32 @@ export const SettingsOption: React.FC<SettingsOptionProps> = ({ option }) => {
 
 	const isChecked = option.identifier === currentLLM;
 
+	const descriptionText = (() => {
+		switch (option.provider) {
+			case "Azure":
+				return "Aktuelles Modell von Open AI, datenschutzkonform gehostet von Microsoft Azure.";
+			case "OpenAI":
+				return "Aktuelles Modell von Open AI, gehostet von Open AI.";
+			case "Ollama":
+				return "Open Source-Modell von Meta, datenschutzkonform gehostet im CityLAB Berlin.";
+			default:
+				return "";
+		}
+	})();
+
+	const serverLocation = (() => {
+		switch (option.provider) {
+			case "Azure":
+				return "Schweden";
+			case "Ollama":
+				return "Berlin";
+			case "OpenAI":
+				return "USA";
+			default:
+				return "";
+		}
+	})();
+
 	return (
 		<label
 			htmlFor={option.identifier}
@@ -38,11 +64,7 @@ export const SettingsOption: React.FC<SettingsOptionProps> = ({ option }) => {
 					)}
 				</div>
 
-				<p className="text-sm">
-					Beschreibung für welche Anwendungsfälle das Modell am besten geeignet
-					ist, eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
-					sed diam
-				</p>
+				<p className="text-sm">{descriptionText}</p>
 
 				<div className="flex-wrap flex gap-x-5 gap-y-1 text-sm">
 					<div className="flex flex-row gap-2 items-center">
@@ -55,16 +77,14 @@ export const SettingsOption: React.FC<SettingsOptionProps> = ({ option }) => {
 					</div>
 					<div className="flex flex-row gap-2 items-center">
 						<p className="font-bold">Serverstandort</p>
-						{option.provider === "Azure" && <p>Schweden</p>}
-						{option.provider === "Ollama" && <p>Berlin</p>}
-						{option.provider === "OpenAI" && <p>USA</p>}
+						{option.provider && <p>{serverLocation}</p>}
 					</div>
 				</div>
 
 				<input
 					type="radio"
 					id={option.identifier}
-					name={"model"}
+					name="model"
 					value={option.identifier}
 					className="appearance-none"
 					defaultChecked={option.identifier === defaultModelIdentifier}
