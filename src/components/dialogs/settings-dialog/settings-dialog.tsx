@@ -19,7 +19,11 @@ export const SettingsDialog: React.FC = () => {
 					<div className="text-lg flex flex-col gap-3">
 						<h3 className="font-bold">Modellauswahl</h3>
 						<p>
-							Für den Test von BärGPT stehen verschiedene Large Language Modelle zur Auswahl. Bitte beachten Sie die Angaben zu Datenschutz und Serverstandort. Wir empfehlen aktuell das Modell azure-gpt-4o-mini, welches den Anforderungen an die DSGVO entspricht.
+							Für den Test von BärGPT stehen verschiedene Large Language Modelle
+							zur Auswahl. Bitte beachten Sie die Angaben zu Datenschutz und
+							Serverstandort. Wir empfehlen aktuell das Modell
+							azure-gpt-4o-mini, welches den Anforderungen an die DSGVO
+							entspricht.
 						</p>
 					</div>
 
