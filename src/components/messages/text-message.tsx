@@ -5,8 +5,8 @@ import { RefreshIcon } from "../icons/refresh-icon";
 import { CopyToClipboardButton } from "../buttons/copy-to-clipboard-button";
 import { streamChatResponse } from "../../store/api";
 import { useChatHistoryStore } from "../../store/chat-history-store";
-// import { EmailChatButtons } from "../email/email-chat-buttons";
-// import { getStorageKey } from "../../store/storage";
+import { EmailChatButtons } from "../email/email-chat-buttons";
+import { getStorageKey } from "../../store/storage";
 import { useIsLoadingStore } from "../../store/is-loading-store";
 import { useHasUserScrolledStore } from "../../store/has-user-scrolled-store";
 import { PreformattedTextElement } from "./preformatted-text-element";
@@ -34,6 +34,10 @@ export const TextMessage: React.FC<TextMessageProps> = ({
 		await streamChatResponse().catch(console.error);
 		setIsLoading(false);
 	};
+
+	const showEmailChatButtons =
+		getStorageKey() === "email-history" ||
+		(getStorageKey() === "email-chat-history" && content.includes("```"));
 
 	return (
 		<div
@@ -71,13 +75,12 @@ export const TextMessage: React.FC<TextMessageProps> = ({
 							</button>
 						)}
 						<CopyToClipboardButton generatedAnswer={content} />
+						{isLastMessageOfChat(messageId) &&
+							role === "assistant" &&
+							showEmailChatButtons && <EmailChatButtons />}
 					</div>
 				</div>
 			</div>
-
-			{/* {isLastMessageOfChat(messageId) &&
-				role === "assistant" &&
-				getStorageKey() === "email-history" && <EmailChatButtons />} */}
 		</div>
 	);
 };

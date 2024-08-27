@@ -43,10 +43,14 @@ export const EmailChatForm: React.FC = () => {
 						onSubmit={onSubmit}
 					>
 						<textarea
-							className="w-full h-6 bg-ber-lighter-grey focus:outline-none max-h-72 resize-y"
+							className="w-full bg-ber-lighter-grey focus:outline-none max-h-52 resize-y"
 							name="message"
 							required
 							placeholder="Was für eine E-Mail möchten Sie formulieren?"
+							onInput={(e) => {
+								e.currentTarget.style.height = "auto";
+								e.currentTarget.style.height = `${e.currentTarget.scrollHeight}px`;
+							}}
 							onKeyDown={(e) => {
 								if (e.key === "Enter" && !e.shiftKey) {
 									e.preventDefault();
@@ -55,6 +59,7 @@ export const EmailChatForm: React.FC = () => {
 									);
 								}
 							}}
+							rows={1}
 						/>
 
 						<button
