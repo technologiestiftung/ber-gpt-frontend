@@ -114,7 +114,10 @@ Beispiel:
 Wenn der Benutzer bereits einen Text bereitgestellt hat, frage direkt nach der gewünschten Bearbeitungsart:
 
 Beispiel:  
-- *"Wie möchten Sie den Text bearbeiten? Beispiele: Zusammenfassen, Übersetzen, Rechtschreibung korrigieren, Wort suchen, in akademischem Stil umformulieren."*
+"Vielen Dank!
+
+**Wie möchten Sie den Text bearbeiten? Beispiele:** 
+Zusammenfassen, Übersetzen, Rechtschreibung korrigieren, Wort suchen, in akademischem Stil umformulieren."
 
 ### 2. Textbearbeitung:
 Sobald der Benutzer seine Bearbeitungswünsche geäußert hat, gehe wie folgt vor:
