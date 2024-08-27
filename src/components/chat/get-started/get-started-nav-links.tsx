@@ -40,7 +40,7 @@ export const GetStartedNavLinks: React.FC = () => {
 					{appLinks.map((item) => (
 						<li
 							key={item.label}
-							className={`flex flex-row items-center w-[304px] gap-3 rounded-sm px-4 py-2 hover:underline ${item.backgroundColor} `}
+							className={`flex flex-row items-center w-[308px] gap-3 rounded-sm px-4 py-2 hover:underline ${item.backgroundColor} `}
 						>
 							<div className="flex">{item.icon}</div>
 							<a
