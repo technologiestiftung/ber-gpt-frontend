@@ -15,10 +15,6 @@ const mailStartPrompts = [
 		label: "Auf E-Mail antworten",
 		value: "Ich möchte auf eine E-Mail antworten.",
 	},
-	{
-		label: "Wie kann BärGPT mir helfen E-Mails zu schreiben",
-		value: "Wie kann BärGPT mir helfen E-Mails zu schreiben?",
-	},
 ];
 
 async function onClick(value: string) {
@@ -34,17 +30,14 @@ async function onClick(value: string) {
 
 export const GetStartedEmailChat: React.FC = () => {
 	return (
-		<div className="flex md:w-[640px] lg:w-[768px] max-w-full flex-row overflow-auto px-5">
+		<div className="flex md:w-[640px] lg:w-[768px] max-w-full flex-row overflow-auto px-5 pt-[30%]">
 			<div className="mt-1 flex size-[35px] min-w-[35px] items-center justify-center border border-black bg-white">
 				<BaerIcon className="h-[21px] w-[21px]" />
 			</div>
-			<div className="flex flex-col gap-4 px-3">
-				<p>
-					Hallo, ich bin Bär GPT und helfe Ihnen gerne bei der Formulierung von
-					E-Mails. Gemeinsam erarbeiten wir Schritt für Schritt eine passende
-					E-Mail. Was möchten Sie tun?
-				</p>
-				<div className="flex flex-wrap gap-4">
+			<div className="flex flex-col gap-1 px-3">
+				<p>Hallo, gemeinsam formulieren wir Schritt für Schritt eine E-Mail.</p>
+				<h1 className="text-3xl font-bold">Was möchten Sie tun?</h1>
+				<div className="flex flex-wrap gap-4 pt-3">
 					{mailStartPrompts.map(({ label, value }) => (
 						<TagButton
 							key={label}
