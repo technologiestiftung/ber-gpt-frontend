@@ -21,11 +21,11 @@ export const SettingsOption: React.FC<SettingsOptionProps> = ({ option }) => {
 	const descriptionText = (() => {
 		switch (option.provider) {
 			case "Azure":
-				return "Beschreibung für welche Anwendungsfälle das Modell am besten geeignet ist. Azure";
-			case "Ollama":
-				return "Beschreibung für welche Anwendungsfälle das Modell am besten geeignet ist Ollama";
+				return "Aktuelles Modell von Open AI, datenschutzkonform gehostet von Microsoft Azure.";
 			case "OpenAI":
-				return "Beschreibung für welche Anwendungsfälle das Modell am besten geeignet ist OPENAI";
+				return "Aktuelles Modell von Open AI, gehostet von Open AI.";
+			case "Ollama":
+				return "Open Source-Modell von Meta, datenschutzkonform gehostet im CityLAB Berlin.";
 			default:
 				return "";
 		}
