@@ -63,4 +63,12 @@
 	.markdown-container code {
 		@apply font-arial;
 	}
+
+	.markdown-container pre {
+		@apply ml-10 whitespace-pre-wrap w-[90%] my-10;
+	}
+
+	.markdown-container hr {
+		@apply m-3;
+	}
 }
