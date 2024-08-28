@@ -7,7 +7,7 @@ interface MainProps {
 
 export const Main: React.FC<MainProps> = ({ children }) => {
 	return (
-		<main className="flex flex-1 overflow-hidden">
+		<main className="flex flex-1 overflow-hidden text-ber-darker-grey">
 			<div className="flex w-full flex-row">
 				<SideBar />
 				<section className="w-full overflow-hidden">{children}</section>
