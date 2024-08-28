@@ -37,7 +37,7 @@ async function onSubmit(event: React.FormEvent<HTMLFormElement>) {
 	setIsLoading(false);
 }
 
-export const SummaryChatForm: React.FC = () => {
+export const EditChatForm: React.FC = () => {
 	const { isLoading: isGPTResponseLoading } = useIsLoadingStore();
 	const { files } = useInputFileStore();
 

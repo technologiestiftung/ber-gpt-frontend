@@ -5,9 +5,9 @@ import { FileMessage } from "../messages/file-message";
 import { TextMessage } from "../messages/text-message";
 import { Message } from "../../store/types";
 import { useHasUserScrolledStore } from "../../store/has-user-scrolled-store";
-import { SummaryGetStarted } from "./summary-get-started";
+import { EditGetStarted } from "./edit-get-started";
 
-export const SummaryChatMessages: React.FC = () => {
+export const EditChatMessages: React.FC = () => {
 	const { getChat } = useChatHistoryStore();
 	const { currentChatId } = useCurrentChatIdStore();
 	const { setHasUserScrolled } = useHasUserScrolledStore();
@@ -74,7 +74,7 @@ export const SummaryChatMessages: React.FC = () => {
 		>
 			<div className="md:w-[640px] lg:w-[768px] w-full h-full flex flex-col gap-y-4 px-5 md:pr-0 md:pl-2 ">
 				<div className="flex">
-					<SummaryGetStarted />
+					<EditGetStarted />
 				</div>
 				{messages.map((message) => (
 					<React.Fragment key={message.id}>
