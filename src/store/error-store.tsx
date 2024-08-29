@@ -25,6 +25,8 @@ const errorMessages: { [key: string]: string } = {
 	context_length_exceeded:
 		"Kontextlänge überschritten, bitte starten Sie einen neuen Chat.",
 	wrong_password: "Falsches Passwort.",
+	"Failed to fetch":
+		"Etwas ist schief gelaufen, bitte starten Sie einen neuen Chat.",
 };
 
 // "Das Streamen der Chatantworten ist fehlgeschlagen."
