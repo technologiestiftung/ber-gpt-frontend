@@ -18,7 +18,6 @@ export const UploadedFiles: React.FC = () => {
 						>
 							<div>
 								{extractionStatus === "pending" && <SpinnerIcon />}
-								{extractionStatus === "error" && <XIcon />}
 								{extractionStatus === "success" && <UploadedPDFIcon />}
 							</div>
 
