@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { FileUploadButton } from "../buttons/file-upload-button";
 import { SendIcon } from "../icons/send-icon";
 import { useIsLoadingStore } from "../../store/is-loading-store";
