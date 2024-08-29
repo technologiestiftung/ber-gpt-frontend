@@ -1,5 +1,5 @@
 import React from "react";
-import { QuestionAnswer } from "./question-answer";
+import { Collapsible } from "../../collapse/collapsible";
 import { qas } from "./qas";
 import { logoLinks } from "../../logo-links";
 import { DefaultDialog } from "../default-dialog";
@@ -44,13 +44,15 @@ export const FaqDialog: React.FC = () => {
 						<div className="text-[22px] font-bold leading-6">
 							Häufig gestellte Fragen
 						</div>
-						{qas.map((qa) => (
-							<QuestionAnswer
-								key={qa.question}
-								question={qa.question}
-								answer={qa.answer}
-							/>
-						))}
+						<div className="flex flex-col gap-y-2">
+							{qas.map((qa) => (
+								<Collapsible
+									key={qa.question}
+									question={qa.question}
+									answer={qa.answer}
+								/>
+							))}
+						</div>
 					</div>
 					<div className="flex flex-row flex-wrap justify-start gap-10 border-t border-ber-light-grey py-6">
 						{logoLinks.map((link) => (
