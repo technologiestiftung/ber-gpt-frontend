@@ -54,9 +54,7 @@ export const EmailChatForm: React.FC = () => {
 							onKeyDown={(e) => {
 								if (e.key === "Enter" && !e.shiftKey) {
 									e.preventDefault();
-									e.currentTarget.form?.dispatchEvent(
-										new Event("submit", { bubbles: true }),
-									);
+									e.currentTarget.form?.requestSubmit();
 								}
 							}}
 							rows={1}
