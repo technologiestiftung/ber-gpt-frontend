@@ -1,11 +1,11 @@
 import React from "react";
-import { FileUploadButton } from "./file-upload-button";
-import { SendIcon } from "../../icons/send-icon";
-import { useIsLoadingStore } from "../../../store/is-loading-store";
-import { useInputFileStore } from "../../../store/input-file-store";
-import { useChatHistoryStore } from "../../../store/chat-history-store";
-import { streamChatResponse } from "../../../store/api";
-import { useHasUserScrolledStore } from "../../../store/has-user-scrolled-store";
+import { FileUploadButton } from "../buttons/file-upload-button";
+import { SendIcon } from "../icons/send-icon";
+import { useIsLoadingStore } from "../../store/is-loading-store";
+import { useInputFileStore } from "../../store/input-file-store";
+import { useChatHistoryStore } from "../../store/chat-history-store";
+import { streamChatResponse } from "../../store/api";
+import { useHasUserScrolledStore } from "../../store/has-user-scrolled-store";
 
 const { setIsLoading } = useIsLoadingStore.getState();
 const { reset: resetFiles, saveFilesAsMessages } = useInputFileStore.getState();

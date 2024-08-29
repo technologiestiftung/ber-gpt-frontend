@@ -1,8 +1,8 @@
 import React from "react";
-import { useInputFileStore } from "../../store/input-file-store";
-import { SpinnerIcon } from "../icons/spinner-icon";
-import { XIcon } from "../icons/x-icon";
-import { UploadedPDFIcon } from "../icons/uploaded-pdf-icon";
+import { useInputFileStore } from "./../store/input-file-store";
+import { SpinnerIcon } from "./icons/spinner-icon";
+import { UploadedPDFIcon } from "./icons/uploaded-pdf-icon";
+import { XIcon } from "./icons/x-icon";
 
 export const UploadedFiles: React.FC = () => {
 	const { files, removeFile } = useInputFileStore();
