@@ -5,6 +5,7 @@ import { useCurrentChatIdStore } from "../../store/current-chat-id-store";
 import { UploadedFiles } from "../uploaded-files";
 import { ChatForm } from "./chat-form";
 import { ChatMessages } from "./chat-messages";
+import { Help } from "../help/help";
 
 export const Chat: React.FC = () => {
 	const { getChat } = useChatHistoryStore();
@@ -14,6 +15,8 @@ export const Chat: React.FC = () => {
 	return (
 		<div className="flex h-full flex-col items-center justify-between pt-14 py-5">
 			{messages.length === 0 && <GetStarted />}
+
+			<Help />
 
 			<ChatMessages />
 
