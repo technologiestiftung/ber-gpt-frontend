@@ -1,7 +1,7 @@
 import React from "react";
-import { UploadedFiles } from "./uploaded-files";
+import { UploadedFiles } from "../uploaded-files";
 import { EditChatMessages } from "./edit-chat-messages";
-import { EditChatForm } from "./edit-chat-form/edit-chat-form";
+import { EditChatForm } from "./edit-chat-form";
 
 export const Edit: React.FC = () => {
 	return (

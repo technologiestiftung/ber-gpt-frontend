@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { CheckIcon } from "../icons/check-icon";
 import { CopyIcon } from "../icons/copy-icon";
+import { CopiedIcon } from "../icons/copied-icon";
 
 interface CopyToClipboardButtonProps {
 	generatedAnswer: string;
@@ -32,7 +32,7 @@ export const CopyToClipboardButton: React.FC<CopyToClipboardButtonProps> = ({
 			aria-label={isCopiedToClipboard ? "Kopiert!" : "Kopieren"}
 			title={isCopiedToClipboard ? "Kopiert!" : "Kopieren"}
 		>
-			{isCopiedToClipboard ? <CheckIcon /> : <CopyIcon />}
+			{isCopiedToClipboard ? <CopiedIcon /> : <CopyIcon />}
 		</button>
 	);
 };

@@ -2,8 +2,8 @@ import React from "react";
 import { GetStarted } from "./get-started/get-started";
 import { useChatHistoryStore } from "../../store/chat-history-store";
 import { useCurrentChatIdStore } from "../../store/current-chat-id-store";
-import { UploadedFiles } from "./uploaded-files";
-import { ChatForm } from "./chat-form/chat-form";
+import { UploadedFiles } from "../uploaded-files";
+import { ChatForm } from "./chat-form";
 import { ChatMessages } from "./chat-messages";
 
 export const Chat: React.FC = () => {

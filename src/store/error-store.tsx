@@ -25,15 +25,9 @@ const errorMessages: { [key: string]: string } = {
 	context_length_exceeded:
 		"Kontextlänge überschritten, bitte starten Sie einen neuen Chat.",
 	wrong_password: "Falsches Passwort.",
+	"Failed to fetch":
+		"Etwas ist schief gelaufen, bitte starten Sie einen neuen Chat.",
 };
-
-// "Das Streamen der Chatantworten ist fehlgeschlagen."
-// "Fehler beim Einfügen der Chatantwort."
-// "Response body from API is empty",
-// "Extract document content failed"
-// "Es wird versucht, eine Nachricht zu einem nicht vorhandenen Chat hinzuzufügen.",
-// "Es wird versucht, eine Nachricht aus einem nicht vorhandenen Chat zu aktualisieren.",
-// "Es wird versucht, eine Nachricht aus einem nicht vorhandenen Chat zu löschen.",
 
 export const useErrorStore = create<ErrorStore>()((set, get) => ({
 	error: undefined,
