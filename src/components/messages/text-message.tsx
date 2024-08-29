@@ -9,8 +9,6 @@ import { EmailChatButtons } from "../email/email-chat-buttons";
 import { getStorageKey } from "../../store/storage";
 import { useIsLoadingStore } from "../../store/is-loading-store";
 import { useHasUserScrolledStore } from "../../store/has-user-scrolled-store";
-import { PreformattedTextElement } from "./preformatted-text-element";
-
 interface TextMessageProps {
 	role: string;
 	content: string;
@@ -51,8 +49,6 @@ export const TextMessage: React.FC<TextMessageProps> = ({
 				</div>
 				<div className="flex flex-col">
 					<ReactMarkdown
-						// @ts-expect-error typing too complex
-						components={{ pre: PreformattedTextElement }}
 						className={`markdown-container ${role === "user" ? "bg-ber-lighter-grey py-2" : ""}`}
 					>
 						{content === "" ? "..." : content}

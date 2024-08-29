@@ -8,13 +8,13 @@
 	}
 
 	.markdown-container ol {
-		@apply my-4 list-none space-y-2;
+		@apply my-4 list-none;
 		list-style: decimal;
 		padding-left: 2rem;
 	}
 
 	.markdown-container ul {
-		@apply my-4 list-none space-y-2;
+		@apply my-4 list-none;
 		list-style: disc;
 		padding-left: 2rem;
 	}
@@ -62,5 +62,13 @@
 
 	.markdown-container code {
 		@apply font-arial;
+	}
+
+	.markdown-container pre {
+		@apply ml-10 whitespace-pre-wrap w-[90%] my-10;
+	}
+
+	.markdown-container hr {
+		@apply m-3;
 	}
 }

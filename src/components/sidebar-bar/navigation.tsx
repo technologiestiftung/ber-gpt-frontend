@@ -21,7 +21,7 @@ const navLinks = [
 	{
 		label: "Text bearbeiten",
 		icon: <PDFIcon />,
-		href: "/summary",
+		href: "/edit",
 		backgroundColor: "bg-ber-pink hover:bg-ber-pink-darker",
 	},
 	{
