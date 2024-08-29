@@ -16,22 +16,3 @@ export function getStorageKey(): string {
 
 	return storageKey;
 }
-
-const storageKeyNames: Record<string, string> = {
-	"/": "Chat Funktion",
-	"/email": "E-Mail Funktion",
-	"/email-chat": "E-Mail Chat Funktion",
-	"/note": "Vermerk Funktion",
-	"/edit": "Zusammenfassung",
-};
-
-export function getStorageKeyName(): string {
-	const storageKey = storageKeyNames[window.location.pathname];
-
-	if (!storageKey) {
-		console.error("No storage key found for", window.location.pathname);
-		return "fallback-storage";
-	}
-
-	return storageKey;
-}
