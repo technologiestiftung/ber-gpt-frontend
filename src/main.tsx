@@ -3,7 +3,7 @@ import ReactDOM from "react-dom/client";
 import { Index } from "./routes";
 import { Email } from "./routes/email";
 import { Note } from "./routes/note";
-import { Summary } from "./routes/summary";
+import { Edit } from "./routes/edit";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./index.css";
 import { EmailChat } from "./routes/email-chat";
@@ -22,8 +22,8 @@ const router = createBrowserRouter([
 		element: <EmailChat />,
 	},
 	{
-		path: "/summary",
-		element: <Summary />,
+		path: "/edit",
+		element: <Edit />,
 	},
 	{
 		path: "/note",

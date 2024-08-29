@@ -9,7 +9,7 @@ const systemPrompts: { [key: string]: string } = {
 	"/email": SYSTEM_PROMPTS.CHAT_SYSTEM_PROMPT,
 	"/email-chat": SYSTEM_PROMPTS.EMAIL_SYSTEM_PROMPT,
 	"/note": SYSTEM_PROMPTS.NOTE_SYSTEM_PROMPT,
-	"/summary": SYSTEM_PROMPTS.SUMMARY_SYSTEM_PROMPT,
+	"/edit": SYSTEM_PROMPTS.EDIT_SYSTEM_PROMPT,
 };
 
 export async function streamChatResponse() {
