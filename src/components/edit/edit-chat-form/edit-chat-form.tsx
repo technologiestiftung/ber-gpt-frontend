@@ -17,11 +17,13 @@ async function onSubmit(event: React.FormEvent<HTMLFormElement>) {
 	setIsLoading(true);
 	setHasUserScrolled(false);
 
+	const { files } = useInputFileStore.getState();
+
 	const formData = new FormData(event.currentTarget);
 	event.currentTarget.reset();
 
 	const message = formData.get("message");
-	if (!message) {
+	if (!message && files.length === 0) {
 		console.error("The input 'message' from the form is missing.");
 		setIsLoading(false);
 		return;
@@ -30,7 +32,9 @@ async function onSubmit(event: React.FormEvent<HTMLFormElement>) {
 	saveFilesAsMessages();
 	resetFiles();
 
-	saveMessage(message.toString());
+	if (message) {
+		saveMessage(message.toString());
+	}
 
 	await streamChatResponse().catch(console.error);
 
@@ -55,8 +59,8 @@ export const EditChatForm: React.FC = () => {
 			<textarea
 				className="w-full h-28 bg-ber-lighter-grey focus:outline-none max-h-72 resize-y"
 				name="message"
-				required
 				placeholder="Text hier eingeben"
+				required={files.length === 0}
 				onKeyDown={(e) => {
 					if (e.key === "Enter" && !e.shiftKey) {
 						e.preventDefault();
