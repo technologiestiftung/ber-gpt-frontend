@@ -38,6 +38,7 @@ export const EmailForm: React.FC = () => {
 	const isDesktop = window.innerWidth > 767;
 	const [isEmailFormExpanded, setIsEmailFormExpanded] = useState(isDesktop);
 	const { isLoading } = useIsLoadingStore();
+	const [isSendDisabled, setIsSendDisabled] = useState(true);
 	const { setHasUserScrolled } = useHasUserScrolledStore();
 
 	const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -106,12 +107,15 @@ export const EmailForm: React.FC = () => {
 							rows={2}
 							name="message"
 							required
+							onInput={(e) => {
+								setIsSendDisabled(!e.currentTarget.value);
+							}}
 							onFocus={() => setIsEmailFormExpanded(true)}
 						/>
 						<button
 							type="submit"
-							disabled={isLoading}
-							className="text-ber-darker-grey hover:text-ber-dark-grey disabled:hover:text-ber-darker-grey"
+							disabled={isLoading || isSendDisabled}
+							className="text-ber-darker-grey hover:text-ber-dark-grey disabled:text-ber-light-grey"
 						>
 							<SendIcon className="w-8 h-8" />
 						</button>
