@@ -17,7 +17,7 @@ async function onSubmit(event: React.FormEvent<HTMLFormElement>) {
 	setIsLoading(true);
 	setHasUserScrolled(false);
 
-	const { files } = useInputFileStore.getState();
+	const { files } = useInputFileStore();
 
 	const formData = new FormData(event.currentTarget);
 	event.currentTarget.reset();

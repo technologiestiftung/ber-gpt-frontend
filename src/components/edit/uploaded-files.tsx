@@ -1,8 +1,8 @@
 import React from "react";
 import { useInputFileStore } from "../../store/input-file-store";
 import { SpinnerIcon } from "../icons/spinner-icon";
-import { PDFLargeIcon } from "../icons/pdf-large-icon";
 import { XIcon } from "../icons/x-icon";
+import { UploadedPDFIcon } from "../icons/uploaded-pdf-icon";
 
 export const UploadedFiles: React.FC = () => {
 	const { files, removeFile } = useInputFileStore();
@@ -14,16 +14,16 @@ export const UploadedFiles: React.FC = () => {
 					{files.map(({ id, name, extractionStatus }) => (
 						<div
 							key={id}
-							className="flex items-center gap-4 rounded-sm border border-ber-light-grey bg-white px-4 py-3"
+							className="flex items-center gap-2 rounded-sm group bg-white p-2"
 						>
-							{extractionStatus === "pending" && <SpinnerIcon />}
-							{extractionStatus === "error" && "❌"}
-							{extractionStatus === "success" && (
-								<PDFLargeIcon className="text-ber-darker-grey" />
-							)}
+							<div>
+								{extractionStatus === "pending" && <SpinnerIcon />}
+								{extractionStatus === "error" && <XIcon />}
+								{extractionStatus === "success" && <UploadedPDFIcon />}
+							</div>
 
-							<div className="flex flex-col">
-								<span>{name.replace(".pdf", "")}</span>
+							<div className="flex flex-col text-xs font-semibold max-w-20 min-w-5">
+								<span className="truncate">{name.replace(".pdf", "")}</span>
 								<span className="font-light text-ber-light-grey">PDF</span>
 							</div>
 
@@ -31,9 +31,9 @@ export const UploadedFiles: React.FC = () => {
 								<div className="relative">
 									<button
 										onClick={() => removeFile(id)}
-										className="absolute -right-7 -top-11 flex h-6 w-6 items-center justify-center rounded-full border border-ber-dark-grey bg-gray-100 hover:bg-gray-200"
+										className="flex p-1 items-center justify-center rounded-full bg-ber-light-grey opacity-0 group-hover:opacity-100"
 									>
-										<XIcon className="h-2.5 w-2.5 text-ber-dark-grey" />
+										<XIcon className="size-2 text-ber-darker-grey" />
 									</button>
 								</div>
 							)}
