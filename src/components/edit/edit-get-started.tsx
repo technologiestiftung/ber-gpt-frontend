@@ -12,6 +12,7 @@ export const EditGetStarted: React.FC = () => {
 				<div className="text-3xl font-bold">
 					Bitte fügen Sie den Text unten in das Eingabefeld ein.
 				</div>
+				<p>Oder laden Sie ein Dokument hoch.</p>
 			</div>
 		</div>
 	);
