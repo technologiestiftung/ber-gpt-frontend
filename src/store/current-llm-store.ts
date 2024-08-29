@@ -6,6 +6,9 @@ export interface availableLLM {
 	baseModelName: string;
 	provider: string;
 	isGdprCompliant: boolean;
+	isOpenSource: boolean;
+	description: string;
+	serverLocation: string;
 }
 
 interface CurrentLLMStore {
@@ -14,7 +17,7 @@ interface CurrentLLMStore {
 	availableLLMs: availableLLM[];
 }
 
-export const defaultModelIdentifier = "azure-gpt-4o-mini";
+const defaultModelIdentifier = "azure-gpt-4o-mini";
 
 export const useCurrentLLMStore = create<CurrentLLMStore>()((set) => {
 	getAvailableLLMs().catch(console.error);

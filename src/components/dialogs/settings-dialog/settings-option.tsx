@@ -1,7 +1,6 @@
 import React from "react";
 import {
 	availableLLM,
-	defaultModelIdentifier,
 	useCurrentLLMStore,
 } from "../../../store/current-llm-store";
 import { CheckSolidIcon } from "../../icons/check-solid-icon";
@@ -17,32 +16,6 @@ export const SettingsOption: React.FC<SettingsOptionProps> = ({ option }) => {
 	const { currentLLM, setCurrentLLM } = useCurrentLLMStore();
 
 	const isChecked = option.identifier === currentLLM;
-
-	const descriptionText = (() => {
-		switch (option.provider) {
-			case "Azure":
-				return "Aktuelles Modell von Open AI, datenschutzkonform gehostet von Microsoft Azure.";
-			case "OpenAI":
-				return "Aktuelles Modell von Open AI, gehostet von Open AI.";
-			case "Ollama":
-				return "Open Source-Modell von Meta, datenschutzkonform gehostet im CityLAB Berlin.";
-			default:
-				return "";
-		}
-	})();
-
-	const serverLocation = (() => {
-		switch (option.provider) {
-			case "Azure":
-				return "Schweden";
-			case "Ollama":
-				return "Berlin";
-			case "OpenAI":
-				return "USA";
-			default:
-				return "";
-		}
-	})();
 
 	return (
 		<label
@@ -64,7 +37,7 @@ export const SettingsOption: React.FC<SettingsOptionProps> = ({ option }) => {
 					)}
 				</div>
 
-				<p className="text-sm">{descriptionText}</p>
+				<p className="text-sm">{option.description}</p>
 
 				<div className="flex-wrap flex gap-x-5 gap-y-1 text-sm">
 					<div className="flex flex-row gap-2 items-center">
@@ -73,11 +46,11 @@ export const SettingsOption: React.FC<SettingsOptionProps> = ({ option }) => {
 					</div>
 					<div className="flex flex-row gap-2 items-center">
 						<p className="font-bold">Open Source</p>
-						{option.provider === "Ollama" ? <CheckIcon /> : <UnavailableIcon />}
+						{option.isOpenSource ? <CheckIcon /> : <UnavailableIcon />}
 					</div>
 					<div className="flex flex-row gap-2 items-center">
 						<p className="font-bold">Serverstandort</p>
-						{option.provider && <p>{serverLocation}</p>}
+						{option.provider && <p>{option.serverLocation}</p>}
 					</div>
 				</div>
 
@@ -87,7 +60,6 @@ export const SettingsOption: React.FC<SettingsOptionProps> = ({ option }) => {
 					name="model"
 					value={option.identifier}
 					className="appearance-none"
-					defaultChecked={option.identifier === defaultModelIdentifier}
 					checked={option.identifier === currentLLM}
 					onChange={(e) => setCurrentLLM(e.target.value)}
 				/>
