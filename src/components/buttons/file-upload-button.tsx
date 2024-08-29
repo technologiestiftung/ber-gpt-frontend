@@ -1,6 +1,6 @@
 import React from "react";
-import { useInputFileStore } from "../../../store/input-file-store";
-import { UploadIcon } from "../../icons/upload-icon";
+import { useInputFileStore } from "../../store/input-file-store";
+import { UploadIcon } from "../icons/upload-icon";
 
 export const FileUploadButton: React.FC = () => {
 	const { setFiles } = useInputFileStore();
