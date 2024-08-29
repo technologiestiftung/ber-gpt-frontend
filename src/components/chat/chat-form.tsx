@@ -1,11 +1,11 @@
 import React from "react";
-import { FileUploadButton } from "./file-upload-button";
-import { SendIcon } from "../../icons/send-icon";
-import { useIsLoadingStore } from "../../../store/is-loading-store";
-import { useInputFileStore } from "../../../store/input-file-store";
-import { useChatHistoryStore } from "../../../store/chat-history-store";
-import { streamChatResponse } from "../../../store/api";
-import { useHasUserScrolledStore } from "../../../store/has-user-scrolled-store";
+import { FileUploadButton } from "../buttons/file-upload-button";
+import { SendIcon } from "../icons/send-icon";
+import { useIsLoadingStore } from "../../store/is-loading-store";
+import { useInputFileStore } from "../../store/input-file-store";
+import { useChatHistoryStore } from "../../store/chat-history-store";
+import { streamChatResponse } from "../../store/api";
+import { useHasUserScrolledStore } from "../../store/has-user-scrolled-store";
 
 const { setIsLoading } = useIsLoadingStore.getState();
 const { reset: resetFiles, saveFilesAsMessages } = useInputFileStore.getState();
@@ -17,11 +17,13 @@ async function onSubmit(event: React.FormEvent<HTMLFormElement>) {
 	setIsLoading(true);
 	setHasUserScrolled(false);
 
+	const { files } = useInputFileStore.getState();
+
 	const formData = new FormData(event.currentTarget);
 	event.currentTarget.reset();
 
 	const message = formData.get("message");
-	if (!message) {
+	if (!message && files.length === 0) {
 		console.error("The input 'message' from the form is missing.");
 		setIsLoading(false);
 		return;
@@ -30,7 +32,9 @@ async function onSubmit(event: React.FormEvent<HTMLFormElement>) {
 	saveFilesAsMessages();
 	resetFiles();
 
-	saveMessage(message.toString());
+	if (message) {
+		saveMessage(message.toString());
+	}
 
 	await streamChatResponse().catch(console.error);
 
@@ -56,7 +60,7 @@ export const ChatForm: React.FC = () => {
 				className="w-full bg-ber-lighter-grey focus:outline-none"
 				name="message"
 				type="text"
-				required
+				required={files.length === 0}
 				placeholder="Wie kann ich Ihnen helfen?"
 			/>
 

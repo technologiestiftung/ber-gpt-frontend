@@ -39,6 +39,11 @@ export const useInputFileStore = create<InputFileStore>()((set, get) => ({
 
 		const extractedFiles = await Promise.all(promises);
 
+		if (extractedFiles.some((result) => result.extractionStatus === "error")) {
+			set({ files: [] });
+			return;
+		}
+
 		set({ files: extractedFiles });
 	},
 
