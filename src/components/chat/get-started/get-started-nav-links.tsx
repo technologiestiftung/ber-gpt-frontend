@@ -21,7 +21,7 @@ const appLinks = [
 	{
 		label: "Hilf mir, einen Text zu bearbeiten",
 		icon: <PDFIcon />,
-		href: "/summary",
+		href: "/edit",
 		backgroundColor: "bg-ber-pink hover:bg-ber-pink-darker",
 	},
 	{
