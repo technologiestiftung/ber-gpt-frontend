@@ -64,8 +64,9 @@ export const EmailChatForm: React.FC = () => {
 
 						<button
 							type="submit"
-							disabled={isLoading || isSendDisabled}
-							className="text-ber-darker-grey hover:text-ber-dark-grey disabled:text-ber-light-grey"
+							disabled={isLoading}
+							className={`text-ber-darker-grey hover:text-ber-dark-grey disabled:text-ber-light-grey
+								${isSendDisabled && "text-ber-light-grey hover:text-ber-light-grey"}`}
 						>
 							<SendIcon className="w-8 h-8" />
 						</button>

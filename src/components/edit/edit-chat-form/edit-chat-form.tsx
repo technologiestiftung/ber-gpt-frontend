@@ -77,8 +77,9 @@ export const EditChatForm: React.FC = () => {
 				<FileUploadButton />
 				<button
 					type="submit"
-					disabled={isLoading || isSendDisabled}
-					className="text-ber-darker-grey hover:text-ber-dark-grey disabled:text-ber-light-grey"
+					disabled={isLoading}
+					className={`text-ber-darker-grey hover:text-ber-dark-grey disabled:text-ber-light-grey
+						${isSendDisabled && files.length === 0 && "text-ber-light-grey hover:text-ber-light-grey"}`}
 				>
 					<SendIcon className="w-8 h-8" />
 				</button>
