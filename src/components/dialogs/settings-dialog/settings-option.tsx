@@ -56,7 +56,7 @@ export const SettingsOption: React.FC<SettingsOptionProps> = ({ option }) => {
 
 			<div className="flex flex-col gap-2">
 				<div className="flex flex-wrap gap-y-2 gap-x-5 mb-2">
-					<h3 className="font-bold text-lg">{option.identifier}</h3>
+					<div className="font-bold text-lg">{option.identifier}</div>
 					{option.provider === "Azure" && (
 						<div className="text-white bg-ber-green-darker rounded-full px-2 text-sm flex items-center">
 							empfohlen

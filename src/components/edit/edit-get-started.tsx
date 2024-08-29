@@ -9,9 +9,9 @@ export const EditGetStarted: React.FC = () => {
 			</div>
 			<div className="flex flex-col gap-1 px-3 w-5/6">
 				<p>Hallo, gemeinsam bearbeiten wir Schritt für Schritt Ihren Text.</p>
-				<h1 className="text-3xl font-bold">
+				<div className="text-3xl font-bold">
 					Bitte fügen Sie den Text unten in das Eingabefeld ein.
-				</h1>
+				</div>
 			</div>
 		</div>
 	);

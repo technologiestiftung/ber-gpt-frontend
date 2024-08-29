@@ -28,9 +28,9 @@ export const GetStarted: React.FC = () => {
 				<div className="flex min-h-[50px] w-[50px] items-center justify-center border border-black bg-white md:min-h-[60px] md:w-[60px]">
 					<BaerIcon className="h-8 w-8 md:h-10 md:w-10" />
 				</div>
-				<h2 className="py-4 text-3xl md:text-4xl font-bold">
+				<div className="py-4 text-3xl md:text-4xl font-bold">
 					Starte mit BärGPT!
-				</h2>
+				</div>
 				<p className="pb-4 pt-2 text-center md:text-xl text-sm">
 					BärGPT bietet spezialisierte KI-Funktionen, die Sie bei der Erledigung
 					von typischen Aufgaben unterstützen. Dieses Angebot befindet sich noch
@@ -39,7 +39,7 @@ export const GetStarted: React.FC = () => {
 
 				<GetStartedNavLinks />
 
-				<h2 className="pb-2 pt-8 text-xl md:text-2xl font-semibold">Chat</h2>
+				<div className="pb-2 pt-8 text-xl md:text-2xl font-semibold">Chat</div>
 				<p className="pb-2 pt-2 md:text-base text-sm text-center">
 					Sie können BärGPT direkt nutzen, indem Sie Ihre Frage oder Ihr
 					Anliegen in das Chatfenster unten eintippen oder direkt eine Frage
