@@ -69,7 +69,7 @@ export const EmailChatMessages: React.FC = () => {
 	return (
 		<div
 			ref={messageContainerRef}
-			className="flex w-full justify-center overflow-auto pb-2 px-5"
+			className="flex w-full justify-center overflow-y-auto overflow-x-hidden pb-2 px-5"
 		>
 			<div className="md:w-[640px] lg:w-[768px] flex flex-col gap-y-4">
 				<div className="flex">
