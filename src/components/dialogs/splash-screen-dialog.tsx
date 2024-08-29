@@ -42,7 +42,7 @@ export const SplashScreenDialog: React.FC = () => {
 				</div>
 				<div>
 					<h1 className="text-[22px] font-bold leading-6">BärGPT</h1>
-					<h2 className="text-[22px]">KI-Testumgebung</h2>
+					<h2 className="text-[22px] pl-0">KI-Testumgebung</h2>
 				</div>
 				<p className="py-2">
 					BärGPT ist eine produktiv nutzbare KI-Testumgebung für Beschäftigte
