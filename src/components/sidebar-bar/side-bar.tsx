@@ -54,7 +54,7 @@ export const SideBar: React.FC = () => {
 		<div
 			className={`absolute md:relative top-0 pt-11 md:pt-0 left-0 z-20 text-ber-darker-grey ${
 				isOpen
-					? "w-full h-full backdrop-brightness-90 mh:min-w-72 md:w-72 md:backdrop-brightness-100"
+					? "w-full h-full backdrop-brightness-90 backdrop-blur-sm md:min-w-72 md:w-72 md:backdrop-blur-none md:backdrop-brightness-100"
 					: ""
 			}`}
 		>
