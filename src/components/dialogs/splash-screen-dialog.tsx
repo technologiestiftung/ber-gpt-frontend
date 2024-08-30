@@ -34,7 +34,7 @@ export const SplashScreenDialog: React.FC = () => {
 		<DefaultDialog
 			id={dialogId}
 			afterClose={hideSplashScreen}
-			className={`h-fit w-fit rounded-sm bg-white shadow-lg sm:h-fit sm:w-[540px] text-ber-darker-grey`}
+			className={`h-fit w-fit rounded-sm bg-white shadow-lg backdrop:backdrop-blur-sm sm:h-fit sm:w-[540px] text-ber-darker-grey`}
 		>
 			<div className="relative flex flex-col gap-6 rounded-sm p-8">
 				<div className="flex min-h-[63px] w-[63px] items-center justify-center bg-white border-black border">
