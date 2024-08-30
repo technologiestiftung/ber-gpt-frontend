@@ -5,6 +5,7 @@
 @layer base {
 	.markdown-container p {
 		@apply m-3 hyphens-auto;
+		word-break: break-word;
 	}
 
 	.markdown-container ol {
