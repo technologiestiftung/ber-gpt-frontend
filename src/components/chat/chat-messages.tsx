@@ -69,7 +69,7 @@ export const ChatMessages: React.FC = () => {
 	return (
 		<div
 			ref={messageContainerRef}
-			className="flex w-full justify-center overflow-auto scroll-smooth mb-2"
+			className="flex w-full justify-center overflow-y-auto overflow-x-hidden scroll-smooth mb-2"
 		>
 			<div className="md:w-[640px] lg:w-[768px] w-full h-full flex flex-col gap-y-4 px-5 md:pr-0 md:pl-2 ">
 				{messages.map((message) => (

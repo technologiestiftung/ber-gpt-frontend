@@ -31,8 +31,8 @@ export const PasswordDialog: React.FC = () => {
 						<div className="border border-black bg-white w-fit p-2 self-center">
 							<BaerIcon />
 						</div>
-						<h1 className="self-center font-bold text-2xl mt-3.5">BärGPT</h1>
-						<h2 className="self-center text-2xl -mt-3">KI-Testumgebung</h2>
+						<div className="self-center font-bold text-2xl mt-3.5">BärGPT</div>
+						<div className="self-center text-2xl -mt-3">KI-Testumgebung</div>
 
 						<label htmlFor="password" className="font-bold mt-12">
 							Passwort

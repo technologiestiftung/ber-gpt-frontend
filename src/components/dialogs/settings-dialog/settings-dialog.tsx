@@ -15,9 +15,9 @@ export const SettingsDialog: React.FC = () => {
 		>
 			<div className="w-full flex justify-center">
 				<div className="flex flex-col max-w-[600px] gap-y-5 md:gap-y-5">
-					<h2 className="text-2xl font-bold">Einstellungen</h2>
+					<div className="text-2xl font-bold">Einstellungen</div>
 					<div className="text-lg flex flex-col gap-3">
-						<h3 className="font-bold">Modellauswahl</h3>
+						<div className="font-bold">Modellauswahl</div>
 						<p>
 							Für den Test von BärGPT stehen verschiedene Large Language Modelle
 							zur Auswahl. Bitte beachten Sie die Angaben zu Datenschutz und

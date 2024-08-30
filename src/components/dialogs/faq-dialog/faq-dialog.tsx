@@ -15,7 +15,7 @@ export const FaqDialog: React.FC = () => {
 			<div className="w-full h-full flex justify-center">
 				<div className="flex flex-col justify-between gap-7 max-w-[600px]">
 					<div className="flex flex-col gap-7">
-						<h1 className="text-[22px] font-bold leading-6">Über BärGPT</h1>
+						<div className="text-[22px] font-bold leading-6">Über BärGPT</div>
 						<p>
 							BärGPT ist eine produktiv nutzbare KI-Testumgebung für
 							Beschäftigte der Berliner Landesverwaltung, bereitgestellt vom{" "}
@@ -41,9 +41,9 @@ export const FaqDialog: React.FC = () => {
 							</a>
 							.
 						</p>
-						<h1 className="text-[22px] font-bold leading-6">
+						<div className="text-[22px] font-bold leading-6">
 							Häufig gestellte Fragen
-						</h1>
+						</div>
 						{qas.map((qa) => (
 							<QuestionAnswer
 								key={qa.question}
