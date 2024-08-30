@@ -24,11 +24,11 @@ export const qas = [
 	{
 		question: "Wie schreibe ich mit BärGPT?",
 		answer:
-			"Stellen Sie sich BärGPT wie ein Gesprächspartner vor. Sie können einfach Ihre Frage oder Ihren Textwunsch eingeben, zum Beispiel: „Wie formuliere ich eine E-Mail an einen Kollegen?“ BärGPT gibt Ihnen dann einen Vorschlag oder Text, den Sie nutzen oder anpassen können.",
+			"Stellen Sie sich BärGPT wie einen Gesprächspartner vor. Sie können einfach Ihre Frage oder Ihren Textwunsch eingeben, zum Beispiel: „Wie formuliere ich eine E-Mail an einen Kollegen?“ BärGPT erstellt Ihnen dann einen Vorschlag oder Text, den Sie nutzen oder anpassen können.",
 	},
 	{
 		question: "Was ist BärGPT?",
 		answer:
-			"BärGPT ist ein Computerprogramm, das auf einer sogenannten „künstlichen Intelligenz“ (KI) basiert. Einfach gesagt, ist es ein fortschrittlicher digitaler Assistent, der Texte verstehen und beantworten kann, ähnlich wie ein Mensch. BärGPT kann Ihnen helfen, indem es Informationen bereitstellt, Fragen beantwortet, Texte schreibt oder Aufgaben automatisiert.",
+			"BärGPT ist eine Web-Applikation, die auf einer sogenannten „Künstlichen Intelligenz“ (KI) basiert. Einfach gesagt, ist es ein fortschrittlicher digitaler Assistent, der Texte verstehen und beantworten kann, ähnlich wie ein Mensch. BärGPT kann Ihnen helfen, indem es Informationen bereitstellt, Fragen beantwortet, Texte schreibt oder Aufgaben automatisiert.",
 	},
 ];
