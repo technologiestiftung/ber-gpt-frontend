@@ -15,7 +15,7 @@ const appLinks = [
 	{
 		label: "Formuliere eine E-Mail für mich",
 		icon: <MailIcon />,
-		href: "/email",
+		href: "/email-chat",
 		backgroundColor: "bg-ber-blue hover:bg-ber-blue-darker",
 	},
 	{

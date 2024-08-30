@@ -2,10 +2,13 @@ import React from "react";
 import { UploadedFiles } from "../uploaded-files";
 import { EditChatMessages } from "./edit-chat-messages";
 import { EditChatForm } from "./edit-chat-form";
+import { Help } from "../help/help";
 
 export const Edit: React.FC = () => {
 	return (
-		<div className="flex h-full flex-col items-center justify-between pt-14 py-5">
+		<div className="flex h-full flex-col items-center justify-between pt-14 py-5 relative">
+			<Help />
+
 			<EditChatMessages />
 
 			<div className="px-5 w-full flex justify-center">

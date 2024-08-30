@@ -15,7 +15,7 @@ const navLinks = [
 	{
 		label: "E-Mail formulieren",
 		icon: <MailIcon />,
-		href: "/email",
+		href: "/email-chat",
 		backgroundColor: "bg-ber-blue hover:bg-ber-blue-darker",
 	},
 	{
