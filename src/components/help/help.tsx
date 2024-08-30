@@ -11,7 +11,7 @@ export const Help: React.FC = () => {
 		<>
 			<div
 				className={`
-					absolute right-5 md:right-12 top-[4.25rem] md:top-[4.25rem]
+					absolute right-5 md:right-12 top-5
 				`}
 			>
 				<button
@@ -32,7 +32,7 @@ export const Help: React.FC = () => {
 			{isHelpOpen && (
 				<div
 					className={`
-						absolute right-0 top-12 md:right-12 md:top-20 z-50 
+						absolute right-0 md:right-12 top-0 md:top-5 z-50 
 						md:w-96 w-full md:h-[36rem] h-full
 						border border-ber-lighter-grey shadow-2xl
 						text-ber-darker-grey text-[16px]
