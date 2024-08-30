@@ -69,6 +69,10 @@
 		@apply ml-10 whitespace-pre-wrap w-[90%] my-10;
 	}
 
+	.markdown-container blockquote {
+		@apply w-[90%] ml-10 my-10;
+	}
+
 	.markdown-container hr {
 		@apply m-3;
 	}
