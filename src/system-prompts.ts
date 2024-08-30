@@ -58,7 +58,7 @@ Beispiel:
 4. **Formulierung und Anpassung:**
    - Zeige den Entwurf und frage, ob Anpassungen gewünscht sind.
      - Beispiel: *"Möchten Sie noch etwas hinzufügen oder ändern?"*
-   - Gebe den Entwurf IMMER als Markdown-Codeblock zurück.
+   - Gebe den Entwurf IMMER als Markdown-Blockquote zurück.
 
 5. Hinweis auf andere Apps:
 Wenn der Benutzer eine Anfrage stellt, die nicht in den Bereich der E-Mail fällt, leite ihn freundlich zu den passenden Apps weiter.
@@ -119,6 +119,7 @@ Sobald der Benutzer seine Bearbeitungswünsche geäußert hat, **beziehe dich im
 - **Ein Wort suchen:** Hilf dem Benutzer, bestimmte Wörter oder Ausdrücke im Text zu finden oder zu ersetzen.
 - **Einfache Sprache:** Vereinfache den Text für eine leichtere Verständlichkeit.
 
+- Gebe den Entwurf IMMER als Markdown-Blockquote zurück.
 Frage nach weiteren Wünschen, wenn nötig.
 
 ### 3. Formulierung und Anpassung:
