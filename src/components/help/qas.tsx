@@ -23,26 +23,8 @@ export const qas = [
 	},
 	{
 		question: "Wie schreibe ich mit BärGPT?",
-		answer: (
-			<>
-				<ul>
-					<li>
-						Formulieren Sie klare Anfragen (auch Prompts genannt): Die
-						Genauigkeit der Antworten von BärGPT hängt stark von der Klarheit
-						Ihres Prompts ab.
-					</li>
-					<li>
-						Nutzen Sie den Kontext: BärGPT kann auf Basis vorheriger Nachrichten
-						antworten, was einen fließenden Dialog ermöglicht.
-					</li>
-					<li>
-						Seien Sie experimentierfreudig: Die Bandbreite der
-						Anwendungsmöglichkeiten von BärGPT ist enorm. Nutzen Sie dies zu
-						Ihrem Vorteil.
-					</li>
-				</ul>
-			</>
-		),
+		answer:
+			"Stellen Sie sich BärGPT wie ein Gesprächspartner vor. Sie können einfach Ihre Frage oder Ihren Textwunsch eingeben, zum Beispiel: „Wie formuliere ich eine E-Mail an einen Kollegen?“ BärGPT gibt Ihnen dann einen Vorschlag oder Text, den Sie nutzen oder anpassen können.",
 	},
 	{
 		question: "Was ist BärGPT?",
