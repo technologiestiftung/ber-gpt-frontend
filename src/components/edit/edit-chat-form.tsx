@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { FileUploadButton } from "../buttons/file-upload-button";
 import { SendIcon } from "../icons/send-icon";
 import { useIsLoadingStore } from "../../store/is-loading-store";
@@ -43,6 +43,8 @@ async function onSubmit(event: React.FormEvent<HTMLFormElement>) {
 
 export const EditChatForm: React.FC = () => {
 	const { isLoading: isGPTResponseLoading } = useIsLoadingStore();
+	const [isSendDisabled, setIsSendDisabled] = useState(true);
+
 	const { files } = useInputFileStore();
 
 	const isLoading =
@@ -51,16 +53,17 @@ export const EditChatForm: React.FC = () => {
 
 	return (
 		<form
-			className={`flex items-end gap-4 px-6 py-3 has-[:focus]:border-blue-500`}
+			className={`flex flex-col gap-2 p-4 has-[:focus]:border-blue-500`}
 			onSubmit={onSubmit}
 		>
-			<FileUploadButton />
-
 			<textarea
-				className="w-full h-28 bg-ber-lighter-grey focus:outline-none max-h-72 resize-y"
+				className="w-full bg-ber-lighter-grey focus:outline-none h-44 resize-none"
 				name="message"
 				placeholder="Text hier eingeben"
 				required={files.length === 0}
+				onInput={(e) => {
+					setIsSendDisabled(!e.currentTarget.value);
+				}}
 				onKeyDown={(e) => {
 					if (e.key === "Enter" && !e.shiftKey) {
 						e.preventDefault();
@@ -68,14 +71,17 @@ export const EditChatForm: React.FC = () => {
 					}
 				}}
 			/>
-
-			<button
-				type="submit"
-				disabled={isLoading}
-				className="text-ber-darker-grey hover:text-ber-dark-grey disabled:text-light-grey"
-			>
-				<SendIcon className="w-8 h-8" />
-			</button>
+			<div className="flex flex-row justify-between">
+				<FileUploadButton />
+				<button
+					type="submit"
+					disabled={isLoading}
+					className={`text-ber-darker-grey hover:text-ber-dark-grey disabled:text-ber-light-grey
+						${isSendDisabled && files.length === 0 && "text-ber-light-grey hover:text-ber-light-grey"}`}
+				>
+					<SendIcon className="w-8 h-8" />
+				</button>
+			</div>
 		</form>
 	);
 };

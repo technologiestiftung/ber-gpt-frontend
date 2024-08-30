@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { FileUploadButton } from "../buttons/file-upload-button";
 import { SendIcon } from "../icons/send-icon";
 import { useIsLoadingStore } from "../../store/is-loading-store";
@@ -43,6 +43,8 @@ async function onSubmit(event: React.FormEvent<HTMLFormElement>) {
 
 export const ChatForm: React.FC = () => {
 	const { isLoading: isGPTResponseLoading } = useIsLoadingStore();
+	const [isSendDisabled, setIsSendDisabled] = useState(true);
+
 	const { files } = useInputFileStore();
 
 	const isLoading =
@@ -60,6 +62,9 @@ export const ChatForm: React.FC = () => {
 				className="w-full bg-ber-lighter-grey focus:outline-none"
 				name="message"
 				type="text"
+				onInput={(e) => {
+					setIsSendDisabled(!e.currentTarget.value);
+				}}
 				required={files.length === 0}
 				placeholder="Wie kann ich Ihnen helfen?"
 			/>
@@ -67,7 +72,8 @@ export const ChatForm: React.FC = () => {
 			<button
 				type="submit"
 				disabled={isLoading}
-				className="text-ber-darker-grey hover:text-ber-dark-grey disabled:text-light-grey"
+				className={`text-ber-darker-grey hover:text-ber-dark-grey disabled:text-ber-light-grey
+					${isSendDisabled && files.length === 0 && "text-ber-light-grey hover:text-ber-light-grey"}`}
 			>
 				<SendIcon className="w-8 h-8" />
 			</button>
