@@ -7,11 +7,12 @@ export const EditGetStarted: React.FC = () => {
 			<div className="mt-1 flex size-[35px] min-w-[35px] items-center justify-center border border-black bg-white">
 				<BaerIcon className="h-[21px] w-[21px]" />
 			</div>
-			<div className="flex flex-col gap-1 px-3 w-5/6">
+			<div className="flex flex-col gap-1 px-3">
 				<p>Hallo, gemeinsam bearbeiten wir Schritt für Schritt Ihren Text.</p>
-				<h1 className="text-3xl font-bold">
+				<div className="text-2xl sm:text-3xl font-bold">
 					Bitte fügen Sie den Text unten in das Eingabefeld ein.
-				</h1>
+				</div>
+				<p>Oder laden Sie ein Dokument hoch.</p>
 			</div>
 		</div>
 	);

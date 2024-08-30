@@ -36,7 +36,9 @@ export const GetStartedEmailChat: React.FC = () => {
 			</div>
 			<div className="flex flex-col gap-1 px-3">
 				<p>Hallo, gemeinsam formulieren wir Schritt für Schritt eine E-Mail.</p>
-				<h1 className="text-3xl font-bold">Was möchten Sie tun?</h1>
+				<div className="text-2xl sm:text-3xl font-bold">
+					Was möchten Sie tun?
+				</div>
 				<div className="flex flex-wrap gap-4 pt-3">
 					{mailStartPrompts.map(({ label, value }) => (
 						<TagButton
