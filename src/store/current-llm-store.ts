@@ -13,7 +13,7 @@ export interface availableLLM {
 }
 
 interface CurrentLLMStore {
-	currentLLM: string | undefined;
+	currentLLM: string;
 	setCurrentLLM: (model: string) => void;
 	availableLLMs: availableLLM[];
 }
@@ -23,7 +23,7 @@ const defaultModelIdentifier = "azure-gpt-4o-mini";
 export const useCurrentLLMStore = create<CurrentLLMStore>()(
 	persist(
 		(set) => ({
-			currentLLM: undefined,
+			currentLLM: "",
 			setCurrentLLM: (model: string) => set({ currentLLM: model }),
 			availableLLMs: [],
 		}),
@@ -71,7 +71,7 @@ async function getAvailableLLMs() {
 		}
 
 		const currentLlm = useCurrentLLMStore.getState().currentLLM;
-		if (!currentLlm) {
+		if (currentLlm === "") {
 			useCurrentLLMStore.setState({ currentLLM: defaultModel.identifier });
 		}
 	} catch (error) {

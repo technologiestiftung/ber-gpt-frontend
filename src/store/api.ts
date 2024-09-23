@@ -40,7 +40,7 @@ export async function streamChatResponse() {
 			headers: {
 				"Content-Type": "application/json",
 				"x-api-key": import.meta.env.VITE_X_API_KEY,
-				llm: currentLLM ?? "",
+				llm: currentLLM,
 			},
 			body: JSON.stringify({
 				messages: [
