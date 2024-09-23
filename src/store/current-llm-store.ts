@@ -31,7 +31,7 @@ export const useCurrentLLMStore = create<CurrentLLMStore>()(
 	),
 );
 
-await getAvailableLLMs();
+getAvailableLLMs().catch(console.error);
 
 async function getAvailableLLMs() {
 	const { handleError } = useErrorStore.getState();
