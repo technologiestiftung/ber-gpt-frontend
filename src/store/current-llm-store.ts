@@ -1,8 +1,8 @@
 import { create } from "zustand";
-import { useErrorStore } from "./error-store";
 import { persist } from "zustand/middleware";
+import { useErrorStore } from "./error-store";
 
-export interface availableLLM {
+export interface AvailableLLM {
 	identifier: string;
 	baseModelName: string;
 	provider: string;
@@ -19,9 +19,10 @@ export interface availableLLM {
 }
 
 interface CurrentLLMStore {
-	currentLLM: string;
-	setCurrentLLM: (model: string) => void;
-	availableLLMs: availableLLM[];
+	currentLLM: AvailableLLM | undefined;
+	setCurrentLLM: (llm: AvailableLLM) => void;
+	availableLLMs: AvailableLLM[];
+	getAvailableLLMs: () => Promise<void>;
 }
 
 const defaultModelIdentifier = "azure-gpt-4o-mini";
@@ -29,9 +30,10 @@ const defaultModelIdentifier = "azure-gpt-4o-mini";
 export const useCurrentLLMStore = create<CurrentLLMStore>()(
 	persist(
 		(set) => ({
-			currentLLM: "",
-			setCurrentLLM: (model: string) => set({ currentLLM: model }),
+			currentLLM: undefined,
+			setCurrentLLM: (llm: AvailableLLM) => set({ currentLLM: llm }),
 			availableLLMs: [],
+			getAvailableLLMs: getAvailableLLMs,
 		}),
 		{ name: "current-llm-store" },
 	),
@@ -62,7 +64,7 @@ async function getAvailableLLMs() {
 			return;
 		}
 
-		const { models } = (await response.json()) as { models: availableLLM[] };
+		const { models } = (await response.json()) as { models: AvailableLLM[] };
 
 		const sortedAvailableLLMs = sortByDefaultModel(models);
 
@@ -73,67 +75,40 @@ async function getAvailableLLMs() {
 		);
 
 		const currentLlm = useCurrentLLMStore.getState().currentLLM;
-		const currentSelectedLlm = sortedAvailableLLMs.find(
-			(model) => model.identifier === currentLlm,
-		);
 
-		const firstHealthyLlm = sortedAvailableLLMs.find(
-			(model) => model.status.healthy,
-		);
-
-		if (currentLlm === "") {
+		if (!currentLlm) {
 			// No selected LLM, use healthy default model
 			if (defaultModel && defaultModel.status.healthy) {
-				useCurrentLLMStore.setState({ currentLLM: defaultModel.identifier });
+				useCurrentLLMStore.setState({ currentLLM: defaultModel });
 				return;
 			}
 
-			// No selected LLM, no healthy default model
-			if (firstHealthyLlm) {
-				useCurrentLLMStore.setState({
-					currentLLM: firstHealthyLlm.identifier,
-				});
-				handleError(new Error("changed_to_first_healthy_llm"));
-				return;
-			}
-
-			// No selected LLM, no healthy default model, no healthy model at all
-			useCurrentLLMStore.setState({ currentLLM: "" });
-			handleError(new Error("no_healthy_llm_available"));
+			(
+				document.getElementById("settings-dialog") as HTMLDialogElement
+			).showModal();
 			return;
 		}
 
-		if (currentSelectedLlm) {
-			if (currentSelectedLlm.status.healthy) {
-				return;
+		if (currentLlm) {
+			const refreshedCurrentLlm = sortedAvailableLLMs.find(
+				(llm) => llm.identifier === currentLlm.identifier,
+			);
+			if (refreshedCurrentLlm) {
+				useCurrentLLMStore.setState({ currentLLM: refreshedCurrentLlm });
+				if (refreshedCurrentLlm.status.healthy) {
+					return;
+				}
 			}
-
-			// Selected LLM is not healthy, use healthy default model
-			if (defaultModel && defaultModel.status.healthy) {
-				useCurrentLLMStore.setState({ currentLLM: defaultModel.identifier });
-				handleError(new Error("changed_to_default_llm"));
-				return;
-			}
-
-			// Selected LLM is not healthy, no healthy default model
-			if (firstHealthyLlm) {
-				useCurrentLLMStore.setState({
-					currentLLM: firstHealthyLlm.identifier,
-				});
-				handleError(new Error("changed_to_first_healthy_llm"));
-				return;
-			}
-
-			// No selected LLM, no healthy default model, no healthy model at all
-			useCurrentLLMStore.setState({ currentLLM: "" });
-			handleError(new Error("no_healthy_llm_available"));
+			(
+				document.getElementById("settings-dialog") as HTMLDialogElement
+			).showModal();
 		}
 	} catch (error) {
 		handleError(error);
 	}
 }
 
-function sortByDefaultModel(models: availableLLM[]) {
+function sortByDefaultModel(models: AvailableLLM[]) {
 	const index = models.findIndex(
 		(model) => model.identifier === defaultModelIdentifier,
 	);

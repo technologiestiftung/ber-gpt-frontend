@@ -1,6 +1,6 @@
 import React from "react";
 import {
-	availableLLM,
+	AvailableLLM,
 	useCurrentLLMStore,
 } from "../../../store/current-llm-store";
 import { CheckSolidIcon } from "../../icons/check-solid-icon";
@@ -9,13 +9,13 @@ import { CheckIcon } from "../../icons/check-icon";
 import { UnavailableIcon } from "../../icons/unavailable-icon";
 
 interface SettingsOptionProps {
-	option: availableLLM;
+	option: AvailableLLM;
 }
 
 export const SettingsOption: React.FC<SettingsOptionProps> = ({ option }) => {
-	const { currentLLM, setCurrentLLM } = useCurrentLLMStore();
+	const { currentLLM, setCurrentLLM, availableLLMs } = useCurrentLLMStore();
 
-	const isChecked = option.identifier === currentLLM;
+	const isChecked = option.identifier === currentLLM?.identifier;
 
 	return (
 		<label
@@ -69,11 +69,14 @@ export const SettingsOption: React.FC<SettingsOptionProps> = ({ option }) => {
 					name="model"
 					value={option.identifier}
 					className="appearance-none"
-					checked={option.identifier === currentLLM}
+					checked={option.identifier === currentLLM?.identifier}
 					onChange={(e) => {
-						// if (option.status.healthy) {
-						setCurrentLLM(e.target.value);
-						// }
+						const foundLllm = availableLLMs.find(
+							(llm) => llm.identifier === e.target.value,
+						);
+						if (foundLllm && foundLllm.status.healthy) {
+							setCurrentLLM(foundLllm);
+						}
 					}}
 				/>
 			</div>
