@@ -1,5 +1,6 @@
 import { create } from "zustand";
 import { useErrorStore } from "./error-store";
+import { persist } from "zustand/middleware";
 
 export interface availableLLM {
 	identifier: string;
@@ -19,15 +20,18 @@ interface CurrentLLMStore {
 
 const defaultModelIdentifier = "azure-gpt-4o-mini";
 
-export const useCurrentLLMStore = create<CurrentLLMStore>()((set) => {
-	getAvailableLLMs().catch(console.error);
+export const useCurrentLLMStore = create<CurrentLLMStore>()(
+	persist(
+		(set) => ({
+			currentLLM: "",
+			setCurrentLLM: (model: string) => set({ currentLLM: model }),
+			availableLLMs: [],
+		}),
+		{ name: "current-llm-store" },
+	),
+);
 
-	return {
-		currentLLM: "",
-		setCurrentLLM: (model) => set({ currentLLM: model }),
-		availableLLMs: [],
-	};
-});
+getAvailableLLMs().catch(console.error);
 
 async function getAvailableLLMs() {
 	const { handleError } = useErrorStore.getState();
@@ -66,7 +70,10 @@ async function getAvailableLLMs() {
 			return;
 		}
 
-		useCurrentLLMStore.setState({ currentLLM: models[0].identifier });
+		const currentLlm = useCurrentLLMStore.getState().currentLLM;
+		if (currentLlm === "") {
+			useCurrentLLMStore.setState({ currentLLM: defaultModel.identifier });
+		}
 	} catch (error) {
 		handleError(error);
 	}
