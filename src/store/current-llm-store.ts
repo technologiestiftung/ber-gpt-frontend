@@ -10,6 +10,12 @@ export interface availableLLM {
 	isOpenSource: boolean;
 	description: string;
 	serverLocation: string;
+	status: {
+		status: number;
+		healthy: boolean;
+		welcomeMessage: string | undefined;
+		responseTimeMs: number | undefined;
+	};
 }
 
 interface CurrentLLMStore {
@@ -66,13 +72,61 @@ async function getAvailableLLMs() {
 			(model) => model.identifier === defaultModelIdentifier,
 		);
 
-		if (!defaultModel) {
+		const currentLlm = useCurrentLLMStore.getState().currentLLM;
+		const currentSelectedLlm = sortedAvailableLLMs.find(
+			(model) => model.identifier === currentLlm,
+		);
+
+		const firstHealthyLlm = sortedAvailableLLMs.find(
+			(model) => model.status.healthy,
+		);
+
+		if (currentLlm === "") {
+			// No selected LLM, use healthy default model
+			if (defaultModel && defaultModel.status.healthy) {
+				useCurrentLLMStore.setState({ currentLLM: defaultModel.identifier });
+				return;
+			}
+
+			// No selected LLM, no healthy default model
+			if (firstHealthyLlm) {
+				useCurrentLLMStore.setState({
+					currentLLM: firstHealthyLlm.identifier,
+				});
+				handleError(new Error("changed_to_first_healthy_llm"));
+				return;
+			}
+
+			// No selected LLM, no healthy default model, no healthy model at all
+			useCurrentLLMStore.setState({ currentLLM: "" });
+			handleError(new Error("no_healthy_llm_available"));
 			return;
 		}
 
-		const currentLlm = useCurrentLLMStore.getState().currentLLM;
-		if (currentLlm === "") {
-			useCurrentLLMStore.setState({ currentLLM: defaultModel.identifier });
+		if (currentSelectedLlm) {
+			if (currentSelectedLlm.status.healthy) {
+				return;
+			}
+
+			// Selected LLM is not healthy, use healthy default model
+			if (defaultModel && defaultModel.status.healthy) {
+				useCurrentLLMStore.setState({ currentLLM: defaultModel.identifier });
+				handleError(new Error("changed_to_default_llm"));
+				return;
+			}
+
+			// Selected LLM is not healthy, no healthy default model
+			if (firstHealthyLlm) {
+				useCurrentLLMStore.setState({
+					currentLLM: firstHealthyLlm.identifier,
+				});
+				handleError(new Error("changed_to_first_healthy_llm"));
+				return;
+			}
+
+			// No selected LLM, no healthy default model, no healthy model at all
+			useCurrentLLMStore.setState({ currentLLM: "" });
+			handleError(new Error("no_healthy_llm_available"));
 		}
 	} catch (error) {
 		handleError(error);
