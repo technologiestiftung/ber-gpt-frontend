@@ -12,6 +12,7 @@ export type FileMessage = {
 	type: "file";
 	content: string;
 	timestamp: string;
+	tokenCount: number;
 };
 
 export type TextMessage = {
@@ -20,6 +21,7 @@ export type TextMessage = {
 	type: "text";
 	content: string;
 	timestamp: string;
+	tokenCount: number;
 };
 
 export type Message = FileMessage | TextMessage;
