@@ -77,7 +77,6 @@ export async function streamChatResponse() {
 			messageId,
 			content: "",
 			role,
-			tokenCount: 0,
 		});
 
 		const reader = response.body

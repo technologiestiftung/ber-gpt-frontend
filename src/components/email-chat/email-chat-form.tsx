@@ -1,10 +1,9 @@
 import React, { useState } from "react";
-import { SendIcon } from "../icons/send-icon";
-import { useIsLoadingStore } from "../../store/is-loading-store";
 import { streamChatResponse } from "../../store/api";
 import { useChatHistoryStore } from "../../store/chat-history-store";
 import { useHasUserScrolledStore } from "../../store/has-user-scrolled-store";
-import { CapacityError } from "../capacity-error-hint";
+import { useIsLoadingStore } from "../../store/is-loading-store";
+import { SendIcon } from "../icons/send-icon";
 
 const { setIsLoading } = useIsLoadingStore.getState();
 const { saveMessage } = useChatHistoryStore.getState();
