@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { useChatHistoryStore } from "../../store/chat-history-store";
 import { useCurrentChatIdStore } from "../../store/current-chat-id-store";
 import { CapacityError } from "../capacity-error-hint";
@@ -13,7 +13,10 @@ export const Chat: React.FC = () => {
 		useChatHistoryStore();
 	const { currentChatId } = useCurrentChatIdStore();
 	const messages = getChat(currentChatId)?.messages || [];
-	const freeChatTokenCapacity = getFreeChatTokenCapacity();
+
+	const freeChatTokenCapacity = useMemo(() => {
+		return getFreeChatTokenCapacity();
+	}, [currentChatId]);
 
 	return (
 		<div className="flex h-full flex-col items-center justify-between pt-14 py-5 relative">

@@ -1,15 +1,21 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { useChatHistoryStore } from "../../store/chat-history-store";
 import { CapacityError } from "../capacity-error-hint";
 import { Help } from "../help/help";
 import { UploadedFiles } from "../uploaded-files";
 import { EditChatForm } from "./edit-chat-form";
 import { EditChatMessages } from "./edit-chat-messages";
+import { useCurrentChatIdStore } from "../../store/current-chat-id-store";
 
 export const Edit: React.FC = () => {
+	const { currentChatId } = useCurrentChatIdStore();
+
 	const { getFreeChatTokenCapacity, tokenCapacityWarningThreshold } =
 		useChatHistoryStore();
-	const freeChatTokenCapacity = getFreeChatTokenCapacity();
+
+	const freeChatTokenCapacity = useMemo(() => {
+		return getFreeChatTokenCapacity();
+	}, [currentChatId]);
 
 	return (
 		<div className="flex h-full flex-col items-center justify-between pt-14 py-5 relative">
