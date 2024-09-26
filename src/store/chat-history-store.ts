@@ -1,3 +1,4 @@
+import { useCurrentLLMStore } from "./current-llm-store";
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import { Chat, Message } from "./types";
@@ -19,7 +20,9 @@ interface ChatHistoryStore {
 
 	getChat: (chatId: string | null) => Chat | undefined;
 
-	getChatTokenCount: (messages: Message[]) => number;
+	getFreeChatTokenCapacity: () => number;
+
+	tokenCapacityWarningThreshold: number;
 
 	createChat: (args: { fileName?: string; content: string }) => string;
 
@@ -62,10 +65,19 @@ export const useChatHistoryStore = create(
 				return get().chatHistory.find((chat) => chat.id === chatId);
 			},
 
-			getChatTokenCount: (messages: Message[]) => {
+			tokenCapacityWarningThreshold: 0.8,
+
+			getFreeChatTokenCapacity: () => {
+				const messages =
+					get().getChat(useCurrentChatIdStore.getState().currentChatId)
+						?.messages ?? [];
 				const tokens = messages.map((message) => message.tokenCount);
 				const tokenCount = tokens.reduce((acc, val) => acc + val, 0);
-				return tokenCount;
+				const llm = useCurrentLLMStore.getState().currentLLM;
+				if (llm) {
+					return tokenCount / llm.contextSize;
+				}
+				return 0;
 			},
 
 			createChat: ({ fileName, content }) => {

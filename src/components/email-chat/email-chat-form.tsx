@@ -4,6 +4,7 @@ import { useIsLoadingStore } from "../../store/is-loading-store";
 import { streamChatResponse } from "../../store/api";
 import { useChatHistoryStore } from "../../store/chat-history-store";
 import { useHasUserScrolledStore } from "../../store/has-user-scrolled-store";
+import { CapacityError } from "../capacity-error-hint";
 
 const { setIsLoading } = useIsLoadingStore.getState();
 const { saveMessage } = useChatHistoryStore.getState();
