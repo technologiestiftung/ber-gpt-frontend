@@ -1,8 +1,8 @@
 import { create } from "zustand";
-import { useErrorStore } from "./error-store";
 import { persist } from "zustand/middleware";
+import { useErrorStore } from "./error-store";
 
-export interface availableLLM {
+export interface AvailableLLM {
 	identifier: string;
 	baseModelName: string;
 	provider: string;
@@ -10,12 +10,19 @@ export interface availableLLM {
 	isOpenSource: boolean;
 	description: string;
 	serverLocation: string;
+	status: {
+		status: number;
+		healthy: boolean;
+		welcomeMessage: string | undefined;
+		responseTimeMs: number | undefined;
+	};
 }
 
 interface CurrentLLMStore {
-	currentLLM: string;
-	setCurrentLLM: (model: string) => void;
-	availableLLMs: availableLLM[];
+	currentLLM: AvailableLLM | undefined;
+	setCurrentLLM: (llm: AvailableLLM) => void;
+	availableLLMs: AvailableLLM[];
+	getAvailableLLMs: () => Promise<void>;
 }
 
 const defaultModelIdentifier = "azure-gpt-4o-mini";
@@ -23,9 +30,10 @@ const defaultModelIdentifier = "azure-gpt-4o-mini";
 export const useCurrentLLMStore = create<CurrentLLMStore>()(
 	persist(
 		(set) => ({
-			currentLLM: "",
-			setCurrentLLM: (model: string) => set({ currentLLM: model }),
+			currentLLM: undefined,
+			setCurrentLLM: (llm: AvailableLLM) => set({ currentLLM: llm }),
 			availableLLMs: [],
+			getAvailableLLMs: getAvailableLLMs,
 		}),
 		{ name: "current-llm-store" },
 	),
@@ -56,7 +64,7 @@ async function getAvailableLLMs() {
 			return;
 		}
 
-		const { models } = (await response.json()) as { models: availableLLM[] };
+		const { models } = (await response.json()) as { models: AvailableLLM[] };
 
 		const sortedAvailableLLMs = sortByDefaultModel(models);
 
@@ -66,20 +74,41 @@ async function getAvailableLLMs() {
 			(model) => model.identifier === defaultModelIdentifier,
 		);
 
-		if (!defaultModel) {
+		const currentLlm = useCurrentLLMStore.getState().currentLLM;
+
+		if (!currentLlm) {
+			// No selected LLM, use healthy default model
+			if (defaultModel && defaultModel.status.healthy) {
+				useCurrentLLMStore.setState({ currentLLM: defaultModel });
+				return;
+			}
+
+			(
+				document.getElementById("settings-dialog") as HTMLDialogElement
+			).showModal();
 			return;
 		}
 
-		const currentLlm = useCurrentLLMStore.getState().currentLLM;
-		if (currentLlm === "") {
-			useCurrentLLMStore.setState({ currentLLM: defaultModel.identifier });
+		if (currentLlm) {
+			const refreshedCurrentLlm = sortedAvailableLLMs.find(
+				(llm) => llm.identifier === currentLlm.identifier,
+			);
+			if (refreshedCurrentLlm) {
+				useCurrentLLMStore.setState({ currentLLM: refreshedCurrentLlm });
+				if (refreshedCurrentLlm.status.healthy) {
+					return;
+				}
+			}
+			(
+				document.getElementById("settings-dialog") as HTMLDialogElement
+			).showModal();
 		}
 	} catch (error) {
 		handleError(error);
 	}
 }
 
-function sortByDefaultModel(models: availableLLM[]) {
+function sortByDefaultModel(models: AvailableLLM[]) {
 	const index = models.findIndex(
 		(model) => model.identifier === defaultModelIdentifier,
 	);

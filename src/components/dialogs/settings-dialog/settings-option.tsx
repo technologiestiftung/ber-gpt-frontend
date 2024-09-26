@@ -1,6 +1,6 @@
 import React from "react";
 import {
-	availableLLM,
+	AvailableLLM,
 	useCurrentLLMStore,
 } from "../../../store/current-llm-store";
 import { CheckSolidIcon } from "../../icons/check-solid-icon";
@@ -9,18 +9,18 @@ import { CheckIcon } from "../../icons/check-icon";
 import { UnavailableIcon } from "../../icons/unavailable-icon";
 
 interface SettingsOptionProps {
-	option: availableLLM;
+	option: AvailableLLM;
 }
 
 export const SettingsOption: React.FC<SettingsOptionProps> = ({ option }) => {
-	const { currentLLM, setCurrentLLM } = useCurrentLLMStore();
+	const { currentLLM, setCurrentLLM, availableLLMs } = useCurrentLLMStore();
 
-	const isChecked = option.identifier === currentLLM;
+	const isChecked = option.identifier === currentLLM?.identifier;
 
 	return (
 		<label
 			htmlFor={option.identifier}
-			className={`flex flex-row p-3 md:p-[18px] cursor-pointer gap-5 hover:bg-ber-lighter-grey  ${isChecked && "bg-ber-lighter-grey"}`}
+			className={`flex flex-row p-3 md:p-[18px] ${option.status.healthy ? "cursor-pointer" : "cursor-not-allowed"} gap-5 hover:bg-ber-lighter-grey  ${isChecked && "bg-ber-lighter-grey"}`}
 		>
 			<div className="mt-1">
 				{isChecked && <CheckSolidIcon />}
@@ -29,10 +29,19 @@ export const SettingsOption: React.FC<SettingsOptionProps> = ({ option }) => {
 
 			<div className="flex flex-col gap-2">
 				<div className="flex flex-wrap gap-y-2 gap-x-5 mb-2">
-					<div className="font-bold text-lg">{option.identifier}</div>
+					<div
+						className={`font-bold text-lg ${option.status.healthy ? "" : "line-through"}`}
+					>
+						{option.identifier}
+					</div>
 					{option.provider === "Azure" && (
 						<div className="text-white bg-ber-green-darker rounded-full px-2 text-sm flex items-center">
 							empfohlen
+						</div>
+					)}
+					{!option.status.healthy && (
+						<div className="text-white bg-ber-red rounded-full px-2 text-sm flex items-center">
+							temporär nicht verfügbar
 						</div>
 					)}
 				</div>
@@ -60,8 +69,15 @@ export const SettingsOption: React.FC<SettingsOptionProps> = ({ option }) => {
 					name="model"
 					value={option.identifier}
 					className="appearance-none"
-					checked={option.identifier === currentLLM}
-					onChange={(e) => setCurrentLLM(e.target.value)}
+					checked={option.identifier === currentLLM?.identifier}
+					onChange={(e) => {
+						const foundLllm = availableLLMs.find(
+							(llm) => llm.identifier === e.target.value,
+						);
+						if (foundLllm && foundLllm.status.healthy) {
+							setCurrentLLM(foundLllm);
+						}
+					}}
 				/>
 			</div>
 		</label>

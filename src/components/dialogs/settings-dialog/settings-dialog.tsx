@@ -2,11 +2,13 @@ import React from "react";
 import { DefaultDialog } from "../default-dialog";
 import { useCurrentLLMStore } from "../../../store/current-llm-store";
 import { SettingsOption } from "./settings-option";
+import { ErrorIcon } from "../../icons/error-icon";
+import { RefreshIcon } from "../../icons/refresh-icon";
 
 export const settingsDialogId = "settings-dialog";
 
 export const SettingsDialog: React.FC = () => {
-	const { availableLLMs } = useCurrentLLMStore();
+	const { availableLLMs, currentLLM, getAvailableLLMs } = useCurrentLLMStore();
 
 	return (
 		<DefaultDialog
@@ -16,6 +18,7 @@ export const SettingsDialog: React.FC = () => {
 			<div className="w-full flex justify-center">
 				<div className="flex flex-col max-w-[600px] gap-y-5 md:gap-y-5">
 					<div className="text-2xl font-bold">Einstellungen</div>
+
 					<div className="text-lg flex flex-col gap-3">
 						<div className="font-bold">Modellauswahl</div>
 						<p>
@@ -26,12 +29,30 @@ export const SettingsDialog: React.FC = () => {
 							entspricht.
 						</p>
 					</div>
-
 					<div className="flex flex-col gap-x-2">
 						{availableLLMs.map((option) => (
 							<SettingsOption key={option.identifier} option={option} />
 						))}
 					</div>
+					{currentLLM && !currentLLM.status.healthy && (
+						<div className="text-sm md:text-lg">
+							<div className="flex w-full flex-row">
+								<div className="w-full flex flex-row items-center justify-between gap-4 rounded-sm border-4 border-ber-orange bg-white px-6 py-4 text-[16px] font-semibold text-ber-darker-grey shadow-md">
+									<ErrorIcon />
+									Das derzeit gewählte Modell ist temporär nicht verfügbar,
+									bitte wählen Sie ein alternatives Modell.
+									<button
+										className="pl-8"
+										onClick={async () => {
+											await getAvailableLLMs();
+										}}
+									>
+										<RefreshIcon />
+									</button>
+								</div>
+							</div>
+						</div>
+					)}
 				</div>
 			</div>
 		</DefaultDialog>
