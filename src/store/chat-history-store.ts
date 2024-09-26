@@ -5,14 +5,21 @@ import { useCurrentChatIdStore } from "./current-chat-id-store";
 import { getStorageKey } from "./storage";
 import { useErrorStore } from "./error-store";
 import { trackInteraction } from "../analytics/matomo";
+import { getEncoding } from "js-tiktoken";
 
 const STORAGE_KEY = getStorageKey();
 const { handleError } = useErrorStore.getState();
+
+// We use cl100k_base as the tokenizer, which should give use
+// a good estimation for both gpt and llama models
+const tokenizer = getEncoding("cl100k_base");
 
 interface ChatHistoryStore {
 	chatHistory: Chat[];
 
 	getChat: (chatId: string | null) => Chat | undefined;
+
+	getChatTokenCount: (messages: Message[]) => number;
 
 	createChat: (args: { fileName?: string; content: string }) => string;
 
@@ -53,6 +60,12 @@ export const useChatHistoryStore = create(
 				}
 
 				return get().chatHistory.find((chat) => chat.id === chatId);
+			},
+
+			getChatTokenCount: (messages: Message[]) => {
+				const tokens = messages.map((message) => message.tokenCount);
+				const tokenCount = tokens.reduce((acc, val) => acc + val, 0);
+				return tokenCount;
 			},
 
 			createChat: ({ fileName, content }) => {
@@ -100,6 +113,7 @@ export const useChatHistoryStore = create(
 					fileName,
 					content,
 					role,
+					tokenCount: tokenizer.encode(content).length,
 				});
 
 				get().updateChat(updatedChat);
@@ -117,7 +131,13 @@ export const useChatHistoryStore = create(
 				}
 
 				const updatedMessages = chat.messages.map((message) =>
-					message.id === messageId ? { ...message, content } : message,
+					message.id === messageId
+						? {
+								...message,
+								content,
+								tokenCount: tokenizer.encode(content).length,
+							}
+						: message,
 				);
 
 				const updatedChat = {
@@ -216,6 +236,7 @@ function _createChat({
 				role: "user",
 				type: fileName ? "file" : "text",
 				timestamp,
+				tokenCount: tokenizer.encode(content).length,
 			} as Message,
 		],
 		timestamp,
@@ -228,12 +249,14 @@ function _addMessageToChat({
 	fileName,
 	content,
 	role,
+	tokenCount,
 }: {
 	chat: Chat;
 	messageId: string | undefined;
 	fileName?: string;
 	content: string;
 	role: string;
+	tokenCount: number;
 }) {
 	const timestamp = new Date().toISOString();
 
@@ -248,6 +271,7 @@ function _addMessageToChat({
 				role,
 				timestamp,
 				type: fileName ? "file" : "text",
+				tokenCount,
 			} as Message,
 		],
 		timestamp,

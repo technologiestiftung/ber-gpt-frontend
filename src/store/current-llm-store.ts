@@ -10,6 +10,7 @@ export interface AvailableLLM {
 	isOpenSource: boolean;
 	description: string;
 	serverLocation: string;
+	contextSize: number;
 	status: {
 		status: number;
 		healthy: boolean;

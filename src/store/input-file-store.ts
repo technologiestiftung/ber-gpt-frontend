@@ -72,6 +72,7 @@ export const useInputFileStore = create<InputFileStore>()((set, get) => ({
 			fileName: file.name,
 			content,
 			role: "user",
+			tokenCount: 0, // TODO: Implement token count
 		});
 	},
 
