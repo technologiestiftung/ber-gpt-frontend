@@ -12,8 +12,40 @@ export const qas = [
 	{
 		question:
 			"Was muss ich bei der Nutzung in Sachen Datenschutz und Datensicherheit beachten?",
-		answer:
-			"BärGPT nutzt aktuell eine europäische Instanz des Sprachmodells GPT 4o-mini des Anbieters OpenAI. Das Modell wird in einem schwedischen Rechenzentrum betrieben und liegt damit im DSGVO-Raum. Eingegebene Daten werden nicht gespeichert und nicht zu Trainingszwecken verwendet. Damit bietet das Modell ein höheres Datenschutzniveau als vergleichbare Angebote aus den USA. Es ist jedoch zu berücksichtigen, dass das zugrundeliegende KI-Modell nicht im sicheren Berliner Landesnetz betrieben wird. Personenbezogene oder anderweitig sensible Daten, sowie Daten, die ausschließlich für die Nutzung im Berliner Landesnetz vorgesehen sind, dürfen nicht eingegeben werden.",
+		answer: (
+			<div className="flex flex-col gap-y-3">
+				<p>
+					BärGPT bietet Nutzer:innen verschiedene Large Language Modelle zur
+					Auswahl, die sich bezüglich des Datenschutzes unterscheiden.
+				</p>
+				<p>
+					Das Modell <b>azure-gpt-4o-mini</b> wird von Microsoft in einem
+					schwedischen Rechenzentrum betrieben und liegt damit im DSGVO-Raum.
+					Eingegebene Daten werden weder gespeichert noch zu Trainingszwecken
+					verwendet. Damit bietet das Modell ein höheres Datenschutzniveau als
+					vergleichbare Angebote aus den USA.
+				</p>
+				<p>
+					Das Modell <b>openai-gpt-4o-mini</b> bietet die gleiche
+					Funktionalität, wird jedoch von OpenAI selbst betrieben. Der
+					Serverstandort ist hier in den Vereinigten Staaten. Dieses Modell
+					sollte lediglich zu Vergleichszwecken genutzt werden und bietet
+					ansonsten keine Vorteile gegenüber dem Modell von Microsoft.
+				</p>
+				<p>
+					Das Modell <b>citylab-macstudio-llama-3.1</b> wird datenschutzkonform
+					vom CityLAB Berlin gehostet. Es handelt sich um ein Open
+					Source-Modell, welches in der Qualität oft mit den kommerziellen
+					Angeboten mithalten kann.
+				</p>
+				<p>
+					Es ist zu berücksichtigen, dass keines der verfügbaren KI-Modelle im
+					Berliner Landesnetz betrieben wird. Personenbezogene oder anderweitig
+					sensible Daten, sowie Daten, die ausschließlich für die Nutzung im
+					Berliner Landesnetz vorgesehen sind, dürfen nicht eingegeben werden.
+				</p>
+			</div>
+		),
 	},
 	{
 		question:
