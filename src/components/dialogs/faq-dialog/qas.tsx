@@ -55,7 +55,28 @@ export const qas = [
 	},
 	{
 		question: "Kann BärGPT auch für andere Anwendungsfälle genutzt werden?",
-		answer:
-			"BärGPT ist eine flexible KI-Infrastruktur und kann prinzipiell für verschiedene Anwendungsfälle und Kontexte angepasst und weiterentwickelt werden. Sie haben eine Idee für einen speziellen Anwendungsfall, bei dem BärGPT unterstützen kann? Dann freuen wir uns über eine Nachricht.",
+		answer: (
+			<div className="flex flex-col gap-y-3">
+				<p>
+					BärGPT ist eine flexible KI-Infrastruktur und kann prinzipiell für
+					verschiedene Anwendungsfälle und Kontexte angepasst und
+					weiterentwickelt werden. Sie haben eine Idee für einen speziellen
+					Anwendungsfall, bei dem BärGPT unterstützen kann? Dann freuen wir uns
+					über eine Nachricht.
+				</p>
+				<p>
+					Allgemeine Hinweise und Empfehlungen zum Umgang mit generativen
+					KI-Anwendungen in der Berliner Verwaltung finden Sie in der{" "}
+					<a
+						target="_blank"
+						rel="noreferrer"
+						className="text-ber-mid-grey underline hover:text-ber-darker-grey"
+						href="https://www.berlin.de/politik-und-verwaltung/rundschreiben/index.php?category=RBmSKzl&issue_no=2&issue_year=2024&send=1"
+					>
+						Rundschreibendatenbank des Landes Berlin.
+					</a>
+				</p>
+			</div>
+		),
 	},
 ];
