@@ -50,17 +50,17 @@ export const EditChatMessages: React.FC = () => {
 			return;
 		}
 
-		const scrollTop = messagesContainer.scrollTop;
+		const currentScrollTop = messagesContainer.scrollTop;
 
 		/* 
 		/ Check for scroll direction to prevent programmatical scrolling being misinterpreted as user scrolling
 		/ There is no need to stop auto scrolling to the new message, when user is scrolling down as well.
 		*/
-		if (lastScrollTop > scrollTop) {
+		if (lastScrollTop > currentScrollTop) {
 			setHasUserScrolled(true);
 		}
 
-		setLastScrollTop(scrollTop);
+		setLastScrollTop(currentScrollTop);
 	};
 
 	useEffect(() => {
