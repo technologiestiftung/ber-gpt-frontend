@@ -15,7 +15,7 @@ export const EmailChatMessages: React.FC = () => {
 		navigator.userAgent.indexOf("Safari") !== -1 &&
 		navigator.userAgent.indexOf("Chrome") === -1;
 
-	const [lastScrollTop, setLastScrollTop] = useState(0);
+	const [previousScrollTop, setPreviousScrollTop] = useState(0);
 
 	const messages: Message[] = getChat(currentChatId)?.messages || [];
 
@@ -55,11 +55,11 @@ export const EmailChatMessages: React.FC = () => {
 		/ Check for scroll direction to prevent programmatical scrolling being misinterpreted as user scrolling
 		/ There is no need to stop auto scrolling to the new message, when user is scrolling down as well.
 		*/
-		if (lastScrollTop > currentScrollTop) {
+		if (previousScrollTop > currentScrollTop) {
 			setHasUserScrolled(true);
 		}
 
-		setLastScrollTop(currentScrollTop);
+		setPreviousScrollTop(currentScrollTop);
 	};
 
 	useEffect(() => {
