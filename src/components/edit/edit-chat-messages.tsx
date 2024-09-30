@@ -12,6 +12,10 @@ export const EditChatMessages: React.FC = () => {
 	const { currentChatId } = useCurrentChatIdStore();
 	const { setHasUserScrolled } = useHasUserScrolledStore();
 
+	const isSafari =
+		navigator.userAgent.indexOf("Safari") !== -1 &&
+		navigator.userAgent.indexOf("Chrome") === -1;
+
 	const [lastScrollTop, setLastScrollTop] = useState(0);
 
 	const messages: Message[] = getChat(currentChatId)?.messages || [];
@@ -67,7 +71,8 @@ export const EditChatMessages: React.FC = () => {
 		<div
 			ref={messageContainerRef}
 			onScroll={handleScroll}
-			className="flex w-full justify-center overflow-y-auto overflow-x-hidden scroll-smooth mb-2"
+			className={`flex w-full justify-center overflow-y-auto overflow-x-hidden mb-2
+				${isSafari ? "scroll-auto" : "scroll-smooth"}`}
 		>
 			<div className="md:w-[640px] lg:w-[768px] w-full h-full flex flex-col gap-y-4 px-5 md:pr-0 md:pl-2 ">
 				<div className="flex">
