@@ -17,7 +17,7 @@ export const EmailChat: React.FC = () => {
 	}, [currentChatId]);
 
 	return (
-		<div className="flex h-full flex-col items-center justify-between pt-16 pb-5 relative">
+		<div className="flex h-full flex-col justify-between pt-16 pb-5 relative">
 			<Help />
 
 			<EmailChatMessages />
