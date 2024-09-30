@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useCurrentChatIdStore } from "../../store/current-chat-id-store";
 import { Message } from "../../store/types";
 import { TextMessage } from "../messages/text-message";
@@ -9,6 +9,8 @@ export const EmailMessages: React.FC = () => {
 	const { getChat } = useChatHistoryStore();
 	const { currentChatId } = useCurrentChatIdStore();
 	const { setHasUserScrolled } = useHasUserScrolledStore();
+
+	const [lastScrollTop, setLastScrollTop] = useState(0);
 
 	const messages: Message[] = getChat(currentChatId)?.messages || [];
 
@@ -21,10 +23,8 @@ export const EmailMessages: React.FC = () => {
 			messagesContainer &&
 			!useHasUserScrolledStore.getState().hasUserScrolled
 		) {
-			messagesContainer.scrollTo({
-				top: messagesContainer.scrollHeight,
-				behavior: "smooth",
-			});
+			messagesContainer.scrollTop =
+				messagesContainer.scrollHeight - messagesContainer.clientHeight;
 		}
 	};
 
@@ -36,30 +36,26 @@ export const EmailMessages: React.FC = () => {
 		}
 
 		const isScrollPositionCloseToEnd =
-			messagesContainer.scrollTop + messagesContainer.clientHeight >=
-			messagesContainer.scrollHeight - 10;
+			messagesContainer.scrollHeight - messagesContainer.clientHeight <=
+			messagesContainer.scrollTop - 10;
 
 		if (isScrollPositionCloseToEnd) {
 			setHasUserScrolled(false);
 			return;
 		}
 
-		setHasUserScrolled(true);
-	};
+		const scrollTop = messagesContainer.scrollTop;
 
-	useEffect(() => {
-		const messagesContainer = messageContainerRef.current;
-
-		if (!messagesContainer) {
-			return () => {};
+		/* 
+		/ Check for scroll direction to prevent programmatical scrolling being misinterpreted as user scrolling
+		/ There is no need to stop auto scrolling to the new message, when user is scrolling down as well.
+		*/
+		if (lastScrollTop > scrollTop) {
+			setHasUserScrolled(true);
 		}
 
-		messagesContainer.addEventListener("scroll", handleScroll);
-
-		return () => {
-			messagesContainer.removeEventListener("scroll", handleScroll);
-		};
-	}, []);
+		setLastScrollTop(scrollTop);
+	};
 
 	useEffect(() => {
 		scrollToBottom();
@@ -68,7 +64,8 @@ export const EmailMessages: React.FC = () => {
 	return (
 		<div
 			ref={messageContainerRef}
-			className="flex w-full justify-center overflow-y-auto overflow-x-hidden pb-2 px-5"
+			onScroll={handleScroll}
+			className="flex w-full justify-center overflow-y-auto overflow-x-hidden pb-2 px-5 scroll-smooth"
 		>
 			<div className="md:w-[640px] lg:w-[768px] flex flex-col gap-y-4">
 				{messages.map((message) => (
