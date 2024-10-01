@@ -13,7 +13,11 @@ interface SettingsOptionProps {
 }
 
 export const SettingsOption: React.FC<SettingsOptionProps> = ({ option }) => {
-	const { currentLLM, setCurrentLLM, availableLLMs } = useCurrentLLMStore();
+	const {
+		selectedLLM: currentLLM,
+		setSelectedLLM: setCurrentLLM,
+		availableLLMs,
+	} = useCurrentLLMStore();
 
 	const isChecked = option.identifier === currentLLM?.identifier;
 

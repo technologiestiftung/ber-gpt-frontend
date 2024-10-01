@@ -20,8 +20,8 @@ export interface AvailableLLM {
 }
 
 interface CurrentLLMStore {
-	currentLLM: AvailableLLM | undefined;
-	setCurrentLLM: (llm: AvailableLLM) => void;
+	selectedLLM: AvailableLLM | undefined;
+	setSelectedLLM: (llm: AvailableLLM) => void;
 	availableLLMs: AvailableLLM[];
 	getAvailableLLMs: () => Promise<void>;
 }
@@ -31,8 +31,8 @@ const defaultModelIdentifier = "azure-gpt-4o-mini";
 export const useCurrentLLMStore = create<CurrentLLMStore>()(
 	persist(
 		(set) => ({
-			currentLLM: undefined,
-			setCurrentLLM: (llm: AvailableLLM) => set({ currentLLM: llm }),
+			selectedLLM: undefined,
+			setSelectedLLM: (llm: AvailableLLM) => set({ selectedLLM: llm }),
 			availableLLMs: [],
 			getAvailableLLMs: getAvailableLLMs,
 		}),
@@ -75,12 +75,12 @@ async function getAvailableLLMs() {
 			(model) => model.identifier === defaultModelIdentifier,
 		);
 
-		const currentLlm = useCurrentLLMStore.getState().currentLLM;
+		const selectedLlm = useCurrentLLMStore.getState().selectedLLM;
 
-		if (!currentLlm) {
+		if (!selectedLlm) {
 			// No selected LLM, use healthy default model
 			if (defaultModel && defaultModel.status.healthy) {
-				useCurrentLLMStore.setState({ currentLLM: defaultModel });
+				useCurrentLLMStore.setState({ selectedLLM: defaultModel });
 				return;
 			}
 
@@ -90,12 +90,12 @@ async function getAvailableLLMs() {
 			return;
 		}
 
-		if (currentLlm) {
+		if (selectedLlm) {
 			const refreshedCurrentLlm = sortedAvailableLLMs.find(
-				(llm) => llm.identifier === currentLlm.identifier,
+				(llm) => llm.identifier === selectedLlm.identifier,
 			);
 			if (refreshedCurrentLlm) {
-				useCurrentLLMStore.setState({ currentLLM: refreshedCurrentLlm });
+				useCurrentLLMStore.setState({ selectedLLM: refreshedCurrentLlm });
 				if (refreshedCurrentLlm.status.healthy) {
 					return;
 				}

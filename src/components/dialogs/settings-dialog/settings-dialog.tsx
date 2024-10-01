@@ -8,7 +8,11 @@ import { RefreshIcon } from "../../icons/refresh-icon";
 export const settingsDialogId = "settings-dialog";
 
 export const SettingsDialog: React.FC = () => {
-	const { availableLLMs, currentLLM, getAvailableLLMs } = useCurrentLLMStore();
+	const {
+		availableLLMs,
+		selectedLLM: currentLLM,
+		getAvailableLLMs,
+	} = useCurrentLLMStore();
 
 	return (
 		<DefaultDialog

@@ -73,7 +73,7 @@ export const useChatHistoryStore = create(
 						?.messages ?? [];
 				const tokens = messages.map((message) => message.tokenCount);
 				const tokenCount = tokens.reduce((acc, val) => acc + val, 0);
-				const llm = useCurrentLLMStore.getState().currentLLM;
+				const llm = useCurrentLLMStore.getState().selectedLLM;
 				if (llm) {
 					return tokenCount / llm.contextSize;
 				}

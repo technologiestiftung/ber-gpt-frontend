@@ -14,7 +14,7 @@ const systemPrompts: { [key: string]: string } = {
 
 export async function streamChatResponse() {
 	const chatId = useCurrentChatIdStore.getState().currentChatId;
-	const { currentLLM } = useCurrentLLMStore.getState();
+	const { selectedLLM: currentLLM } = useCurrentLLMStore.getState();
 	const { handleError } = useErrorStore.getState();
 
 	if (!chatId) {
