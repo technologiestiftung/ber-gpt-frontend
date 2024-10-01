@@ -1,6 +1,7 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import { useErrorStore } from "./error-store";
+import { persist } from "zustand/middleware";
 
 export interface AvailableLLM {
 	identifier: string;
