@@ -27,6 +27,14 @@ const errorMessages: { [key: string]: string } = {
 	wrong_password: "Falsches Passwort.",
 	"Failed to fetch":
 		"Etwas ist schief gelaufen, bitte starten Sie einen neuen Chat.",
+	selected_llm_not_healthy:
+		"Das ausgewählte Modell ist temporär nicht verfügbar, bitte wählen Sie ein alternatives Modell in den Einstellungen.",
+	changed_to_default_llm:
+		"Das ausgewählte Modell ist temporär nicht verfügbar, es wurde auf das Standardmodell zurückgesetzt.",
+	changed_to_first_healthy_llm:
+		"Das Standardmodell ist temporär nicht verfügbar, es wurde auf das erste verfügbare Modell zurückgesetzt.",
+	no_healthy_llm_available:
+		"Temporär keine Modelle verfügbar. Bitte versuchen Sie es später erneut.",
 };
 
 export const useErrorStore = create<ErrorStore>()((set, get) => ({

@@ -14,7 +14,7 @@ const systemPrompts: { [key: string]: string } = {
 
 export async function streamChatResponse() {
 	const chatId = useCurrentChatIdStore.getState().currentChatId;
-	const { currentLLM } = useCurrentLLMStore.getState();
+	const { selectedLLM: currentLLM } = useCurrentLLMStore.getState();
 	const { handleError } = useErrorStore.getState();
 
 	if (!chatId) {
@@ -40,7 +40,7 @@ export async function streamChatResponse() {
 			headers: {
 				"Content-Type": "application/json",
 				"x-api-key": import.meta.env.VITE_X_API_KEY,
-				llm: currentLLM,
+				llm: currentLLM?.identifier ?? "",
 			},
 			body: JSON.stringify({
 				messages: [

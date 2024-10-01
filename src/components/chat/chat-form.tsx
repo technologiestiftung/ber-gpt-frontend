@@ -41,7 +41,13 @@ async function onSubmit(event: React.FormEvent<HTMLFormElement>) {
 	setIsLoading(false);
 }
 
-export const ChatForm: React.FC = () => {
+interface ChatFormProps {
+	isDisabledDueToExceededTokenCapacity: boolean;
+}
+
+export const ChatForm: React.FC<ChatFormProps> = ({
+	isDisabledDueToExceededTokenCapacity,
+}) => {
 	const { isLoading: isGPTResponseLoading } = useIsLoadingStore();
 	const [isSendDisabled, setIsSendDisabled] = useState(true);
 
@@ -71,9 +77,9 @@ export const ChatForm: React.FC = () => {
 
 			<button
 				type="submit"
-				disabled={isLoading}
+				disabled={isLoading || isDisabledDueToExceededTokenCapacity}
 				className={`text-ber-darker-grey hover:text-ber-dark-grey disabled:text-ber-light-grey
-					${isSendDisabled && files.length === 0 && "text-ber-light-grey hover:text-ber-light-grey"}`}
+					${isDisabledDueToExceededTokenCapacity || (isSendDisabled && files.length === 0 && "text-ber-light-grey hover:text-ber-light-grey")}`}
 			>
 				<SendIcon className="w-8 h-8" />
 			</button>
