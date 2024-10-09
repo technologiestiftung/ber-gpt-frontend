@@ -2,7 +2,6 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { Index } from "./routes";
 import { Email } from "./routes/email";
-import { Note } from "./routes/note";
 import { Edit } from "./routes/edit";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./index.css";
@@ -24,10 +23,6 @@ const router = createBrowserRouter([
 	{
 		path: "/edit",
 		element: <Edit />,
-	},
-	{
-		path: "/note",
-		element: <Note />,
 	},
 ]);
 
