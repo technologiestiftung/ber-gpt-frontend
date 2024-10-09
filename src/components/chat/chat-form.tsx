@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, KeyboardEvent, FormEvent } from "react";
 import { FileUploadButton } from "../buttons/file-upload-button";
 import { SendIcon } from "../icons/send-icon";
 import { useIsLoadingStore } from "../../store/is-loading-store";
@@ -12,7 +12,7 @@ const { reset: resetFiles, saveFilesAsMessages } = useInputFileStore.getState();
 const { saveMessage } = useChatHistoryStore.getState();
 const { setHasUserScrolled } = useHasUserScrolledStore.getState();
 
-async function onSubmit(event: React.FormEvent<HTMLFormElement>) {
+async function onSubmit(event: FormEvent<HTMLFormElement>) {
 	event.preventDefault();
 	setIsLoading(true);
 	setHasUserScrolled(false);
@@ -63,7 +63,7 @@ export const ChatForm: React.FC<ChatFormProps> = ({
 		isGPTResponseLoading ||
 		files.some(({ extractionStatus }) => extractionStatus === "pending");
 
-	const handleEnter = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+	const handleEnter = (e: KeyboardEvent<HTMLTextAreaElement>) => {
 		if (e.key === "Enter" && !e.shiftKey) {
 			e.preventDefault();
 			e.currentTarget.form?.requestSubmit();
@@ -86,7 +86,7 @@ export const ChatForm: React.FC<ChatFormProps> = ({
 			<textarea
 				className="w-full bg-ber-lighter-grey focus:outline-none min-h-6 max-h-44 resize-y"
 				name="message"
-				type="text"
+				// type="text"
 				onInput={(e) => {
 					setIsSendDisabled(!e.currentTarget.value);
 				}}
