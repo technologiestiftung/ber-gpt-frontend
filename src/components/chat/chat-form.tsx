@@ -1,4 +1,8 @@
-import React, { useState, KeyboardEvent, FormEvent } from "react";
+import React, {
+	useState,
+	KeyboardEvent as ReactKeyboardEvent,
+	FormEvent as ReactFormEvent,
+} from "react";
 import { FileUploadButton } from "../buttons/file-upload-button";
 import { SendIcon } from "../icons/send-icon";
 import { useIsLoadingStore } from "../../store/is-loading-store";
@@ -86,7 +90,6 @@ export const ChatForm: React.FC<ChatFormProps> = ({
 			<textarea
 				className="w-full bg-ber-lighter-grey focus:outline-none min-h-6 max-h-44 resize-y"
 				name="message"
-				// type="text"
 				onInput={(e) => {
 					setIsSendDisabled(!e.currentTarget.value);
 				}}
