@@ -1,7 +1,6 @@
 import React from "react";
 import { ChatIcon } from "../icons/chat-icon";
 import { MailIcon } from "../icons/mail-icon";
-import { VermerkIcon } from "../icons/vermerk-icon";
 import { PDFIcon } from "../icons/pdf-icon";
 import { trackInteraction } from "../../analytics/matomo";
 
@@ -23,12 +22,6 @@ const navLinks = [
 		icon: <PDFIcon />,
 		href: "/edit",
 		backgroundColor: "bg-ber-pink hover:bg-ber-pink-darker",
-	},
-	{
-		label: "Vermerk erstellen",
-		icon: <VermerkIcon />,
-		href: "/note",
-		backgroundColor: "bg-ber-yellow hover:bg-ber-yellow-darker",
 	},
 ];
 

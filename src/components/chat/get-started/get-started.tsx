@@ -6,7 +6,6 @@ import { useIsLoadingStore } from "../../../store/is-loading-store";
 import { useHasUserScrolledStore } from "../../../store/has-user-scrolled-store";
 import { streamChatResponse } from "../../../store/api";
 import { trackInteraction } from "../../../analytics/matomo";
-import { GetStartedNavLinks } from "./get-started-nav-links";
 
 const startingPrompts = [
 	{
@@ -36,8 +35,6 @@ export const GetStarted: React.FC = () => {
 					von typischen Aufgaben unterstützen. Dieses Angebot befindet sich noch
 					im Aufbau und wird stetig erweitert.
 				</p>
-
-				<GetStartedNavLinks />
 
 				<div className="pb-2 pt-8 text-xl md:text-2xl font-semibold">Chat</div>
 				<p className="pb-2 pt-2 md:text-base text-sm text-center">
