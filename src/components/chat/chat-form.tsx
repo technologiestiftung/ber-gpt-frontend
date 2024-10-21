@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, KeyboardEvent, FormEvent } from "react";
 import { FileUploadButton } from "../buttons/file-upload-button";
 import { SendIcon } from "../icons/send-icon";
 import { useIsLoadingStore } from "../../store/is-loading-store";
@@ -12,7 +12,7 @@ const { reset: resetFiles, saveFilesAsMessages } = useInputFileStore.getState();
 const { saveMessage } = useChatHistoryStore.getState();
 const { setHasUserScrolled } = useHasUserScrolledStore.getState();
 
-async function onSubmit(event: React.FormEvent<HTMLFormElement>) {
+async function onSubmit(event: FormEvent<HTMLFormElement>) {
 	event.preventDefault();
 	setIsLoading(true);
 	setHasUserScrolled(false);
@@ -33,7 +33,13 @@ async function onSubmit(event: React.FormEvent<HTMLFormElement>) {
 	resetFiles();
 
 	if (message) {
-		saveMessage(message.toString());
+		/**
+		 * new lines in the message should be doubled to be displayed correctly in the markdown styled chat
+		 */
+		const messageWithDoubledNewLines = message
+			.toString()
+			.replace(/\n/g, "\n\n");
+		saveMessage(messageWithDoubledNewLines);
 	}
 
 	await streamChatResponse().catch(console.error);
@@ -57,6 +63,19 @@ export const ChatForm: React.FC<ChatFormProps> = ({
 		isGPTResponseLoading ||
 		files.some(({ extractionStatus }) => extractionStatus === "pending");
 
+	const handleEnter = (e: KeyboardEvent<HTMLTextAreaElement>) => {
+		if (e.key === "Enter" && !e.shiftKey) {
+			e.preventDefault();
+			e.currentTarget.form?.requestSubmit();
+			e.currentTarget.rows = 1;
+			return;
+		}
+
+		if (e.key === "Enter" && e.shiftKey) {
+			e.currentTarget.rows++;
+		}
+	};
+
 	return (
 		<form
 			className={`flex items-center gap-4 px-6 py-3 has-[:focus]:border-blue-500`}
@@ -64,15 +83,16 @@ export const ChatForm: React.FC<ChatFormProps> = ({
 		>
 			<FileUploadButton />
 
-			<input
-				className="w-full bg-ber-lighter-grey focus:outline-none"
+			<textarea
+				className="w-full bg-ber-lighter-grey focus:outline-none min-h-6 max-h-44 resize-y"
 				name="message"
-				type="text"
 				onInput={(e) => {
 					setIsSendDisabled(!e.currentTarget.value);
 				}}
+				rows={1}
 				required={files.length === 0}
 				placeholder="Wie kann ich Ihnen helfen?"
+				onKeyDown={handleEnter}
 			/>
 
 			<button
