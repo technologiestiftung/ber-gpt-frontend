@@ -7,7 +7,36 @@
 	"imageSize": 64,
 	"commit": true,
 	"commitConvention": "angular",
-	"contributors": [],
+	"contributors": [
+		{
+			"login": "Esshahn",
+			"name": "Ingo Hinterding",
+			"avatar_url": "https://avatars.githubusercontent.com/u/434355?v=4",
+			"profile": "http://www.awsm.de/",
+			"contributions": ["doc"]
+		},
+		{
+			"login": "raphael-arce",
+			"name": "Raphael.A",
+			"avatar_url": "https://avatars.githubusercontent.com/u/8709861?v=4",
+			"profile": "https://github.com/raphael-arce",
+			"contributions": ["doc"]
+		},
+		{
+			"login": "aeschi",
+			"name": "aeschi",
+			"avatar_url": "https://avatars.githubusercontent.com/u/56318362?v=4",
+			"profile": "https://github.com/aeschi",
+			"contributions": ["doc"]
+		},
+		{
+			"login": "Jaszkowic",
+			"name": "Jonas Jaszkowic",
+			"avatar_url": "https://avatars.githubusercontent.com/u/10830180?v=4",
+			"profile": "https://github.com/Jaszkowic",
+			"contributions": ["doc"]
+		}
+	],
 	"contributorsPerLine": 7,
 	"skipCi": true
 }
