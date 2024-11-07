@@ -1,7 +1,9 @@
 ![](https://img.shields.io/badge/Built%20with%20%E2%9D%A4%EF%B8%8F-at%20Technologiestiftung%20Berlin-blue)
 
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+
 [![All Contributors](https://img.shields.io/badge/all_contributors-4-orange.svg?style=flat-square)](#contributors-)
+
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 # _BärGPT - AI chat assistant_
@@ -19,7 +21,7 @@ BärGPT offers users a selection of different large language models, which vary 
 - The model `azure-gpt-4o-mini` is operated by Microsoft in a data center in Sweden, and thus falls under GDPR regulations. Input data is neither stored nor used for training purposes. This model offers a higher level of data protection compared to similar offerings from the U.S.
 - The model `openai-gpt-4o-mini` provides the same functionality but is operated by OpenAI in the United States. This model should only be used for comparison purposes, as it offers no advantages over the Microsoft model.
 - The model `citylab-macstudio-llama-3.1` is hosted by CityLAB Berlin in compliance with data protection regulations. It is an open-source model, which in many cases can match the quality of commercial models.
-It is important to note that none of the available AI models are operated within the Berlin state network. Therefore, personal or otherwise sensitive data, as well as data intended exclusively for use within the Berlin state network, must not be entered.
+  It is important to note that none of the available AI models are operated within the Berlin state network. Therefore, personal or otherwise sensitive data, as well as data intended exclusively for use within the Berlin state network, must not be entered.
 
 ## Can BärGPT also be used for other use cases?
 
@@ -29,51 +31,36 @@ n line with the principle of "Public Money - Public Code," CityLAB Berlin releas
 
 ## Prerequisites
 
-- vercel.com account
+- Node.js / npm (https://nodejs.org/en)
+- For deployment: Vercel.com account (https://vercel.com/) or any other service of your choice
 
-## Needed Environment Variables
+## Development setup
 
-```plain
-NEXT_PUBLIC_PARLA_API_URL=https://domain-of-your-api-server.dev
-```
+Prepare required env variables:
 
-## Optional Environment Variables
+- Setup `.env` file by copying `.env.sample`
+- Set `VITE_X_API_KEY` to the API key of the [BärGPT API](https://github.com/technologiestiftung/ber-gpt-backend)
+- Set `VITE_API_URL` to the API endpoint of the [BärGPT API](https://github.com/technologiestiftung/ber-gpt-backend)
 
-To enable [Matomo](https://matomo.org/) tracking, set the following environment variables:
+Prepare optional env variables to enable [Matomo](https://matomo.org/) tracking:
 
-```plain
-NEXT_PUBLIC_MATOMO_URL=
-NEXT_PUBLIC_MATOMO_SITE_ID=
-```
+- `NEXT_PUBLIC_MATOMO_URL=...`
+- `NEXT_PUBLIC_MATOMO_SITE_ID=..`
 
-## Installation
+Install dependencies:
 
-```bash
-npm ci
-```
+- `npm ci`
+
+Run development server:
+
+- `npm run dev`
+
+Open [http://localhost:5173](http://localhost:5173) with your browser to see the application running.
 
 ## Deploy
 
-Assuming you have a vercel.com account and you are logged in.
-
-```bash
-# does the first deployment and project creation
-npx vercel
-# add your env variables (interactive)
-npx vercel env add NEXT_PUBLIC_PARLA_API_URL
-# deploy again for production
-npx vercel --prod
-```
-
-## Development
-
-First, run the development server:
-
-```bash
-npm run dev
-```
-
-Open [http://localhost:5173](http://localhost:5173) with your browser to see the result.
+You can deploy and run the BärGPT on the platform of your choice.
+We use Vercel.com, you can follow their step-by-step guides to deploy your version of BärGPT.
 
 ## Tests
 
