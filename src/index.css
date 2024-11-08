@@ -70,7 +70,7 @@
 	}
 
 	.markdown-container blockquote {
-		@apply w-[90%] ml-10 my-10;
+		@apply w-[90%] ml-5 my-5 py-5 pl-5 bg-ber-lighter-grey;
 	}
 
 	.markdown-container hr {

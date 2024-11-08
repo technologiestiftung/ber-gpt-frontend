@@ -2,7 +2,6 @@ const storageKeys: Record<string, string> = {
 	"/": "chat-history",
 	"/email": "email-history",
 	"/email-chat": "email-chat-history",
-	"/note": "note-history",
 	"/edit": "edit-history",
 };
 

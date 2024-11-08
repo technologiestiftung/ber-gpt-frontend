@@ -6,13 +6,33 @@ interface CopyToClipboardButtonProps {
 	generatedAnswer: string;
 }
 
+/**
+ * check if the text has indented sections - return original text if not
+ * otherwise only copy the indented sections
+ */
+const checkForIndentedText = (text: string) => {
+	if (!text.includes("> ")) {
+		return text;
+	}
+
+	const lines = text.split("\n");
+
+	const indentedLines = lines.filter((line) => line.startsWith("> "));
+	const cleanedIndentedLines = indentedLines.map((line) =>
+		line.replace("> ", "").replace(/\*\*/g, ""),
+	);
+
+	return cleanedIndentedLines.join("\n");
+};
+
 export const CopyToClipboardButton: React.FC<CopyToClipboardButtonProps> = ({
 	generatedAnswer,
 }) => {
 	const [isCopiedToClipboard, setIsCopiedToClipboard] = useState(false);
 
 	const copyToClipboard = async () => {
-		await navigator.clipboard.writeText(generatedAnswer);
+		const filteredText = checkForIndentedText(generatedAnswer);
+		await navigator.clipboard.writeText(filteredText);
 		setIsCopiedToClipboard(true);
 	};
 
