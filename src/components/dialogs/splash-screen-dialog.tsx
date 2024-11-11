@@ -24,6 +24,10 @@ export const SplashScreenDialog: React.FC = () => {
 		},
 		{ href: "https://citylab-berlin.org/de/start/", text: "Kontakt" },
 		{
+			href: "https://github.com/technologiestiftung/ber-gpt-frontend",
+			text: "Quellcode",
+		},
+		{
 			href: "https://citylab-berlin.org/de/data-privacy/",
 			text: "Datenschutz",
 		},
